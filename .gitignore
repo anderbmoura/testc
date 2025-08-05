@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+dist/
+build/
+lib/
+*.log
+
+# Expo
+.expo/
+
+# IDEs e OS
+.vscode/
+.idea/
+*.DS_Store
+
+# Release
+.release-it.json.bak

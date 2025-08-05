@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es2020", "dom"],
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-native",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "exactOptionalPropertyTypes": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@superapp-caixa/dsc-library": ["./packages/ui-components/src"],
+      "@superapp-caixa/dsc-library/*": ["./packages/ui-components/src/*"]
+    }
+  },
+  "include": ["packages/ui-components/src/**/*", "apps/example/app/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".expo",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "rn-superapp-dsc-library",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A collection of reusable components for the DSC design system",
+  "scripts": {
+    "build:lib": "npm run build --workspace=@superapp-caixa/dsc-library",
+    "watch:lib": "npm run watch --workspace=@superapp-caixa/dsc-library",
+    "publish:lib": "npm run publish-package --workspace=@superapp-caixa/dsc-library",
+    "start:expo": "npm run start --workspace=example",
+    "storybook-web": "npm run storybook --workspace=storybook-web",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "type-check": "tsc --noEmit",
+    "test": "npm run lint && npm run type-check",
+    "pre-commit": "lint-staged",
+    "release": "release-it",
+    "release:patch": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major",
+    "release:dry-run": "release-it --dry-run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "git": {
+    "commitMessage": "chore: release v${version}",
+    "tagName": "v${version}",
+    "requireCleanWorkingDir": true,
+    "requireBranch": "main",
+    "pushRepo": "origin"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release v${version}",
+    "releaseNotes": null
+  },
+  "npm": {
+    "publish": false,
+    "skipChecks": true
+  },
+  "hooks": {
+    "before:init": ["npm run lint", "npm run type-check", "npm run build:lib"],
+    "after:bump": ["echo 'Updated package.json version to ${version}'"],
+    "after:git:release": ["echo 'Tagged and pushed v${version} to git'"],
+    "after:release": ["echo 'Successfully released v${version}'"]
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md",
+      "header": "# Changelog\n\nAll notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.\n"
+    }
+  }
+}

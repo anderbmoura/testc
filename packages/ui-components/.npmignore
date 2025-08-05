@@ -1,0 +1,29 @@
+# Source maps
+*.map
+
+# TypeScript source
+src/**/*.ts
+src/**/*.tsx
+!src/**/*.d.ts
+
+# Config files
+babel.config.js
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# Development files
+__tests__
+__fixtures__
+__mocks__
+*.test.*
+*.spec.*
+
+# Build artifacts
+dist/
+types/
+
+# Misc
+.DS_Store
+*.log
+.gitignore
