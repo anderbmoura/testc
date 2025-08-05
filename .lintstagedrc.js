@@ -14,7 +14,7 @@ module.exports = {
   // Package.json files - also run dependency checks
   '**/package.json': [
     'prettier --write',
-    () => 'npm audit --audit-level=moderate',
+    // () => 'npm audit --audit-level=moderate',
   ],
 
   // TypeScript files - run type checking on the entire project

@@ -15,6 +15,7 @@ export const dscConfig = createTamagui({
   },
 });
 
+// now, make your types flow nicely back to your `tamagui` import:
 export type DscConfig = typeof dscConfig;
 
 declare module 'tamagui' {

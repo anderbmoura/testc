@@ -10,7 +10,7 @@ export default function Index() {
           <Input.Area id="input" placeholder="Enter your name" />
         </Input.Box>
       </Input>
-      <Button></Button>
+      <Button>Botão</Button>
       <CircularAvatarsWithCustomIcons />
     </View>
   );

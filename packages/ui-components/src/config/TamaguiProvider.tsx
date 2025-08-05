@@ -5,9 +5,9 @@ import {
 } from 'tamagui';
 import { dscConfig } from './tamagui.config';
 
-type DSCProviderProps = TamaguiProviderProps & { children: React.ReactNode };
+type DscProviderProps = TamaguiProviderProps & { children: React.ReactNode };
 
-export function TamaguiProvider({ children, ...props }: DSCProviderProps) {
+export function TamaguiProvider({ children, ...props }: DscProviderProps) {
   return (
     <TamaguiProviderBase config={dscConfig} {...props}>
       {children}
