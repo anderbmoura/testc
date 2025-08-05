@@ -1,10 +1,10 @@
-import { TGProvider } from '@superapp-caixa/dsc-library/src';
+import { DscProvider } from '@superapp-caixa/dsc-library';
 import { Stack } from 'expo-router';
 export default function RootLayout() {
-  console.log(TGProvider);
+  console.log(DscProvider);
   return (
-    <TGProvider>
+    <DscProvider>
       <Stack />
-    </TGProvider>
+    </DscProvider>
   );
 }

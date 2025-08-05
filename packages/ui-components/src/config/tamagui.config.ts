@@ -1,8 +1,8 @@
-import { createTamagui } from '@tamagui/core';
 import { defaultConfig } from '@tamagui/config/v4';
+import { createTamagui } from '@tamagui/core';
+import { fonts } from './fonts';
 import { themes } from './themes';
 import { tokens } from './tokens';
-import { fonts } from './fonts';
 
 export const dscConfig = createTamagui({
   ...defaultConfig,

@@ -16,6 +16,11 @@ module.exports = {
         configFile: './babel.bob.config.js',
       },
     ],
-    'typescript',
+    [
+      'typescript',
+      {
+        tsc: '../../node_modules/.bin/tsc',
+      },
+    ],
   ],
 };

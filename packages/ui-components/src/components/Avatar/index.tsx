@@ -103,8 +103,8 @@ const AvatarIconFrame = styled(View, {
       '...size': (val, { tokens }) => {
         const size = tokens.size[val as keyof typeof tokens.size];
         return {
-          width: size.val * 0.33,
-          height: size.val * 0.33,
+          width: size?.val ? size.val * 0.33 : 0,
+          height: size?.val ? size.val * 0.33 : 0,
         };
       },
     },
