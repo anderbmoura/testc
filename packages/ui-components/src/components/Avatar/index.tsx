@@ -228,7 +228,7 @@ const AvatarText = styled(Text, {
     },
   } as const,
   defaultVariants: {
-    size: '$true',
+    size: '$medium',
   },
 });
 

@@ -3,9 +3,9 @@ import { useState } from 'react';
 import {
   ColorTokens,
   createStyledContext,
-  FontSizeTokens,
   isWeb,
   Label,
+  SizeTokens,
   styled,
   Input as TInput,
   View,
@@ -15,7 +15,7 @@ import {
 
 // Removed unused defaultContextValues
 export const InputContext = createStyledContext<{
-  size: FontSizeTokens;
+  size: SizeTokens;
   scaleIcon: number;
   color?: ColorTokens | string;
 }>({
