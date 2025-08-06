@@ -1,27 +1,22 @@
+import { createTamagui } from '@tamagui/core';
 import { defaultConfig } from '@tamagui/config/v4';
-import { createTamagui } from 'tamagui';
 import { themes } from './themes';
+import { tokens } from './tokens';
+import { fonts } from './fonts';
 
-export const dscThemeConfig = {
+export const dscConfig = createTamagui({
   ...defaultConfig,
-  media: {
-    ...defaultConfig.media,
-    // add your own media queries here, if wanted
-  },
+  themes,
+  tokens,
+  fonts,
   settings: {
     ...defaultConfig.settings,
     onlyAllowShorthands: false,
   },
-};
-
-export const DscConfig = createTamagui({
-  ...dscThemeConfig,
-  themes,
 });
 
-// now, make your types flow nicely back to your `tamagui` import:
-type dscConfig = typeof DscConfig;
+export type DscConfig = typeof dscConfig;
 
 declare module 'tamagui' {
-  interface TamaguiCustomConfig extends DatescConfig {}
+  interface TamaguiCustomConfig extends DscConfig {}
 }
