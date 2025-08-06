@@ -38,5 +38,6 @@
     ".expo",
     "**/*.test.*",
     "**/*.spec.*"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

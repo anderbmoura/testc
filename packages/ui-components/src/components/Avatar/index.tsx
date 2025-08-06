@@ -221,6 +221,7 @@ const AvatarText = styled(Text, {
   variants: {
     size: {
       '...fontSize': val => {
+        console.log('fontSize', val);
         return {
           fontSize: getFontSize(val as FontSizeTokens),
         };

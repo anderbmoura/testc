@@ -1,12 +1,12 @@
 import { Decorator } from '@storybook/react';
-import { TGProvider } from '../../../packages/ui-components/dist';
+import { DscProvider } from '@superapp-caixa/dsc-library';
 
 export const decorators: Decorator[] = [
   Story => {
     return (
-      <TGProvider>
+      <DscProvider>
         <Story />
-      </TGProvider>
+      </DscProvider>
     );
   },
 ];

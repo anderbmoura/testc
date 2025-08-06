@@ -8,7 +8,7 @@ export const dscConfig = createTamagui({
   ...defaultConfig,
   themes,
   tokens,
-  fonts,
+  fonts: fonts,
   settings: {
     ...defaultConfig.settings,
     onlyAllowShorthands: false,

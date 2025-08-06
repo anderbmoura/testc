@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {
   ColorTokens,
   createStyledContext,
+  FontSizeTokens,
   isWeb,
   Label,
   SizeTokens,
@@ -15,12 +16,13 @@ import {
 
 // Removed unused defaultContextValues
 export const InputContext = createStyledContext<{
-  size: SizeTokens;
   scaleIcon: number;
+  size: SizeTokens;
+  fontSize?: FontSizeTokens | string;
   color?: ColorTokens | string;
 }>({
-  size: '$4',
   scaleIcon: 1,
+  size: '$4',
 });
 
 export const defaultInputGroupStyles = {
@@ -62,9 +64,6 @@ const InputGroupFrame = styled(XGroup, {
   variants: {
     unstyled: {
       false: defaultInputGroupStyles,
-    },
-    scaleIcon: {
-      ':number': {} as any,
     },
     applyFocusStyle: {
       ':boolean': (val, { props }) => {

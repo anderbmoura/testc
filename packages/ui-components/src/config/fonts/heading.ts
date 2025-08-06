@@ -1,8 +1,10 @@
+import { defaultConfig } from '@tamagui/config/v4';
 import { createFont } from '@tamagui/core';
 
 export const headingFont = createFont({
   family: 'CAIXA Std',
   size: {
+    ...defaultConfig.fonts.body.size,
     quark: 12,
     nano: 14,
     micro: 16,
