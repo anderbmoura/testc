@@ -1,0 +1,55 @@
+trigger: none
+
+parameters:
+  - name: VERSION
+    type: string
+    default: '0.0.2'
+    displayName: 'Versão da Lib'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - bash: |
+      build_name="$(build.buildNumber) - Version ${{ parameters.VERSION }}"
+      echo "##vso[build.updatebuildnumber]$build_name"
+      echo "##vso[task.setvariable variable=VERSION]${{ parameters.VERSION }}"
+    displayName: 'Atualiza BuildName'
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  # Garantir que yarn.lock existe (evita erro YN0028 do Yarn 4)
+  - script: |
+      if [ ! -f "yarn.lock" ]; then
+        echo "Arquivo yarn.lock não encontrado. Gerando..."
+        yarn install --mode=update-lockfile
+      else
+        echo "Arquivo yarn.lock já existe."
+      fi
+    displayName: 'Check or Generate yarn.lock'
+
+  - script: |
+      corepack enable
+      yarn --version
+      cd packages/ui-components
+      yarn install --immutable
+    displayName: 'Install dependencies and build ui-components with Yarn'
+
+  - task: npmAuthenticate@0
+    inputs:
+      workingFile: 'packages/ui-components/.npmrc'
+
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: 'packages/ui-components'
+      customCommand: 'version $(VERSION) --no-git-tag-version --userconfig .npmrc'
+    displayName: 'Update version lib'
+
+  - script: |
+      cd packages/ui-components
+      npm publish --userconfig .npmrc
+    displayName: 'Publish package to Azure Artifacts feed'
