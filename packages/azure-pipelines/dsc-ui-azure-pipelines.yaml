@@ -22,20 +22,21 @@ steps:
     displayName: 'Install Node.js'
 
   # Garantir que yarn.lock existe (evita erro YN0028 do Yarn 4)
-  - script: |
-      if [ ! -f "yarn.lock" ]; then
-        echo "Arquivo yarn.lock não encontrado. Gerando..."
-        yarn install --mode=update-lockfile
-      else
-        echo "Arquivo yarn.lock já existe."
-      fi
-    displayName: 'Check or Generate yarn.lock'
+  # - script: |
+  #     if [ ! -f "yarn.lock" ]; then
+  #       echo "Arquivo yarn.lock não encontrado. Gerando..."
+  #       yarn install --mode=update-lockfile
+  #     else
+  #       echo "Arquivo yarn.lock já existe."
+  #     fi
+  #   displayName: 'Check or Generate yarn.lock'
 
   - script: |
       #corepack enable
-      yarn --version
+      #yarn --version
       cd packages/ui-components
-      yarn install --immutable
+      npm install
+      #yarn install --immutable
     displayName: 'Install dependencies and build ui-components with Yarn'
 
   - task: npmAuthenticate@0
