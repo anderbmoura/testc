@@ -1,6 +1,7 @@
 module.exports = {
   source: 'src',
   output: 'lib',
+  exclude: '**/*.stories.*',
   targets: [
     [
       'module',

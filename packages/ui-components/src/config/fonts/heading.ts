@@ -1,8 +1,14 @@
 import { defaultConfig } from '@tamagui/config/v4';
-import { createFont } from '@tamagui/core';
+import { createFont, isWeb } from '@tamagui/core';
 
 export const headingFont = createFont({
-  family: 'CAIXA Std',
+  family: isWeb
+    ? 'CAIXA Std, system-ui, -apple-system, sans-serif'
+    : 'CAIXA Std',
+  face: {
+    400: { normal: 'CAIXA Std Regular', italic: 'CAIXA Std Italic' },
+    600: { normal: 'CAIXA Std SemiBold', italic: 'CAIXA Std SemiBold Italic' },
+  },
   size: {
     ...defaultConfig.fonts.body.size,
     quark: 12,

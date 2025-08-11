@@ -1,8 +1,12 @@
 import { defaultConfig } from '@tamagui/config/v4';
-import { createFont } from '@tamagui/core';
+import { createFont, isWeb } from '@tamagui/core';
 
 export const bodyFont = createFont({
-  family: 'Roboto',
+  family: isWeb ? 'Roboto, system-ui, -apple-system, sans-serif' : 'Roboto',
+  face: {
+    400: { normal: 'Roboto-Regular', italic: 'Roboto-Italic' },
+    600: { normal: 'Roboto-SemiBold', italic: 'Roboto-SemiBoldItalic' },
+  },
   size: {
     ...defaultConfig.fonts.body.size,
     quark: 12,
