@@ -1,32 +1,40 @@
 import * as Colors from '@tamagui/colors';
 import { createThemes, defaultComponentThemes } from '@tamagui/theme-builder';
 import {
+  neutralDarkGradientPalette,
+  neutralLightGradientPalette,
   neutralDarkPalette,
   neutralLightPalette,
-  neutralLightSemanticPalette,
-  neutralDarkSemanticPalette,
 } from './palettes/neutral';
 import {
-  highlightLightSemanticPalette,
-  highlightDarkSemanticPalette,
+  highlightDarkPalette,
+  highlightLightPalette,
+  highlightDarkGradientPalette,
+  highlightLightGradientPalette,
 } from './palettes/extras/highlight';
 import {
-  infoLightSemanticPalette,
-  infoDarkSemanticPalette,
+  infoDarkPalette,
+  infoLightPalette,
+  infoDarkGradientPalette,
+  infoLightGradientPalette,
 } from './palettes/extras/info';
 import {
-  successLightSemanticPalette,
-  successDarkSemanticPalette,
+  successDarkPalette,
+  successLightPalette,
+  successDarkGradientPalette,
+  successLightGradientPalette,
 } from './palettes/extras/success';
 import {
-  warningLightSemanticPalette,
-  warningDarkSemanticPalette,
+  warningDarkPalette,
+  warningLightPalette,
+  warningDarkGradientPalette,
+  warningLightGradientPalette,
 } from './palettes/extras/warning';
 import {
+  accentDarkGradientPalette,
+  accentLightGradientPalette,
   accentDarkPalette,
   accentLightPalette,
-  accentDarkSemanticPalette,
-  accentLightSemanticPalette,
 } from './palettes/accent';
 
 const builtThemes = createThemes({
@@ -34,8 +42,8 @@ const builtThemes = createThemes({
 
   base: {
     palette: {
-      dark: neutralDarkPalette,
-      light: neutralLightPalette,
+      dark: Object.values(neutralDarkGradientPalette),
+      light: Object.values(neutralLightGradientPalette),
     },
 
     extra: {
@@ -43,31 +51,31 @@ const builtThemes = createThemes({
         ...Colors.greenDark,
         ...Colors.redDark,
         ...Colors.yellowDark,
-        ...neutralDarkSemanticPalette,
-        ...accentDarkSemanticPalette,
-        ...highlightDarkSemanticPalette,
-        ...infoDarkSemanticPalette,
-        ...successDarkSemanticPalette,
-        ...warningDarkSemanticPalette,
+        ...neutralDarkPalette,
+        ...accentDarkPalette,
+        ...highlightDarkPalette,
+        ...infoDarkPalette,
+        ...successDarkPalette,
+        ...warningDarkPalette,
       },
       light: {
         ...Colors.green,
         ...Colors.red,
         ...Colors.yellow,
-        ...neutralLightSemanticPalette,
-        ...accentLightSemanticPalette,
-        ...highlightLightSemanticPalette,
-        ...infoLightSemanticPalette,
-        ...successLightSemanticPalette,
-        ...warningLightSemanticPalette,
+        ...neutralLightPalette,
+        ...accentLightPalette,
+        ...highlightLightPalette,
+        ...infoLightPalette,
+        ...successLightPalette,
+        ...warningLightPalette,
       },
     },
   },
 
   accent: {
     palette: {
-      dark: accentDarkPalette,
-      light: accentLightPalette,
+      dark: Object.values(accentDarkGradientPalette),
+      light: Object.values(accentLightGradientPalette),
     },
 
     extra: {
@@ -75,53 +83,60 @@ const builtThemes = createThemes({
         ...Colors.greenDark,
         ...Colors.redDark,
         ...Colors.yellowDark,
-        ...neutralDarkSemanticPalette,
-        ...accentDarkSemanticPalette,
-        ...highlightDarkSemanticPalette,
-        ...infoDarkSemanticPalette,
-        ...successDarkSemanticPalette,
-        ...warningDarkSemanticPalette,
+        ...neutralDarkPalette,
+        ...accentDarkPalette,
+        ...highlightDarkPalette,
+        ...infoDarkPalette,
+        ...successDarkPalette,
+        ...warningDarkPalette,
       },
       light: {
         ...Colors.green,
         ...Colors.red,
         ...Colors.yellow,
-        ...neutralLightSemanticPalette,
-        ...accentLightSemanticPalette,
-        ...highlightLightSemanticPalette,
-        ...infoLightSemanticPalette,
-        ...successLightSemanticPalette,
-        ...warningLightSemanticPalette,
+        ...neutralLightPalette,
+        ...accentLightPalette,
+        ...highlightLightPalette,
+        ...infoLightPalette,
+        ...successLightPalette,
+        ...warningLightPalette,
       },
     },
   },
 
   childrenThemes: {
+    highlight: {
+      palette: {
+        dark: Object.values(highlightDarkGradientPalette),
+        light: Object.values(highlightLightGradientPalette),
+      },
+    },
+
     warning: {
       palette: {
-        dark: Object.values(warningDarkSemanticPalette),
-        light: Object.values(warningLightSemanticPalette),
+        dark: Object.values(warningDarkGradientPalette),
+        light: Object.values(warningLightGradientPalette),
       },
     },
 
     error: {
       palette: {
-        dark: Object.values(warningDarkSemanticPalette),
-        light: Object.values(warningLightSemanticPalette),
+        dark: Object.values(warningDarkGradientPalette),
+        light: Object.values(warningLightGradientPalette),
       },
     },
 
     success: {
       palette: {
-        dark: Object.values(successDarkSemanticPalette),
-        light: Object.values(successLightSemanticPalette),
+        dark: Object.values(successDarkGradientPalette),
+        light: Object.values(successLightGradientPalette),
       },
     },
 
     info: {
       palette: {
-        dark: Object.values(infoDarkSemanticPalette),
-        light: Object.values(infoLightSemanticPalette),
+        dark: Object.values(infoDarkGradientPalette),
+        light: Object.values(infoLightGradientPalette),
       },
     },
   },
