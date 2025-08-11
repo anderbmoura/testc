@@ -35,6 +35,7 @@ steps:
       corepack enable
       yarn --version
       cd packages/ui-components
+      yarn add github:iconoir-icons/react-native-iconoir
       yarn install --immutable
     displayName: 'Install dependencies and build ui-components with Yarn'
 
