@@ -32,7 +32,7 @@ steps:
     displayName: 'Check or Generate yarn.lock'
 
   - script: |
-      corepack enable
+      #corepack enable
       yarn --version
       cd packages/ui-components
       yarn install --immutable
