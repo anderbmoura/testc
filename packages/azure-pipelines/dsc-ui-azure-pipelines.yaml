@@ -21,37 +21,24 @@ steps:
       versionSpec: '20.x'
     displayName: 'Install Node.js'
 
-  #Garantir que yarn.lock existe (evita erro YN0028 do Yarn 4)
-  - script: |
-      if [ ! -f "yarn.lock" ]; then
-        echo "Arquivo yarn.lock não encontrado. Gerando..."
-        yarn install --mode=update-lockfile
-      else
-        echo "Arquivo yarn.lock já existe."
-      fi
-    displayName: 'Check or Generate yarn.lock'
-
   - script: |
       corepack enable
       yarn --version
       yarn install --immutable
-      cd packages/ui-components
-      #yarn add github:iconoir-icons/react-native-iconoir
-      #yarn install --immutable
     displayName: 'Install dependencies and build ui-components with Yarn'
 
   - task: npmAuthenticate@0
     inputs:
-      workingFile: 'packages/ui-components/.npmrc'
+      workingFile: '.npmrc'
 
   - task: Npm@1
     inputs:
       command: 'custom'
       workingDir: 'packages/ui-components'
-      customCommand: 'version $(VERSION) --no-git-tag-version --userconfig .npmrc'
+      customCommand: 'version $(VERSION) --no-git-tag-version --userconfig ../../.npmrc'
     displayName: 'Update version lib'
 
   - script: |
       cd packages/ui-components
-      npm publish --userconfig .npmrc
+      npm publish --userconfig ../../.npmrc
     displayName: 'Publish package to Azure Artifacts feed'
