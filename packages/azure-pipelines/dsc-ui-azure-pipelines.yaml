@@ -18,7 +18,7 @@ steps:
 
   - task: NodeTool@0
     inputs:
-      versionSpec: '18.x'
+      versionSpec: '20.x'
     displayName: 'Install Node.js'
 
   #Garantir que yarn.lock existe (evita erro YN0028 do Yarn 4)
@@ -35,7 +35,7 @@ steps:
       corepack enable
       yarn --version
       cd packages/ui-components
-      yarn add github:iconoir-icons/react-native-iconoir
+      #yarn add github:iconoir-icons/react-native-iconoir
       yarn install --immutable
     displayName: 'Install dependencies and build ui-components with Yarn'
 
