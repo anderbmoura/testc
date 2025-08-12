@@ -4,7 +4,7 @@ import Switch from './Switch';
 import type { SwitchProps } from './Switch.model';
 
 const meta: Meta<SwitchProps> = {
-  title: 'DSC Components/Switch',
+  title: 'Components/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',
