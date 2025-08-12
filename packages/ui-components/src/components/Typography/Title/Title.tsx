@@ -1,28 +1,16 @@
 import React from 'react';
 import { styled, Text } from 'tamagui';
 import { TitleProps } from './Title.model';
+import { typography } from '../../../config/fonts/typography';
 
 const DscTitle = styled(Text, {
   name: 'DscTitle',
-  fontFamily: '$heading',
-  fontSize: '$medium',
-  lineHeight: '$medium',
-  fontWeight: '$400',
 
   variants: {
     size: {
-      large: {
-        fontSize: '$large',
-        lineHeight: '$large',
-      },
-      standard: {
-        fontSize: '$medium',
-        lineHeight: '$medium',
-      },
-      small: {
-        fontSize: '$small',
-        lineHeight: '$small',
-      },
+      large: typography.titleLarge,
+      standard: typography.titleStandard,
+      small: typography.titleSmall,
     },
     emphasized: {
       true: {
@@ -33,6 +21,11 @@ const DscTitle = styled(Text, {
       },
     },
   } as const,
+
+  defaultVariants: {
+    size: 'standard',
+    emphasized: false,
+  },
 });
 
 /**

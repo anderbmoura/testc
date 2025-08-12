@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button as TamaguiButton, styled, Spinner } from 'tamagui';
-import { typographyPresets } from '../../config/fonts/presets';
+import { typography } from '../../config/fonts/typography';
 import { spaceTokens } from '../../config/tokens/space/space';
 import { transformIconSize } from '../../utils';
 import { ButtonProps } from './';
@@ -14,9 +14,9 @@ const StyledButton = styled(TamaguiButton, {
   variants: {
     size: {
       large: {
-        fontSize: typographyPresets.bodyLarge.fontSize,
-        fontWeight: typographyPresets.bodyLarge.fontWeight,
-        lineHeight: typographyPresets.bodyLarge.lineHeight,
+        fontSize: typography.bodyLarge.fontSize,
+        fontWeight: typography.bodyLarge.fontWeight,
+        lineHeight: typography.bodyLarge.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$small',
         minHeight: 56,
@@ -24,9 +24,9 @@ const StyledButton = styled(TamaguiButton, {
       },
 
       standard: {
-        fontSize: typographyPresets.labelStandard.fontSize,
-        fontWeight: typographyPresets.labelStandard.fontWeight,
-        lineHeight: typographyPresets.labelStandard.lineHeight,
+        fontSize: typography.labelStandard.fontSize,
+        fontWeight: typography.labelStandard.fontWeight,
+        lineHeight: typography.labelStandard.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$smaller',
         minHeight: 48,
@@ -34,9 +34,9 @@ const StyledButton = styled(TamaguiButton, {
       },
 
       small: {
-        fontSize: typographyPresets.labelSmall.fontSize,
-        fontWeight: typographyPresets.labelSmall.fontWeight,
-        lineHeight: typographyPresets.labelSmall.lineHeight,
+        fontSize: typography.labelSmall.fontSize,
+        fontWeight: typography.labelSmall.fontWeight,
+        lineHeight: typography.labelSmall.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$tiny',
         minHeight: 40,

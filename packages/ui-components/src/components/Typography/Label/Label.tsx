@@ -1,28 +1,16 @@
 import React from 'react';
 import { styled, Text } from 'tamagui';
 import { LabelProps } from './Label.model';
+import { typography } from '../../../config/fonts/typography';
 
 const DscLabel = styled(Text, {
   name: 'DscLabel',
-  fontFamily: '$body',
-  fontSize: '$nano',
-  lineHeight: '$nano',
-  fontWeight: '$400',
 
   variants: {
     size: {
-      standard: {
-        fontSize: '$nano',
-        lineHeight: '$nano',
-      },
-      small: {
-        fontSize: '$quark',
-        lineHeight: '$quark',
-      },
-      tiny: {
-        fontSize: '$quark',
-        lineHeight: '$quark',
-      },
+      standard: typography.labelStandard,
+      small: typography.labelSmall,
+      tiny: typography.labelTiny,
     },
     emphasized: {
       true: {
@@ -33,6 +21,11 @@ const DscLabel = styled(Text, {
       },
     },
   } as const,
+
+  defaultVariants: {
+    size: 'standard',
+    emphasized: false,
+  },
 });
 
 /**

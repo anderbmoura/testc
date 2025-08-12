@@ -7,7 +7,7 @@ export { Input } from './components/Input';
 export { default as Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
 export * from './components/Typography';
-export { typographyPresets } from './config/fonts/presets';
+export { typography as typographyPresets } from './config/fonts/typography';
 export { dscFonts, type DscFonts, useDscFonts } from './config/fonts';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
 export { TamaguiProvider as DscProvider } from './config/TamaguiProvider';

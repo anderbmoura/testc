@@ -1,28 +1,16 @@
 import React from 'react';
 import { styled, Text } from 'tamagui';
 import { BodyProps } from './Body.model';
+import { typography } from '../../../config/fonts/typography';
 
 const DscBody = styled(Text, {
   name: 'DscBody',
-  fontFamily: '$body',
-  fontSize: '$tiny',
-  lineHeight: '$tiny',
-  fontWeight: '$400',
 
   variants: {
     size: {
-      large: {
-        fontSize: '$smaller',
-        lineHeight: '$smaller',
-      },
-      standard: {
-        fontSize: '$tiny',
-        lineHeight: '$tiny',
-      },
-      small: {
-        fontSize: '$micro',
-        lineHeight: '$micro',
-      },
+      large: typography.bodyLarge,
+      standard: typography.bodyStandard,
+      small: typography.bodySmall,
     },
     emphasized: {
       true: {
@@ -33,6 +21,11 @@ const DscBody = styled(Text, {
       },
     },
   } as const,
+
+  defaultVariants: {
+    size: 'standard',
+    emphasized: false,
+  },
 });
 
 /**

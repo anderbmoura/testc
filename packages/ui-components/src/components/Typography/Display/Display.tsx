@@ -1,30 +1,25 @@
 import React from 'react';
 import { styled, Text } from 'tamagui';
 import { DisplayProps } from './Display.model';
+import { typography } from '../../../config/fonts/typography';
 
 const DscDisplay = styled(Text, {
   name: 'DscDisplay',
-  fontFamily: '$heading',
-  fontSize: '$larger',
-  lineHeight: '$larger',
-  fontWeight: '$400',
 
   variants: {
     size: {
-      standard: {
-        fontSize: '$larger',
-        lineHeight: '$larger',
-      },
+      standard: typography.displayStandard,
     },
     emphasized: {
-      true: {
-        fontWeight: '$600',
-      },
-      false: {
-        fontWeight: '$400',
-      },
+      true: typography.displayStandardEmphasized,
+      false: typography.displayStandard,
     },
   } as const,
+
+  defaultVariants: {
+    size: 'standard',
+    emphasized: false,
+  },
 });
 
 /**
