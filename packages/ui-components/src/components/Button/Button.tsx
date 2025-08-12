@@ -9,7 +9,7 @@ const StyledButton = styled(TamaguiButton, {
   name: 'DscButton',
   borderRadius: '$pill',
   space: 0,
-  width: '100%',
+  width: 'auto',
 
   variants: {
     size: {
