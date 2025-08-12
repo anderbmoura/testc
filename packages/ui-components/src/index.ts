@@ -4,6 +4,8 @@ export { default as Button } from './components/Button';
 export type { ButtonProps, ButtonType, ButtonSize } from './components/Button';
 export { CheckboxWithLabel } from './components/Checkbox';
 export { Input } from './components/Input';
+export { default as Switch } from './components/Switch';
+export type { SwitchProps } from './components/Switch';
 export * from './components/Typography';
 export { typographyPresets } from './config/fonts/presets';
 export { dscFonts, type DscFonts, useDscFonts } from './config/fonts';
