@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Switch as TamaguiSwitch, styled, XStack, YStack } from 'tamagui';
 import { SwitchProps } from './Switch.model';
-import { BodyStandard } from '../Typography';
+import { Body } from '../Typography';
 
 const DscSwitch = styled(TamaguiSwitch, {
   name: 'DscSwitch',
@@ -149,7 +149,7 @@ const Switch: React.FC<SwitchProps> = ({
       tabIndex={disabled ? -1 : 0}
       cursor={disabled ? 'not-allowed' : 'pointer'}
     >
-      {text && <BodyStandard>{text}</BodyStandard>}
+      {text && <Body>{text}</Body>}
       <DscSwitchContainer
         {...(isFocused && !disabled ? { focused: true } : { focused: false })}
       >
