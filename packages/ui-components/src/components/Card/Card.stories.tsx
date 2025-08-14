@@ -63,34 +63,12 @@ export const Plain: Story = {
   },
 };
 
-export const DefaultCard: Story = {
-  args: {
-    type: 'plain',
-    children: (
-      <YStack
-        gap="$2"
-        padding="$2"
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Text fontSize="$6" fontWeight="600" color="$color12">
-          Default Card
-        </Text>
-        <Text fontSize="$4" color="$color11" textAlign="center">
-          This card uses the default dimensions from Figma (312x132)
-        </Text>
-      </YStack>
-    ),
-  },
-};
-
 export const Pressable: Story = {
   args: {
     type: 'outline',
     onPress: () => alert('Card pressed!'),
     children: (
-      <YStack gap="$2" padding="$2" alignItems="center" justifyContent="center">
+      <YStack gap="$3" padding="$3" alignItems="center" justifyContent="center">
         <Text fontSize="$5" fontWeight="600" color="$color12">
           Pressable Card
         </Text>
@@ -99,12 +77,5 @@ export const Pressable: Story = {
         </Text>
       </YStack>
     ),
-  },
-};
-
-export const Playground: Story = {
-  args: {
-    type: 'plain',
-    children: <SampleContent />,
   },
 };
