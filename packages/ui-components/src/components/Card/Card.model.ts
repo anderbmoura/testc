@@ -1,5 +1,4 @@
 import React from 'react';
-import { ViewProps } from 'react-native';
 
 /**
  * Visual appearance variants for the card.
@@ -23,21 +22,6 @@ export interface CardProps {
    * Content displayed inside the card. Can be text, components, or other React elements.
    */
   children?: React.ReactNode;
-
-  /**
-   * Custom width for the card. If not provided, defaults to design system value.
-   */
-  width?: number | string;
-
-  /**
-   * Custom height for the card. If not provided, defaults to design system value.
-   */
-  height?: number | string;
-
-  /**
-   * Additional style properties inherited from React Native View
-   */
-  style?: ViewProps['style'];
 
   /**
    * Callback fired when card is pressed.

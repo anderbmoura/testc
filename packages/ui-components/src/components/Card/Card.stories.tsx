@@ -21,14 +21,6 @@ const meta: Meta<CardProps> = {
       options: ['outline', 'plain'],
       description: 'Visual appearance variant of the card',
     },
-    width: {
-      control: { type: 'number' },
-      description: 'Custom width for the card',
-    },
-    height: {
-      control: { type: 'number' },
-      description: 'Custom height for the card',
-    },
     children: {
       control: false,
       description: 'Content displayed inside the card',
@@ -71,11 +63,9 @@ export const Plain: Story = {
   },
 };
 
-export const CustomSize: Story = {
+export const DefaultCard: Story = {
   args: {
     type: 'plain',
-    width: 400,
-    height: 200,
     children: (
       <YStack
         gap="$2"
@@ -85,10 +75,10 @@ export const CustomSize: Story = {
         alignItems="center"
       >
         <Text fontSize="$6" fontWeight="600" color="$color12">
-          Custom Size Card
+          Default Card
         </Text>
         <Text fontSize="$4" color="$color11" textAlign="center">
-          This card has custom dimensions: 400x200
+          This card uses the default dimensions from Figma (312x132)
         </Text>
       </YStack>
     ),
