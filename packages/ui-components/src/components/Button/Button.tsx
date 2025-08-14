@@ -2,7 +2,7 @@ import React from 'react';
 import { Button as TamaguiButton, styled, Spinner } from 'tamagui';
 import { typography } from '../../config/fonts/typography';
 import { spaceTokens } from '../../config/tokens/space/space';
-import { transformIconSize } from '../../utils';
+import { transformIcon } from '../../utils';
 import { ButtonProps } from './';
 
 const DscButton = styled(TamaguiButton, {
@@ -249,10 +249,10 @@ export const Button: React.FC<ButtonProps> = ({
   const iconColor = getIconColor();
   const transformedIcon = loading
     ? undefined
-    : transformIconSize(icon, iconSize, iconColor);
+    : transformIcon(icon, iconSize, iconColor);
   const transformedIconAfter = loading
     ? undefined
-    : transformIconSize(iconAfter, iconSize, iconColor);
+    : transformIcon(iconAfter, iconSize, iconColor);
   const isDisabled = disabled || loading;
 
   return (

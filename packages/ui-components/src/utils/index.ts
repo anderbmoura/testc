@@ -1,1 +1,1 @@
-export { transformIconSize } from './icon-size-transformer';
+export { transformIcon } from './icon-transformer';

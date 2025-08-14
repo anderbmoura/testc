@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from 'tamagui';
 
 /**
  * Icon Size and Color Transformer - Workaround para contornar bugs do Tamagui
@@ -17,7 +18,7 @@ import React from 'react';
  *
  * TODO: Remover quando Tamagui corrigir suporte nativo para SVGs externos
  */
-export const transformIconSize = (
+export const transformIcon = (
   icon: any,
   iconSize: number,
   color?: string
@@ -28,7 +29,7 @@ export const transformIconSize = (
 
   // Only apply color if explicitly provided (to avoid overriding existing colors)
   if (color) {
-    iconProps.color = color;
+    iconProps.color = useTheme()[color.replace('$', '')]?.get();
   }
 
   // ForwardRefExoticComponent (Iconoir passado como icon={Heart})
