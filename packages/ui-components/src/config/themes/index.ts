@@ -129,7 +129,7 @@ const builtThemes = createThemes({
       },
     },
 
-    error: {
+    danger: {
       palette: {
         dark: Object.values(dangerDarkGradientPalette),
         light: Object.values(dangerLightGradientPalette),
