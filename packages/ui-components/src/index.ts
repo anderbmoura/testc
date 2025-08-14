@@ -2,6 +2,8 @@ export * from 'tamagui';
 export { Avatar } from './components/Avatar';
 export { default as Button } from './components/Button';
 export type { ButtonProps, ButtonType, ButtonSize } from './components/Button';
+export { default as Card } from './components/Card';
+export type { CardProps, CardType } from './components/Card';
 export { CheckboxWithLabel } from './components/Checkbox';
 export { Input } from './components/Input';
 export { default as Switch } from './components/Switch';
