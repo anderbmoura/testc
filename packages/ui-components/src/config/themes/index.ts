@@ -31,6 +31,12 @@ import {
   warningLightGradientPalette,
 } from './palettes/extras/warning';
 import {
+  dangerDarkPalette,
+  dangerLightPalette,
+  dangerDarkGradientPalette,
+  dangerLightGradientPalette,
+} from './palettes/extras/danger';
+import {
   accentDarkGradientPalette,
   accentLightGradientPalette,
   accentDarkPalette,
@@ -57,6 +63,7 @@ const builtThemes = createThemes({
         ...infoDarkPalette,
         ...successDarkPalette,
         ...warningDarkPalette,
+        ...dangerDarkPalette,
       },
       light: {
         ...Colors.green,
@@ -68,6 +75,7 @@ const builtThemes = createThemes({
         ...infoLightPalette,
         ...successLightPalette,
         ...warningLightPalette,
+        ...dangerLightPalette,
       },
     },
   },
@@ -89,6 +97,7 @@ const builtThemes = createThemes({
         ...infoDarkPalette,
         ...successDarkPalette,
         ...warningDarkPalette,
+        ...dangerDarkPalette,
       },
       light: {
         ...Colors.green,
@@ -100,6 +109,7 @@ const builtThemes = createThemes({
         ...infoLightPalette,
         ...successLightPalette,
         ...warningLightPalette,
+        ...dangerLightPalette,
       },
     },
   },
@@ -119,10 +129,10 @@ const builtThemes = createThemes({
       },
     },
 
-    error: {
+    danger: {
       palette: {
-        dark: Object.values(warningDarkGradientPalette),
-        light: Object.values(warningLightGradientPalette),
+        dark: Object.values(dangerDarkGradientPalette),
+        light: Object.values(dangerLightGradientPalette),
       },
     },
 

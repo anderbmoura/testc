@@ -1,22 +1,22 @@
 import React from 'react';
 import { Button as TamaguiButton, styled, Spinner } from 'tamagui';
-import { typographyPresets } from '../../config/fonts/presets';
+import { typography } from '../../config/fonts/typography';
 import { spaceTokens } from '../../config/tokens/space/space';
-import { transformIconSize } from '../../utils';
+import { transformIcon } from '../../utils';
 import { ButtonProps } from './';
 
-const StyledButton = styled(TamaguiButton, {
+const DscButton = styled(TamaguiButton, {
   name: 'DscButton',
   borderRadius: '$pill',
   space: 0,
-  width: '100%',
+  width: 'auto',
 
   variants: {
     size: {
       large: {
-        fontSize: typographyPresets.bodyLarge.fontSize,
-        fontWeight: typographyPresets.bodyLarge.fontWeight,
-        lineHeight: typographyPresets.bodyLarge.lineHeight,
+        fontSize: typography.bodyLarge.fontSize,
+        fontWeight: typography.bodyLarge.fontWeight,
+        lineHeight: typography.bodyLarge.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$small',
         minHeight: 56,
@@ -24,9 +24,9 @@ const StyledButton = styled(TamaguiButton, {
       },
 
       standard: {
-        fontSize: typographyPresets.labelStandard.fontSize,
-        fontWeight: typographyPresets.labelStandard.fontWeight,
-        lineHeight: typographyPresets.labelStandard.lineHeight,
+        fontSize: typography.labelStandard.fontSize,
+        fontWeight: typography.labelStandard.fontWeight,
+        lineHeight: typography.labelStandard.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$smaller',
         minHeight: 48,
@@ -34,9 +34,9 @@ const StyledButton = styled(TamaguiButton, {
       },
 
       small: {
-        fontSize: typographyPresets.labelSmall.fontSize,
-        fontWeight: typographyPresets.labelSmall.fontWeight,
-        lineHeight: typographyPresets.labelSmall.lineHeight,
+        fontSize: typography.labelSmall.fontSize,
+        fontWeight: typography.labelSmall.fontWeight,
+        lineHeight: typography.labelSmall.lineHeight,
         paddingVertical: '$none',
         paddingHorizontal: '$tiny',
         minHeight: 40,
@@ -154,6 +154,57 @@ const StyledButton = styled(TamaguiButton, {
   } as const,
 });
 
+/**
+ * DSC Button Component
+ *
+ * @param theme - Visual theme for the button. Inherited from Tamagui Button theme system
+ * ```tsx
+ * <Button theme="highlight">Highlight Button</Button>
+ * <Button theme="danger">Neutral Button</Button>
+ * ```
+ *
+ * @param type - Visual appearance variant of the button
+ * ```tsx
+ * <Button type="plain">Plain Button</Button>
+ * <Button type="outline">Outline Button</Button>
+ * <Button type="chromeless">Chromeless Button</Button>
+ * ```
+ *
+ * @param size - Size variant of the button affecting padding and typography
+ * ```tsx
+ * <Button size="large">Large Button</Button>
+ * <Button size="standard">Standard Button</Button>
+ * <Button size="small">Small Button</Button>
+ * ```
+ *
+ * @param disabled - Prevents user interaction and shows disabled styling
+ * ```tsx
+ * <Button disabled>Disabled Button</Button>
+ * ```
+ *
+ * @param loading - Shows loading spinner and prevents interaction when true
+ * ```tsx
+ * <Button loading={isSubmitting}>Submit</Button>
+ * ```
+ *
+ * @param icon - Icon displayed before the button text
+ * ```tsx
+ * <Button icon={Home}>My Home</Button>
+ * <Button icon={<CheckIcon />}>Save</Button>
+ * ```
+ *
+ * @param iconAfter - Icon displayed after the button text
+ * ```tsx
+ * <Button iconAfter={Home}>My Home</Button>
+ * <Button iconAfter={<ArrowRightIcon />}>Continue</Button>
+ * ```
+ *
+ * @param onPress - Callback fired when button is pressed
+ * ```tsx
+ * <Button onPress={() => handleSubmit()}>Submit</Button>
+ * ```
+ *
+ */
 export const Button: React.FC<ButtonProps> = ({
   theme = 'highlight',
   type = 'plain',
@@ -198,14 +249,14 @@ export const Button: React.FC<ButtonProps> = ({
   const iconColor = getIconColor();
   const transformedIcon = loading
     ? undefined
-    : transformIconSize(icon, iconSize, iconColor);
+    : transformIcon(icon, iconSize, iconColor);
   const transformedIconAfter = loading
     ? undefined
-    : transformIconSize(iconAfter, iconSize, iconColor);
+    : transformIcon(iconAfter, iconSize, iconColor);
   const isDisabled = disabled || loading;
 
   return (
-    <StyledButton
+    <DscButton
       icon={transformedIcon}
       iconAfter={transformedIconAfter}
       theme={theme}
@@ -216,7 +267,7 @@ export const Button: React.FC<ButtonProps> = ({
       onPress={onPress}
     >
       {loading ? <Spinner size="small" color="$color9" /> : children}
-    </StyledButton>
+    </DscButton>
   );
 };
 

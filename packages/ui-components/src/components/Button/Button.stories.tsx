@@ -33,7 +33,7 @@ const iconMapping = {
 };
 
 const meta: Meta<ButtonProps> = {
-  title: 'DSC Components/Button',
+  title: 'Components/Button',
   component: Button,
   parameters: {
     layout: 'centered',
