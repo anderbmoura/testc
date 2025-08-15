@@ -1,5 +1,6 @@
 import {
   Button,
+  CardAlert,
   CheckboxWithLabel,
   Input,
   View,
@@ -216,6 +217,54 @@ function AppContent() {
             </Input.Box>
           </Input>
           <Button>Botão</Button>
+
+          {/* CardAlert Examples */}
+          <YStack space="$4" padding="$4">
+            <CardAlert
+              variant="info"
+              title="Importante"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="success"
+              title="Sucesso"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="warning"
+              title="Atenção"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="danger"
+              title="Erro"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="info"
+              title="Importante"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+              action={{
+                label: 'Ação',
+                onPress: () => alert('Ação executada!'),
+              }}
+            />
+
+            <CardAlert
+              variant="success"
+              title="Sucesso"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+              action={{
+                label: 'Ação',
+                onPress: () => alert('Continuando...'),
+              }}
+            />
+          </YStack>
+
           <CircularAvatarsWithCustomIcons />
           <CheckboxWithLabel
             disabled
