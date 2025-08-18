@@ -1,14 +1,6 @@
-import {
-  Button,
-  CheckboxWithLabel,
-  Input,
-  View,
-  DscProvider,
-  useDscFonts,
-} from '@superapp-caixa/dsc-library';
+import { Button, View, DscProvider } from '@superapp-caixa/dsc-library';
 import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
-import { CircularAvatarsWithCustomIcons } from './components/CircularAvatarsWithCustomIcons';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
 
@@ -28,7 +20,6 @@ import {
 
 function AppContent() {
   const { actualTheme } = useThemeContext();
-  const fontsLoaded = useDscFonts();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoadingToggle = () => {
@@ -37,10 +28,6 @@ function AppContent() {
       setIsLoading(false);
     }, 3000);
   };
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
     <DscProvider defaultTheme={actualTheme}>
@@ -159,7 +146,7 @@ function AppContent() {
               <Button icon={Upload} type="outline" loading theme="warning">
                 Process Data
               </Button>
-              <Button icon={Trash} type="plain" loading theme="error">
+              <Button icon={Trash} type="plain" loading theme="danger">
                 Delete Item
               </Button>
             </YStack>
@@ -208,36 +195,6 @@ function AppContent() {
           <TButton disabled disabledStyle={{ backgroundColor: '$accent9' }}>
             Oi
           </TButton>
-
-          <Input>
-            <Input.Label>Name</Input.Label>
-            <Input.Box>
-              <Input.Area id="input" placeholder="Enter your name" />
-            </Input.Box>
-          </Input>
-          <Button>Botão</Button>
-          <CircularAvatarsWithCustomIcons />
-          <CheckboxWithLabel
-            disabled
-            label="I agree to the terms and conditions"
-          />
-          <CheckboxWithLabel label="I agree to the terms and conditions" />
-          <CheckboxWithLabel
-            label="I agree to the terms and conditions"
-            theme="error"
-          />
-          <CheckboxWithLabel
-            label="I agree to the terms and conditions"
-            theme="accent"
-          />
-          <CheckboxWithLabel
-            label="I agree to the terms and conditions"
-            theme="warning"
-          />
-          <CheckboxWithLabel
-            label="I agree to the terms and conditions"
-            theme="success"
-          />
         </ScrollView>
       </View>
     </DscProvider>

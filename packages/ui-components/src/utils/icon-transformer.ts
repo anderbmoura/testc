@@ -18,69 +18,67 @@ import { useTheme } from 'tamagui';
  *
  * TODO: Remover quando Tamagui corrigir suporte nativo para SVGs externos
  */
-export const transformIcon = (
-  icon: any,
-  iconSize: number,
-  color?: string
-): any => {
-  if (!icon) return icon;
+export const useTransformIcon = () => {
+  const theme = useTheme();
 
-  const iconProps: any = {};
+  return (icon: any, iconSize: number, color?: string): any => {
+    if (!icon) return icon;
 
-  // Only apply color if explicitly provided (to avoid overriding existing colors)
-  if (color) {
-    iconProps.color = useTheme()[color.replace('$', '')]?.get();
-  }
+    const iconProps: any = {};
 
-  // ForwardRefExoticComponent (Iconoir passado como icon={Heart})
-  if (icon.$$typeof === Symbol.for('react.forward_ref')) {
-    return React.createElement(icon, {
-      width: iconSize,
-      height: iconSize,
-      ...iconProps,
-    });
-  }
+    // Only apply color if explicitly provided (to avoid overriding existing colors)
+    if (color) {
+      iconProps.color = theme[color.replace('$', '')]?.get();
+    }
 
-  // Função/componente (LucideHeart passado como icon={LucideHeart})
-  if (typeof icon === 'function') {
-    const isTamaguiIcon = icon.displayName?.includes('themed');
-
-    if (isTamaguiIcon) {
-      return (props: any) =>
-        React.createElement(icon, {
-          ...props,
-          size: iconSize,
-          ...iconProps,
-        });
-    } else {
+    // ForwardRefExoticComponent (Iconoir passado como icon={Heart})
+    if (icon.$$typeof === Symbol.for('react.forward_ref')) {
       return React.createElement(icon, {
         width: iconSize,
         height: iconSize,
         ...iconProps,
       });
     }
-  }
 
-  // React Element (ícone passado como <Icon />)
-  if (React.isValidElement(icon)) {
-    const isTamaguiIcon = (icon.type as any).displayName?.includes('themed');
-    const existingProps = (icon.props as any) || {};
+    // Função/componente (LucideHeart passado como icon={LucideHeart})
+    if (typeof icon === 'function') {
+      const isTamaguiIcon = icon.displayName?.includes('themed');
 
-    if (isTamaguiIcon) {
-      return React.cloneElement(icon, {
-        ...existingProps,
-        size: iconSize,
-        ...iconProps,
-      });
-    } else {
-      return React.cloneElement(icon, {
-        ...existingProps,
-        width: iconSize,
-        height: iconSize,
-        ...iconProps,
-      });
+      if (isTamaguiIcon) {
+        return React.createElement(icon, {
+          size: iconSize,
+          ...iconProps,
+        });
+      } else {
+        return React.createElement(icon, {
+          width: iconSize,
+          height: iconSize,
+          ...iconProps,
+        });
+      }
     }
-  }
 
-  return icon;
+    // React Element (ícone passado como <Icon />)
+    if (React.isValidElement(icon)) {
+      const isTamaguiIcon = (icon.type as any).displayName?.includes('themed');
+      const existingProps = (icon.props as any) || {};
+
+      if (isTamaguiIcon) {
+        return React.cloneElement(icon, {
+          ...existingProps,
+          size: iconSize,
+          ...iconProps,
+        });
+      } else {
+        return React.cloneElement(icon, {
+          ...existingProps,
+          width: iconSize,
+          height: iconSize,
+          ...iconProps,
+        });
+      }
+    }
+
+    return icon;
+  };
 };

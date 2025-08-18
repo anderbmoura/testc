@@ -7,4 +7,3 @@ export const fonts = {
 };
 
 export { dscFonts, type DscFonts } from './fontLoader';
-export { useDscFonts } from './useDscFonts';
