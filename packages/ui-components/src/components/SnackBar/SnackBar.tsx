@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { Animated, PanResponder } from 'react-native';
 import { styled, YStack, XStack, Portal } from 'tamagui';
 import { SnackBarProps, SnackBarColor } from './SnackBar.model';
 import { Body } from '../Typography';
-import { transformIcon } from '../../utils';
+import { useTransformIcon } from '../../utils';
 import { WarningHexagon, BadgeCheck } from 'iconoir-react-native';
 
 const ANIMATION_CONFIG = {
@@ -113,10 +113,20 @@ export function SnackBar({
   duration = 5000,
   onDismiss,
 }: SnackBarProps) {
+  const transformIcon = useTransformIcon();
+
   const translateY = useRef(
     new Animated.Value(ANIMATION_CONFIG.INITIAL_Y_POSITION)
   ).current;
   const translateX = useRef(new Animated.Value(0)).current;
+
+  const animatedViewStyle = {
+    position: 'absolute' as const,
+    bottom: 12,
+    left: 12,
+    right: 12,
+    transform: [{ translateY }, { translateX }],
+  };
 
   const animateEntry = () => {
     createSpringAnimation(translateY, 0).start();
@@ -129,17 +139,23 @@ export function SnackBar({
     ]).start();
   };
 
-  const dismissWithDirection = (direction: 'down' | 'right' = 'down') => {
-    const animation =
-      direction === 'right'
-        ? createTimingAnimation(translateX, ANIMATION_CONFIG.SLIDE_OUT_DISTANCE)
-        : createTimingAnimation(
-            translateY,
-            ANIMATION_CONFIG.INITIAL_Y_POSITION
-          );
+  const dismissWithDirection = useCallback(
+    (direction: 'down' | 'right' = 'down') => {
+      const animation =
+        direction === 'right'
+          ? createTimingAnimation(
+              translateX,
+              ANIMATION_CONFIG.SLIDE_OUT_DISTANCE
+            )
+          : createTimingAnimation(
+              translateY,
+              ANIMATION_CONFIG.INITIAL_Y_POSITION
+            );
 
-    animation.start(() => onDismiss?.());
-  };
+      animation.start(() => onDismiss?.());
+    },
+    [translateX, translateY, onDismiss]
+  );
 
   const handleGestureMove = (gestureState: any) => {
     const { dx, dy } = gestureState;
@@ -172,7 +188,7 @@ export function SnackBar({
 
     const autoDismissTimer = setTimeout(() => dismissWithDirection(), duration);
     return () => clearTimeout(autoDismissTimer);
-  }, [duration]);
+  }, [duration, dismissWithDirection]);
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -202,16 +218,7 @@ export function SnackBar({
 
   return (
     <Portal>
-      <Animated.View
-        {...panResponder.panHandlers}
-        style={{
-          position: 'absolute',
-          bottom: 12,
-          left: 12,
-          right: 12,
-          transform: [{ translateY }, { translateX }],
-        }}
-      >
+      <Animated.View {...panResponder.panHandlers} style={animatedViewStyle}>
         <SnackBarContainer theme={color as any}>
           <SnackBarContent>
             {IconComponent && <YStack>{IconComponent}</YStack>}

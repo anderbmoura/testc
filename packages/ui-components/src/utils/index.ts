@@ -1,1 +1,1 @@
-export { transformIcon } from './icon-transformer';
+export { useTransformIcon } from './icon-transformer';

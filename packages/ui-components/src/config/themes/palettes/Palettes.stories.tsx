@@ -36,7 +36,7 @@ const PaletteSection: React.FC<PaletteSectionProps> = ({ title, colors }) => {
     const numberB = nameB.match(/\d+$/)?.[0];
 
     if (numberA && numberB) {
-      return parseInt(numberA) - parseInt(numberB);
+      return parseInt(numberA, 10) - parseInt(numberB, 10);
     }
 
     return nameA.localeCompare(nameB);

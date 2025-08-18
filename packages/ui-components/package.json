@@ -2,17 +2,17 @@
   "name": "@superapp-caixa/dsc-library",
   "version": "1.0.0",
   "description": "DSC Design System Components for React Native",
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "types": "./lib/typescript/module/index.d.ts",
   "react-native": "./src/index.ts",
   "source": "./src/index.ts",
   "exports": {
     ".": {
       "react-native": "./src/index.ts",
-      "import": "./src/index.ts",
-      "require": "./src/index.ts",
-      "default": "./src/index.ts"
+      "import": "./lib/module/index.js",
+      "require": "./lib/commonjs/index.js",
+      "default": "./lib/module/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -39,9 +39,6 @@
   "repository": {
     "type": "git",
     "url": "git+/rn-superapp-dsc-library.git"
-  },
-  "bugs": {
-    "url": "/rn-superapp-dsc-library/issues"
   },
   "keywords": [
     "react-native",
@@ -72,8 +69,9 @@
     "@tamagui/babel-plugin": "^1.132.15",
     "@tamagui/build": "^1.132.15",
     "@tamagui/config": "^1.132.15",
-    "@tamagui/lucide-icons": "^1.132.15",
+    "@tamagui/core": "^1.132.15",
     "iconoir-react-native": "^7.11.0",
+    "react-native-svg": "^15.12.1",
     "tamagui": "^1.132.15"
   }
 }

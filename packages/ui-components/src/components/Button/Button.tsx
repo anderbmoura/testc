@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button as TamaguiButton, styled, Spinner } from 'tamagui';
+import { Button as TamaguiButton, styled, Spinner, Theme } from 'tamagui';
 import { typography } from '../../config/fonts/typography';
 import { spaceTokens } from '../../config/tokens/space/space';
-import { transformIcon } from '../../utils';
+import { useTransformIcon } from '../../utils';
 import { ButtonProps } from './';
 
 const DscButton = styled(TamaguiButton, {
@@ -216,6 +216,8 @@ export const Button: React.FC<ButtonProps> = ({
   loading = false,
   onPress,
 }) => {
+  const transformIcon = useTransformIcon();
+
   const getIconSize = () => {
     switch (size) {
       case 'large':
@@ -256,18 +258,19 @@ export const Button: React.FC<ButtonProps> = ({
   const isDisabled = disabled || loading;
 
   return (
-    <DscButton
-      icon={transformedIcon}
-      iconAfter={transformedIconAfter}
-      theme={theme}
-      type={type}
-      size={size}
-      loading={loading ? type : undefined}
-      disabled={isDisabled}
-      onPress={onPress}
-    >
-      {loading ? <Spinner size="small" color="$color9" /> : children}
-    </DscButton>
+    <Theme name={theme}>
+      <DscButton
+        icon={transformedIcon}
+        iconAfter={transformedIconAfter}
+        type={type}
+        size={size}
+        loading={loading ? type : undefined}
+        disabled={isDisabled}
+        onPress={onPress}
+      >
+        {loading ? <Spinner size="small" color="$color9" /> : children}
+      </DscButton>
+    </Theme>
   );
 };
 
