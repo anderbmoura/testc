@@ -1,173 +1,139 @@
-# @superapp-caixa/dsc-library
+# 🎨 DSC (Design System CAIXA) Components
 
-<div align="center">
-  <h1>🎨 DSC Design System</h1>
-  <p><strong>Beautiful, accessible, and customizable React Native components built with Tamagui</strong></p>
+Biblioteca React Native construída com Tamagui, fornecendo componentes, layouts e templates de tela para aplicações da CAIXA.
 
-[![npm version](https://badge.fury.io/js/@superapp-caixa%2Fdsc-library.svg)](https://badge.fury.io/js/@superapp-caixa%2Fdsc-library)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org)
-[![React Native](https://img.shields.io/badge/React%20Native-Compatible-green.svg)](https://reactnative.dev)
-[![Tamagui](https://img.shields.io/badge/Built%20with-Tamagui-purple.svg)](https://tamagui.dev)
-[![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
+## 🎯 Características Principais
 
-</div>
+- **Consistência de Design**: Construído seguindo os padrões de design da CAIXA.
+- **Integração com Tamagui**: Aproveita o sistema de estilização e performance do Tamagui.
+- **Suporte a Temas**: Variantes de tema claro e escuro, dentre outros.
 
----
-
-## ✨ Features
-
-- 🎯 **Modern Design** - Clean, professional components
-- 📱 **Cross-Platform** - Works on iOS, Android, and Web
-- 🎨 **Customizable** - Built with Tamagui's powerful styling system
-- 📦 **TypeScript First** - Full type safety out of the box
-- ⚡ **Performance** - Optimized for React Native performance
-- 🌓 **Theme Ready** - Built-in light/dark theme support
-- ♿ **Accessible** - Following accessibility best practices
-
-## 🚀 Installation
+## 🛠️ Instalação
 
 ```bash
-# npm
-npm install @superapp-caixa/dsc-library
-
-# yarn
 yarn add @superapp-caixa/dsc-library
-
-# pnpm
-pnpm add @superapp-caixa/dsc-library
 ```
 
-### Peer Dependencies
+> ⚠️ **Importante**: Para projetos com Module Federation, **ambos** (host e mini-apps) precisam executar `yarn add @superapp-caixa/dsc-library`.
 
-Make sure you have the required peer dependencies installed:
+### Configuração Module Federation
 
-```bash
-npm install react react-native
+Para projetos que utilizam **rspack** e **module federation**, adicione as configurações no arquivo `rspack.config.mjs`:
+
+**Aplicação host:**
+
+```javascript
+// rspack.config.mjs
+shared: {
+  '@superapp-caixa/dsc-library': {
+    singleton: true,
+    eager: true,
+    requiredVersion: '^xx.xx.xx',
+  },
+  // outras dependências...
+}
 ```
 
-## 📖 Quick Start
+**Mini-apps:**
 
-### 1. Setup Provider
+```javascript
+// rspack.config.mjs
+shared: {
+  '@superapp-caixa/dsc-library': {
+    singleton: true,
+    eager: false,
+    requiredVersion: '^xx.xx.xx',
+  },
+  // outras dependências...
+}
+```
 
-Wrap your app with the `TamaguiProvider`:
+## ⚡️‍ Início Rápido
+
+### Configuração do Provider
+
+Configure o `DscProvider` na raiz da sua aplicação:
 
 ```tsx
 import React from 'react';
-import { TamaguiProvider } from '@superapp-caixa/dsc-library';
+import { DscProvider } from '@superapp-caixa/dsc-library';
 
-export default function App() {
-  return <TamaguiProvider>{/* Your app content */}</TamaguiProvider>;
-}
+const App = () => {
+  return (
+    <DscProvider defaultTheme="light">
+      <AppContent />
+    </DscProvider>
+  );
+};
+
+export default App;
 ```
 
-### 2. Use Components
+### Uso dos Componentes
 
-Import and use components in your screens:
+Importe e utilize os componentes DSC nas suas telas:
 
 ```tsx
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, Input } from '@superapp-caixa/dsc-library';
+import { View } from 'react-native';
+import { Button, Input, Card, Switch } from '@superapp-caixa/dsc-library';
 
-export default function MyScreen() {
-  const [text, setText] = useState('');
+export default function ExemploTela() {
+  const [texto, setTexto] = useState('');
+  const [ativado, setAtivado] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Input
-        placeholder="Enter your name"
-        value={text}
-        onChangeText={setText}
-      />
-      <Button onPress={() => alert(`Hello, ${text}!`)}>Say Hello</Button>
+    <View style={{ flex: 1, padding: 20, gap: 16 }}>
+      <Card>
+        <Input
+          placeholder="Digite seu nome"
+          value={texto}
+          onChangeText={setTexto}
+        />
+
+        <Switch
+          value={ativado}
+          onValueChange={setAtivado}
+          label="Notificações"
+        />
+
+        <Button variant="primary" onPress={() => alert(`Olá, ${texto}!`)}>
+          Enviar
+        </Button>
+      </Card>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    gap: 16,
-    justifyContent: 'center',
-  },
-});
 ```
 
-## 🧩 Available Components
+## 🧩 Uso com Tamagui
 
-### Button
+> 📋 **Recomendação**: Utilize **sempre que possível** os componentes de construção e estilo de layout do Tamagui (`View`, `Text`, `Stack`, etc.) em detrimento dos componentes React Native puros. Use componentes RN nativos apenas em último caso.
 
-A customizable button component with multiple variants and sizes.
+### Por que usar componentes Tamagui?
+
+- **Performance otimizada**: Sistema de styling compilado em tempo de build.
+- **Consistência de tema**: Compartilhamento do mesmo sistema de tokens.
+- **Bundle size reduzido**: Tree-shaking eficiente dos estilos não utilizados.
+
+### Exemplo recomendado:
 
 ```tsx
-import { Button } from '@superapp-caixa/dsc-library';
+import { View, Text, XStack, YStack } from '@tamagui/core';
+import { Button, Input } from '@superapp-caixa/dsc-library';
 
-<Button onPress={handlePress}>Primary Button</Button>
-<Button variant="secondary" onPress={handlePress}>Secondary</Button>
-<Button size="small" onPress={handlePress}>Small Button</Button>
+export function MinhaTela() {
+  return (
+    <YStack padding="$4" space="$3">
+      <Text fontSize="$6" fontWeight="bold">
+        Título da Tela
+      </Text>
+
+      <XStack space="$2" alignItems="center">
+        <Input flex={1} placeholder="Digite aqui..." />
+        <Button>Buscar</Button>
+      </XStack>
+    </YStack>
+  );
+}
 ```
-
-### Input
-
-A text input component with built-in styling and validation support.
-
-```tsx
-import { Input } from '@superapp-caixa/dsc-library';
-
-<Input placeholder="Enter text" value={value} onChangeText={setValue} />;
-```
-
-### TamaguiProvider
-
-The required provider component that enables theming and styling.
-
-```tsx
-import { TamaguiProvider } from '@superapp-caixa/dsc-library';
-
-<TamaguiProvider>
-  <YourApp />
-</TamaguiProvider>;
-```
-
-## 🎨 Theming
-
-The components are built with Tamagui and support extensive theming capabilities:
-
-```tsx
-import { TamaguiProvider } from '@superapp-caixa/dsc-library';
-
-// Custom theme configuration coming soon!
-<TamaguiProvider>
-  <App />
-</TamaguiProvider>;
-```
-
-## 📱 Platform Support
-
-- ✅ **iOS** - Full support
-- ✅ **Android** - Full support
-- ✅ **Web** - Full support via React Native Web
-- ✅ **Expo** - Compatible with Expo managed workflow
-
-## 🛠️ Development
-
-This library is built with:
-
-- [React Native](https://reactnative.dev) - Mobile framework
-- [Tamagui](https://tamagui.dev) - Styling and theming
-- [TypeScript](https://www.typescriptlang.org) - Type safety
-- [React Native Builder Bob](https://github.com/callstack/react-native-builder-bob) - Build system
-
-## 📄 License
-
-ISC © [Leonardo de Albuquerque Gouveia]()
-
----
-
-<div align="center">
-  <p>Made with ❤️ for the React Native community</p>
-
-**[Documentation](/rn-superapp-dsc-library) • [Issues](/rn-superapp-dsc-library/issues) • [Contributing](/rn-superapp-dsc-library/blob/main/CONTRIBUTING.md)**
-
-</div>
