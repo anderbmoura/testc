@@ -1,4 +1,9 @@
-import { Button, View, DscProvider } from '@superapp-caixa/dsc-library';
+import {
+  Button,
+  View,
+  DscProvider,
+  CardAlert,
+} from '@superapp-caixa/dsc-library';
 import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { ThemeToggle } from './components/ThemeToggle';
@@ -195,6 +200,55 @@ function AppContent() {
           <TButton disabled disabledStyle={{ backgroundColor: '$accent9' }}>
             Oi
           </TButton>
+
+          <Button>Botão</Button>
+
+          {/* CardAlert Examples */}
+          <YStack space="$4" padding="$4">
+            <CardAlert
+              variant="info"
+              title="Importante"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="success"
+              title="Sucesso"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="warning"
+              title="Atenção"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="danger"
+              title="Erro"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+            />
+
+            <CardAlert
+              variant="info"
+              title="Importante"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+              action={{
+                label: 'Ação',
+                onPress: () => alert('Ação executada!'),
+              }}
+            />
+
+            <CardAlert
+              variant="success"
+              title="Sucesso"
+              description="Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus."
+              action={{
+                label: 'Ação',
+                onPress: () => alert('Continuando...'),
+              }}
+            />
+          </YStack>
         </ScrollView>
       </View>
     </DscProvider>
