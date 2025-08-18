@@ -82,7 +82,7 @@ export const InfoWithAction: Story = {
     description:
       'Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus.',
     action: {
-      label: 'Ação',
+      label: 'Button',
       onPress: () => console.log('Info action pressed'),
     },
   },
@@ -95,7 +95,7 @@ export const SuccessWithAction: Story = {
     description:
       'Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus.',
     action: {
-      label: 'Ação',
+      label: 'Button',
       onPress: () => console.log('Success action pressed'),
     },
   },
@@ -108,7 +108,7 @@ export const WarningWithAction: Story = {
     description:
       'Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus.',
     action: {
-      label: 'Ação',
+      label: 'Button',
       onPress: () => console.log('Warning action pressed'),
     },
   },
@@ -121,22 +121,8 @@ export const DangerWithAction: Story = {
     description:
       'Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus.',
     action: {
-      label: 'Ação',
+      label: 'Button',
       onPress: () => console.log('Danger action pressed'),
-    },
-  },
-};
-
-// Story interativa com todos os controles
-export const Playground: Story = {
-  args: {
-    variant: 'info',
-    title: 'Importante',
-    description:
-      'Lorem ipsum dolor sit amet, consecte adipiscing elit. Curabitur et tempus.',
-    action: {
-      label: 'Ação',
-      onPress: () => console.log('Action pressed'),
     },
   },
 };

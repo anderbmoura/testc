@@ -7,7 +7,6 @@ import {
   WarningHexagon,
   NavArrowRight,
 } from 'iconoir-react-native';
-import { typography } from '../../config/fonts/typography';
 import { CardAlertProps } from './CardAlert.model';
 
 const CardAlertContainer = styled(View, {
@@ -60,7 +59,17 @@ const TextContainer = styled(View, {
   name: 'TextContainer',
   flex: 1,
   width: 308,
-  height: 84,
+
+  variants: {
+    hasAction: {
+      true: {
+        height: 128,
+      },
+      false: {
+        height: 84,
+      },
+    },
+  } as const,
 });
 
 const ContentContainer = styled(View, {
@@ -113,9 +122,10 @@ const ActionContainer = styled(View, {
   flexDirection: 'row',
   justifyContent: 'flex-end',
   alignItems: 'center',
-  paddingTop: 12,
-  paddingBottom: 12,
+  padding: 0,
   gap: 12,
+  width: 308,
+  height: 44,
 });
 
 const ActionButton = styled(TamaguiButton, {
@@ -123,12 +133,19 @@ const ActionButton = styled(TamaguiButton, {
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  paddingHorizontal: 4,
+  paddingTop: 0, // spacing/none
+  paddingBottom: 0, // spacing/none
+  paddingLeft: 4, // spacing/quark
+  paddingRight: 4, // spacing/quark
   gap: 4,
+  minWidth: 71, // largura mínima baseada no Figma
   height: 44,
-  borderRadius: 1000,
-  backgroundColor: 'transparent',
+  borderRadius: 1000, // border/radius/pill
+  backgroundColor: 'transparent', // type="chromeless"
   borderWidth: 0,
+  hoverStyle: {
+    backgroundColor: 'transparent',
+  },
   pressStyle: {
     opacity: 0.7,
   },
@@ -161,15 +178,19 @@ const ActionButton = styled(TamaguiButton, {
 
 const ActionText = styled(Text, {
   name: 'ActionText',
-  fontSize: typography.labelSmall.fontSize,
-  fontWeight: typography.labelSmall.fontWeight,
-  lineHeight: typography.labelSmall.lineHeight,
-  letterSpacing: 0.1,
+  height: 20,
+  fontFamily: '$body', // font/family/2
+  fontSize: 14, // font/size/nano
+  fontWeight: '500', // font/weight/500 (Medium)
+  lineHeight: 20, // font/line-height/20
+  letterSpacing: 0.1, // font/letter-spacing/airy
+  textAlign: 'center', // vertical-align: middle
+  flexShrink: 0, // evita que o texto seja comprimido
 
   variants: {
     variant: {
       info: {
-        color: '#026273',
+        color: '#026273', // var(--color-informative-on-informative-bg-color-10)
       },
       success: {
         color: '#0D581D',
@@ -257,7 +278,7 @@ export const CardAlert: React.FC<CardAlertProps> = ({
         />
       </IconContainer>
 
-      <TextContainer>
+      <TextContainer hasAction={!!action}>
         <ContentContainer>
           <TitleText variant={variant}>{title}</TitleText>
           <DescriptionText>{description}</DescriptionText>
@@ -270,7 +291,9 @@ export const CardAlert: React.FC<CardAlertProps> = ({
               onPress={action.onPress}
               testID={testID ? `${testID}-action` : undefined}
             >
-              <ActionText variant={variant}>{action.label}</ActionText>
+              <ActionText variant={variant} numberOfLines={1}>
+                {action.label}
+              </ActionText>
               <NavArrowRight
                 width={16}
                 height={16}
