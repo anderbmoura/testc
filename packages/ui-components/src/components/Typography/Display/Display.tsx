@@ -11,15 +11,10 @@ const DscDisplay = styled(Text, {
       standard: typography.displayStandard,
     },
     emphasized: {
-      true: typography.displayStandardEmphasized,
+      true: typography.displayStandardSemibold,
       false: typography.displayStandard,
     },
   } as const,
-
-  defaultVariants: {
-    size: 'standard',
-    emphasized: false,
-  },
 });
 
 /**

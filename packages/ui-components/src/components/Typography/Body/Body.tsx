@@ -21,11 +21,6 @@ const DscBody = styled(Text, {
       },
     },
   } as const,
-
-  defaultVariants: {
-    size: 'standard',
-    emphasized: false,
-  },
 });
 
 /**

@@ -1,7 +1,4 @@
-import { defaultConfig } from '@tamagui/config/v4';
-
 export const spaceTokens = {
-  ...defaultConfig.tokens.space,
   none: 0,
   quark: 4,
   nano: 8,
