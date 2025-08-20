@@ -3,7 +3,7 @@ trigger: none
 parameters:
   - name: VERSION
     type: string
-    default: '0.0.5'
+    default: '0.0.6'
     displayName: 'Versão da Lib'
 
 pool:
