@@ -25,8 +25,14 @@
     "publish-package": "npm run prepare-publish && npm publish && npm run restore-dev"
   },
   "peerDependencies": {
+    "@tamagui/config": "*",
+    "@tamagui/lucide-icons": "*",
+    "iconoir-react-native": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "@tamagui/babel-plugin": "*",
+    "@tamagui/build": "*",
+    "tamagui": "*"
   },
   "devDependencies": {
     "@types/react": "~19.0.10",
