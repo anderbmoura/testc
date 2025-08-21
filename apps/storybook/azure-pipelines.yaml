@@ -28,7 +28,7 @@ extends:
     nodeVersion: '20.x'
     yarnVersion: '4.9.2'
     moduleName: 'storybook'
-    buildPoolName: 'ubuntu-latest'
+    buildPoolName: 'ads-mobilidade-dev'
     scanPoolName: 'ads-mobilidade-dev'
     workDir: '$(Build.SourcesDirectory)/$(Build.Repository.Name)'
     ambientes:
