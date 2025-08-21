@@ -8,6 +8,7 @@ import { letterSpacingTokens } from './letterSpacing/letterSpacing';
 import { lineHeightTokens } from './lineHeight/lineHeight';
 import { opacityTokens } from './opacity/opacity';
 import { spaceTokens } from './space/space';
+import { zIndexTokens } from './zIndex/zIndex';
 
 export const tokens = createTokens({
   size: defaultConfig.tokens.size,
@@ -20,4 +21,5 @@ export const tokens = createTokens({
   lineHeight: lineHeightTokens,
   fontWeight: fontWeightTokens,
   letterSpacing: letterSpacingTokens,
+  zIndex: zIndexTokens,
 });
