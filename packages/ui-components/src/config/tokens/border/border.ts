@@ -1,5 +1,3 @@
-import { defaultConfig } from '@tamagui/config/v4';
-
 export const borderWidthTokens = {
   none: 0,
   hairline: 0.5,
@@ -9,7 +7,6 @@ export const borderWidthTokens = {
 } as const;
 
 export const borderRadiusTokens = {
-  ...defaultConfig.tokens.radius,
   none: 0,
   quark: 2,
   nano: 4,

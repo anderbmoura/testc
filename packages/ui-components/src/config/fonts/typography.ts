@@ -4,139 +4,231 @@ export const typography = {
     fontSize: '$larger',
     fontWeight: '$400',
     lineHeight: 44,
+    letterSpacing: '$standard',
   },
-
-  displayStandardEmphasized: {
+  displayStandardSemibold: {
     fontFamily: '$heading',
     fontSize: '$larger',
     fontWeight: '$600',
     lineHeight: 44,
+    letterSpacing: '$standard',
   },
-
+  displaySmall: {
+    fontFamily: '$heading',
+    fontSize: '$large',
+    fontWeight: '$400',
+    lineHeight: 40,
+    letterSpacing: '$standard',
+  },
+  displaySmallSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$large',
+    fontWeight: '$600',
+    lineHeight: 40,
+    letterSpacing: '$standard',
+  },
+  displayNumericalStandard: {
+    fontFamily: '$heading',
+    fontSize: '$larger',
+    fontWeight: '$400',
+    lineHeight: 44,
+    letterSpacing: '$standard',
+  },
+  displayNumericalStandardSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$larger',
+    fontWeight: '$600',
+    lineHeight: 44,
+    letterSpacing: '$standard',
+  },
+  displayNumericalSmall: {
+    fontFamily: '$heading',
+    fontSize: '$large',
+    fontWeight: '$400',
+    lineHeight: 40,
+    letterSpacing: '$standard',
+  },
+  displayNumericalSmallSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$large',
+    fontWeight: '$600',
+    lineHeight: 40,
+    letterSpacing: '$standard',
+  },
   titleLarge: {
     fontFamily: '$heading',
-    fontSize: '$large',
+    fontSize: '$medium',
     fontWeight: '$400',
-    lineHeight: 38,
+    lineHeight: 36,
+    letterSpacing: '$standard',
   },
-
-  titleLargeEmphasized: {
+  titleLargeSemibold: {
     fontFamily: '$heading',
-    fontSize: '$large',
+    fontSize: '$medium',
     fontWeight: '$600',
-    lineHeight: 38,
+    lineHeight: 36,
+    letterSpacing: '$standard',
   },
-
   titleStandard: {
     fontFamily: '$heading',
-    fontSize: '$medium',
+    fontSize: '$small',
     fontWeight: '$400',
-    lineHeight: 34,
+    lineHeight: 32,
+    letterSpacing: '$standard',
   },
-
-  titleStandardEmphasized: {
+  titleStandardSemibold: {
     fontFamily: '$heading',
-    fontSize: '$medium',
+    fontSize: '$small',
     fontWeight: '$600',
-    lineHeight: 34,
+    lineHeight: 32,
+    letterSpacing: '$standard',
   },
-
   titleSmall: {
     fontFamily: '$heading',
-    fontSize: '$small',
+    fontSize: '$smaller',
     fontWeight: '$400',
     lineHeight: 28,
+    letterSpacing: '$standard',
   },
-
-  titleSmallEmphasized: {
+  titleSmallSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$smaller',
+    fontWeight: '$600',
+    lineHeight: 28,
+    letterSpacing: '$standard',
+  },
+  titleNumericalLarge: {
+    fontFamily: '$heading',
+    fontSize: '$medium',
+    fontWeight: '$400',
+    lineHeight: 36,
+    letterSpacing: '$standard',
+  },
+  titleNumericalLargeSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$medium',
+    fontWeight: '$600',
+    lineHeight: 36,
+    letterSpacing: '$standard',
+  },
+  titleNumericalStandard: {
+    fontFamily: '$heading',
+    fontSize: '$small',
+    fontWeight: '$400',
+    lineHeight: 32,
+    letterSpacing: '$standard',
+  },
+  titleNumericalStandardSemibold: {
     fontFamily: '$heading',
     fontSize: '$small',
     fontWeight: '$600',
-    lineHeight: 28,
+    lineHeight: 32,
+    letterSpacing: '$standard',
   },
-
+  titleNumericalSmall: {
+    fontFamily: '$heading',
+    fontSize: '$smaller',
+    fontWeight: '$400',
+    lineHeight: 28,
+    letterSpacing: '$standard',
+  },
+  titleNumericalSmallSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$smaller',
+    fontWeight: '$600',
+    lineHeight: 28,
+    letterSpacing: '$standard',
+  },
   bodyLarge: {
     fontFamily: '$body',
-    fontSize: '$smaller',
+    fontSize: '$tiny',
     fontWeight: '$400',
-    lineHeight: 24,
+    lineHeight: 28,
+    letterSpacing: '$extended',
   },
-
-  bodyLargeEmphasized: {
+  bodyLargeSemibold: {
     fontFamily: '$body',
-    fontSize: '$smaller',
+    fontSize: '$tiny',
     fontWeight: '$600',
-    lineHeight: 24,
+    lineHeight: 28,
+    letterSpacing: '$extended',
   },
-
   bodyStandard: {
     fontFamily: '$body',
-    fontSize: '$tiny',
+    fontSize: '$micro',
     fontWeight: '$400',
-    lineHeight: 22,
+    lineHeight: 24,
+    letterSpacing: '$extended',
   },
-
-  bodyStandardEmphasized: {
+  bodyStandardSemibold: {
     fontFamily: '$body',
-    fontSize: '$tiny',
+    fontSize: '$micro',
     fontWeight: '$600',
-    lineHeight: 22,
+    lineHeight: 24,
+    letterSpacing: '$extended',
   },
-
   bodySmall: {
     fontFamily: '$body',
-    fontSize: '$micro',
+    fontSize: '$nano',
     fontWeight: '$400',
     lineHeight: 22,
+    letterSpacing: '$broad',
   },
-
-  bodySmallEmphasized: {
+  bodySmallSemibold: {
     fontFamily: '$body',
-    fontSize: '$micro',
+    fontSize: '$nano',
     fontWeight: '$600',
     lineHeight: 22,
+    letterSpacing: '$broad',
   },
-
   labelStandard: {
     fontFamily: '$body',
-    fontSize: '$nano',
-    fontWeight: '$400',
-    lineHeight: 20,
+    fontSize: '$micro',
+    fontWeight: '$500',
+    lineHeight: 24,
+    letterSpacing: '$loose',
   },
-
-  labelStandardEmphasized: {
+  labelStandardBold: {
     fontFamily: '$body',
-    fontSize: '$nano',
-    fontWeight: '$600',
-    lineHeight: 20,
+    fontSize: '$micro',
+    fontWeight: '$700',
+    lineHeight: 24,
+    letterSpacing: '$loose',
   },
-
   labelSmall: {
     fontFamily: '$body',
-    fontSize: '$quark',
-    fontWeight: '$400',
+    fontSize: '$nano',
+    fontWeight: '$500',
     lineHeight: 20,
+    letterSpacing: '$airy',
   },
-
-  labelSmallEmphasized: {
+  labelSmallRegular: {
     fontFamily: '$body',
-    fontSize: '$quark',
-    fontWeight: '$600',
-    lineHeight: 20,
+    fontSize: '$nano',
+    fontWeight: '$400',
+    lineHeight: 16,
+    letterSpacing: '$standard',
   },
-
+  labelSmallBold: {
+    fontFamily: '$body',
+    fontSize: '$nano',
+    fontWeight: '$700',
+    lineHeight: 20,
+    letterSpacing: '$airy',
+  },
   labelTiny: {
     fontFamily: '$body',
     fontSize: '$quark',
-    fontWeight: '$400',
-    lineHeight: 20,
+    fontWeight: '$500',
+    lineHeight: 16,
+    letterSpacing: '$extended',
   },
-
-  labelTinyEmphasized: {
+  labelTinyBold: {
     fontFamily: '$body',
     fontSize: '$quark',
-    fontWeight: '$600',
-    lineHeight: 20,
+    fontWeight: '$700',
+    lineHeight: 16,
+    letterSpacing: '$extended',
   },
 } as const;
 

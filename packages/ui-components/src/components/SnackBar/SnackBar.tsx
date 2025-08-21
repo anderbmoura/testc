@@ -2,7 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import { Animated, PanResponder } from 'react-native';
 import { styled, YStack, XStack, Portal } from 'tamagui';
 import { SnackBarProps, SnackBarColor } from './SnackBar.model';
-import { Body } from '../Typography';
+import { BodyStandard, BodyLargeSemibold } from '../Typography';
 import { useTransformIcon } from '../../utils';
 import { WarningHexagon, BadgeCheck } from 'iconoir-react-native';
 
@@ -223,13 +223,9 @@ export function SnackBar({
           <SnackBarContent>
             {IconComponent && <YStack>{IconComponent}</YStack>}
             <SnackBarTextContainer>
-              <Body size="large" emphasized color="$color1">
-                {title}
-              </Body>
+              <BodyLargeSemibold color="$color1">{title}</BodyLargeSemibold>
               {description && (
-                <Body size="standard" color="$color1">
-                  {description}
-                </Body>
+                <BodyStandard color="$color1">{description}</BodyStandard>
               )}
             </SnackBarTextContainer>
           </SnackBarContent>
