@@ -50,6 +50,54 @@ export const DisplaySmallSemibold = styled(Text, {
 });
 
 /**
+ * Componente DSC Display Numerical Standard
+ *
+ * ```tsx
+ * <DisplayNumericalStandard>123.456</DisplayNumericalStandard>
+ * ```
+ */
+export const DisplayNumericalStandard = styled(Text, {
+  name: 'DisplayNumericalStandard',
+  ...typography.displayNumericalStandard,
+});
+
+/**
+ * Componente DSC Display Numerical Standard Semibold
+ *
+ * ```tsx
+ * <DisplayNumericalStandardSemibold>123.456</DisplayNumericalStandardSemibold>
+ * ```
+ */
+export const DisplayNumericalStandardSemibold = styled(Text, {
+  name: 'DisplayNumericalStandardSemibold',
+  ...typography.displayNumericalStandardSemibold,
+});
+
+/**
+ * Componente DSC Display Numerical Small
+ *
+ * ```tsx
+ * <DisplayNumericalSmall>123.456</DisplayNumericalSmall>
+ * ```
+ */
+export const DisplayNumericalSmall = styled(Text, {
+  name: 'DisplayNumericalSmall',
+  ...typography.displayNumericalSmall,
+});
+
+/**
+ * Componente DSC Display Numerical Small Semibold
+ *
+ * ```tsx
+ * <DisplayNumericalSmallSemibold>123.456</DisplayNumericalSmallSemibold>
+ * ```
+ */
+export const DisplayNumericalSmallSemibold = styled(Text, {
+  name: 'DisplayNumericalSmallSemibold',
+  ...typography.displayNumericalSmallSemibold,
+});
+
+/**
  * Componente DSC Title Large
  *
  * ```tsx
@@ -119,6 +167,78 @@ export const TitleSmall = styled(Text, {
 export const TitleSmallSemibold = styled(Text, {
   name: 'TitleSmallSemibold',
   ...typography.titleSmallSemibold,
+});
+
+/**
+ * Componente DSC Title Numerical Large
+ *
+ * ```tsx
+ * <TitleNumericalLarge>123.456</TitleNumericalLarge>
+ * ```
+ */
+export const TitleNumericalLarge = styled(Text, {
+  name: 'TitleNumericalLarge',
+  ...typography.titleNumericalLarge,
+});
+
+/**
+ * Componente DSC Title Numerical Large Semibold
+ *
+ * ```tsx
+ * <TitleNumericalLargeSemibold>123.456</TitleNumericalLargeSemibold>
+ * ```
+ */
+export const TitleNumericalLargeSemibold = styled(Text, {
+  name: 'TitleNumericalLargeSemibold',
+  ...typography.titleNumericalLargeSemibold,
+});
+
+/**
+ * Componente DSC Title Numerical Standard
+ *
+ * ```tsx
+ * <TitleNumericalStandard>123.456</TitleNumericalStandard>
+ * ```
+ */
+export const TitleNumericalStandard = styled(Text, {
+  name: 'TitleNumericalStandard',
+  ...typography.titleNumericalStandard,
+});
+
+/**
+ * Componente DSC Title Numerical Standard Semibold
+ *
+ * ```tsx
+ * <TitleNumericalStandardSemibold>123.456</TitleNumericalStandardSemibold>
+ * ```
+ */
+export const TitleNumericalStandardSemibold = styled(Text, {
+  name: 'TitleNumericalStandardSemibold',
+  ...typography.titleNumericalStandardSemibold,
+});
+
+/**
+ * Componente DSC Title Numerical Small
+ *
+ * ```tsx
+ * <TitleNumericalSmall>123.456</TitleNumericalSmall>
+ * ```
+ */
+export const TitleNumericalSmall = styled(Text, {
+  name: 'TitleNumericalSmall',
+  ...typography.titleNumericalSmall,
+});
+
+/**
+ * Componente DSC Title Numerical Small Semibold
+ *
+ * ```tsx
+ * <TitleNumericalSmallSemibold>123.456</TitleNumericalSmallSemibold>
+ * ```
+ */
+export const TitleNumericalSmallSemibold = styled(Text, {
+  name: 'TitleNumericalSmallSemibold',
+  ...typography.titleNumericalSmallSemibold,
 });
 
 /**

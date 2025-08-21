@@ -5,12 +5,22 @@ import {
   DisplayStandardSemibold,
   DisplaySmall,
   DisplaySmallSemibold,
+  DisplayNumericalStandard,
+  DisplayNumericalStandardSemibold,
+  DisplayNumericalSmall,
+  DisplayNumericalSmallSemibold,
   TitleLarge,
   TitleLargeSemibold,
   TitleStandard,
   TitleStandardSemibold,
   TitleSmall,
   TitleSmallSemibold,
+  TitleNumericalLarge,
+  TitleNumericalLargeSemibold,
+  TitleNumericalStandard,
+  TitleNumericalStandardSemibold,
+  TitleNumericalSmall,
+  TitleNumericalSmallSemibold,
   BodyLarge,
   BodyLargeSemibold,
   BodyStandard,
@@ -41,8 +51,14 @@ Cada componente aplica estilos predefinidos baseados nos tokens do design system
 ### Display
 Texto grande para títulos principais e displays proeminentes.
 
+### Display Numerical
+Texto grande otimizado para exibição de valores numéricos como valores monetários e métricas importantes.
+
 ### Title  
 Títulos de seção e subtítulos.
+
+### Title Numerical
+Títulos otimizados para exibição de valores numéricos, mantendo a hierarquia visual adequada.
 
 ### Body
 Texto de conteúdo para leitura otimizada.
@@ -185,6 +201,70 @@ export const LabelComponents: Story = {
   <LabelSmallBold>Label Small Bold</LabelSmallBold>
   <LabelTiny>Label Tiny</LabelTiny>
   <LabelTinyBold>Label Tiny Bold</LabelTinyBold>
+</YStack>`,
+      },
+    },
+  },
+};
+
+export const DisplayNumericalComponents: Story = {
+  name: 'Display Numerical',
+  render: () => (
+    <YStack gap={16} padding={16}>
+      <DisplayNumericalStandard>123.456,78</DisplayNumericalStandard>
+      <DisplayNumericalStandardSemibold>
+        123.456,78
+      </DisplayNumericalStandardSemibold>
+      <DisplayNumericalSmall>123.456,78</DisplayNumericalSmall>
+      <DisplayNumericalSmallSemibold>123.456,78</DisplayNumericalSmallSemibold>
+    </YStack>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Componentes Display Numerical são usados para exibir valores numéricos de destaque como valores monetários, percentuais e métricas importantes.',
+      },
+      source: {
+        code: `<YStack gap={16} padding={16}>
+  <DisplayNumericalStandard>123.456,78</DisplayNumericalStandard>
+  <DisplayNumericalStandardSemibold>123.456,78</DisplayNumericalStandardSemibold>
+  <DisplayNumericalSmall>123.456,78</DisplayNumericalSmall>
+  <DisplayNumericalSmallSemibold>123.456,78</DisplayNumericalSmallSemibold>
+</YStack>`,
+      },
+    },
+  },
+};
+
+export const TitleNumericalComponents: Story = {
+  name: 'Title Numerical',
+  render: () => (
+    <YStack gap={16} padding={16}>
+      <TitleNumericalLarge>123.456,78</TitleNumericalLarge>
+      <TitleNumericalLargeSemibold>123.456,78</TitleNumericalLargeSemibold>
+      <TitleNumericalStandard>123.456,78</TitleNumericalStandard>
+      <TitleNumericalStandardSemibold>
+        123.456,78
+      </TitleNumericalStandardSemibold>
+      <TitleNumericalSmall>123.456,78</TitleNumericalSmall>
+      <TitleNumericalSmallSemibold>123.456,78</TitleNumericalSmallSemibold>
+    </YStack>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Componentes Title Numerical são usados para títulos que contêm valores numéricos, mantendo a hierarquia visual adequada.',
+      },
+      source: {
+        code: `<YStack gap={16} padding={16}>
+  <TitleNumericalLarge>123.456,78</TitleNumericalLarge>
+  <TitleNumericalLargeSemibold>123.456,78</TitleNumericalLargeSemibold>
+  <TitleNumericalStandard>123.456,78</TitleNumericalStandard>
+  <TitleNumericalStandardSemibold>123.456,78</TitleNumericalStandardSemibold>
+  <TitleNumericalSmall>123.456,78</TitleNumericalSmall>
+  <TitleNumericalSmallSemibold>123.456,78</TitleNumericalSmallSemibold>
 </YStack>`,
       },
     },
