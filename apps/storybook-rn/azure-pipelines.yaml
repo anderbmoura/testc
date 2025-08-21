@@ -36,7 +36,7 @@ extends:
         deployPoolName: 'ads-mobilidade-dev'
         variableGroup: 'VG_RN_MODULE_DES'
         serviceConnection: 'sc-mobilidade-dev-ComunidadeCanaisMobile'
-        buildType: 'storybook build'
+        buildType: 'storybook-generate'
       # - nome: 'qa'
       #   deployPoolName: 'ads-sinbm-qa'
       #   variableGroup: 'VG_SERVICES_QA'
