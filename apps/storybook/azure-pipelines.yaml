@@ -34,7 +34,7 @@ extends:
     ambientes:
       - nome: 'des'
         deployPoolName: 'ads-mobilidade-dev'
-        variableGroup: 'VG_RN_MODULE_DES'
+        variableGroup: 'VG_RN_STORYBOOK_DES'
         serviceConnection: 'sc-mobilidade-dev-ComunidadeCanaisMobile'
         buildType: 'workspace storybook-web build-storybook --output-dir $(Build.SourcesDirectory)/$(Build.Repository.Name)/build'
       # - nome: 'qa'
