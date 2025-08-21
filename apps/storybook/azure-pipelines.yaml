@@ -25,7 +25,7 @@ extends:
   template: solutions/rn-module-azure-solution.yaml@templates
   parameters:
     serviceVersion: '${{ parameters.serviceVersion }}'
-    nodeVersion: '20.x'
+    nodeVersion: '>=20.17.0 <21.0.0'
     yarnVersion: '4.9.2'
     moduleName: 'storybook'
     buildPoolName: 'ads-mobilidade-dev'
