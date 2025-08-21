@@ -30,6 +30,7 @@ extends:
     moduleName: 'storybook-rn'
     buildPoolName: 'ubuntu-latest'
     scanPoolName: 'ads-mobilidade-dev'
+    workDir: '$(Build.SourcesDirectory)/$(Build.Repository.Name)/apps/storybook-rn'
     ambientes:
       - nome: 'des'
         deployPoolName: 'ads-mobilidade-dev'
