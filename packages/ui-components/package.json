@@ -18,11 +18,19 @@
   },
   "scripts": {
     "build": "bob build",
-    "watch": "bob build --watch",
+    "watch": "npm-watch",
     "clean": "rm -rf lib",
     "prepare-publish": "npm run build && node scripts/prepare-publish.js",
     "restore-dev": "node scripts/restore-dev.js",
     "publish-package": "npm run prepare-publish && npm publish && npm run restore-dev"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,tsx,js,jsx"
+    }
   },
   "peerDependencies": {
     "react": "*",
@@ -30,6 +38,8 @@
   },
   "devDependencies": {
     "@types/react": "~19.0.10",
+    "husky": "^9.1.7",
+    "npm-watch": "^0.13.0",
     "react-native-builder-bob": "^0.40.13",
     "typescript": "~5.8.3"
   },
