@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Instalação" />
+
+# Instalação
+
+```bash
+yarn add @superapp-caixa/dsc-library
+```
+
+> ⚠️ **Importante**: Para projetos com Module Federation, **ambos** (host e mini-apps) precisam executar este comando.
+
+## Configuração do Module Federation
+
+Para projetos que utilizam **rspack** e **module federation**, adicione as seguinte configurações no arquivo `rspack.config.mjs`:
+
+### Aplicação host:
+
+```javascript
+// rspack.config.mjs
+shared: {
+  '@superapp-caixa/dsc-library': {
+    singleton: true,
+    eager: true,
+    requiredVersion: '^xx.xx.xx',
+  },
+  // outras dependências...
+}
+```
+
+### Mini-apps:
+
+```javascript
+// rspack.config.mjs
+shared: {
+  '@superapp-caixa/dsc-library': {
+    singleton: true,
+    eager: false,
+    requiredVersion: '^xx.xx.xx',
+  },
+  // outras dependências...
+}
+```
+
+## Configuração do Provider
+
+Após instalar e configurar o module federantion, adicione o `DscProvider` na raiz da sua aplicação:
+
+```tsx
+import React from 'react';
+import { DscProvider } from '@superapp-caixa/dsc-library';
+
+const App = () => {
+  return (
+    <DscProvider defaultTheme="light">
+      <AppContent />
+    </DscProvider>
+  );
+};
+
+export default App;
+```

@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introdução" />
+
+# DSC Library
+
+DSC Library - ou Design System CAIXA Library - é uma biblioteca React Native construída com Tamagui, que fornece estilos, componentes, layouts e templates de tela para aplicativos móveis da CAIXA.
+
+## Características Principais
+
+- **Consistência de Design**: Construído seguindo os padrões de design da CAIXA.
+- **Integração com Tamagui**: Aproveita o sistema de estilização e performance do Tamagui.
+- **Suporte a Temas**: Variantes de tema claro e escuro, dentre outros.
+
+## Uso com Tamagui
+
+> **Recomendação**: Utilize **sempre que possível** os componentes de construção e estilo de layout do Tamagui (`View`, `Text`, `Stack`, etc.) em detrimento dos componentes React Native.
+
+### Por que usar componentes Tamagui?
+
+- **Performance otimizada**: Sistema de styling compilado em tempo de build.
+- **Consistência de tema**: Compartilhamento do mesmo sistema de tokens.
+- **Bundle size reduzido**: Tree-shaking eficiente dos estilos não utilizados.
+
+### Exemplo recomendado:
+
+```tsx
+import { View, Text, XStack, YStack } from '@tamagui/core';
+import { Button, Input } from '@superapp-caixa/dsc-library';
+
+export function MinhaTela() {
+  return (
+    <YStack padding="$4" space="$3">
+      <Text fontSize="$6" fontWeight="bold">
+        Título da Tela
+      </Text>
+
+      <XStack space="$2" alignItems="center">
+        <Input flex={1} placeholder="Digite aqui..." />
+        <Button>Buscar</Button>
+      </XStack>
+    </YStack>
+  );
+}
+```
