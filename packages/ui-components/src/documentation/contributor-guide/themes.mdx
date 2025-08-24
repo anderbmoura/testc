@@ -1,0 +1,208 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import { View, Text, XStack, YStack, Theme, Button } from 'tamagui';
+
+<Meta title="Guia de Contribuição/Sistema de Temas" />
+
+# Como Implementar Temas
+
+Este guia explica como implementar corretamente o sistema de temas quando você recebe designs criados pela equipe de Design.
+
+## Interpretando Cores no Figma
+
+Quando você inspeciona um elemento no Figma, verá informações de cores semelhantes a:
+
+**`color/success/successBg [Color 2]`**
+
+Para saber qual o token de cor utilizar, faça a seguinte pergunta: **a cor deve mudar conforme o tema aplicado?**
+
+> - Se a resposta for **sim**, então use `$color2`.
+> - Se a resposta for **não**, ou seja, se a cor deve ser sempre verde independente do tema**, então use o nome semântico da cor, que nesse caso é `$successBg`.
+
+#### Exemplos Práticos:
+
+- O `backgroundColor` será vermelho quando aplicado o tema danger, e verde quando aplicado o tema success:
+
+```tsx
+// Aplica a cor $color8 da paleta de gradientes do tema Danger
+<Button backgroundColor="$color8" theme="danger">Excluir</Button>
+
+// Aplica a cor $color8 da paleta de gradientes to tema Success
+<Button backgroundColor="$color8" theme="success">Confirmar</Button>
+
+// Aplica a cor $color8 da paleta de gradientes to tema Neutral
+<Button backgroundColor="$color8">Confirmar</Button>
+```
+
+> 💡 Quando você não especifica tema, o sistema usa automaticamente a paleta `neutral`
+
+- O `backgroundColor` será sempre azul independente do tema utilizado:
+
+```tsx
+// Aplica a cor semântica $infoBg
+<Button backgroundColor="$infoBg" theme="danger">Informações</Button>
+
+// Aplica a cor semântica $infoBg
+<Button backgroundColor="$infoBg" theme="success">Informações</Button>
+```
+
+## Arquitetura do Sistema de Temas
+
+A DSC Library utiliza o sistema de temas do Tamagui com duas camadas de cores:
+
+### 1. Cores Adaptáveis
+Paleta gradiente com a escala de `$color1` até `$color12`. Quando um tema é aplicado, todas as cores dessa escala mudam automaticamente para as cores correspondentes à paleta de cores do tema.
+
+- **Comportamento**: Mudam automaticamente conforme o tema aplicado.
+- **Onde usar**: Em elementos que devem ter variantes para diferentes contextos.
+
+### 2. **Cores Semânticas** (ex: `$neutralBg1`, `$successBg`, `$highlight`)
+Valores fixos que não mudam com o tema.
+
+- **Comportamento**: Os valores são sempre o mesmo independente do tema aplicado.
+- **Onde usar**: Em elementos que devem manter sempre a mesma cor.
+
+## Implementação Prática
+
+### Cenário 1: Componente com Variantes Temáticas
+
+**Design especifica**: "Botão deve ter variantes para danger, success, warning"
+
+✅ Implementação correta dos tokens de cores:
+```tsx
+const DscButton = styled(TamaguiButton, {
+  name: 'DscButton',
+  backgroundColor: '$color8',
+  color: '$color1',
+  borderColor: '$color9',
+
+  pressStyle: {
+    backgroundColor: '$color9',
+  },
+
+  variants: {
+    type: {
+      outline: {
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        color: '$color9',
+      },
+      ghost: {
+        backgroundColor: '$color3',
+      },
+    },
+  } as const,
+});
+```
+
+### Cenário 2: Elementos de Layout Fixos
+
+**Design especifica**: "Layout base que não muda de cor quando um tema é aplicado"
+
+✅ Implementação correta dos tokens de cores:
+```tsx
+const ScreenContainer = styled(View, {
+  name: 'ScreenContainer',
+  backgroundColor: '$neutralBg1',
+  padding: '$medium',
+});
+
+const SectionCard = styled(View, {
+  name: 'SectionCard',
+  backgroundColor: '$neutralBg2',
+  borderRadius: '$medium',
+  padding: '$large',
+});
+```
+
+### Cenário 3: Componente Híbrido (Cores Adaptáveis + Semânticas)
+
+**Design especifica**: "Botão de ícone com fundo fixo neutro, mas ícone que muda conforme o contexto"
+
+✅ Implementação correta misturando ambos os tipos de cores:
+```tsx
+import { Check, Warning, Info, Trash } from '@iconoir/react-native';
+
+const IconButton = styled(Pressable, {
+  name: 'IconButton',
+  width: 48,
+  height: 48,
+  backgroundColor: '$neutralBg2',     // 🔒 Sempre o mesmo fundo neutro
+  borderRadius: '$medium',
+  alignItems: 'center',
+  justifyContent: 'center',
+  
+  pressStyle: {
+    backgroundColor: '$neutralBg3',   // 🔒 Sempre o mesmo estado pressed
+  },
+});
+
+const ThemedIcon = styled(View, {
+  name: 'ThemedIcon',
+  color: '$color9',                   // 🎨 Cor do ícone muda com o tema
+});
+
+// Uso prático:
+const ActionButtons = () => (
+  <XStack space="$small">
+    <IconButton theme="success">
+      <ThemedIcon as={Check} size={24} />     {/* Ícone verde */}
+    </IconButton>
+    
+    <IconButton theme="warning">
+      <ThemedIcon as={Warning} size={24} />   {/* Ícone amarelo */}
+    </IconButton>
+    
+    <IconButton theme="danger">
+      <ThemedIcon as={Trash} size={24} />     {/* Ícone vermelho */}
+    </IconButton>
+    
+    <IconButton theme="info">
+      <ThemedIcon as={Info} size={24} />      {/* Ícone azul */}
+    </IconButton>
+  </XStack>
+);
+```
+
+## Temas Disponíveis
+
+Para visualizar as paletas completas de cada tema, consulte: [Design System/Temas/Paletas de Cores](?path=/docs/design-system-temas-paletas-de-cores--docs)
+
+- **`neutral`**
+- **`accent`**
+- **`highlight`**
+- **`danger`**
+- **`warning`**
+- **`success`**
+- **`info`**
+
+## Alternância entre Modo Claro e Escuro
+
+O sistema automaticamente adapta as cores dos temas para modo claro e escuro baseado na configuração do dispositivo ou preferência do usuário.
+
+```tsx
+import { TamaguiProvider } from 'tamagui';
+import { useState } from 'react';
+
+export function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  return (
+    <TamaguiProvider 
+      config={config} 
+      defaultTheme={isDark ? 'dark' : 'light'}
+    >
+      <YStack padding="$medium" space="$small">
+        <Button onPress={() => setIsDark(!isDark)}>
+          Alternar para tema {isDark ? 'claro' : 'escuro'}
+        </Button>
+        
+        <Theme name="success">
+          <Card>
+            <Text>Este card se adapta automaticamente ao modo claro/escuro</Text>
+          </Card>
+        </Theme>
+      </YStack>
+    </TamaguiProvider>
+  );
+}
+```

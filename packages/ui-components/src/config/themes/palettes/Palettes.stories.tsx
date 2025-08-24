@@ -243,18 +243,14 @@ const styles = StyleSheet.create({
 });
 
 const meta: Meta<PalettesProps> = {
-  title: 'Design System/Paletas de Cores',
+  title: 'Design System/Temas/Paletas de Cores',
   component: Palettes,
   parameters: {
     layout: 'fullscreen',
     docs: {
-      description: {
-        component:
-          'Color palettes used throughout the design system. Each palette shows both light and dark theme variants with gradient colors (1-12) and semantic colors for consistent theming.',
-      },
+      page: null, // Desabilita a página de docs padrão para usar o MDX
     },
   },
-  tags: ['autodocs'],
   argTypes: {
     showPalette: {
       control: 'select',
@@ -277,57 +273,43 @@ const meta: Meta<PalettesProps> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  name: 'Highlight Palette',
+export const HighlightColors: Story = {
   args: {
     showPalette: 'highlight',
   },
 };
 
-export const AccentPalette: Story = {
-  name: 'Accent Colors',
+export const AccentColors: Story = {
   args: {
     showPalette: 'accent',
   },
 };
 
-export const NeutralPalette: Story = {
-  name: 'Neutral Colors',
+export const NeutralColors: Story = {
   args: {
     showPalette: 'neutral',
   },
 };
 
-export const HighlightPalette: Story = {
-  name: 'Highlight Colors',
-  args: {
-    showPalette: 'highlight',
-  },
-};
-
-export const InfoPalette: Story = {
-  name: 'Info Colors',
+export const InfoColors: Story = {
   args: {
     showPalette: 'info',
   },
 };
 
-export const SuccessPalette: Story = {
-  name: 'Success Colors',
+export const SuccessColors: Story = {
   args: {
     showPalette: 'success',
   },
 };
 
-export const WarningPalette: Story = {
-  name: 'Warning Colors',
+export const WarningColors: Story = {
   args: {
     showPalette: 'warning',
   },
 };
 
-export const ErrorPalette: Story = {
-  name: 'Error Colors',
+export const ErrorColors: Story = {
   args: {
     showPalette: 'error',
   },

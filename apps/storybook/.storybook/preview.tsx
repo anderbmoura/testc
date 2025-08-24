@@ -21,7 +21,12 @@ const preview: Preview = {
           'Primeiros Passos',
           'Componentes',
           'Design System',
-          ['Paletas de Cores', 'Tokens', ['Overview', '*']],
+          [
+            'Temas',
+            ['Overview', 'Paletas de Cores'],
+            'Tokens',
+            ['Overview', '*'],
+          ],
           'Guia de Contribuição',
           ['Instalação', 'Como Contribuir', 'Convenções do Projeto'],
         ],

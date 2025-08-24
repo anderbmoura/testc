@@ -1,0 +1,72 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as PalettesStories from './Palettes.stories';
+
+<Meta of={PalettesStories} />
+
+# Paletas de Cores
+
+As paletas de cores são os elementos fundamentais do sistema de temas da DSC Library. Elas definem todos os valores de cores utilizados nos componentes, garantindo consistência visual e suporte a múltiplos temas (claro, escuro, etc.).
+
+## Como usar
+
+**Sempre** utilize as cores definidas nas paletas através da sintaxe de tokens do Tamagui em vez de valores fixos (hardcoded) para manter a consistência visual e o suporte a temas.
+
+**✅ Usando tokens de cores:**
+
+```tsx
+import { View, Text } from 'tamagui';
+
+<View backgroundColor="$highlightBg" borderColor="$highlightBorder">
+  <Text color="$highlightColor">
+    Conteúdo com cores do sistema de temas
+  </Text>
+</View>
+```
+
+**❌ Usando valores fixos:**
+
+```tsx
+<View backgroundColor="#007BFF" borderColor="#0056B3">
+  <Text color="#FFFFFF">
+    Evite cores hardcoded
+  </Text>
+</View>
+```
+
+## Estrutura das Paletas
+
+### Gradient Colors (1-12)
+Cores numeradas de 1 a 12 que formam uma escala de gradiente adaptável. Essas cores mudam automaticamente conforme o tema aplicado, proporcionando uma experiência visual consistente em diferentes contextos.
+
+### Semantic Colors  
+Cores com nomes semânticos (`Bg`, `Border`, `Color`) que facilitam o entendimento do propósito de cada cor e mantêm valores adequados para cada tema.
+
+## Paletas Disponíveis
+
+### Highlight Colors
+<Canvas of={PalettesStories.HighlightColors} />
+
+### Accent Colors
+<Canvas of={PalettesStories.AccentColors} />
+
+### Neutral Colors
+<Canvas of={PalettesStories.NeutralColors} />
+
+### Info Colors
+<Canvas of={PalettesStories.InfoColors} />
+
+### Success Colors
+<Canvas of={PalettesStories.SuccessColors} />
+
+### Warning Colors
+<Canvas of={PalettesStories.WarningColors} />
+
+### Error Colors
+<Canvas of={PalettesStories.ErrorColors} />
+
+## Recursos Relacionados
+
+- [Tokens](?path=/docs/design-system-tokens-overview--docs)
+- [Convenções do Projeto](?path=/docs/guia-de-contribuição-convenções-do-projeto--docs)
+- [Documentação do Tamagui](https://tamagui.dev/docs/core/theme)

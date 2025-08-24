@@ -14,9 +14,9 @@ Todos os componentes devem ser desenvolvidos com base nos designs disponíveis n
 - Respeitar as especificações de espaçamento, cores e tipografia.
 - Validar o resultado final com o design proposto.
 
-## Tokens e Temas
+## Sistema de Tokens
 
-**Sempre** utilize os tokens e temas definidos na configuração do Tamagui para manter a consistência visual.
+**Sempre** utilize os [tokens](?path=/docs/design-system-tokens-overview--docs) e [temas](?path=/docs/design-system-temas-overview--docs) definidos na configuração do Tamagui para manter a consistência visual.
 
 **✅ Construindo com tokens:**
 
@@ -38,15 +38,45 @@ const MyComponent = styled(View, {
 });
 ```
 
-### Exemplos de tokens:
+## Sistema de Temas
 
-- **[Cores](?path=/docs/design-system-color-palettes--docs)**: `$color1`, `$color9`, `$highlightBg `, etc.
-- **Espaçamentos**: `$none`, `$quark`, `$nano`, `$micro`, `$tiny`, `$smaller`, `$small`, `$medium`, `$large`, `$larger`, `$big`, `$bigger`
-- **Border Radius**: `$none`, `$quark`, `$nano`, `$small`, `$medium`, `$large`, `$big`, `$pill`
-- **Border Width**: `$none`, `$hairline`, `$thin`, `$thick`, `$heavy`
-- **Icon Size**: `$tiny`, `$small`, `$medium`, `$large`, `$big`, `$huge`
-- **Opacity**: `$4`, `$8`, `$12`, `$16`, `$24`, `$32`, `$40`, `$48`, `$56`, `$64`, `$100`
-- **Z-Index**: `$0`, `$100`, `$200`, `$300`, `$400`, `$500`
+Quando você inspeciona um elemento no Figma, verá informações de cores semelhantes a:
+
+**`color/success/successBg [Color 2]`**
+
+Para saber qual o token de cor utilizar, faça a seguinte pergunta: **a cor deve mudar conforme o tema aplicado?**
+
+> - Se a resposta for **sim**, então use `$color2`.
+> - Se a resposta for **não**, ou seja, se a cor deve ser sempre verde independente do tema**, então use o nome semântico da cor, que nesse caso é `$successBg`.
+
+#### Exemplos Práticos:
+
+- O `backgroundColor` será vermelho quando aplicado o tema danger, e verde quando aplicado o tema success:
+
+```tsx
+// Aplica a cor $color8 da paleta de gradientes do tema Danger
+<Button backgroundColor="$color8" theme="danger">Excluir</Button>
+
+// Aplica a cor $color8 da paleta de gradientes to tema Success
+<Button backgroundColor="$color8" theme="success">Confirmar</Button>
+
+// Aplica a cor $color8 da paleta de gradientes to tema Neutral
+<Button backgroundColor="$color8">Confirmar</Button>
+```
+
+> 💡 Quando você não especifica tema, o sistema usa automaticamente a paleta `neutral`
+
+- O `backgroundColor` será sempre azul independente do tema utilizado:
+
+```tsx
+// Aplica a cor semântica $infoBg
+<Button backgroundColor="$infoBg" theme="danger">Informações</Button>
+
+// Aplica a cor semântica $infoBg
+<Button backgroundColor="$infoBg" theme="success">Informações</Button>
+```
+
+> ⚠️ **Importante**: Consulte a documentação do [Sistema de Temas](?path=/docs/guia-de-contribuição-sistema-de-temas--docs) para entender como construir componentes que se adaptam corretamente aos diferentes temas da aplicação.
 
 ## Sistema de Tipografia
 
