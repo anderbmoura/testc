@@ -1,0 +1,58 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as IconSizeStories from './IconSize.stories';
+
+<Meta of={IconSizeStories} />
+
+# Icon Size
+
+Os tokens de icon size definem os tamanhos padronizados para ícones, garantindo consistência visual e hierarquia adequada em toda a aplicação.
+
+## Como usar
+> ⚠️ **Importante:** Para usar os tokens de `iconSize`, você deve importar e usar as referências diretas dos tokens (ex: `iconSize.medium`) em vez de usar a sintaxe de tokens do Tamagui (ex: `size="$medium"`). 
+>
+> Isso acontece porque a configuração padrão do Tamagui mapeia automaticamente os tokens de `size` para propriedades de dimensões, mas o DSC precisa de valores específicos e personalizados para tamanhos de ícones que não seguem os mesmos valores dos tokens de espaçamento.
+
+**✅ Forma correta:**
+
+```tsx
+import { View } from 'tamagui';
+import { Home } from 'iconoir-react-native';
+import { iconSize } from './iconSize';
+
+<View alignItems="center" justifyContent="center" padding="$small">
+  <Home
+    width={iconSize.medium}            // ✅ Correto
+    height={iconSize.medium}           // ✅ Correto
+    color="$accentOnBg"
+  />
+</View>
+```
+
+**❌ Forma incorreta:**
+
+```tsx
+import { View } from 'tamagui';
+import { Home } from 'iconoir-react-native';
+
+<View alignItems="center" justifyContent="center" padding="$small">
+  <Home
+    width="$medium"                    // ❌ Incorreto - não funciona
+    height="$medium"                   // ❌ Incorreto - não funciona
+    color="$accentOnBg"
+  />
+</View>
+```
+
+## Tokens disponíveis
+
+- **`tiny`**: `16px`
+- **`small`**: `20px`
+- **`medium`**: `24px`
+- **`large`**: `32px`
+- **`big`**: `40px`
+- **`huge`**: `48px`
+
+### Exemplos
+
+<Canvas of={IconSizeStories.Default} />

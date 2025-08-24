@@ -1,0 +1,135 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Tokens/Overview" />
+
+# Tokens
+
+Os tokens de design são os elementos fundamentais do sistema de design da DSC Library. Eles definem valores padronizados para espaçamentos, cores, tipografia, bordas e outros aspectos visuais, garantindo consistência e cohesão em toda a aplicação.
+
+## Como usar
+
+**Sempre** utilize os tokens definidos em vez de valores fixos (hardcoded) para manter a consistência visual e facilitar futuras alterações do tema.
+
+**✅ Usando tokens:**
+
+```tsx
+import { View, Text } from 'tamagui';
+import { iconSize } from '@superapp-caixa/dsc-library/tokens';
+
+<View
+  backgroundColor="$highlightBg"
+  padding="$small"
+  borderRadius="$nano"
+  opacity={opacity[24]}
+>
+  <Text fontSize="$large" fontWeight="$bold">
+    Conteúdo estilizado com tokens
+  </Text>
+</View>
+```
+
+**❌ Usando valores fixos:**
+
+```tsx
+<View
+  backgroundColor="#FFFFFF"
+  padding={16}
+  borderRadius={8}
+  opacity={0.24}
+>
+  <Text fontSize={18} fontWeight="bold">
+    Evite valores fixos
+  </Text>
+</View>
+```
+
+## Tokens Disponíveis
+
+### Space
+Define espaçamentos padronizados para margins, paddings e gaps.
+
+**Valores:** `none`, `quark`, `nano`, `micro`, `tiny`, `smaller`, `small`, `medium`, `large`, `larger`, `big`, `bigger`
+
+**Uso:** `padding="$medium"`, `margin="$small"`, `space="$tiny"`
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-space--docs)**
+
+---
+
+### Icon Size
+Define tamanhos padronizados para ícones.
+
+**Valores:** `tiny`, `small`, `medium`, `large`, `big`, `huge`
+
+**Uso:** `iconSize.medium` (importação direta necessária)
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-iconsize--docs)**
+
+---
+
+### Border Radius
+Define o arredondamento dos cantos dos elementos.
+
+**Valores:** `none`, `quark`, `nano`, `small`, `medium`, `large`, `big`, `pill`
+
+**Uso:** `borderRadius="$medium"`, `borderRadius="$pill"`
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-borderradius--docs)**
+
+---
+
+### Border Width
+Define espessuras padronizadas para bordas.
+
+**Valores:** `none`, `hairline`, `thin`, `thick`, `heavy`
+
+**Uso:** `borderWidth={borderWidth.thin}` (importação direta necessária)
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-borderwidth--docs)**
+
+---
+
+### Opacity
+Define níveis de transparência dos elementos.
+
+**Valores:** `4`, `8`, `12`, `16`, `24`, `32`, `40`, `48`, `56`, `64`, `100`
+
+**Uso:** `opacity={opacity[24]}` (importação direta necessária)
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-opacity--docs)**
+
+---
+
+### Z-Index
+Define camadas de sobreposição dos elementos.
+
+**Valores:** `0`, `100`, `200`, `300`, `400`, `500`
+
+**Uso:** `zIndex={zIndex[100]}` (importação direta necessária)
+
+**📖 [Ver exemplos e documentação completa](?path=/docs/design-system-tokens-zindex--docs)**
+
+## Importação de Tokens
+
+### Tokens com sintaxe Tamagui
+Alguns tokens podem ser utilizados diretamente através da sintaxe de tokens do Tamagui:
+
+```tsx
+// Space, Border Radius, Font Size, Font Weight, Letter Spacing, Line Height
+<View padding="$medium" borderRadius="$small" />
+<Text fontSize="$large" fontWeight="$bold" />
+```
+
+### Tokens com importação direta
+Outros tokens precisam ser importados diretamente:
+
+```tsx
+import { iconSize, opacity, borderWidth, zIndex } from '@superapp-caixa/dsc-library/tokens';
+
+<View
+  opacity={opacity[24]}
+  borderWidth={borderWidth.thin}
+  zIndex={zIndex[100]}
+/>
+<Icon width={iconSize.medium} height={iconSize.medium} />
+```

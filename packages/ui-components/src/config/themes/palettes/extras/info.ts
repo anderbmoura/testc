@@ -30,15 +30,15 @@ export const infoLightGradientPalette = {
 
 export const infoLightSemanticPalette = {
   info: infoLightGradientPalette.info8,
-  oninfo: infoLightGradientPalette.info1,
-  oninfoBg: infoLightGradientPalette.info10,
+  onInfo: infoLightGradientPalette.info1,
+  onInfoBg: infoLightGradientPalette.info10,
   infoBg: infoLightGradientPalette.info2,
 };
 
 export const infoDarkSemanticPalette = {
   info: infoDarkGradientPalette.info8,
-  oninfo: infoDarkGradientPalette.info1,
-  oninfoBg: infoDarkGradientPalette.info10,
+  onInfo: infoDarkGradientPalette.info1,
+  onInfoBg: infoDarkGradientPalette.info10,
   infoBg: infoDarkGradientPalette.info2,
 };
 

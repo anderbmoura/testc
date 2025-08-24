@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { View, Text } from 'tamagui';
+import { View } from 'tamagui';
+import { LabelTinyBold } from '../../../components/Typography';
 import { borderWidth } from '../borderWidth/borderWidth';
 
 const meta: Meta = {
@@ -21,9 +22,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       quark (2px)
-    </Text>
+    </LabelTinyBold>
   </View>
   <View
     padding="$small"
@@ -36,9 +37,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       nano (4px)
-    </Text>
+    </LabelTinyBold>
   </View>
   <View
     padding="$small"
@@ -51,9 +52,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       small (8px)
-    </Text>
+    </LabelTinyBold>
   </View>
   <View
     padding="$small"
@@ -66,9 +67,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       medium (12px)
-    </Text>
+    </LabelTinyBold>
   </View>
   <View
     padding="$small"
@@ -81,9 +82,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       large (16px)
-    </Text>
+    </LabelTinyBold>
   </View>
   <View
     padding="$small"
@@ -96,9 +97,9 @@ const meta: Meta = {
     minWidth={120}
     minHeight={80}
   >
-    <Text fontSize="$micro" fontWeight="bold" textAlign="center">
+    <LabelTinyBold textAlign="center">
       big (24px)
-    </Text>
+    </LabelTinyBold>
   </View>
 </View>`;
         },
@@ -125,9 +126,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          quark (2px)
-        </Text>
+        <LabelTinyBold textAlign="center">quark (2px)</LabelTinyBold>
       </View>
       <View
         padding="$small"
@@ -140,9 +139,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          nano (4px)
-        </Text>
+        <LabelTinyBold textAlign="center">nano (4px)</LabelTinyBold>
       </View>
       <View
         padding="$small"
@@ -155,9 +152,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          small (8px)
-        </Text>
+        <LabelTinyBold textAlign="center">small (8px)</LabelTinyBold>
       </View>
       <View
         padding="$small"
@@ -170,9 +165,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          medium (12px)
-        </Text>
+        <LabelTinyBold textAlign="center">medium (12px)</LabelTinyBold>
       </View>
       <View
         padding="$small"
@@ -185,9 +178,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          large (16px)
-        </Text>
+        <LabelTinyBold textAlign="center">large (16px)</LabelTinyBold>
       </View>
       <View
         padding="$small"
@@ -200,9 +191,7 @@ export const Default: Story = {
         minWidth={120}
         minHeight={80}
       >
-        <Text fontSize="$micro" fontWeight="bold" textAlign="center">
-          big (24px)
-        </Text>
+        <LabelTinyBold textAlign="center">big (24px)</LabelTinyBold>
       </View>
     </View>
   ),

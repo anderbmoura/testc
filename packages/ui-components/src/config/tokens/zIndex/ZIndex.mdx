@@ -1,0 +1,55 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as ZIndexStories from './ZIndex.stories';
+
+<Meta of={ZIndexStories} />
+
+# Z-Index
+
+Os tokens de z-index definem os níveis de empilhamento dos elementos, permitindo controlar a sobreposição e hierarquia visual de camadas na interface.
+
+## Como usar
+
+Os tokens de z-index podem ser utilizados diretamente através da sintaxe de tokens do Tamagui (ex: `zIndex="$300"`).
+
+```tsx
+import { View } from 'tamagui';
+
+<View position="relative">
+  <View
+    position="absolute"
+    top="$none"
+    left="$none"
+    backgroundColor="$neutralBg2"
+    padding="$small"
+    borderRadius="$nano"
+    zIndex="$100"
+  >
+    Conteúdo de fundo
+  </View>
+  <View
+    position="absolute"
+    top="$small"
+    left="$small"
+    backgroundColor="$accentBg"
+    padding="$small"
+    borderRadius="$nano"
+    zIndex="$300"
+  >
+    Conteúdo sobreposto
+  </View>
+</View>
+```
+
+## Tokens disponíveis
+
+- **`0`**: `0`
+- **`100`**: `100`
+- **`200`**: `200`
+- **`300`**: `300`
+- **`400`**: `400`
+- **`500`**: `500`
+
+### Exemplos
+
+<Canvas of={ZIndexStories.Default} />
