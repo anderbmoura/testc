@@ -1,0 +1,126 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as TypographyStories from '../../../components/Typography/Typography.stories';
+
+<Meta title="Design System/Tipografia/Visão Geral" />
+
+# Sistema de Tipografia
+
+Os componentes de Tipografia fornecem estilos de texto consistentes em todo o DSC. Cada componente aplica estilos predefinidos baseados nos tokens do design system, garantindo hierarquia visual adequada e experiência de leitura otimizada.
+
+## Propriedades Aplicadas
+
+Cada componente de tipografia aplica automaticamente as seguintes propriedades CSS:
+
+- **fontFamily**: Define a família tipográfica apropriada
+- **fontWeight**: Aplica o peso da fonte (regular, semibold, bold)
+- **fontSize**: Define o tamanho da fonte específico para cada categoria
+- **lineHeight**: Estabelece a altura da linha para legibilidade otimizada
+- **letterSpacing**: Ajusta o espaçamento entre caracteres quando necessário
+
+Essas propriedades são derivadas dos tokens do design system e garantem consistência visual em toda a aplicação.
+
+## Categorias de Tipografia
+
+O sistema de tipografia é organizado em categorias específicas, cada uma otimizada para diferentes contextos de uso:
+
+### Display
+Texto grande para títulos principais e displays proeminentes. Usado em páginas de destaque, headers principais e elementos que precisam chamar máxima atenção.
+
+<Canvas of={TypographyStories.DisplayComponents} />
+
+```tsx
+<DisplayStandard>Display Standard</DisplayStandard>
+<DisplayStandardSemibold>Display Standard Semibold</DisplayStandardSemibold>
+<DisplaySmall>Display Small</DisplaySmall>
+<DisplaySmallSemibold>Display Small Semibold</DisplaySmallSemibold>
+```
+
+### Display Numerical
+Texto grande otimizado para exibição de valores numéricos como valores monetários, percentuais e métricas importantes. Possui espaçamento e kerning específicos para melhor legibilidade de números.
+
+<Canvas of={TypographyStories.DisplayNumericalComponents} />
+
+```tsx
+<DisplayNumericalStandard>123.456,78</DisplayNumericalStandard>
+<DisplayNumericalStandardSemibold>123.456,78</DisplayNumericalStandardSemibold>
+<DisplayNumericalSmall>123.456,78</DisplayNumericalSmall>
+<DisplayNumericalSmallSemibold>123.456,78</DisplayNumericalSmallSemibold>
+```
+
+### Title
+Títulos de seção e subtítulos para organização hierárquica do conteúdo. Ideal para estruturar páginas e dividir seções de informação.
+
+<Canvas of={TypographyStories.TitleComponents} />
+
+```tsx
+<TitleLarge>Title Large</TitleLarge>
+<TitleLargeSemibold>Title Large Semibold</TitleLargeSemibold>
+<TitleStandard>Title Standard</TitleStandard>
+<TitleStandardSemibold>Title Standard Semibold</TitleStandardSemibold>
+<TitleSmall>Title Small</TitleSmall>
+<TitleSmallSemibold>Title Small Semibold</TitleSmallSemibold>
+```
+
+### Title Numerical
+Títulos otimizados para exibição de valores numéricos, mantendo a hierarquia visual adequada. Combina a função organizacional dos títulos com a otimização para números.
+
+<Canvas of={TypographyStories.TitleNumericalComponents} />
+
+```tsx
+<TitleNumericalLarge>123.456,78</TitleNumericalLarge>
+<TitleNumericalLargeSemibold>123.456,78</TitleNumericalLargeSemibold>
+<TitleNumericalStandard>123.456,78</TitleNumericalStandard>
+<TitleNumericalStandardSemibold>123.456,78</TitleNumericalStandardSemibold>
+<TitleNumericalSmall>123.456,78</TitleNumericalSmall>
+<TitleNumericalSmallSemibold>123.456,78</TitleNumericalSmallSemibold>
+```
+
+### Body
+Texto de conteúdo principal com leitura otimizada. Usado para parágrafos, descrições e qualquer texto de leitura contínua.
+
+<Canvas of={TypographyStories.BodyComponents} />
+
+```tsx
+<BodyLarge>Body Large</BodyLarge>
+<BodyLargeSemibold>Body Large Semibold</BodyLargeSemibold>
+<BodyStandard>Body Standard</BodyStandard>
+<BodyStandardSemibold>Body Standard Semibold</BodyStandardSemibold>
+<BodySmall>Body Small</BodySmall>
+<BodySmallSemibold>Body Small Semibold</BodySmallSemibold>
+```
+
+### Label
+Labels de interface e texto auxiliar. Usado para identificar campos, botões, status e informações complementares.
+
+<Canvas of={TypographyStories.LabelComponents} />
+
+```tsx
+<LabelStandard>Label Standard</LabelStandard>
+<LabelStandardBold>Label Standard Bold</LabelStandardBold>
+<LabelSmall>Label Small</LabelSmall>
+<LabelSmallRegular>Label Small Regular</LabelSmallRegular>
+<LabelSmallBold>Label Small Bold</LabelSmallBold>
+<LabelTiny>Label Tiny</LabelTiny>
+<LabelTinyBold>Label Tiny Bold</LabelTinyBold>
+```
+
+## Como usar
+
+Cada componente aceita todas as propriedades padrão do `Text` do Tamagui para estilização e comportamento adicionais:
+
+```tsx
+import { BodyStandard, TitleLarge } from '@superapp-caixa/dsc-library';
+
+// Uso básico
+<TitleLarge>Meu Título</TitleLarge>
+<BodyStandard>Texto do conteúdo principal</BodyStandard>
+
+// Com propriedades adicionais do Tamagui
+<BodyStandard color="$accent9" textAlign="center">
+  Texto centralizado com cor personalizada
+</BodyStandard>
+
+// Aplicando temas
+<TitleLarge theme="success">Título com tema de sucesso</TitleLarge>
+```

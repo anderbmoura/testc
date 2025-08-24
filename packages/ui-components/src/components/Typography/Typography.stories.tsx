@@ -41,6 +41,7 @@ const meta: Meta = {
   parameters: {
     layout: 'padded',
     docs: {
+      page: null, // Permite usar MDX customizado
       description: {
         component: `
 Os componentes de Tipografia fornecem estilos de texto consistentes em todo o DSC (Design System CAIXA).

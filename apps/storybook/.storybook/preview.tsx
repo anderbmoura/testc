@@ -23,9 +23,9 @@ const preview: Preview = {
           'Design System',
           [
             'Temas',
-            ['Overview', 'Paletas de Cores'],
+            ['Visão Geral', 'Paletas de Cores'],
             'Tokens',
-            ['Overview', '*'],
+            ['Visão Geral', '*'],
           ],
           'Guia de Contribuição',
           ['Instalação', 'Como Contribuir', 'Convenções do Projeto'],
