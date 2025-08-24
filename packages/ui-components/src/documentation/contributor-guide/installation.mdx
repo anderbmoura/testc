@@ -1,0 +1,82 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guia de Contribuição/Instalação" />
+
+# Instalação para Contribuidores
+
+Este guia descreve como configurar o ambiente de desenvolvimento para contribuir com a DSC Library.
+
+## Pré-requisitos
+
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+- Git
+
+## Clone e Configuração
+
+### 1. Clone o repositório
+
+```bash
+git clone https://dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_git/rn-superapp-dsc-library
+```
+
+### 2. Instale as dependências
+
+```bash
+npm install --legacy-peer-deps
+```
+
+> ⚠️ **Importante**: Use a flag `--legacy-peer-deps` para evitar conflitos de dependências.
+
+### 3. Build da biblioteca
+
+```bash
+npm run build:lib
+```
+
+## Desenvolvimento
+
+### Aplicação de Exemplo
+
+Para testar os componentes em uma aplicação completa:
+
+```bash
+npm run example
+```
+
+#### Web
+
+```bash
+npm run example:web
+```
+
+#### Android
+
+```bash
+npm run example:android
+```
+
+#### iOS
+
+```bash
+npm run example:ios
+```
+
+> 💡 **Configuração de Emuladores**: A aplicação de exemplo é construída com Expo Go. Para configurar os emuladores Android/iOS, consulte a [documentação oficial do Expo](https://docs.expo.dev/get-started/set-up-your-environment/).
+
+### Storybook
+
+> **Recomendação**: Use o Storybook para desenvolver componentes, pois ele detecta mudanças na biblioteca automaticamente.
+
+```bash
+npm run storybook
+```
+
+## Próximos Passos
+
+Após a instalação, você pode:
+
+- Explorar os componentes existentes no Storybook
+- Executar os testes: `npm test`
+- Contribuir com novos componentes ou melhorias
+- Verificar o guia de contribuição para padrões de desenvolvimento

@@ -37,7 +37,7 @@ import {
 } from './Typography';
 
 const meta: Meta = {
-  title: 'Components/Typography',
+  title: 'Componentes/Typography',
   parameters: {
     layout: 'padded',
     docs: {

@@ -4,7 +4,10 @@
   "private": true,
   "description": "A collection of reusable components for the DSC design system",
   "scripts": {
-    "example": "npm start --workspace=example",
+    "example": "npm run start --workspace=example",
+    "example:ios": "npm run ios --workspace=example",
+    "example:android": "npm run android --workspace=example",
+    "example:web": "npm run web --workspace=example",
     "storybook": "npm run storybook --workspace=storybook-web",
     "build:lib": "npm run build --workspace=@superapp-caixa/dsc-library",
     "watch:lib": "npm run watch --workspace=@superapp-caixa/dsc-library",

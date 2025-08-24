@@ -15,7 +15,15 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Introdução', 'Instalação', 'Primeiros Passos'],
+        order: [
+          'Introdução',
+          'Instalação',
+          'Primeiros Passos',
+          'Componentes',
+          'Design System',
+          'Guia de Contribuição',
+          ['Instalação', 'Como Contribuir', 'Convenções do Projeto'],
+        ],
       },
     },
   },

@@ -69,7 +69,7 @@ function InteractiveSnackBarDemo({
 }
 
 const meta: Meta<typeof InteractiveSnackBarDemo> = {
-  title: 'Components/SnackBar',
+  title: 'Componentes/SnackBar',
   component: InteractiveSnackBarDemo,
   decorators: [
     Story => (

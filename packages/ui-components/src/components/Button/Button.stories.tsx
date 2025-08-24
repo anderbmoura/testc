@@ -33,7 +33,7 @@ const iconMapping = {
 };
 
 const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+  title: 'Componentes/Button',
   component: Button,
   parameters: {
     layout: 'centered',

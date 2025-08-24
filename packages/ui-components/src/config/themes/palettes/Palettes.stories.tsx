@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 });
 
 const meta: Meta<PalettesProps> = {
-  title: 'Design System/Color Palettes',
+  title: 'Design System/Paletas de Cores',
   component: Palettes,
   parameters: {
     layout: 'fullscreen',

@@ -4,7 +4,7 @@ import type { CardProps } from './Card.model';
 import { Text, YStack } from 'tamagui';
 
 const meta: Meta<CardProps> = {
-  title: 'Components/Card',
+  title: 'Componentes/Card',
   component: Card,
   parameters: {
     layout: 'centered',
