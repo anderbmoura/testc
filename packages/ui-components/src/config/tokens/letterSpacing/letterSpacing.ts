@@ -1,4 +1,4 @@
-export const letterSpacingTokens = {
+export const letterSpacing = {
   standard: 0,
   extended: 0.2,
   broad: 0.4,

@@ -1,0 +1,43 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as BorderRadiusStories from './BorderRadius.stories';
+
+<Meta of={BorderRadiusStories} />
+
+# Border Radius
+
+Os tokens de border radius definem o arredondamento dos cantos dos elementos, criando hierarquia visual e consistência no design.
+
+## Como usar
+
+Os tokens de border radius podem ser utilizados diretamente através da sintaxe de tokens do Tamagui (ex: `borderRadius="$medium"`).
+
+```tsx
+import { View } from 'tamagui';
+import { borderWidth } from '../borderWidth/borderWidth';
+
+<View
+  borderRadius="$medium"
+  backgroundColor="$neutralBg2"
+  borderColor="$outlined2"
+  borderWidth={borderWidth.thin}
+  padding="$small"
+>
+  Conteúdo com border radius
+</View>
+```
+
+## Tokens disponíveis
+
+- **`none`**: `0`
+- **`quark`**: `2px`
+- **`nano`**: `4px`
+- **`small`**: `8px`
+- **`medium`**: `12px`
+- **`large`**: `16px`
+- **`big`**: `24px`
+- **`pill`**: `1000px`
+
+### Exemplos
+
+<Canvas of={BorderRadiusStories.Default} />

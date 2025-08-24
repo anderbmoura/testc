@@ -1,4 +1,4 @@
-export const opacityTokens = {
+export const opacity = {
   4: 0.04,
   8: 0.08,
   12: 0.12,

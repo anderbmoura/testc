@@ -1,0 +1,57 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as BorderWidthStories from './BorderWidth.stories';
+
+<Meta of={BorderWidthStories} />
+
+# Border Width
+
+Os tokens de border width definem a espessura das bordas dos elementos, proporcionando consistência visual em toda a aplicação.
+
+## Como usar
+> ⚠️ **Importante:** Para usar os tokens de `borderWidth`, você deve importar e usar as referências diretas dos tokens (ex: `borderWidth.thin`) em vez de usar a sintaxe de tokens do Tamagui (ex: `borderWidth="$thin"`). 
+>
+> Isso acontece porque a configuração padrão do Tamagui mapeia automaticamente os tokens de `size` para `borderWidth`, mas o DSC precisa de valores específicos e personalizados para border width que não seguem os mesmos valores dos tokens de tamanho.
+
+**✅ Forma correta:**
+
+```tsx
+import { View } from 'tamagui';
+import { borderWidth } from './borderWidth';
+
+<View
+  borderWidth={borderWidth.thin}        // ✅ Correto
+  borderColor="$outlined2"
+  backgroundColor="$neutralBg2"
+  padding="$small"
+>
+  Conteúdo com border width
+</View>
+```
+
+**❌ Forma incorreta:**
+
+```tsx
+import { View } from 'tamagui';
+
+<View
+  borderWidth="$thin"                   // ❌ Incorreto - não funciona
+  borderColor="$outlined2"
+  backgroundColor="$neutralBg2"
+  padding="$small"
+>
+  Conteúdo com border width
+</View>
+```
+
+## Tokens disponíveis
+
+- **`none`**: `0`
+- **`hairline`**: `0.5px`
+- **`thin`**: `1px`
+- **`thick`**: `2px`
+- **`heavy`**: `4px`
+
+### Exemplos
+
+<Canvas of={BorderWidthStories.Default} />
