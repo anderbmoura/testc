@@ -5,4 +5,4 @@ npmScopes:
     npmPublishRegistry: https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/
     npmRegistryServer: https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/
     npmAlwaysAuth: true
-    npmAuthToken: "${PAT_AZURE_DEVOPS}"
+    npmAuthToken: '${PAT_AZURE_DEVOPS}'
