@@ -23,7 +23,7 @@ export default function ExemploTela() {
   const [ativado, setAtivado] = useState(false);
 
   return (
-    <YStack padding="$4" space="$3">
+    <YStack padding="$medium" space="$small">
       <Card>
         <Input
           placeholder="Digite seu nome"
@@ -59,17 +59,17 @@ export default function ExemploTela() {
 ### Exemplo recomendado:
 
 ```tsx
-import { View, Text, XStack, YStack } from '@tamagui/core';
-import { Button, Input } from '@superapp-caixa/dsc-library';
+import { View, XStack, YStack } from '@tamagui/core';
+import { Button, Input, TitleLarge } from '@superapp-caixa/dsc-library';
 
 export function MinhaTela() {
   return (
-    <YStack padding="$4" space="$3">
-      <Text fontSize="$6" fontWeight="bold">
+    <YStack padding="$medium" space="$small">
+      <TitleLarge>
         Título da Tela
-      </Text>
+      </TitleLarge>
 
-      <XStack space="$2" alignItems="center">
+      <XStack space="$tiny" alignItems="center">
         <Input flex={1} placeholder="Digite aqui..." />
         <Button>Buscar</Button>
       </XStack>

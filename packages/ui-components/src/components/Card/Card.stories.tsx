@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Card } from './Card';
 import type { CardProps } from './Card.model';
-import { Text, YStack } from 'tamagui';
+import { YStack } from 'tamagui';
+import { TitleStandard, BodySmall } from '../Typography';
 
 const meta: Meta<CardProps> = {
   title: 'Componentes/Card',
@@ -106,14 +107,12 @@ export default meta;
 type Story = StoryObj<CardProps>;
 
 const SampleContent = () => (
-  <YStack gap="$2" padding="$2">
-    <Text fontSize="$5" fontWeight="600" color="$color12">
-      Card Title
-    </Text>
-    <Text fontSize="$3" color="$color11">
+  <YStack gap="$tiny" padding="$tiny">
+    <TitleStandard color="$color12">Card Title</TitleStandard>
+    <BodySmall color="$color11">
       This is sample content inside the card. You can put any React components
       here.
-    </Text>
+    </BodySmall>
   </YStack>
 );
 
@@ -126,9 +125,9 @@ export const Default: Story = {
     docs: {
       source: {
         code: `<Card>
-  <YStack gap="$2" padding="$2">
-    <Text fontSize="$5" fontWeight="600">Card Title</Text>
-    <Text fontSize="$3">Card content goes here</Text>
+  <YStack gap="$tiny" padding="$tiny">
+    <TitleStandard>Card Title</TitleStandard>
+    <BodySmall>Card content goes here</BodySmall>
   </YStack>
 </Card>`,
       },

@@ -59,7 +59,7 @@ function InteractiveSnackBarDemo({
   };
 
   return (
-    <XStack alignItems="center" space="$3">
+    <XStack alignItems="center" space="$small">
       <Button onPress={handleShowSnackBar}>Mostrar SnackBar</Button>
       <Button type="outline" onPress={handleHide}>
         Esconder SnackBar

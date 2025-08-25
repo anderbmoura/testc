@@ -13,7 +13,8 @@ Os tokens de design são os elementos fundamentais do sistema de design da DSC L
 **✅ Usando tokens:**
 
 ```tsx
-import { View, Text } from 'tamagui';
+import { View } from 'tamagui';
+import { BodyStandard } from '@superapp-caixa/dsc-library';
 import { iconSize } from '@superapp-caixa/dsc-library/tokens';
 
 <View
@@ -22,9 +23,9 @@ import { iconSize } from '@superapp-caixa/dsc-library/tokens';
   borderRadius="$nano"
   opacity={opacity[24]}
 >
-  <Text fontSize="$large" fontWeight="$bold">
+  <BodyStandard>
     Conteúdo estilizado com tokens
-  </Text>
+  </BodyStandard>
 </View>
 ```
 
@@ -37,9 +38,9 @@ import { iconSize } from '@superapp-caixa/dsc-library/tokens';
   borderRadius={8}
   opacity={0.24}
 >
-  <Text fontSize={18} fontWeight="bold">
+  <BodyStandard>
     Evite valores fixos
-  </Text>
+  </BodyStandard>
 </View>
 ```
 
@@ -115,9 +116,9 @@ Define camadas de sobreposição dos elementos.
 Alguns tokens podem ser utilizados diretamente através da sintaxe de tokens do Tamagui:
 
 ```tsx
-// Space, Border Radius, Font Size, Font Weight, Letter Spacing, Line Height
+// Ex: Space, Border Radius, Font Size, Font Weight, Letter Spacing, Line Height
 <View padding="$medium" borderRadius="$small" />
-<Text fontSize="$large" fontWeight="$bold" />
+<BodyStandard>Texto usando componente Typography</BodyStandard>
 ```
 
 ### Tokens com importação direta
