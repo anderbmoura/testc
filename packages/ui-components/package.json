@@ -33,8 +33,14 @@
     }
   },
   "peerDependencies": {
+    "@tamagui/config": "*",
+    "@tamagui/lucide-icons": "*",
+    "iconoir-react-native": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "@tamagui/babel-plugin": "*",
+    "@tamagui/build": "*",
+    "tamagui": "*"
   },
   "devDependencies": {
     "@types/react": "~19.0.10",
@@ -72,7 +78,8 @@
     "*.css"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/",
+    "always-auth": true
   },
   "dependencies": {
     "@tamagui/babel-plugin": "^1.132.15",

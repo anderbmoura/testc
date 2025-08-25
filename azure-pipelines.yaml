@@ -1,0 +1,43 @@
+trigger: none
+
+parameters:
+  - name: VERSION
+    type: string
+    default: '0.0.6'
+    displayName: 'Versão da Lib'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - bash: |
+      build_name="$(build.buildNumber) - Version ${{ parameters.VERSION }}"
+      echo "##vso[build.updatebuildnumber]$build_name"
+      echo "##vso[task.setvariable variable=VERSION]${{ parameters.VERSION }}"
+    displayName: 'Atualiza BuildName'
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      corepack enable
+      yarn --version
+      yarn install --immutable
+    displayName: 'Install dependencies and build SDK with Yarn'
+
+  - task: npmAuthenticate@0
+    inputs:
+      workingFile: '.npmrc'
+
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: '.'
+      customCommand: 'version $(VERSION) --no-git-tag-version --userconfig .npmrc'
+    displayName: 'Update version lib'
+
+  - script: |
+      npm publish --userconfig .npmrc
+    displayName: 'Publish package to Azure Artifacts feed'
