@@ -1,31 +1,31 @@
-export const accentDarkGradientPalette = {
-  accent1: '#332200',
-  accent2: '#663300',
-  accent3: '#994D00',
-  accent4: '#CC6600',
-  accent5: '#FF8000',
-  accent6: '#FF8C1A',
-  accent7: '#FF9933',
-  accent8: '#FFA64D',
-  accent9: '#FFB266',
-  accent10: '#FFD9B3',
-  accent11: '#FFF0E6',
-  accent12: '#FFF7F2',
+export const accentLightGradientPalette = {
+  accent1: '#ffffff',
+  accent2: '#FFEFD6',
+  accent3: '#FFE3B8',
+  accent4: '#FFD392',
+  accent5: '#FDB548',
+  accent6: '#F39200',
+  accent7: '#E58500',
+  accent8: '#D87B00',
+  accent9: '#BF6C00',
+  accent10: '#804800',
+  accent11: '#663A00',
+  accent12: '#000000',
 };
 
-export const accentLightGradientPalette = {
-  accent1: '#FFF7F2',
-  accent2: '#FFF0E6',
-  accent3: '#FFD9B3',
-  accent4: '#FFB266',
-  accent5: '#FFA64D',
-  accent6: '#FF9933',
-  accent7: '#FF8C1A',
-  accent8: '#FF8000',
-  accent9: '#CC6600',
-  accent10: '#994D00',
-  accent11: '#663300',
-  accent12: '#332200',
+export const accentDarkGradientPalette = {
+  accent1: '#000000',
+  accent2: '#522E00',
+  accent3: '#7A4500',
+  accent4: '#B86800',
+  accent5: '#E07F00',
+  accent6: '#F58B00',
+  accent7: '#FF9E1F',
+  accent8: '#FFBD66',
+  accent9: '#FFD7A3',
+  accent10: '#FFE9CC',
+  accent11: '#FFF2E0',
+  accent12: '#ffffff',
 };
 
 export const accentLightSemanticPalette = {
@@ -42,12 +42,28 @@ export const accentDarkSemanticPalette = {
   accentBg: accentDarkGradientPalette.accent2,
 };
 
-export const accentDarkPalette = {
-  ...accentDarkGradientPalette,
-  ...accentDarkSemanticPalette,
+export const accentLightStatePalette = {
+  accentHover1: accentLightGradientPalette.accent2,
+  accentHover2: accentLightGradientPalette.accent9,
+  accentPressed1: accentLightGradientPalette.accent3,
+  accentPressed2: accentLightGradientPalette.accent7,
+};
+
+export const accentDarkStatePalette = {
+  accentHover1: accentDarkGradientPalette.accent2,
+  accentHover2: accentDarkGradientPalette.accent9,
+  accentPressed1: accentDarkGradientPalette.accent3,
+  accentPressed2: accentDarkGradientPalette.accent7,
 };
 
 export const accentLightPalette = {
   ...accentLightGradientPalette,
   ...accentLightSemanticPalette,
+  ...accentLightStatePalette,
+};
+
+export const accentDarkPalette = {
+  ...accentDarkGradientPalette,
+  ...accentDarkSemanticPalette,
+  ...accentDarkStatePalette,
 };
