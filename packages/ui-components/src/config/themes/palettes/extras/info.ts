@@ -1,31 +1,31 @@
-export const infoDarkGradientPalette = {
-  info1: '#00262B',
-  info2: '#004D55',
-  info3: '#007380',
-  info4: '#0099AA',
-  info5: '#00BFD4',
-  info6: '#00E6FF',
-  info7: '#1AE9FF',
-  info8: '#4DEDED',
-  info9: '#80F0F0',
-  info10: '#B3F7F7',
-  info11: '#E6FDFD',
-  info12: '#F2FEFE',
+export const infoLightGradientPalette = {
+  info1: '#ffffff',
+  info2: '#E5F5F8',
+  info3: '#C0E9F0',
+  info4: '#9BDAE5',
+  info5: '#4FBED2',
+  info6: '#04A2BF',
+  info7: '#0491AB',
+  info8: '#038299',
+  info9: '#037387',
+  info10: '#026273',
+  info11: '#02414C',
+  info12: '#000000',
 };
 
-export const infoLightGradientPalette = {
-  info1: '#F2FEFE',
-  info2: '#E6FDFD',
-  info3: '#B3F7F7',
-  info4: '#80F0F0',
-  info5: '#4DEDED',
-  info6: '#1AE9FF',
-  info7: '#00E6FF',
-  info8: '#00BFD4',
-  info9: '#0099AA',
-  info10: '#007380',
-  info11: '#004D55',
-  info12: '#00262B',
+export const infoDarkGradientPalette = {
+  info1: '#000000',
+  info2: '#014450',
+  info3: '#025564',
+  info4: '#036E82',
+  info5: '#038299',
+  info6: '#0491AB',
+  info7: '#26ADC5',
+  info8: '#6ACBDC',
+  info9: '#B6E4EC',
+  info10: '#D5F1F6',
+  info11: '#E5F5F8',
+  info12: '#ffffff',
 };
 
 export const infoLightSemanticPalette = {
@@ -42,12 +42,28 @@ export const infoDarkSemanticPalette = {
   infoBg: infoDarkGradientPalette.info2,
 };
 
-export const infoDarkPalette = {
-  ...infoDarkGradientPalette,
-  ...infoDarkSemanticPalette,
+export const infoLightStatePalette = {
+  infoHover1: infoLightGradientPalette.info2,
+  infoHover2: infoLightGradientPalette.info9,
+  infoPressed1: infoLightGradientPalette.info3,
+  infoPressed2: infoLightGradientPalette.info7,
+};
+
+export const infoDarkStatePalette = {
+  infoHover1: infoDarkGradientPalette.info2,
+  infoHover2: infoDarkGradientPalette.info9,
+  infoPressed1: infoDarkGradientPalette.info3,
+  infoPressed2: infoDarkGradientPalette.info7,
 };
 
 export const infoLightPalette = {
   ...infoLightGradientPalette,
   ...infoLightSemanticPalette,
+  ...infoLightStatePalette,
+};
+
+export const infoDarkPalette = {
+  ...infoDarkGradientPalette,
+  ...infoDarkSemanticPalette,
+  ...infoDarkStatePalette,
 };

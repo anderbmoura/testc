@@ -1,31 +1,31 @@
-export const warningDarkGradientPalette = {
-  warning1: '#4D3D00',
-  warning2: '#665200',
-  warning3: '#997B00',
-  warning4: '#CCA300',
-  warning5: '#FFCC00',
-  warning6: '#FFD21A',
-  warning7: '#FFD633',
-  warning8: '#FFDB4D',
-  warning9: '#FFE066',
-  warning10: '#FFECB3',
-  warning11: '#FFF6E6',
-  warning12: '#FFF9F2',
+export const warningLightGradientPalette = {
+  warning1: '#ffffff',
+  warning2: '#FFF9E6',
+  warning3: '#FFF0C2',
+  warning4: '#FDD150',
+  warning5: '#FCBE05',
+  warning6: '#CA9804',
+  warning7: '#B08403',
+  warning8: '#977203',
+  warning9: '#7D5E02',
+  warning10: '#654C02',
+  warning11: '#4D3A02',
+  warning12: '#000000',
 };
 
-export const warningLightGradientPalette = {
-  warning1: '#FFF9F2',
-  warning2: '#FFF6E6',
-  warning3: '#FFECB3',
-  warning4: '#FFE066',
-  warning5: '#FFDB4D',
-  warning6: '#FFD633',
-  warning7: '#FFD21A',
-  warning8: '#FFCC00',
-  warning9: '#CCA300',
-  warning10: '#997B00',
-  warning11: '#665200',
-  warning12: '#4D3D00',
+export const warningDarkGradientPalette = {
+  warning1: '#000000',
+  warning2: '#4C3A02',
+  warning3: '#755902',
+  warning4: '#8F6C03',
+  warning5: '#B08403',
+  warning6: '#CA9804',
+  warning7: '#E3AB05',
+  warning8: '#FCBE05',
+  warning9: '#FDD150',
+  warning10: '#FEECB7',
+  warning11: '#FFF6DB',
+  warning12: '#ffffff',
 };
 
 export const warningLightSemanticPalette = {
@@ -42,12 +42,28 @@ export const warningDarkSemanticPalette = {
   warningBg: warningDarkGradientPalette.warning2,
 };
 
-export const warningDarkPalette = {
-  ...warningDarkGradientPalette,
-  ...warningDarkSemanticPalette,
+export const warningLightStatePalette = {
+  warningHover1: warningLightGradientPalette.warning2,
+  warningHover2: warningLightGradientPalette.warning9,
+  warningPressed1: warningLightGradientPalette.warning3,
+  warningPressed2: warningLightGradientPalette.warning7,
+};
+
+export const warningDarkStatePalette = {
+  warningHover1: warningDarkGradientPalette.warning2,
+  warningHover2: warningDarkGradientPalette.warning9,
+  warningPressed1: warningDarkGradientPalette.warning3,
+  warningPressed2: warningDarkGradientPalette.warning7,
 };
 
 export const warningLightPalette = {
   ...warningLightGradientPalette,
   ...warningLightSemanticPalette,
+  ...warningLightStatePalette,
+};
+
+export const warningDarkPalette = {
+  ...warningDarkGradientPalette,
+  ...warningDarkSemanticPalette,
+  ...warningDarkStatePalette,
 };
