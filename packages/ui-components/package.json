@@ -34,7 +34,6 @@
   },
   "peerDependencies": {
     "@tamagui/config": "*",
-    "@tamagui/lucide-icons": "*",
     "iconoir-react-native": "*",
     "react": "*",
     "react-native": "*",
@@ -82,12 +81,12 @@
     "always-auth": true
   },
   "dependencies": {
-    "@tamagui/babel-plugin": "^1.132.15",
-    "@tamagui/build": "^1.132.15",
-    "@tamagui/config": "^1.132.15",
-    "@tamagui/core": "^1.132.15",
+    "@tamagui/babel-plugin": "^1.132.21",
+    "@tamagui/build": "^1.132.21",
+    "@tamagui/config": "^1.132.21",
+    "@tamagui/core": "^1.132.21",
     "iconoir-react-native": "^7.11.0",
     "react-native-svg": "^15.12.1",
-    "tamagui": "^1.132.15"
+    "tamagui": "^1.132.21"
   }
 }
