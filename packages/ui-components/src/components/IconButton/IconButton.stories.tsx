@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { View } from 'tamagui';
 import { IconButton } from './IconButton';
 import type { IconButtonProps } from './IconButton.model';
 import { Heart, Settings, Download, Upload } from 'iconoir-react-native';
@@ -116,12 +117,23 @@ import { Heart, Settings, Download, Trash } from 'iconoir-react-native';
   tags: ['autodocs'],
   render: args => {
     const key = `icon-button-${Date.now()}`;
+    const backgroundColor =
+      args.color === 'white' ? '$onNeutral1' : 'transparent';
+
     return (
-      <IconButton
-        key={key}
-        {...args}
-        onPress={() => console.log('IconButton pressed')}
-      />
+      <View
+        backgroundColor={backgroundColor}
+        padding="$medium"
+        borderRadius="$small"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <IconButton
+          key={key}
+          {...args}
+          onPress={() => console.log('IconButton pressed')}
+        />
+      </View>
     );
   },
   argTypes: {
