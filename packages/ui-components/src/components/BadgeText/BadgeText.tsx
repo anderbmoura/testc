@@ -39,6 +39,13 @@ const StyledBadgeContainer = styled(YStack, {
   },
 });
 
+const StyledBadgeText = styled(LabelTiny, {
+  name: 'IconButtonTextBadgeText',
+  color: '$color8',
+  numberOfLines: 1,
+  flexShrink: 0,
+});
+
 /**
  * Componente DSC BadgeText
  *
@@ -63,7 +70,7 @@ export default function BadgeText({
 }: BadgeTextProps) {
   const content = (
     <StyledBadgeContainer theme={color} size={size}>
-      <LabelTiny color="$color8">{children}</LabelTiny>
+      <StyledBadgeText>{children}</StyledBadgeText>
     </StyledBadgeContainer>
   );
 

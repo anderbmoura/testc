@@ -8,6 +8,7 @@ import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
 import { useTransformIcon } from '../../utils';
 import Spinner from '../Spinner';
+import BadgeText from '../BadgeText';
 
 const StyledIconContainerWrapper = styled(View, {
   name: 'IconButtonTextContainerWrapper',
@@ -32,6 +33,13 @@ const StyledTouchableContainer = styled(YStack, {
   name: 'IconButtonTextTouchableContainer',
   gap: '$nano',
   alignItems: 'center',
+});
+
+const StyledBadgeContainer = styled(View, {
+  name: 'IconButtonTextBadgeContainer',
+  position: 'absolute',
+  bottom: -8,
+  zIndex: 1,
 });
 
 const StyledIconContainer = styled(View, {
@@ -153,6 +161,16 @@ const StyledText = styled(LabelSmallRegular, {
  * <IconButtonText icon={<Home />} onPress={() => navigate('Home')}>Home</IconButtonText>
  * ```
  *
+ * @param badgeText - Texto do badge exibido flutuando sobre o container
+ * ```tsx
+ * <IconButtonText icon={<Home />} badgeText="3">Home</IconButtonText>
+ * ```
+ *
+ * @param badgeColor - Cor do badge ('highlight' | 'danger')
+ * ```tsx
+ * <IconButtonText icon={<Home />} badgeText="3" badgeColor="danger">Home</IconButtonText>
+ * ```
+ *
  * @param children - Texto exibido abaixo do ícone/imagem
  * ```tsx
  * <IconButtonText icon={<Settings />}>Configurações</IconButtonText>
@@ -169,6 +187,8 @@ export default function IconButtonText({
   loading = false,
   onGrayBg = false,
   onPress,
+  badgeText,
+  badgeColor = 'highlight',
   touchableProps,
 }: IconButtonTextProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -195,7 +215,6 @@ export default function IconButtonText({
     };
   }, [icon, transformIcon, shouldUseIcon]);
 
-  // Select current icon based on state (only for icon variants)
   const currentIcon = useMemo(() => {
     if (!shouldUseIcon) return null;
     if (disabled) return disabledIcon;
@@ -219,7 +238,6 @@ export default function IconButtonText({
   const handleHoverIn = () => setIsHovered(true);
   const handleHoverOut = () => setIsHovered(false);
 
-  // Render content based on variant
   const renderContent = () => {
     if (loading) {
       return <Spinner variant="neutral" size="small" />;
@@ -263,6 +281,14 @@ export default function IconButtonText({
           onGrayBg={onGrayBg}
         >
           {renderContent()}
+
+          {badgeText && (
+            <StyledBadgeContainer>
+              <BadgeText size="small" color={badgeColor}>
+                {badgeText}
+              </BadgeText>
+            </StyledBadgeContainer>
+          )}
         </StyledIconContainer>
       </StyledIconContainerWrapper>
 

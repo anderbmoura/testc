@@ -1,5 +1,6 @@
 import React from 'react';
 import { StackProps, ImageProps } from 'tamagui';
+import { BadgeTextColor } from '../BadgeText/BadgeText.model';
 
 /**
  * Variantes visuais para o IconButtonText.
@@ -70,6 +71,19 @@ export interface IconButtonTextProps {
    * Callback executado quando o botão é pressionado.
    */
   onPress?: StackProps['onPress'];
+
+  /**
+   * Texto do badge exibido flutuando sobre o container.
+   * Quando definido, um badge pequeno será exibido na parte superior direita.
+   */
+  badgeText?: string;
+
+  /**
+   * Cor do badge.
+   * - `highlight`: Estilo de destaque (padrão)
+   * - `danger`: Estilo de perigo
+   */
+  badgeColor?: BadgeTextColor;
 
   /**
    * Propriedades adicionais passadas para o componente container.

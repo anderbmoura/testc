@@ -69,6 +69,26 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
 >
   Salvando...
 </IconButtonText>
+
+// Botão com badge
+<IconButtonText 
+  icon={<Home />} 
+  badgeText="3"
+  badgeColor="highlight"
+  onPress={() => navigate('Home')}
+>
+  Home
+</IconButtonText>
+
+// Botão com badge de perigo
+<IconButtonText 
+  icon={<Settings />} 
+  badgeText="!"
+  badgeColor="danger"
+  onPress={() => openSettings()}
+>
+  Configurações
+</IconButtonText>
 \`\`\`
         `,
       },
@@ -100,6 +120,10 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
             args.disabled && 'disabled',
             args.loading && 'loading',
             args.onGrayBg && 'onGrayBg',
+            args.badgeText && `badgeText="${args.badgeText}"`,
+            args.badgeColor &&
+              args.badgeColor !== 'highlight' &&
+              `badgeColor="${args.badgeColor}"`,
           ]
             .filter(Boolean)
             .join(' ');
@@ -224,6 +248,24 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
         defaultValue: { summary: 'false' },
       },
     },
+    badgeText: {
+      control: 'text',
+      description: 'Texto do badge exibido flutuando sobre o container.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    badgeColor: {
+      control: 'radio',
+      options: ['highlight', 'danger'],
+      description: 'Cor do badge.',
+      table: {
+        type: { summary: "'highlight' | 'danger'" },
+        defaultValue: { summary: "'highlight'" },
+      },
+      if: { arg: 'badgeText', truthy: true },
+    },
     onPress: {
       table: {
         disable: true,
@@ -245,6 +287,45 @@ export const Default: Story = {
     variant: 'default',
     children: 'Home',
     icon: 'Home',
+    disabled: false,
+    loading: false,
+    onGrayBg: false,
+  },
+};
+
+export const WithBadge: Story = {
+  args: {
+    variant: 'default',
+    children: 'Notificações',
+    icon: 'Heart',
+    badgeText: '3',
+    badgeColor: 'highlight',
+    disabled: false,
+    loading: false,
+    onGrayBg: false,
+  },
+};
+
+export const WithDangerBadge: Story = {
+  args: {
+    variant: 'default',
+    children: 'Alertas',
+    icon: 'Settings',
+    badgeText: '!',
+    badgeColor: 'danger',
+    disabled: false,
+    loading: false,
+    onGrayBg: false,
+  },
+};
+
+export const DangerVariantWithBadge: Story = {
+  args: {
+    variant: 'danger',
+    children: 'Excluir',
+    icon: 'Heart',
+    badgeText: '5',
+    badgeColor: 'highlight',
     disabled: false,
     loading: false,
     onGrayBg: false,
