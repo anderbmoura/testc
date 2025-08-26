@@ -2,71 +2,77 @@ import React from 'react';
 import { StackProps, ImageProps } from 'tamagui';
 
 /**
- * Variant types for IconButtonText component
+ * Variantes visuais para o IconButtonText.
  */
 export type IconButtonTextVariant = 'default' | 'danger' | 'image';
 
 /**
- * Configuration options for the DSC IconButtonText Component.
+ * Opções de configuração para o Componente DSC IconButtonText.
  *
- * Defines the properties available for customizing button behavior and appearance.
+ * Define as propriedades disponíveis para personalizar o comportamento e aparência do botão.
  */
 export interface IconButtonTextProps {
   /**
-   * Text content to display below the icon button
+   * Texto exibido abaixo do ícone/imagem.
    */
   children: React.ReactNode;
 
   /**
-   * Variant of the button that determines styling and behavior
-   * - 'default': Standard icon button
-   * - 'danger': Applies danger theme styling
-   * - 'image': Uses an image instead of an icon
+   * Variante visual do botão que determina o estilo e comportamento.
+   * - `default`: Botão de ícone padrão
+   * - `danger`: Aplica estilo de tema de perigo
+   * - `image`: Usa uma imagem em vez de um ícone
    */
   variant?: IconButtonTextVariant;
 
   /**
-   * Icon element to display inside the button
-   * Used when variant is 'default' or 'danger'
+   * Ícone exibido no botão.
+   * Usado quando variant é 'default' ou 'danger'.
    */
   icon?: React.ReactNode;
 
   /**
-   * Image source to display inside the button
-   * Used when variant is 'image'
+   * Fonte da imagem exibida no botão.
+   * Usado quando variant é 'image'.
    */
   image?: ImageProps['source'];
 
   /**
-   * Width of the image in pixels
-   * Required when variant is 'image'
+   * Largura da imagem em pixels.
+   * Usado quando variant é 'image'.
    */
   imageWidth?: number;
 
   /**
-   * Height of the image in pixels
-   * Required when variant is 'image'
+   * Altura da imagem em pixels.
+   * Usado quando variant é 'image'.
    */
   imageHeight?: number;
 
   /**
-   * Prevents user interaction and shows disabled styling.
+   * Desabilita a interação e aplica estilo desabilitado.
    */
   disabled?: boolean;
 
   /**
-   * When true, applies alternative styling for gray backgrounds.
-   * Changes container background and border behavior for better contrast.
+   * Exibe um spinner de carregamento no lugar do ícone/imagem
+   * e aplica estilo desabilitado.
+   */
+  loading?: boolean;
+
+  /**
+   * Aplica estilo alternativo para fundos cinzas.
+   * Altera o fundo do container e comportamento da borda para melhor contraste.
    */
   onGrayBg?: boolean;
 
   /**
-   * Callback function called when the button is pressed.
+   * Callback executado quando o botão é pressionado.
    */
   onPress?: StackProps['onPress'];
 
   /**
-   * Additional props passed to the container component
+   * Propriedades adicionais passadas para o componente container.
    */
   touchableProps?: Omit<StackProps, 'onPress' | 'disabled'>;
 }

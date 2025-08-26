@@ -25,7 +25,7 @@ const Spinner: React.FC<SpinnerProps> = ({
   <TamaguiSpinner
     theme={variant as any}
     color="$color8"
-    size={size === 'small' ? 20 : (36 as any)}
+    size={size === 'small' ? 24 : (36 as any)}
   />
 );
 

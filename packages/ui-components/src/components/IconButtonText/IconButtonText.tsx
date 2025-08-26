@@ -7,6 +7,7 @@ import { IconButtonTextProps } from './IconButtonText.model';
 import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
 import { useTransformIcon } from '../../utils';
+import Spinner from '../Spinner';
 
 const StyledIconContainerWrapper = styled(View, {
   name: 'IconButtonTextContainerWrapper',
@@ -36,7 +37,7 @@ const StyledTouchableContainer = styled(YStack, {
 const StyledIconContainer = styled(View, {
   name: 'IconButtonTextContainer',
   width: 76,
-  minHeight: 56,
+  minHeight: 58,
   borderRadius: '$big',
   paddingVertical: '$tiny',
   paddingHorizontal: '$small',
@@ -101,30 +102,60 @@ const StyledText = styled(LabelSmallRegular, {
 });
 
 /**
- * DSC IconButtonText Component
+ * Componente DSC IconButtonText
  *
- * Um botão clicável com ícone e texto, onde o ícone fica dentro de uma view
- * com bordas arredondadas e o texto aparece abaixo.
- *
+ * @param variant - Variante visual do botão ('default' | 'danger' | 'image')
  * ```tsx
- * // Com ícone
- * <IconButtonText
- *   icon={<SomeIcon />}
- *   onPress={() => console.log('Pressed')}
- * >
- *   Label do botão
- * </IconButtonText>
+ * <IconButtonText variant="default" icon={<Home />}>Home</IconButtonText>
+ * <IconButtonText variant="danger" icon={<Trash />}>Excluir</IconButtonText>
+ * <IconButtonText variant="image" image={{ uri: 'logo.png' }}>Logo</IconButtonText>
+ * ```
  *
- * // Com imagem
- * <IconButtonText
- *   variant="image"
- *   image={require('./assets/logo.png')}
- *   imageWidth={32}
- *   imageHeight={32}
- *   onPress={() => console.log('Pressed')}
- * >
- *   Logo
- * </IconButtonText>
+ * @param icon - Ícone exibido no botão (usado quando variant é 'default' ou 'danger')
+ * ```tsx
+ * <IconButtonText icon={<Settings />}>Configurações</IconButtonText>
+ * <IconButtonText variant="danger" icon={<Delete />}>Remover</IconButtonText>
+ * ```
+ *
+ * @param image - Fonte da imagem exibida no botão (usado quando variant é 'image')
+ * ```tsx
+ * <IconButtonText variant="image" image={require('./logo.png')}>Logo</IconButtonText>
+ * <IconButtonText variant="image" image={{ uri: 'https://example.com/image.png' }}>Imagem</IconButtonText>
+ * ```
+ *
+ * @param imageWidth - Largura da imagem em pixels (usado quando variant é 'image')
+ * ```tsx
+ * <IconButtonText variant="image" image={logo} imageWidth={32}>Logo</IconButtonText>
+ * ```
+ *
+ * @param imageHeight - Altura da imagem em pixels (usado quando variant é 'image')
+ * ```tsx
+ * <IconButtonText variant="image" image={logo} imageHeight={32}>Logo</IconButtonText>
+ * ```
+ *
+ * @param disabled - Desabilita a interação e aplica estilo desabilitado
+ * ```tsx
+ * <IconButtonText icon={<Home />} disabled>Home</IconButtonText>
+ * ```
+ *
+ * @param loading - Exibe um spinner de carregamento e aplica estilo desabilitado
+ * ```tsx
+ * <IconButtonText icon={<Save />} loading>Salvando...</IconButtonText>
+ * ```
+ *
+ * @param onGrayBg - Aplica estilo alternativo para fundos cinzas
+ * ```tsx
+ * <IconButtonText icon={<Home />} onGrayBg>Home</IconButtonText>
+ * ```
+ *
+ * @param onPress - Callback executado quando o botão é pressionado
+ * ```tsx
+ * <IconButtonText icon={<Home />} onPress={() => navigate('Home')}>Home</IconButtonText>
+ * ```
+ *
+ * @param children - Texto exibido abaixo do ícone/imagem
+ * ```tsx
+ * <IconButtonText icon={<Settings />}>Configurações</IconButtonText>
  * ```
  */
 export default function IconButtonText({
@@ -135,6 +166,7 @@ export default function IconButtonText({
   imageWidth,
   imageHeight,
   disabled = false,
+  loading = false,
   onGrayBg = false,
   onPress,
   touchableProps,
@@ -189,6 +221,10 @@ export default function IconButtonText({
 
   // Render content based on variant
   const renderContent = () => {
+    if (loading) {
+      return <Spinner variant="neutral" size="small" />;
+    }
+
     if (variant === 'image' && image) {
       return (
         <Image
@@ -202,28 +238,35 @@ export default function IconButtonText({
     return currentIcon;
   };
 
+  const isInteractionDisabled = disabled || loading;
+
   const content = (
     <StyledTouchableContainer
-      disabled={disabled}
-      onPress={disabled ? undefined : onPress}
+      disabled={isInteractionDisabled}
+      onPress={isInteractionDisabled ? undefined : onPress}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       onHoverIn={handleHoverIn}
       onHoverOut={handleHoverOut}
-      tabIndex={disabled ? -1 : 0}
+      tabIndex={isInteractionDisabled ? -1 : 0}
       {...touchableProps}
     >
       <StyledIconContainerWrapper
-        {...(isFocused && !disabled ? { focused: true } : { focused: false })}
+        {...(isFocused && !isInteractionDisabled
+          ? { focused: true }
+          : { focused: false })}
       >
-        <StyledIconContainer disabled={disabled} onGrayBg={onGrayBg}>
+        <StyledIconContainer
+          disabled={isInteractionDisabled}
+          onGrayBg={onGrayBg}
+        >
           {renderContent()}
         </StyledIconContainer>
       </StyledIconContainerWrapper>
 
-      <StyledText disabled={disabled}>{children}</StyledText>
+      <StyledText disabled={isInteractionDisabled}>{children}</StyledText>
     </StyledTouchableContainer>
   );
 

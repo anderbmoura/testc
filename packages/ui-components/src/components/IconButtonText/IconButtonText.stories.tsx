@@ -23,6 +23,55 @@ const meta: Meta<IconButtonTextProps> = {
   parameters: {
     layout: 'centered',
     docs: {
+      description: {
+        component: `
+Componente para exibir botões com ícone e texto.
+
+## Como usar
+
+\`\`\`tsx
+import { IconButtonText } from '@dsc/ui-components';
+import { Home, Settings, Trash } from 'iconoir-react-native';
+
+// Botão padrão com ícone
+<IconButtonText 
+  icon={<Home />} 
+  onPress={() => navigate('Home')}
+>
+  Home
+</IconButtonText>
+
+// Botão 'danger' com ícone
+<IconButtonText 
+  variant="danger" 
+  icon={<Trash />} 
+  onPress={() => deleteItem()}
+>
+  Excluir
+</IconButtonText>
+
+// Botão com imagem
+<IconButtonText 
+  variant="image" 
+  image={require('./logo.png')}
+  imageWidth={32}
+  imageHeight={32}
+  onPress={() => openApp()}
+>
+  Logo
+</IconButtonText>
+
+// Botão com loading
+<IconButtonText 
+  icon={<Settings />} 
+  loading 
+  onPress={() => save()}
+>
+  Salvando...
+</IconButtonText>
+\`\`\`
+        `,
+      },
       source: {
         transform: (_: string, { args }: any) => {
           const getIconName = (iconKey: string) => {
@@ -49,6 +98,7 @@ const meta: Meta<IconButtonTextProps> = {
               args.variant === 'image' &&
               `imageHeight={${args.imageHeight}}`,
             args.disabled && 'disabled',
+            args.loading && 'loading',
             args.onGrayBg && 'onGrayBg',
           ]
             .filter(Boolean)
@@ -84,7 +134,8 @@ const meta: Meta<IconButtonTextProps> = {
     variant: {
       control: 'radio',
       options: ['default', 'danger', 'image'],
-      description: 'Variant of the button that determines styling and behavior',
+      description:
+        'Variante visual que define o tema de cores aplicado ao botão.',
       table: {
         type: { summary: "'default' | 'danger' | 'image'" },
         defaultValue: { summary: "'default'" },
@@ -92,7 +143,7 @@ const meta: Meta<IconButtonTextProps> = {
     },
     children: {
       control: 'text',
-      description: 'Text content to display below the icon button',
+      description: 'Texto exibido abaixo do ícone/imagem.',
       table: {
         type: { summary: 'React.ReactNode' },
         defaultValue: { summary: 'undefined' },
@@ -102,12 +153,12 @@ const meta: Meta<IconButtonTextProps> = {
       control: 'select',
       options: Object.keys(iconMapping),
       description:
-        'Icon element to display inside the button (used when variant is default or danger)',
+        'Ícone exibido no botão (usado quando variant é "default" ou "danger").',
       mapping: iconMapping,
       table: {
         type: {
           summary: 'React.ReactNode',
-          detail: 'Icon component from iconoir-react-native',
+          detail: 'Componente de ícone do iconoir-react-native',
         },
         defaultValue: { summary: 'undefined' },
       },
@@ -117,12 +168,12 @@ const meta: Meta<IconButtonTextProps> = {
       control: 'select',
       options: Object.keys(imageMapping),
       description:
-        'Image source to display inside the button (used when variant is image)',
+        'Fonte da imagem exibida no botão (usado quando variant é "image").',
       mapping: imageMapping,
       table: {
         type: {
           summary: 'ImageProps["source"]',
-          detail: 'Image source - can be URL string or require() import',
+          detail: 'Fonte da imagem - pode ser URL string ou import require()',
         },
         defaultValue: { summary: 'undefined' },
       },
@@ -130,7 +181,8 @@ const meta: Meta<IconButtonTextProps> = {
     },
     imageWidth: {
       control: 'number',
-      description: 'Width of the image in pixels (used when variant is image)',
+      description:
+        'Largura da imagem em pixels (usado quando variant é "image").',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: '24' },
@@ -139,7 +191,8 @@ const meta: Meta<IconButtonTextProps> = {
     },
     imageHeight: {
       control: 'number',
-      description: 'Height of the image in pixels (used when variant is image)',
+      description:
+        'Altura da imagem em pixels (usado quando variant é "image").',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: '24' },
@@ -148,7 +201,16 @@ const meta: Meta<IconButtonTextProps> = {
     },
     disabled: {
       control: 'boolean',
-      description: 'Prevents user interaction and shows disabled styling',
+      description: 'Desabilita a interação e aplica estilo desabilitado.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loading: {
+      control: 'boolean',
+      description:
+        'Exibe um spinner de carregamento e aplica estilo desabilitado.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -156,8 +218,7 @@ const meta: Meta<IconButtonTextProps> = {
     },
     onGrayBg: {
       control: 'boolean',
-      description:
-        'When true, applies alternative styling for gray backgrounds',
+      description: 'Aplica estilo alternativo para fundos cinzas.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -185,40 +246,7 @@ export const Default: Story = {
     children: 'Home',
     icon: 'Home',
     disabled: false,
-    onGrayBg: false,
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-    children: 'Delete',
-    icon: 'Heart',
-    disabled: false,
-    onGrayBg: false,
-  },
-};
-
-export const WithImage: Story = {
-  args: {
-    variant: 'image',
-    children: 'INSS',
-    image: 'INSS' as any,
-    imageWidth: 36,
-    imageHeight: 24,
-    disabled: false,
-    onGrayBg: false,
-  },
-};
-
-export const WithImageMinhaCasa: Story = {
-  args: {
-    variant: 'image',
-    children: 'Minha Casa',
-    image: 'MCMV' as any,
-    imageWidth: 38,
-    imageHeight: 24,
-    disabled: false,
+    loading: false,
     onGrayBg: false,
   },
 };
