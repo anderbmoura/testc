@@ -17,6 +17,8 @@ export type {
 } from './components/IconButton';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
+export { default as BadgeText } from './components/BadgeText';
+export type { BadgeTextProps } from './components/BadgeText';
 export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
 export type { SnackBarProps, SnackBarContextType } from './components/SnackBar';
 export { default as Spinner } from './components/Spinner';
