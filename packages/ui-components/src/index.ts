@@ -9,6 +9,8 @@ export type {
   CardAlertVariant,
   CardAlertAction,
 } from './components/CardAlert';
+export { default as IconButtonText } from './components/IconButtonText';
+export type { IconButtonTextProps } from './components/IconButtonText';
 export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
 export type { SnackBarProps, SnackBarContextType } from './components/SnackBar';
 export { default as Switch } from './components/Switch';
