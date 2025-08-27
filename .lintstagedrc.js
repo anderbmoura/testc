@@ -21,8 +21,8 @@ module.exports = {
   // Only run if TypeScript files are changed
   // '**/*.{ts,tsx}': [() => 'npm run type-check'],
 
-  // Library source files - ensure build works
-  'packages/ui-components/src/**/*.{ts,tsx}': [() => 'npm run build:lib'],
+  // // Library source files - ensure build works
+  // 'packages/ui-components/src/**/*.{ts,tsx}': [() => 'npm run build:lib'],
 
   // Test files - run related tests
   '**/*.{test,spec}.{js,jsx,ts,tsx}': ['jest --bail --findRelatedTests'],

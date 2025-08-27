@@ -1,11 +1,12 @@
 import {
   Button,
-  View,
-  DscProvider,
   CardAlert,
+  DscProvider,
+  ForYouCard,
+  View,
 } from '@superapp-caixa/dsc-library';
-import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
+import { ScrollView } from 'react-native';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
 
@@ -13,14 +14,14 @@ import { Button as TButton, YStack } from 'tamagui';
 
 import {
   Airplay,
+  Download,
+  Heart,
   Home,
   Settings,
-  User,
-  Heart,
   Star,
-  Download,
-  Upload,
   Trash,
+  Upload,
+  User,
 } from 'iconoir-react-native';
 
 function AppContent() {
@@ -46,6 +47,14 @@ function AppContent() {
           }}
         >
           <YStack space="$4" padding="$4">
+            <YStack>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+              </ScrollView>
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button theme="success" icon={Home} type="plain">
                 Plain Button
