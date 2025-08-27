@@ -91,16 +91,16 @@ export function ListItem({
         onPress={handleSelect}
         opacity={disabled ? 0.5 : 1}
       >
-        <YStack justifyContent="center" alignItems="center" mr={'$2'}>
+        <YStack justifyContent="center" alignItems="center" mr={'$tiny'}>
           {iconLeft}
         </YStack>
 
         <YStack flex={1}>
-          <Text fontSize="$5" fontWeight="600">
+          <Text fontSize="$tiny" fontWeight="600">
             {title}
           </Text>
-          <Text fontSize="$4">{content}</Text>
-          {subContent && <Text fontSize="$3">{subContent}</Text>}
+          <Text fontSize="$micro">{content}</Text>
+          {subContent && <Text fontSize="$nano">{subContent}</Text>}
         </YStack>
 
         <YStack justifyContent="center">

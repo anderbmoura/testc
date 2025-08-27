@@ -1,5 +1,4 @@
-import { Home } from '@tamagui/lucide-icons';
-import { SeaWaves } from 'iconoir-react-native';
+import { Home, SeaWaves } from 'iconoir-react-native';
 import { YStack } from 'tamagui';
 import { List } from './FlatItemList';
 import { Item, ListItem } from './ListItem';
