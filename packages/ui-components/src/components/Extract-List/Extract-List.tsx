@@ -5,7 +5,8 @@ import { ExtractListProps } from './Extract-List.model';
 import { LabelStandard, LabelSmall } from '../Typography/index';
 import { SendDollars, ReceiveDollars } from 'iconoir-react-native';
 
-const StyledListItem = styled(View, {
+const SectionListItem = styled(View, {
+  name: 'SectionListItem',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
@@ -16,12 +17,14 @@ const StyledListItem = styled(View, {
 });
 
 const SectionContent = styled(View, {
+  name: 'SectionContent',
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
 });
 
 const SectionColumnText = styled(View, {
+  name: 'SectionColumnText',
   display: 'flex',
   flexDirection: 'column',
   gap: '$space.quark',
@@ -29,6 +32,7 @@ const SectionColumnText = styled(View, {
 
 const SectionHeader = styled(Text, {
   ...LabelSmall,
+  name: 'SectionHeader',
   borderBottomWidth: 1,
   borderBottomColor: '#22292e15', // var(--color-neutral-onBackground1) 8% opacity
   paddingVertical: '$space.nano',
@@ -120,7 +124,7 @@ export const ExtractList: React.FC<ExtractListProps> = ({
       testID={testID}
       style={{ backgroundColor: '$neutralBg1' }}
       renderItem={({ item }) => (
-        <StyledListItem>
+        <SectionListItem>
           <SectionContent>
             <ItemIcon value={String(item.value)} />
             <SectionColumnText>
@@ -138,7 +142,7 @@ export const ExtractList: React.FC<ExtractListProps> = ({
             {' '}
             {item.value}
           </LabelStandard>
-        </StyledListItem>
+        </SectionListItem>
       )}
       renderSectionHeader={({ section: { date } }) => (
         <SectionHeader>{date}</SectionHeader>
