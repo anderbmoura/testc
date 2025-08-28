@@ -8,7 +8,8 @@ import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-
+import { ExtractList } from '../../packages/ui-components/src/components/Extract-List/Extract-List';
+import { mockData } from '../../packages/ui-components/src/components/Extract-List/Extract-List.stories';
 import { Button as TButton, YStack } from 'tamagui';
 
 import {
@@ -32,6 +33,10 @@ function AppContent() {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+  };
+
+  const refresh = async () => {
+    console.log('final da lista fetch');
   };
 
   return (
@@ -249,6 +254,7 @@ function AppContent() {
               }}
             />
           </YStack>
+          <ExtractList data={mockData} refreshAction={refresh} />
         </ScrollView>
       </View>
     </DscProvider>
