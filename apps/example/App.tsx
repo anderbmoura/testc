@@ -52,6 +52,14 @@ function AppContent() {
           }}
         >
           <YStack space="$4" padding="$4">
+            <AvatarStack size="large" spacing="large">
+              <Avatar style="monogram" monogramChar="W" />
+              <Avatar style="icon" icon={<BadgeCheck />} />
+              <Avatar style="image" imageUrl="https://placehold.net/8.png" />
+              <Avatar style="monogram" monogramChar="S" />
+              <Avatar style="icon" icon={UserCart} />
+            </AvatarStack>
+
             <YStack>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
@@ -60,13 +68,6 @@ function AppContent() {
                 <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
               </ScrollView>
             </YStack>
-            <AvatarStack size='large' spacing='large'>
-              <Avatar style="monogram" monogramChar="W" />
-              <Avatar style="icon" icon={<BadgeCheck />} />
-              <Avatar style="image" imageUrl='https://placehold.net/8.png' />
-              <Avatar style="monogram" monogramChar="S" />
-              <Avatar style="icon" icon={UserCart} />
-            </AvatarStack>
 
             <YStack space="$4" flexWrap="wrap">
               <Button theme="success" icon={Home} type="plain">

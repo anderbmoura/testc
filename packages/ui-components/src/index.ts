@@ -43,8 +43,6 @@ export { default as Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
 export * from './components/Typography';
 export { DscProvider } from './config/DscProvider';
-export { Avatar, AvatarStack } from './components/Avatar';
-export type { AvatarProps, AvatarStackProps } from './components/Avatar';
 export { dscFonts, type DscFonts } from './config/fonts';
 export { typography as typographyPresets } from './config/fonts/typography';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
