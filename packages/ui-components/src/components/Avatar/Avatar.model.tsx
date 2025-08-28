@@ -1,4 +1,4 @@
-import { StackProps, StyleProp } from '@tamagui/core';
+import { StackProps } from '@tamagui/core';
 import { ButtonProps } from 'tamagui';
 
 /**

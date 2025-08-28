@@ -2,14 +2,15 @@ import React from 'react';
 import { styled, YStack, Text, Image } from 'tamagui';
 import { AvatarProps } from './Avatar.model';
 import { typography } from '../../config/fonts/typography';
-import { borderRadiusTokens } from '../../config/tokens/border/border';
+
 import { useTransformIcon } from '../../utils';
+import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
 
 const DscAvatar = styled(YStack, {
   name: 'DscAvatar',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: borderRadiusTokens.pill,
+  borderRadius: borderRadius.pill,
   overflow: 'hidden',
   backgroundColor: '$neutralBg3',
 
@@ -19,7 +20,7 @@ const DscAvatar = styled(YStack, {
       standard: { width: 36, height: 36 },
       large: { width: 48, height: 48 },
     },
-  } as const
+  } as const,
 });
 
 const MonogramText = styled(Text, {
@@ -91,7 +92,8 @@ export const Avatar: React.FC<AvatarProps> = ({
   };
 
   const iconSize = getIconSize();
-  const transformedIcon = style === 'icon' ? transformIcon(icon, iconSize) : null;
+  const transformedIcon =
+    style === 'icon' ? transformIcon(icon, iconSize) : null;
 
   const shouldApplyPadding = style === 'icon' || style === 'monogram';
 
