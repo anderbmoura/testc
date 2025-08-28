@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ExtractList } from './Extract-List';
+import { mockData } from './mock-example';
 
 const meta = {
   title: 'Componentes/ExtractList',
