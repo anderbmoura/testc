@@ -8,8 +8,10 @@ import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-import { ExtractList } from '../../packages/ui-components/src/components/Extract-List/Extract-List';
-import { mockData } from '../../packages/ui-components/src/components/Extract-List/Extract-List.stories';
+import {
+  mockData,
+  ExtractList,
+} from '../../packages/ui-components/src/components/Extract-List';
 import { Button as TButton, YStack } from 'tamagui';
 
 import {
