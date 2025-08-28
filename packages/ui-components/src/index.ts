@@ -18,3 +18,5 @@ export { typography as typographyPresets } from './config/fonts/typography';
 export { dscFonts, type DscFonts } from './config/fonts';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
 export { DscProvider } from './config/DscProvider';
+export { Avatar, AvatarStack } from './components/Avatar';
+export type { AvatarProps, AvatarStackProps } from './components/Avatar';

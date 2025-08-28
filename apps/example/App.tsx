@@ -3,6 +3,8 @@ import {
   View,
   DscProvider,
   CardAlert,
+  Avatar,
+  AvatarStack,
 } from '@superapp-caixa/dsc-library';
 import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
@@ -21,6 +23,9 @@ import {
   Download,
   Upload,
   Trash,
+  BeachBag,
+  BadgeCheck,
+  UserCart,
 } from 'iconoir-react-native';
 
 function AppContent() {
@@ -46,6 +51,14 @@ function AppContent() {
           }}
         >
           <YStack space="$4" padding="$4">
+            <AvatarStack size='large' spacing='large'>
+              <Avatar style="monogram" monogramChar="W" />
+              <Avatar style="icon" icon={<BadgeCheck />} />
+              <Avatar style="image" imageUrl='https://placehold.net/8.png' />
+              <Avatar style="monogram" monogramChar="S" />
+              <Avatar style="icon" icon={UserCart} />
+            </AvatarStack>
+
             <YStack space="$4" flexWrap="wrap">
               <Button theme="success" icon={Home} type="plain">
                 Plain Button
