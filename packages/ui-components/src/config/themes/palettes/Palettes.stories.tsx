@@ -1,8 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import {
+  TitleSmall,
+  BodyStandard,
+  BodySmall,
+  LabelStandard,
+} from '../../../components/Typography';
 import { accentLightPalette, accentDarkPalette } from './accent';
-import { neutralLightPalette, neutralDarkPalette } from './neutral';
+import {
+  neutralLightPalette,
+  neutralDarkPalette,
+  neutralLightDisabledPalette,
+  neutralDarkDisabledPalette,
+} from './neutral';
 import {
   highlightLightPalette,
   highlightDarkPalette,
@@ -11,26 +22,35 @@ import { infoLightPalette, infoDarkPalette } from './extras/info';
 import { successLightPalette, successDarkPalette } from './extras/success';
 import { warningLightPalette, warningDarkPalette } from './extras/warning';
 import { dangerLightPalette, dangerDarkPalette } from './extras/danger';
+import {
+  decorativeLightPalette,
+  decorativeDarkPalette,
+} from './extras/decorative';
 
-interface ColorSwatchProps {
-  color: string;
-  name: string;
-}
-
-const ColorSwatch: React.FC<ColorSwatchProps> = ({ color, name }) => (
-  <View style={styles.swatchContainer}>
-    <View style={[styles.swatch, { backgroundColor: color }]} />
-    <Text style={styles.colorName}>{name}</Text>
-    <Text style={styles.colorValue}>{color}</Text>
+const ColorItem: React.FC<{ name: string; color: string }> = ({
+  name,
+  color,
+}) => (
+  <View style={styles.colorItem}>
+    <View style={[styles.colorBlock, { backgroundColor: color }]} />
+    <View style={styles.colorInfo}>
+      <LabelStandard style={styles.colorName}>{name}</LabelStandard>
+      <LabelStandard style={styles.colorValue}>{color}</LabelStandard>
+    </View>
   </View>
 );
 
 interface PaletteSectionProps {
   title: string;
   colors: Record<string, string>;
+  sectionType: 'gradient' | 'semantic' | 'state' | 'disabled';
 }
 
-const PaletteSection: React.FC<PaletteSectionProps> = ({ title, colors }) => {
+const PaletteSection: React.FC<PaletteSectionProps> = ({
+  title,
+  colors,
+  sectionType,
+}) => {
   const sortedColors = Object.entries(colors).sort(([nameA], [nameB]) => {
     const numberA = nameA.match(/\d+$/)?.[0];
     const numberB = nameB.match(/\d+$/)?.[0];
@@ -42,12 +62,17 @@ const PaletteSection: React.FC<PaletteSectionProps> = ({ title, colors }) => {
     return nameA.localeCompare(nameB);
   });
 
+  const sectionKey = `${sectionType}Section` as keyof typeof styles;
+  const sectionStyle = (styles as any)[sectionKey] as any;
+
   return (
-    <View style={styles.paletteSection}>
-      <Text style={styles.sectionSubtitle}>{title}</Text>
+    <View style={[styles.paletteSection, sectionStyle]}>
+      <View style={styles.sectionHeader}>
+        <BodyStandard style={styles.sectionSubtitle}>{title}</BodyStandard>
+      </View>
       <View style={styles.swatchGrid}>
         {sortedColors.map(([name, color]) => (
-          <ColorSwatch key={name} name={name} color={color} />
+          <ColorItem key={name} name={name} color={color} />
         ))}
       </View>
     </View>
@@ -55,16 +80,55 @@ const PaletteSection: React.FC<PaletteSectionProps> = ({ title, colors }) => {
 };
 
 interface PaletteGroupProps {
-  title: string;
   palette: Record<string, string>;
 }
 
-const PaletteGroup: React.FC<PaletteGroupProps> = ({ title, palette }) => {
-  const gradientColors: Record<string, string> = {};
-  const semanticColors: Record<string, string> = {};
+const DisabledColorsSection: React.FC<{ palette: Record<string, string> }> = ({
+  palette,
+}) => {
+  const disabledColors: Record<string, string> = {};
 
   Object.entries(palette).forEach(([name, color]) => {
-    if (/\d+$/.test(name)) {
+    if (name.includes('disabled') || name.includes('Disabled')) {
+      disabledColors[name] = color;
+    }
+  });
+
+  if (Object.keys(disabledColors).length === 0) {
+    return null;
+  }
+
+  return (
+    <View style={styles.disabledSpecialSection}>
+      <View style={styles.sectionHeader}>
+        <BodyStandard style={styles.sectionSubtitle}>
+          Cores Desabilitadas
+        </BodyStandard>
+      </View>
+      <BodySmall style={styles.disabledDescription}>
+        Cores universais para elementos desabilitados, aplicáveis a todos os
+        componentes independente do tema.
+      </BodySmall>
+      <View style={styles.swatchGrid}>
+        {Object.entries(disabledColors).map(([name, color]) => (
+          <ColorItem key={name} name={name} color={color} />
+        ))}
+      </View>
+    </View>
+  );
+};
+
+const PaletteGroup: React.FC<PaletteGroupProps> = ({ palette }) => {
+  const gradientColors: Record<string, string> = {};
+  const semanticColors: Record<string, string> = {};
+  const stateColors: Record<string, string> = {};
+
+  Object.entries(palette).forEach(([name, color]) => {
+    if (name.includes('Hover') || name.includes('Pressed')) {
+      stateColors[name] = color;
+    } else if (name.includes('disabled') || name.includes('Disabled')) {
+      return;
+    } else if (/\d+$/.test(name)) {
       gradientColors[name] = color;
     } else {
       semanticColors[name] = color;
@@ -73,17 +137,28 @@ const PaletteGroup: React.FC<PaletteGroupProps> = ({ title, palette }) => {
 
   return (
     <View style={styles.paletteGroup}>
-      <Text style={styles.paletteTitle}>{title}</Text>
-
       {Object.keys(gradientColors).length > 0 && (
         <PaletteSection
-          title="Gradient Colors (1-12)"
+          title="Cores Gradiente (1-12)"
           colors={gradientColors}
+          sectionType="gradient"
         />
       )}
 
       {Object.keys(semanticColors).length > 0 && (
-        <PaletteSection title="Semantic Colors" colors={semanticColors} />
+        <PaletteSection
+          title="Cores Semânticas"
+          colors={semanticColors}
+          sectionType="semantic"
+        />
+      )}
+
+      {Object.keys(stateColors).length > 0 && (
+        <PaletteSection
+          title="Cores de Estado"
+          colors={stateColors}
+          sectionType="state"
+        />
       )}
     </View>
   );
@@ -97,7 +172,9 @@ interface PalettesProps {
     | 'info'
     | 'success'
     | 'warning'
-    | 'error';
+    | 'error'
+    | 'decorative'
+    | 'disabled';
 }
 
 const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
@@ -109,6 +186,8 @@ const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
     success: successLightPalette,
     warning: warningLightPalette,
     error: dangerLightPalette,
+    decorative: decorativeLightPalette,
+    disabled: neutralLightDisabledPalette,
   };
 
   const darkPalettes = {
@@ -119,39 +198,46 @@ const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
     success: successDarkPalette,
     warning: warningDarkPalette,
     error: dangerDarkPalette,
+    decorative: decorativeDarkPalette,
+    disabled: neutralDarkDisabledPalette,
   };
 
   const selectedPalette = showPalette;
   const lightPalette = lightPalettes[selectedPalette];
   const darkPalette = darkPalettes[selectedPalette];
 
+  if (selectedPalette === 'disabled') {
+    return (
+      <ScrollView style={styles.container}>
+        <View style={styles.themeSection}>
+          <TitleSmall style={styles.themeTitle}>
+            Tema Claro - Cores Desabilitadas
+          </TitleSmall>
+          <DisabledColorsSection palette={lightPalettes.disabled} />
+        </View>
+
+        <View style={styles.themeSection}>
+          <TitleSmall style={styles.themeTitle}>
+            Tema Escuro - Cores Desabilitadas
+          </TitleSmall>
+          <DisabledColorsSection palette={darkPalettes.disabled} />
+        </View>
+      </ScrollView>
+    );
+  }
+
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.mainTitle}>
-        {selectedPalette.charAt(0).toUpperCase() + selectedPalette.slice(1)}{' '}
-        Color Palette
-      </Text>
-
       {/* Light Theme */}
       <View style={styles.themeSection}>
-        <Text style={styles.themeTitle}>Light Theme</Text>
-        <PaletteGroup
-          title={
-            selectedPalette.charAt(0).toUpperCase() + selectedPalette.slice(1)
-          }
-          palette={lightPalette}
-        />
+        <TitleSmall style={styles.themeTitle}>Tema Claro</TitleSmall>
+        <PaletteGroup palette={lightPalette} />
       </View>
 
       {/* Dark Theme */}
       <View style={styles.themeSection}>
-        <Text style={styles.themeTitle}>Dark Theme</Text>
-        <PaletteGroup
-          title={
-            selectedPalette.charAt(0).toUpperCase() + selectedPalette.slice(1)
-          }
-          palette={darkPalette}
-        />
+        <TitleSmall style={styles.themeTitle}>Tema Escuro</TitleSmall>
+        <PaletteGroup palette={darkPalette} />
       </View>
     </ScrollView>
   );
@@ -160,101 +246,196 @@ const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    backgroundColor: '#ffffff',
+    padding: 20,
+    backgroundColor: '#fafafa',
   },
   mainTitle: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 24,
+    marginBottom: 16,
     textAlign: 'center',
+    color: '#1a202c',
+  },
+  paletteDescription: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#4a5568',
+    marginBottom: 24,
+    lineHeight: 24,
+    paddingHorizontal: 20,
   },
   themeSection: {
     marginBottom: 40,
-    padding: 16,
-    backgroundColor: '#f8f9fa',
-    borderRadius: 12,
+    padding: 24,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
     marginHorizontal: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
   themeTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#495057',
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 24,
+    textAlign: 'left',
+    color: '#2d3748',
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e2e8f0',
   },
   paletteGroup: {
     marginBottom: 32,
   },
-  paletteTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 16,
-    color: '#333333',
-  },
   paletteSection: {
-    marginBottom: 20,
+    marginBottom: 28,
+    padding: 16,
+    backgroundColor: '#f7fafc',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+  },
+  disabledSpecialSection: {
+    marginBottom: 28,
+    padding: 20,
+    backgroundColor: '#fffaf0',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#fed7d7',
+    marginHorizontal: 8,
+  },
+  disabledDescription: {
+    fontSize: 14,
+    color: '#718096',
+    marginBottom: 16,
+    lineHeight: 20,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   sectionSubtitle: {
     fontSize: 16,
-    fontWeight: '500',
-    marginBottom: 12,
-    color: '#666666',
-    paddingLeft: 4,
+    fontWeight: '600',
+    color: '#2d3748',
   },
   swatchGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
+    justifyContent: 'flex-start',
   },
-  swatchContainer: {
+  colorItem: {
     alignItems: 'center',
-    minWidth: 120,
+    width: 130,
     marginBottom: 16,
-  },
-  swatch: {
-    width: 60,
-    height: 60,
-    borderRadius: 8,
-    marginBottom: 8,
-    borderWidth: 1,
-    borderColor: '#e0e0e0',
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 12,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  colorBlock: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
     elevation: 3,
   },
+  colorInfo: {
+    alignItems: 'center',
+    width: '100%',
+  },
+  swatchContainer: {
+    alignItems: 'center',
+    width: 130,
+    marginBottom: 16,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 12,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  swatch: {
+    width: 70,
+    height: 70,
+    borderRadius: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  swatchInfo: {
+    alignItems: 'center',
+    width: '100%',
+  },
   colorName: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#2d3748',
     textAlign: 'center',
+    marginBottom: 4,
   },
   colorValue: {
-    fontSize: 10,
-    color: '#666666',
+    fontSize: 11,
+    color: '#718096',
     textAlign: 'center',
-    marginTop: 2,
+    fontFamily: 'monospace',
+    backgroundColor: '#f7fafc',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    overflow: 'hidden',
   },
 });
 
 const meta: Meta<PalettesProps> = {
-  title: 'Design System/Color Palettes',
+  title: 'Design System/Temas/Paletas de Cores',
   component: Palettes,
   parameters: {
     layout: 'fullscreen',
     docs: {
-      description: {
-        component:
-          'Color palettes used throughout the design system. Each palette shows both light and dark theme variants with gradient colors (1-12) and semantic colors for consistent theming.',
-      },
+      page: null,
     },
   },
-  tags: ['autodocs'],
   argTypes: {
     showPalette: {
       control: 'select',
@@ -266,9 +447,11 @@ const meta: Meta<PalettesProps> = {
         'success',
         'warning',
         'error',
+        'decorative',
+        'disabled',
       ],
       description:
-        'Which palette to display (shows both light and dark themes)',
+        'Which palette to display (shows both light and dark themes; disabled shows both light/dark disabled palettes)',
       defaultValue: 'highlight',
     },
   },
@@ -277,58 +460,56 @@ const meta: Meta<PalettesProps> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  name: 'Highlight Palette',
+export const HighlightColors: Story = {
   args: {
     showPalette: 'highlight',
   },
 };
 
-export const AccentPalette: Story = {
-  name: 'Accent Colors',
+export const AccentColors: Story = {
   args: {
     showPalette: 'accent',
   },
 };
 
-export const NeutralPalette: Story = {
-  name: 'Neutral Colors',
+export const NeutralColors: Story = {
   args: {
     showPalette: 'neutral',
   },
 };
 
-export const HighlightPalette: Story = {
-  name: 'Highlight Colors',
-  args: {
-    showPalette: 'highlight',
-  },
-};
-
-export const InfoPalette: Story = {
-  name: 'Info Colors',
+export const InfoColors: Story = {
   args: {
     showPalette: 'info',
   },
 };
 
-export const SuccessPalette: Story = {
-  name: 'Success Colors',
+export const SuccessColors: Story = {
   args: {
     showPalette: 'success',
   },
 };
 
-export const WarningPalette: Story = {
-  name: 'Warning Colors',
+export const WarningColors: Story = {
   args: {
     showPalette: 'warning',
   },
 };
 
-export const ErrorPalette: Story = {
-  name: 'Error Colors',
+export const ErrorColors: Story = {
   args: {
     showPalette: 'error',
+  },
+};
+
+export const DecorativeColors: Story = {
+  args: {
+    showPalette: 'decorative',
+  },
+};
+
+export const DisabledColors: Story = {
+  args: {
+    showPalette: 'disabled',
   },
 };

@@ -1,4 +1,4 @@
-export const iconSizeTokens = {
+export const iconSize = {
   tiny: 16,
   small: 20,
   medium: 24,

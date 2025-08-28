@@ -1,13 +1,14 @@
 import {
   Button,
-  View,
-  DscProvider,
   CardAlert,
+  DscProvider,
+  ForYouCard,
+  View,
   Avatar,
   AvatarStack,
 } from '@superapp-caixa/dsc-library';
-import { ScrollView } from 'react-native';
 import React, { useState } from 'react';
+import { ScrollView } from 'react-native';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
 
@@ -15,14 +16,14 @@ import { Button as TButton, YStack } from 'tamagui';
 
 import {
   Airplay,
+  Download,
+  Heart,
   Home,
   Settings,
-  User,
-  Heart,
   Star,
-  Download,
-  Upload,
   Trash,
+  Upload,
+  User,
   BeachBag,
   BadgeCheck,
   UserCart,
@@ -51,6 +52,14 @@ function AppContent() {
           }}
         >
           <YStack space="$4" padding="$4">
+            <YStack>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+              </ScrollView>
+            </YStack>
             <AvatarStack size='large' spacing='large'>
               <Avatar style="monogram" monogramChar="W" />
               <Avatar style="icon" icon={<BadgeCheck />} />

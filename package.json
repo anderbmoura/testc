@@ -2,14 +2,19 @@
   "name": "rn-superapp-dsc-library",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "description": "A collection of reusable components for the DSC design system",
   "scripts": {
-    "build:lib": "yarn workspace @superapp-caixa/dsc-library build",
-    "watch:lib": "yarn workspace @superapp-caixa/dsc-library watch",
-    "publish:lib": "yarn workspace @superapp-caixa/dsc-library publish-package",
-    "pack:lib": "yarn workspace @superapp-caixa/dsc-library pack",
-    "start:expo": "yarn workspace example start",
-    "storybook-web": "yarn workspace storybook-web storybook",
+    "example": "npm run start --workspace=example",
+    "example:ios": "npm run ios --workspace=example",
+    "example:android": "npm run android --workspace=example",
+    "example:web": "npm run web --workspace=example",
+    "storybook": "npm run storybook --workspace=storybook-web",
+    "build:lib": "npm run build --workspace=@superapp-caixa/dsc-library",
+    "watch:lib": "npm run watch --workspace=@superapp-caixa/dsc-library",
+    "publish:lib": "npm run publish-package --workspace=@superapp-caixa/dsc-library",
+    "pack:lib": "npm pack --workspace=@superapp-caixa/dsc-library",
+    "build:storybook": "npm run build-storybook --workspace=storybook-web",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
@@ -44,6 +49,7 @@
     "jest": "^30.0.5",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
+    "pretty-format": "^30.0.5",
     "release-it": "^19.0.4",
     "typescript": "~5.8.3"
   },
@@ -55,6 +61,5 @@
     "*.{json,md,yml,yaml}": [
       "prettier --write"
     ]
-  },
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+  }
 }

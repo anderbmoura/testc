@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as TamaguiButton, styled, Spinner, Theme } from 'tamagui';
 import { typography } from '../../config/fonts/typography';
-import { spaceTokens } from '../../config/tokens/space/space';
+import { space } from '../../config/tokens/space/space';
 import { useTransformIcon } from '../../utils';
 import { ButtonProps } from './';
 
@@ -20,7 +20,7 @@ const DscButton = styled(TamaguiButton, {
         paddingVertical: '$none',
         paddingHorizontal: '$small',
         minHeight: 56,
-        gap: spaceTokens.tiny / 2,
+        gap: space.tiny / 2,
       },
 
       standard: {
@@ -30,7 +30,7 @@ const DscButton = styled(TamaguiButton, {
         paddingVertical: '$none',
         paddingHorizontal: '$smaller',
         minHeight: 48,
-        gap: spaceTokens.micro / 2,
+        gap: space.micro / 2,
       },
 
       small: {
@@ -40,7 +40,7 @@ const DscButton = styled(TamaguiButton, {
         paddingVertical: '$none',
         paddingHorizontal: '$tiny',
         minHeight: 40,
-        gap: spaceTokens.micro / 2,
+        gap: space.micro / 2,
       },
     },
 

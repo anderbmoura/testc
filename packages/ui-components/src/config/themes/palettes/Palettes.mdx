@@ -1,0 +1,89 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as PalettesStories from './Palettes.stories';
+
+<Meta of={PalettesStories} />
+
+# Paletas de Cores
+
+As paletas de cores são os elementos fundamentais do sistema de temas da DSC Library. Elas definem todos os valores de cores utilizados nos componentes, garantindo consistência visual e suporte a múltiplos temas (claro, escuro, etc.).
+
+## Como usar
+
+**Sempre** utilize as cores definidas nas paletas através da sintaxe de tokens do Tamagui em vez de valores fixos (hardcoded) para manter a consistência visual e o suporte a temas.
+
+**✅ Usando tokens de cores:**
+
+```tsx
+import { View, Text } from 'tamagui';
+
+<View backgroundColor="$highlightBg" borderColor="$highlightBorder">
+  <Text color="$highlightColor">
+    Conteúdo com cores do sistema de temas
+  </Text>
+</View>
+```
+
+**❌ Usando valores fixos:**
+
+```tsx
+<View backgroundColor="#007BFF" borderColor="#0056B3">
+  <Text color="#FFFFFF">
+    Evite cores hardcoded
+  </Text>
+</View>
+```
+
+## Cores de Estado Desabilitado
+
+Cores dedicadas para elementos desabilitados, disponíveis na paleta **Neutral**. Essas cores são universais e aplicáveis a todos os componentes, independente do tema, garantindo acessibilidade e uma experiência visual consistente quando elementos não estão disponíveis para interação.
+
+Agora as cores desabilitadas possuem variantes específicas para Tema Claro e Tema Escuro (antes elas eram universais). O story exibirá ambas as variantes para comparação.
+
+<Canvas of={PalettesStories.DisabledColors} />
+
+## Estrutura das Paletas de Cores
+
+### Cores Gradiente (1-12)
+Cores numeradas de 1 a 12 que formam uma escala de gradiente adaptável. Essas cores mudam automaticamente conforme o tema aplicado, proporcionando uma experiência visual consistente em diferentes contextos.
+
+### Cores Semânticas  
+Cores com nomes semânticos que facilitam o entendimento do propósito de cada cor e mantêm valores adequados para cada tema.
+
+### Cores de Estado (State Colors)
+Cores específicas para estados interativos dos componentes (`Hover`, `Pressed`) que proporcionam feedback visual apropriado durante a interação do usuário.
+
+## Paletas disponíveis
+
+- [Highlight](#highlight) - Cores principais para elementos de destaque
+- [Accent](#accent) - Cores de acento e ênfase
+- [Neutral](#neutral) - Cores neutras para textos e fundos
+- [Info](#info) - Cores para informações e feedbacks informativos
+- [Success](#success) - Cores para estados de sucesso
+- [Warning](#warning) - Cores para avisos e alertas
+- [Error](#error) - Cores para estados de erro
+- [Decorative](#decorative) - Cores decorativas para elementos visuais
+
+### Highlight
+<Canvas of={PalettesStories.HighlightColors} />
+
+### Accent
+<Canvas of={PalettesStories.AccentColors} />
+
+### Neutral
+<Canvas of={PalettesStories.NeutralColors} />
+
+### Info
+<Canvas of={PalettesStories.InfoColors} />
+
+### Success
+<Canvas of={PalettesStories.SuccessColors} />
+
+### Warning
+<Canvas of={PalettesStories.WarningColors} />
+
+### Error
+<Canvas of={PalettesStories.ErrorColors} />
+
+### Decorative
+<Canvas of={PalettesStories.DecorativeColors} />

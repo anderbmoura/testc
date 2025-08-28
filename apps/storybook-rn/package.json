@@ -55,7 +55,8 @@
     "eslint-config-expo": "~9.2.0",
     "react-native-svg": "^15.12.1",
     "storybook": "^9.1.0",
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "webpack": "^5.0.0"
   },
   "private": true
 }

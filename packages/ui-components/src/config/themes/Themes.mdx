@@ -1,0 +1,90 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import { View, Text, XStack, YStack, Theme, Button } from 'tamagui';
+
+<Meta title="Design System/Temas/Visão Geral" />
+
+# Sistema de Temas
+
+O sistema de temas da DSC Library permite criar interfaces adaptáveis e consistentes, oferecendo variações visuais para diferentes contextos. O sistema suporta temas claro/escuro e variações semânticas para diferentes estados e ações.
+
+## Como usar
+
+Use a propriedade `theme` nos componentes da DSC Library e do Tamagui ou envolva seções do seu layout com o componente `Theme` para aplicar um tema específico.
+
+**✅ Aplicando temas em componentes:**
+
+```tsx
+import { Button, Card } from '@superapp-caixa/dsc-library';
+import { Theme, YStack } from 'tamagui';
+
+// Aplicar tema em componente específico
+<Button theme="success">Confirmar</Button>
+<Button theme="danger">Excluir</Button>
+
+// Aplicar tema em uma seção
+<Theme name="highlight">
+  <Card padding="$medium">
+    <Text>Conteúdo com tema highlight aplicado</Text>
+    <Button>Este botão herda o tema highlight</Button>
+  </Card>
+</Theme>
+```
+
+## Temas Disponíveis
+
+Para visualizar as paletas completas de cada tema, consulte: [Design System/Temas/Paletas de Cores](?path=/docs/design-system-temas-paletas-de-cores--docs)
+
+- **`neutral`**
+- **`accent`**
+- **`highlight`**
+- **`danger`**
+- **`warning`**
+- **`success`**
+- **`info`**
+
+## Alternância entre Modo Claro e Escuro
+
+O sistema automaticamente adapta as cores dos temas para modo claro e escuro baseado na configuração do dispositivo ou preferência do usuário.
+
+```tsx
+import { TamaguiProvider } from 'tamagui';
+import { useState } from 'react';
+
+export function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  return (
+    <TamaguiProvider 
+      config={config} 
+      defaultTheme={isDark ? 'dark' : 'light'}
+    >
+      <YStack padding="$medium" space="$small">
+        <Button onPress={() => setIsDark(!isDark)}>
+          Alternar para tema {isDark ? 'claro' : 'escuro'}
+        </Button>
+        
+        <Theme name="success">
+          <Card>
+            <Text>Este card se adapta automaticamente ao modo claro/escuro</Text>
+          </Card>
+        </Theme>
+      </YStack>
+    </TamaguiProvider>
+  );
+}
+```
+
+## Boas Práticas
+
+### Agrupe elementos relacionados
+Use o componente `Theme` para agrupar elementos que compartilham o mesmo contexto:
+
+```tsx
+<Theme name="warning">
+  <Card padding="$medium" space="$small">
+    <TitleStandard>Atenção necessária</TitleStandard>
+    <BodyStandard>Seus dados estão incompletos.</BodyStandard>
+    <Button>Completar cadastro</Button>
+  </Card>
+</Theme>
+```

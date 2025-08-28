@@ -1,4 +1,4 @@
-export const spaceTokens = {
+export const space = {
   none: 0,
   quark: 4,
   nano: 8,

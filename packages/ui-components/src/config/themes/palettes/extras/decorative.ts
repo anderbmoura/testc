@@ -1,31 +1,31 @@
-export const decorativeDarkGradientPalette = {
-  decorative1: '#252D3E',
-  decorative2: '#253858',
-  decorative3: '#1D6592',
-  decorative4: '#2684FF',
-  decorative5: '#4C9AFF',
-  decorative6: '#68ACFF',
-  decorative7: '#85BCFF',
-  decorative8: '#A3CDFF',
-  decorative9: '#C1DDFF',
-  decorative10: '#DEEDFF',
-  decorative11: '#EBF4FF',
-  decorative12: '#F7FAFF',
+export const decorativeLightGradientPalette = {
+  decorative1: '#FFFFFF',
+  decorative2: '#E4F7F4',
+  decorative3: '#D0F2ED',
+  decorative4: '#81D6C9',
+  decorative5: '#54BBAB',
+  decorative6: '#359485',
+  decorative7: '#2A8073',
+  decorative8: '#216E62',
+  decorative9: '#145248',
+  decorative10: '#03453B',
+  decorative11: '#00332B',
+  decorative12: '#000000',
 };
 
-export const decorativeLightGradientPalette = {
-  decorative1: '#F7FAFF',
-  decorative2: '#EBF4FF',
-  decorative3: '#DEEDFF',
-  decorative4: '#C1DDFF',
-  decorative5: '#A3CDFF',
-  decorative6: '#85BCFF',
-  decorative7: '#68ACFF',
-  decorative8: '#4C9AFF',
-  decorative9: '#2684FF',
-  decorative10: '#1D6592',
-  decorative11: '#253858',
-  decorative12: '#252D3E',
+export const decorativeDarkGradientPalette = {
+  decorative1: '#000000',
+  decorative2: '#09342E',
+  decorative3: '#0B473D',
+  decorative4: '#0E584C',
+  decorative5: '#137264',
+  decorative6: '#189582',
+  decorative7: '#1DAF98',
+  decorative8: '#21CAAF',
+  decorative9: '#61E5D1',
+  decorative10: '#CBF6F0',
+  decorative11: '#E5F1FC',
+  decorative12: '#FFFFFF',
 };
 
 export const decorativeLightSemanticPalette = {
@@ -42,12 +42,28 @@ export const decorativeDarkSemanticPalette = {
   decorativeBg: decorativeDarkGradientPalette.decorative2,
 };
 
-export const decorativeDarkPalette = {
-  ...decorativeDarkGradientPalette,
-  ...decorativeDarkSemanticPalette,
+export const decorativeLightStatePalette = {
+  decorativeHover1: decorativeLightGradientPalette.decorative2,
+  decorativeHover2: decorativeLightGradientPalette.decorative9,
+  decorativePressed1: decorativeLightGradientPalette.decorative3,
+  decorativePressed2: decorativeLightGradientPalette.decorative7,
+};
+
+export const decorativeDarkStatePalette = {
+  decorativeHover1: decorativeDarkGradientPalette.decorative2,
+  decorativeHover2: decorativeDarkGradientPalette.decorative9,
+  decorativePressed1: decorativeDarkGradientPalette.decorative3,
+  decorativePressed2: decorativeDarkGradientPalette.decorative7,
 };
 
 export const decorativeLightPalette = {
   ...decorativeLightGradientPalette,
   ...decorativeLightSemanticPalette,
+  ...decorativeLightStatePalette,
+};
+
+export const decorativeDarkPalette = {
+  ...decorativeDarkGradientPalette,
+  ...decorativeDarkSemanticPalette,
+  ...decorativeDarkStatePalette,
 };

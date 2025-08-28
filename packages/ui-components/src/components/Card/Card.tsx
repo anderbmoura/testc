@@ -1,11 +1,10 @@
 import React from 'react';
 import { styled, View } from 'tamagui';
-import { borderRadiusTokens } from '../../config/tokens/border/border';
 import { CardProps } from './Card.model';
 
 const DscCard = styled(View, {
   name: 'DscCard',
-  borderRadius: borderRadiusTokens.big,
+  borderRadius: '$big',
   width: 'auto',
 
   variants: {

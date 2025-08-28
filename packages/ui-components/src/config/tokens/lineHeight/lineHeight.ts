@@ -1,4 +1,4 @@
-export const lineHeightTokens = {
+export const lineHeight = {
   '18': 18,
   '20': 20,
   '22': 22,

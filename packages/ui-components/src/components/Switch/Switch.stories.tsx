@@ -3,7 +3,7 @@ import Switch from './Switch';
 import type { SwitchProps } from './Switch.model';
 
 const meta: Meta<SwitchProps> = {
-  title: 'Components/Switch',
+  title: 'Componentes/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',

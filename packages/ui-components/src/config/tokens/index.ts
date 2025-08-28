@@ -1,25 +1,26 @@
 import { createTokens } from '@tamagui/core';
+import { borderRadius } from './borderRadius/borderRadius';
+import { borderWidth } from './borderWidth/borderWidth';
+import { fontSize } from './fontSize/fontSize';
+import { fontWeight } from './fontWeight/fontWeight';
+import { iconSize } from './iconSize/iconSize';
+import { letterSpacing } from './letterSpacing/letterSpacing';
+import { lineHeight } from './lineHeight/lineHeight';
+import { opacity } from './opacity/opacity';
+import { space } from './space/space';
+import { zIndex } from './zIndex/zIndex';
 import { defaultConfig } from '@tamagui/config/v4';
-import { borderRadiusTokens, borderWidthTokens } from './border/border';
-import { fontSizeTokens } from './fontSize/fontSize';
-import { fontWeightTokens } from './fontWeight/fontWeight';
-import { iconSizeTokens } from './iconSize/iconSize';
-import { letterSpacingTokens } from './letterSpacing/letterSpacing';
-import { lineHeightTokens } from './lineHeight/lineHeight';
-import { opacityTokens } from './opacity/opacity';
-import { spaceTokens } from './space/space';
-import { zIndexTokens } from './zIndex/zIndex';
 
 export const tokens = createTokens({
   size: defaultConfig.tokens.size,
-  fontSize: fontSizeTokens,
-  space: spaceTokens,
-  radius: borderRadiusTokens,
-  borderWidth: borderWidthTokens,
-  opacity: opacityTokens,
-  iconSize: iconSizeTokens,
-  lineHeight: lineHeightTokens,
-  fontWeight: fontWeightTokens,
-  letterSpacing: letterSpacingTokens,
-  zIndex: zIndexTokens,
+  fontSize: fontSize,
+  space: space,
+  radius: borderRadius,
+  borderWidth: borderWidth,
+  opacity: opacity,
+  iconSize: iconSize,
+  lineHeight: lineHeight,
+  fontWeight: fontWeight,
+  letterSpacing: letterSpacing,
+  zIndex: zIndex,
 });

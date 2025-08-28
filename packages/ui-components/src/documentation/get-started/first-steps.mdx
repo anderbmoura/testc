@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Primeiros Passos" />
+
+# Primeiros Passos
+
+## Uso dos Componentes
+
+Importe e utilize os componentes DSC nas suas telas:
+
+```tsx
+import React, { useState } from 'react';
+import {
+  YStack,
+  Button,
+  Input,
+  Card,
+  Switch,
+} from '@superapp-caixa/dsc-library';
+
+export default function ExemploTela() {
+  const [texto, setTexto] = useState('');
+  const [ativado, setAtivado] = useState(false);
+
+  return (
+    <YStack padding="$medium" space="$small">
+      <Card>
+        <Input
+          placeholder="Digite seu nome"
+          value={texto}
+          onChangeText={setTexto}
+        />
+
+        <Switch
+          value={ativado}
+          onValueChange={setAtivado}
+          label="Notificações"
+        />
+
+        <Button variant="primary" onPress={() => alert(`Olá, ${texto}!`)}>
+          Enviar
+        </Button>
+      </Card>
+    </YStack>
+  );
+}
+```
+
+## Uso com Tamagui
+
+> **Recomendação**: Utilize **sempre que possível** os componentes de construção e estilo de layout do Tamagui (`View`, `Text`, `Stack`, etc.) em detrimento dos componentes React Native.
+
+### Por que usar componentes Tamagui?
+
+- **Performance otimizada**: Sistema de styling compilado em tempo de build.
+- **Consistência de tema**: Compartilhamento do mesmo sistema de tokens.
+- **Bundle size reduzido**: Tree-shaking eficiente dos estilos não utilizados.
+
+### Exemplo recomendado:
+
+```tsx
+import { View, XStack, YStack } from '@tamagui/core';
+import { Button, Input, TitleLarge } from '@superapp-caixa/dsc-library';
+
+export function MinhaTela() {
+  return (
+    <YStack padding="$medium" space="$small">
+      <TitleLarge>
+        Título da Tela
+      </TitleLarge>
+
+      <XStack space="$tiny" alignItems="center">
+        <Input flex={1} placeholder="Digite aqui..." />
+        <Button>Buscar</Button>
+      </XStack>
+    </YStack>
+  );
+}
+```

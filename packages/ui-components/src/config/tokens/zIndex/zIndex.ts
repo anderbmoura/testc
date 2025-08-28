@@ -1,4 +1,4 @@
-export const zIndexTokens = {
+export const zIndex = {
   0: 0,
   100: 100,
   200: 200,

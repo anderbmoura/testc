@@ -1,0 +1,8 @@
+yarnPath: .yarn/releases/yarn-4.9.2.cjs
+nodeLinker: node-modules
+npmScopes:
+  superapp-caixa:
+    npmPublishRegistry: https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/
+    npmRegistryServer: https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/
+    npmAlwaysAuth: true
+    npmAuthToken: '${PAT_AZURE_DEVOPS}'

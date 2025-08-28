@@ -11,10 +11,26 @@ const preview: Preview = {
     },
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo',
+    },
+    options: {
+      storySort: {
+        order: [
+          'Introdução',
+          'Instalação',
+          'Primeiros Passos',
+          'Componentes',
+          'Design System',
+          [
+            'Temas',
+            ['Visão Geral', 'Paletas de Cores'],
+            'Tokens',
+            ['Visão Geral', '*'],
+          ],
+          'Guia de Contribuição',
+          ['Instalação', 'Como Contribuir', 'Convenções do Projeto'],
+        ],
+      },
     },
   },
   decorators: decorators,

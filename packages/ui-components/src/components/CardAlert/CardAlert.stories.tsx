@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CardAlert } from './CardAlert';
 
 const meta = {
-  title: 'Components/CardAlert',
+  title: 'Componentes/CardAlert',
   component: CardAlert,
   parameters: {
     layout: 'centered',

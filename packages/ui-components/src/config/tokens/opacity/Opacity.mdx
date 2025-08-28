@@ -1,0 +1,63 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as OpacityStories from './Opacity.stories';
+
+<Meta of={OpacityStories} />
+
+# Opacity
+
+Os tokens de opacity definem os níveis de transparência dos elementos, permitindo criar hierarquia visual e efeitos de sobreposição de forma consistente.
+
+## Como usar
+> ⚠️ **Importante:** Para usar os tokens de `opacity`, você deve importar e usar as referências diretas dos tokens (ex: `opacity[16]`) em vez de usar a sintaxe de tokens do Tamagui (ex: `opacity="$16"`). 
+>
+> Isso acontece porque a configuração padrão do Tamagui mapeia automaticamente os tokens de `opacity` para outros valores, mas o DSC precisa de valores específicos e personalizados para transparência que seguem uma escala própria do design system.
+
+**✅ Forma correta:**
+
+```tsx
+import { View } from 'tamagui';
+import { opacity } from './opacity';
+
+<View
+  backgroundColor="$accentBg"
+  opacity={opacity[24]}                 // ✅ Correto
+  padding="$small"
+  borderRadius="$nano"
+>
+  Conteúdo com transparência
+</View>
+```
+
+**❌ Forma incorreta:**
+
+```tsx
+import { View } from 'tamagui';
+
+<View
+  backgroundColor="$accentBg"
+  opacity="$24"                         // ❌ Incorreto - não funciona
+  padding="$small"
+  borderRadius="$nano"
+>
+  Conteúdo com transparência
+</View>
+```
+
+## Tokens disponíveis
+
+- **`4`**: `0.04` (4%)
+- **`8`**: `0.08` (8%)
+- **`12`**: `0.12` (12%)
+- **`16`**: `0.16` (16%)
+- **`24`**: `0.24` (24%)
+- **`32`**: `0.32` (32%)
+- **`40`**: `0.4` (40%)
+- **`48`**: `0.48` (48%)
+- **`56`**: `0.56` (56%)
+- **`64`**: `0.64` (64%)
+- **`100`**: `1.0` (100%)
+
+### Exemplos
+
+<Canvas of={OpacityStories.Default} />

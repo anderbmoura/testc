@@ -1,4 +1,4 @@
-export const fontSizeTokens = {
+export const fontSize = {
   quark: 10,
   nano: 12,
   micro: 14,

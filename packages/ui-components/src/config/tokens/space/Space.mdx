@@ -1,0 +1,55 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as SpaceStories from './Space.stories';
+
+<Meta of={SpaceStories} />
+
+# Space
+
+Os tokens de space definem os espaçamentos padronizados para margins, paddings e gaps, garantindo consistência visual e hierarquia adequada em toda a aplicação.
+
+## Como usar
+
+Os tokens de space podem ser utilizados diretamente através da sintaxe de tokens do Tamagui (ex: `padding="$medium"`).
+
+```tsx
+import { View, YStack } from 'tamagui';
+
+<YStack space="$medium" padding="$large">
+  <View
+    backgroundColor="$neutralBg2"
+    padding="$small"
+    margin="$tiny"
+    borderRadius="$nano"
+  >
+    Conteúdo com espaçamentos
+  </View>
+  <View
+    backgroundColor="$accentBg"
+    padding="$medium"
+    marginTop="$small"
+    borderRadius="$nano"
+  >
+    Outro conteúdo
+  </View>
+</YStack>
+```
+
+## Tokens disponíveis
+
+- **`none`**: `0px`
+- **`quark`**: `4px`
+- **`nano`**: `8px`
+- **`micro`**: `12px`
+- **`tiny`**: `16px`
+- **`smaller`**: `24px`
+- **`small`**: `32px`
+- **`medium`**: `40px`
+- **`large`**: `48px`
+- **`larger`**: `56px`
+- **`big`**: `64px`
+- **`bigger`**: `72px`
+
+### Exemplos
+
+<Canvas of={SpaceStories.Default} />
