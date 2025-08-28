@@ -9,6 +9,17 @@ export type {
   CardAlertProps,
   CardAlertVariant,
 } from './components/CardAlert';
+export {
+  CardAccount,
+  CardAccountHeader,
+  CardAccountBody,
+} from './components/CardAccount';
+export type {
+  CardAccountProps,
+  CardAccountHeaderProps,
+  CardAccountBodyProps,
+  CardAccountTheme,
+} from './components/CardAccount';
 export { ForYouCard } from './components/ForYouCard';
 export { IconButton } from './components/IconButton';
 export type {
