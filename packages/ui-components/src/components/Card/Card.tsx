@@ -6,16 +6,17 @@ const DscCard = styled(View, {
   name: 'DscCard',
   borderRadius: '$big',
   width: 'auto',
+  overflow: 'hidden',
 
   variants: {
     type: {
       outline: {
         backgroundColor: 'transparent',
         borderWidth: 1,
-        borderColor: '$neutral9',
+        borderColor: '$outlined1',
       },
       plain: {
-        backgroundColor: '$neutral2',
+        backgroundColor: '$neutralBg2',
         borderWidth: 0,
       },
     },
