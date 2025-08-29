@@ -20,6 +20,16 @@ export type {
   CardAccountBodyProps,
   CardAccountTheme,
 } from './components/CardAccount';
+export {
+  CardWidget,
+  CardWidgetHeader,
+  CardWidgetFooter,
+  CardWidgetIcon,
+} from './components/CardWidget';
+export type {
+  CardWidgetProps,
+  CardWidgetVariant,
+} from './components/CardWidget';
 export { ForYouCard } from './components/ForYouCard';
 export { IconButton } from './components/IconButton';
 export type {
