@@ -88,7 +88,7 @@ Component para exibir notificações temporárias na aplicação.
 ## Configuração do Provider
 
 \`\`\`tsx
-import { SnackBarProvider } from '@dsc/ui-components';
+import { SnackBarProvider } from '@superapp-caixa/dsc-library';
 
 // Envolver a aplicação com o Provider
 function App() {
@@ -103,7 +103,7 @@ function App() {
 ## Uso nos Componentes
 
 \`\`\`tsx
-import { useSnackBar } from '@dsc/ui-components';
+import { useSnackBar } from '@superapp-caixa/dsc-library';
 
 function YourComponent() {
   const { showSnackBar, hideSnackBar } = useSnackBar();

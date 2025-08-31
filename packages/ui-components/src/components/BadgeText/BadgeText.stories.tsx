@@ -15,7 +15,7 @@ Componente para exibir badges de texto com diferentes tamanhos e cores.
 ## Como usar
 
 \`\`\`tsx
-import { BadgeText } from '@dsc/ui-components';
+import { BadgeText } from '@superapp-caixa/dsc-library';
 
 // Badge padrão
 <BadgeText>Badge padrão</BadgeText>

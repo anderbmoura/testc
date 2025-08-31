@@ -17,9 +17,9 @@ import type { CardWidgetProps } from './CardWidget.model';
  *
  * @example
  * ```tsx
- * import { CardWidget } from '@dsc/ui-components';
+ * import { CardWidget } from '@superapp-caixa/dsc-library';
  * import { Star } from 'iconoir-react-native';
- * import { LabelStandard } from '@dsc/ui-components';
+ * import { LabelStandard } from '@superapp-caixa/dsc-library';
  * import { Star } from 'iconoir-react-native';
  *
  * <CardWidget

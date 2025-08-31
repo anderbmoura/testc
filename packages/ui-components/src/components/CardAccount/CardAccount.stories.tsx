@@ -32,7 +32,7 @@ Componente para exibir cartão de conta bancária com informações da conta e s
 ## Como usar
 
 \`\`\`tsx
-import { CardAccount } from '@dsc/ui-components';
+import { CardAccount } from '@superapp-caixa/dsc-library';
 
 // Cartão básico
 <CardAccount />
