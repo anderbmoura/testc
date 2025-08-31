@@ -379,7 +379,7 @@ const useCurrentIcon = (
  *
  * @example
  * ```tsx
- * import { IconButton } from '@dsc/ui-components';
+ * import { IconButton } from '@superapp-caixa/dsc-library';
  * import { Heart, Settings, Download } from 'iconoir-react-native';
  *
  * // Botão plain (padrão) large

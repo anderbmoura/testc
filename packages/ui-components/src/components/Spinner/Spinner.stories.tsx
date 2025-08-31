@@ -15,7 +15,7 @@ Componente para exibir indicadores de carregamento.
 ## Como usar
 
 \`\`\`tsx
-import { Spinner } from '@dsc/ui-components';
+import { Spinner } from '@superapp-caixa/dsc-library';
 
 // Spinner padrão
 <Spinner />

@@ -9,6 +9,11 @@ export type {
   CardAlertProps,
   CardAlertVariant,
 } from './components/CardAlert';
+export { CardNotification } from './components/CardNotification';
+export type {
+  CardNotificationProps,
+  CardNotificationVariant,
+} from './components/CardNotification';
 export {
   CardAccount,
   CardAccountHeader,

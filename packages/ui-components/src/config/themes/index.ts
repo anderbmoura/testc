@@ -42,6 +42,12 @@ import {
   accentDarkPalette,
   accentLightPalette,
 } from './palettes/accent';
+import {
+  decorativeDarkGradientPalette,
+  decorativeDarkPalette,
+  decorativeLightGradientPalette,
+  decorativeLightPalette,
+} from './palettes/extras/decorative';
 
 const builtThemes = createThemes({
   componentThemes: defaultComponentThemes,
@@ -64,6 +70,7 @@ const builtThemes = createThemes({
         ...successDarkPalette,
         ...warningDarkPalette,
         ...dangerDarkPalette,
+        ...decorativeDarkPalette,
       },
       light: {
         ...Colors.green,
@@ -76,6 +83,7 @@ const builtThemes = createThemes({
         ...successLightPalette,
         ...warningLightPalette,
         ...dangerLightPalette,
+        ...decorativeLightPalette,
       },
     },
   },
@@ -98,6 +106,7 @@ const builtThemes = createThemes({
         ...successDarkPalette,
         ...warningDarkPalette,
         ...dangerDarkPalette,
+        ...decorativeDarkPalette,
       },
       light: {
         ...Colors.green,
@@ -110,6 +119,7 @@ const builtThemes = createThemes({
         ...successLightPalette,
         ...warningLightPalette,
         ...dangerLightPalette,
+        ...decorativeLightPalette,
       },
     },
   },
@@ -147,6 +157,13 @@ const builtThemes = createThemes({
       palette: {
         dark: Object.values(infoDarkGradientPalette),
         light: Object.values(infoLightGradientPalette),
+      },
+    },
+
+    decorative: {
+      palette: {
+        dark: Object.values(decorativeDarkGradientPalette),
+        light: Object.values(decorativeLightGradientPalette),
       },
     },
   },
