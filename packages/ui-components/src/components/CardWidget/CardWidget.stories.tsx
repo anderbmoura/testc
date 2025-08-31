@@ -37,7 +37,7 @@ Componente para exibir widget de cartão com header e footer personalizáveis.
 ## Como usar
 
 \`\`\`tsx
-import { CardWidget } from '@dsc/ui-components';
+import { CardWidget } from '@superapp-caixa/dsc-library';
 import { Star } from 'iconoir-react-native';
 
 <CardWidget

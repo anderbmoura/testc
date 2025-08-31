@@ -24,7 +24,7 @@ Componente para exibir botões circulares com apenas um ícone.
 ## Como usar
 
 \`\`\`tsx
-import { IconButton } from '@dsc/ui-components';
+import { IconButton } from '@superapp-caixa/dsc-library';
 import { Heart, Settings, Download, Trash } from 'iconoir-react-native';
 
 // Botão básico (plain, large)

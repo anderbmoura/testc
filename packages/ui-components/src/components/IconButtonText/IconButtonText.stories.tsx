@@ -30,7 +30,7 @@ Componente para exibir botões com ícone e texto.
 ## Como usar
 
 \`\`\`tsx
-import { IconButtonText } from '@dsc/ui-components';
+import { IconButtonText } from '@superapp-caixa/dsc-library';
 import { Home, Settings, Trash } from 'iconoir-react-native';
 
 // Botão padrão com ícone
