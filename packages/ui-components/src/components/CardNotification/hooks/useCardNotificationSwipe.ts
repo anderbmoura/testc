@@ -8,6 +8,16 @@ export interface UseCardNotificationSwipeProps {
   onSwipe?: () => void;
 
   /**
+   * Callback executado durante o movimento do card.
+   */
+  onMove?: (gestureData: { dx: number; dy: number }) => void;
+
+  /**
+   * Callback executado quando o gesto termina (sem remoção).
+   */
+  onGestureEnd?: () => void;
+
+  /**
    * Define se o swipe está habilitado.
    * @default false
    */
@@ -29,17 +39,17 @@ interface AnimationValues {
 }
 
 const ANIMATION_CONFIG = {
-  SWIPE_THRESHOLD_DISTANCE: 80,
-  SWIPE_THRESHOLD_VELOCITY: 300,
+  SWIPE_THRESHOLD_DISTANCE: 160,
+  SWIPE_THRESHOLD_VELOCITY: 100,
   DISMISS_ANIMATION_DURATION: 300,
-  SPRING_TENSION: 120,
-  SPRING_FRICTION: 7,
+  SPRING_TENSION: 80,
+  SPRING_FRICTION: 80,
   SLIDE_OUT_DISTANCE: 400,
   GESTURE_MIN_DISTANCE: 3,
   MAX_ROTATION: 2,
   VERTICAL_OFFSET_RATIO: 0.05,
   ROTATION_DIVISOR: 200,
-  DISMISS_VERTICAL_OFFSET: -20,
+  DISMISS_VERTICAL_OFFSET: -10,
 } as const;
 
 const shouldDismissCard = ({
@@ -55,7 +65,7 @@ const createSpringAnimation = (
 ): Animated.CompositeAnimation =>
   Animated.spring(value, {
     toValue,
-    useNativeDriver: true,
+    useNativeDriver: false,
     tension: ANIMATION_CONFIG.SPRING_TENSION,
     friction: ANIMATION_CONFIG.SPRING_FRICTION,
   });
@@ -67,7 +77,7 @@ const createTimingAnimation = (
   Animated.timing(value, {
     toValue,
     duration: ANIMATION_CONFIG.DISMISS_ANIMATION_DURATION,
-    useNativeDriver: true,
+    useNativeDriver: false,
   });
 
 const getSwipeDirection = (dx: number): SwipeDirection =>
@@ -79,7 +89,7 @@ const calculateAnimationValues = (dx: number) => {
     (-dx / ANIMATION_CONFIG.ROTATION_DIVISOR) * ANIMATION_CONFIG.MAX_ROTATION;
 
   return {
-    verticalOffset: -verticalOffset,
+    verticalOffset: verticalOffset,
     rotation: Math.max(
       -ANIMATION_CONFIG.MAX_ROTATION,
       Math.min(ANIMATION_CONFIG.MAX_ROTATION, rotationValue)
@@ -93,7 +103,7 @@ const calculateDismissTargets = (direction: SwipeDirection) => {
   return {
     translateX: ANIMATION_CONFIG.SLIDE_OUT_DISTANCE * multiplier,
     translateY: ANIMATION_CONFIG.DISMISS_VERTICAL_OFFSET,
-    rotation: -ANIMATION_CONFIG.MAX_ROTATION * multiplier,
+    rotation: -ANIMATION_CONFIG.MAX_ROTATION * multiplier * 3,
   };
 };
 
@@ -121,6 +131,8 @@ const shouldHandleGesture = (
  */
 export const useCardNotificationSwipe = ({
   onSwipe,
+  onMove,
+  onGestureEnd,
   enabled = false,
 }: UseCardNotificationSwipeProps = {}) => {
   const animationValues: AnimationValues = {
@@ -162,7 +174,6 @@ export const useCardNotificationSwipe = ({
       const calculatedValues = calculateAnimationValues(dx);
 
       animationValues.translateX.setValue(dx);
-      animationValues.translateY.setValue(calculatedValues.verticalOffset);
       animationValues.rotation.setValue(calculatedValues.rotation);
     },
     [animationValues]
@@ -179,8 +190,12 @@ export const useCardNotificationSwipe = ({
       };
 
       updateAnimationValues(gestureData);
+
+      if (onMove) {
+        onMove({ dx: gestureData.dx, dy: gestureData.dy });
+      }
     },
-    [enabled, updateAnimationValues]
+    [enabled, updateAnimationValues, onMove]
   );
 
   const handleGestureRelease = useCallback(
@@ -197,10 +212,11 @@ export const useCardNotificationSwipe = ({
         const direction = getSwipeDirection(gestureData.dx);
         dismissCard(direction);
       } else {
+        onGestureEnd?.();
         resetPosition();
       }
     },
-    [enabled, dismissCard, resetPosition]
+    [enabled, dismissCard, resetPosition, onGestureEnd]
   );
 
   const panResponder = useMemo(
@@ -237,12 +253,12 @@ export const useCardNotificationSwipe = ({
         {
           rotate: animationValues.rotation.interpolate({
             inputRange: [
-              -ANIMATION_CONFIG.MAX_ROTATION,
-              ANIMATION_CONFIG.MAX_ROTATION,
+              -ANIMATION_CONFIG.MAX_ROTATION * 3,
+              ANIMATION_CONFIG.MAX_ROTATION * 3,
             ],
             outputRange: [
-              `-${ANIMATION_CONFIG.MAX_ROTATION}deg`,
-              `${ANIMATION_CONFIG.MAX_ROTATION}deg`,
+              `-${ANIMATION_CONFIG.MAX_ROTATION * 3}deg`,
+              `${ANIMATION_CONFIG.MAX_ROTATION * 3}deg`,
             ],
           }),
         },

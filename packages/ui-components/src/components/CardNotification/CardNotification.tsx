@@ -102,6 +102,8 @@ export const CardNotification: React.FC<CardNotificationProps> = ({
   showButton = false,
   onButtonPress,
   onSwipe,
+  onMove,
+  onGestureEnd,
   autoHide = true,
   accessibilityLabel,
   buttonAccessibilityLabel,
@@ -109,10 +111,8 @@ export const CardNotification: React.FC<CardNotificationProps> = ({
   const [isVisible, setIsVisible] = useState(true);
 
   const handleSwipe = useCallback(() => {
-    // Primeiro emite o callback onSwipe se fornecido
     onSwipe?.();
 
-    // Se autoHide estiver habilitado, remove o componente
     if (autoHide) {
       setIsVisible(false);
     }
@@ -120,10 +120,11 @@ export const CardNotification: React.FC<CardNotificationProps> = ({
 
   const { panResponder, animatedStyle } = useCardNotificationSwipe({
     onSwipe: handleSwipe,
+    onMove,
+    onGestureEnd,
     enabled: true,
   });
 
-  // Se não estiver visível e autoHide estiver habilitado, não renderiza nada
   if (!isVisible && autoHide) {
     return null;
   }

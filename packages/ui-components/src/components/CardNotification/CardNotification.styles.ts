@@ -8,7 +8,6 @@ export const CardNotificationContainer = styled(View, {
   alignItems: 'flex-start',
   minHeight: 88,
   width: '100%',
-  maxWidth: 328,
   overflow: 'hidden',
   borderWidth: borderWidth.thin,
   borderColor: '$outlined1',
