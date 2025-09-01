@@ -9,8 +9,62 @@ const meta: Meta<typeof ExtractList> = {
     layout: 'centered',
     docs: {
       description: {
-        component:
-          'ExtractList exibe uma lista de extratos financeiros agrupados por data. Permite atualização dos dados e customização para testes automatizados. Ideal para mostrar movimentações financeiras, agrupadas por períodos, com suporte a ação de atualização assíncrona.',
+        component: `
+ExtractList exibe uma lista de extratos financeiros agrupados por data. Permite atualização dos dados e customização para testes automatizados. Ideal para mostrar movimentações financeiras, agrupadas por períodos, com suporte a ação de atualização assíncrona.
+
+## Como usar
+
+\`\`\`tsx
+import { ExtractList } from '@superapp-caixa/dsc-library';
+
+const mockData = [
+  {
+    date: 'Hoje',
+    data: [
+      {
+        value: 'R$ 100,00',
+        service: 'Transferência recebida',
+        detail: 'Banco XPTO',
+        supportTextValue: 'Pix',
+      },
+      {
+        value: 'R$ -50,00',
+        service: 'Pagamento realizado',
+        detail: 'Mercado ABC',
+        supportTextValue: 'Cartão',
+      },
+    ],
+  },
+  {
+    date: 'Ontem',
+    data: [
+      {
+        value: 'R$ 20,00',
+        service: 'Depósito',
+        detail: 'Agência 1234',
+        supportTextValue: 'Dinheiro',
+      },
+    ],
+  },
+];
+
+// Uso básico
+<ExtractList
+  data={mockData}
+  testID="extract-list-basic"
+/>
+
+// Com ação de atualização assíncrona
+<ExtractList
+  data={mockData}
+  testID="extract-list-refresh"
+  refreshAction={async () => {
+    // Sua lógica de atualização
+    await fetch('/api/extract');
+  }}
+/>
+\`\`\`
+`,
       },
     },
   },
