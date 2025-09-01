@@ -1,8 +1,27 @@
 export * from 'tamagui';
+export {
+  AlertDialog,
+  AlertDialogDemo,
+  type AlertDialogProps,
+  type AlertDialogTriggerProps,
+} from './components/AlertDialog';
+export { default as BadgeText } from './components/BadgeText';
+export type { BadgeTextProps } from './components/BadgeText';
 export { default as Button } from './components/Button';
 export type { ButtonProps, ButtonSize, ButtonType } from './components/Button';
 export { default as Card } from './components/Card';
 export type { CardProps, CardType } from './components/Card';
+export {
+  CardAccount,
+  CardAccountBody,
+  CardAccountHeader,
+} from './components/CardAccount';
+export type {
+  CardAccountBodyProps,
+  CardAccountHeaderProps,
+  CardAccountProps,
+  CardAccountTheme,
+} from './components/CardAccount';
 export { CardAlert } from './components/CardAlert';
 export type {
   CardAlertAction,
@@ -10,20 +29,9 @@ export type {
   CardAlertVariant,
 } from './components/CardAlert';
 export {
-  CardAccount,
-  CardAccountHeader,
-  CardAccountBody,
-} from './components/CardAccount';
-export type {
-  CardAccountProps,
-  CardAccountHeaderProps,
-  CardAccountBodyProps,
-  CardAccountTheme,
-} from './components/CardAccount';
-export {
   CardWidget,
-  CardWidgetHeader,
   CardWidgetFooter,
+  CardWidgetHeader,
   CardWidgetIcon,
 } from './components/CardWidget';
 export type {
@@ -39,8 +47,6 @@ export type {
 } from './components/IconButton';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
-export { default as BadgeText } from './components/BadgeText';
-export type { BadgeTextProps } from './components/BadgeText';
 export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
 export type { SnackBarContextType, SnackBarProps } from './components/SnackBar';
 export { default as Spinner } from './components/Spinner';
