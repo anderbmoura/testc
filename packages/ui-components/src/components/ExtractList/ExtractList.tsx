@@ -65,14 +65,14 @@ const SectionHeader = styled(Text, {
 
 // Icon mapping
 const iconMap = {
-  send: SendDollars,
-  receive: ReceiveDollars,
-  barcode: Barcode,
-  saveMoney: PiggyBank,
-  investments: GraphUp,
-  creditCard: CreditCard,
-  cancellation: XmarkCircle,
-  refund: UndoCircle,
+  send: <SendDollars />,
+  receive: <ReceiveDollars />,
+  barcode: <Barcode />,
+  saveMoney: <PiggyBank />,
+  investments: <GraphUp />,
+  creditCard: <CreditCard />,
+  cancellation: <XmarkCircle />,
+  refund: <UndoCircle />,
 };
 
 export const ExtractList: React.FC<ExtractListProps> = ({
