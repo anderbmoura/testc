@@ -68,6 +68,17 @@ export interface CardNotificationProps {
   onSwipe?: () => void;
 
   /**
+   * Callback executado durante o movimento do card.
+   * Fornece informações sobre o deslocamento do card durante o arraste.
+   */
+  onMove?: (gestureData: { dx: number; dy: number }) => void;
+
+  /**
+   * Callback executado quando o gesto termina (sem remoção).
+   */
+  onGestureEnd?: () => void;
+
+  /**
    * Define se o componente deve se auto-desrenderizar após o swipe.
    * Quando true (padrão), o componente será automaticamente removido após emitir onSwipe.
    * Quando false, o controle de visibilidade fica com o componente pai.

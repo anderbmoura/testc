@@ -14,6 +14,7 @@ export type {
   CardNotificationProps,
   CardNotificationVariant,
 } from './components/CardNotification';
+export { CardNotificationStack } from './components/CardNotificationStack';
 export {
   CardAccount,
   CardAccountHeader,
