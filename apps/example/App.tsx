@@ -13,7 +13,7 @@ import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
 import {
   mockData,
   ExtractList,
-} from '../../packages/ui-components/src/components/Extract-List';
+} from '../../packages/ui-components/src/components/ExtractList';
 import { Button as TButton, YStack } from 'tamagui';
 
 import {
