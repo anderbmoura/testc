@@ -2,7 +2,6 @@ import { ExtractListVariant } from '../ExtractList.model';
 import { useTransformIcon } from '../../../utils';
 import { styled, View, XStack, YStack } from 'tamagui';
 import { LabelSmall, LabelStandard } from '../../Typography';
-import Svg, { SvgProps } from 'react-native-svg';
 import { ExtractItemProps } from './ExtractItem.model';
 
 const SectionListItem = styled(XStack, {
@@ -27,7 +26,7 @@ const SectionColumnText = styled(YStack, {
 
 // Icon Props
 type ItemIconProps = {
-  icon?: React.ForwardRefExoticComponent<SvgProps & React.RefAttributes<Svg>>;
+  icon?: React.ReactNode;
   variant: ExtractListVariant;
   size?: number;
 };
