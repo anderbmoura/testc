@@ -111,17 +111,6 @@ import { Star, Settings } from 'iconoir-react-native';
   buttonAccessibilityLabel="Acessar configurações do sistema"
 />
 \`\`\`
-
-## Variantes disponíveis
-
-- **highlight**: 
-- **accent**
-- **success**
-- **warning**
-- **danger**
-- **info**
-- **neutral**
-- **decorative**
         `,
       },
       source: {
@@ -180,10 +169,7 @@ import { Star, Settings } from 'iconoir-react-native';
       description:
         'Variante visual que define o tema de cores aplicado ao card.',
       table: {
-        type: {
-          summary:
-            "'highlight' | 'accent' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | 'decorative'",
-        },
+        type: { summary: 'string' },
         defaultValue: { summary: "'highlight'" },
       },
     },
@@ -274,27 +260,5 @@ export const Default: Story = {
     showButton: false,
     autoHide: true,
     buttonAccessibilityLabel: 'Mais opções',
-  },
-};
-
-export const AutoHideExample: Story = {
-  name: 'Com Auto-Hide',
-  args: {
-    variant: 'warning',
-    label: 'Notificação temporária',
-    description:
-      'Deslize para dispensar - este card será automaticamente removido.',
-    icon: 'WarningTriangle',
-    showButton: false,
-    autoHide: true,
-    onSwipe: () => console.log('Card foi automaticamente removido'),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Exemplo de card com autoHide habilitado. Após o swipe, o componente será automaticamente desrenderizado.',
-      },
-    },
   },
 };
