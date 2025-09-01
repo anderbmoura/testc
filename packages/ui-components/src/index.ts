@@ -11,6 +11,17 @@ export { default as Button } from './components/Button';
 export type { ButtonProps, ButtonSize, ButtonType } from './components/Button';
 export { default as Card } from './components/Card';
 export type { CardProps, CardType } from './components/Card';
+export {
+  CardAccount,
+  CardAccountBody,
+  CardAccountHeader,
+} from './components/CardAccount';
+export type {
+  CardAccountBodyProps,
+  CardAccountHeaderProps,
+  CardAccountProps,
+  CardAccountTheme,
+} from './components/CardAccount';
 export { CardAlert } from './components/CardAlert';
 export type {
   CardAlertAction,
@@ -23,17 +34,6 @@ export type {
   CardNotificationVariant,
 } from './components/CardNotification';
 export { CardNotificationStack } from './components/CardNotificationStack';
-export {
-  CardAccount,
-  CardAccountBody,
-  CardAccountHeader,
-} from './components/CardAccount';
-export type {
-  CardAccountBodyProps,
-  CardAccountHeaderProps,
-  CardAccountProps,
-  CardAccountTheme,
-} from './components/CardAccount';
 export {
   CardWidget,
   CardWidgetFooter,
@@ -53,6 +53,7 @@ export type {
 } from './components/IconButton';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
+export { Popover } from './components/Popover';
 export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
 export type { SnackBarContextType, SnackBarProps } from './components/SnackBar';
 export { default as Spinner } from './components/Spinner';
