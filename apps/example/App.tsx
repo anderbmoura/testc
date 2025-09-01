@@ -10,7 +10,10 @@ import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-
+import {
+  mockData,
+  ExtractList,
+} from '../../packages/ui-components/src/components/Extract-List';
 import { Button as TButton, YStack } from 'tamagui';
 
 import {
@@ -34,6 +37,10 @@ function AppContent() {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+  };
+
+  const refresh = async () => {
+    console.log('final da lista fetch');
   };
 
   return (
@@ -262,6 +269,7 @@ function AppContent() {
               }}
             />
           </YStack>
+          <ExtractList data={mockData} refreshAction={refresh} />
         </ScrollView>
       </View>
     </DscProvider>
