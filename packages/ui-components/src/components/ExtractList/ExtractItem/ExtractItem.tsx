@@ -58,10 +58,10 @@ export const ExtractItem: React.FC<ExtractItemProps> = ({
   return (
     <SectionListItem
       hoverStyle={{
-        backgroundColor: '$neutralHover1',
+        backgroundColor: '$neutral5',
       }}
       pressStyle={{
-        backgroundColor: '$neutralPressed1',
+        backgroundColor: '$neutral6',
       }}
       focusStyle={{
         borderWidth: '$borderWidth.thick',
