@@ -46,11 +46,15 @@ export type {
 } from './components/CardWidget';
 export { ForYouCard } from './components/ForYouCard';
 export { IconButton } from './components/IconButton';
-export type {
-  IconButtonProps,
-  IconButtonSize,
-  IconButtonType,
-} from './components/IconButton';
+export type { IconButtonProps, IconButtonSize } from './components/IconButton';
+export {
+  List,
+  ListItem,
+  FlatListItemExample,
+  type Item,
+  type ItemProps,
+  type FlatListProps,
+} from './components/List';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
 export { Popover } from './components/Popover';
