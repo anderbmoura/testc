@@ -28,7 +28,7 @@ const iconMapping = {
 };
 
 const meta: Meta<SheetProps> = {
-  title: 'Componentes/Sheet',
+  title: 'Componentes/Overlays/Sheet',
   component: Sheet,
   parameters: {
     layout: 'fullscreen',
