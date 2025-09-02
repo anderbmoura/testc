@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import type { ImageProps } from 'tamagui';
 import IconButtonText from './IconButtonText';
 import type { IconButtonTextProps } from './IconButtonText.model';
 import { Home, Settings, User, Heart } from 'iconoir-react-native';
@@ -93,42 +94,86 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
         `,
       },
       source: {
-        transform: (_: string, { args }: any) => {
+        transform: (_: string, { args }: { args: Record<string, unknown> }) => {
           const getIconName = (iconKey: string) => {
             if (!iconKey || iconKey === 'None') return null;
             return iconKey;
           };
 
+          const getImageCode = (image: unknown) => {
+            if (!image || image === 'None') return null;
+            if (typeof image === 'string') {
+              // Se for uma string do mapping, converter para require com o nome da imagem
+              if (image === 'INSS') {
+                return `require('./inss.png')`;
+              } else if (image === 'MCMV') {
+                return `require('./minha-casa-minha-vida.png')`;
+              }
+            } else if (image && typeof image === 'object' && 'uri' in image) {
+              // Se já for um objeto com uri, extrair o nome do arquivo
+              const fileName = (image as { uri: string }).uri.split('/').pop();
+              return `require('./${fileName}')`;
+            }
+            return null;
+          };
+
+          const getImageDimensions = (image: unknown) => {
+            if (!image || image === 'None')
+              return { width: null, height: null };
+            if (typeof image === 'string') {
+              if (image === 'INSS') {
+                return { width: 36, height: 24 };
+              } else if (image === 'MCMV') {
+                return { width: 38, height: 24 };
+              }
+            } else if (image && typeof image === 'object' && 'uri' in image) {
+              // Determinar dimensões baseado na URI
+              const uri = (image as { uri: string }).uri;
+              if (uri.includes('inss.png')) {
+                return { width: 36, height: 24 };
+              } else if (uri.includes('minha-casa-minha-vida.png')) {
+                return { width: 38, height: 24 };
+              }
+            }
+            return { width: null, height: null };
+          };
+
+          const imageDimensions =
+            args['variant'] === 'image'
+              ? getImageDimensions(args['image'])
+              : { width: null, height: null };
+
           const props = [
-            args.variant &&
-              args.variant !== 'default' &&
-              `variant="${args.variant}"`,
-            args.icon &&
-              args.icon !== 'None' &&
-              args.variant !== 'image' &&
-              `icon={<${getIconName(args.icon)} />}`,
-            args.image &&
-              args.image !== 'None' &&
-              args.variant === 'image' &&
-              `image="${args.image}"`,
-            args.imageWidth &&
-              args.variant === 'image' &&
-              `imageWidth={${args.imageWidth}}`,
-            args.imageHeight &&
-              args.variant === 'image' &&
-              `imageHeight={${args.imageHeight}}`,
-            args.disabled && 'disabled',
-            args.loading && 'loading',
-            args.onGrayBg && 'onGrayBg',
-            args.badgeText && `badgeText="${args.badgeText}"`,
-            args.badgeColor &&
-              args.badgeColor !== 'highlight' &&
-              `badgeColor="${args.badgeColor}"`,
+            args['variant'] &&
+              args['variant'] !== 'default' &&
+              `variant="${args['variant']}"`,
+            args['icon'] &&
+              args['icon'] !== 'None' &&
+              args['variant'] !== 'image' &&
+              `icon={<${getIconName(args['icon'] as string)} />}`,
+            args['image'] &&
+              args['image'] !== 'None' &&
+              args['variant'] === 'image' &&
+              `image={${getImageCode(args['image'])}}`,
+            imageDimensions.width &&
+              args['variant'] === 'image' &&
+              `imageWidth={${imageDimensions.width}}`,
+            imageDimensions.height &&
+              args['variant'] === 'image' &&
+              `imageHeight={${imageDimensions.height}}`,
+            args['disabled'] && 'disabled',
+            args['loading'] && 'loading',
+            args['onGrayBg'] && 'onGrayBg',
+            args['badgeText'] && `badgeText="${args['badgeText']}"`,
+            args['badgeColor'] &&
+              args['badgeColor'] !== 'highlight' &&
+              `badgeColor="${args['badgeColor']}"`,
+            args['onPress'] && 'onPress={() => console.log("Clicado!")}',
           ]
             .filter(Boolean)
             .join(' ');
 
-          const children = args.children || 'Label';
+          const children = args['children'] || 'Label';
 
           return `<IconButtonText${props && ` ${props}`}>
   ${children}
@@ -147,9 +192,61 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
         ? imageMapping[args.image as keyof typeof imageMapping]
         : args.image;
 
-    const { children, ...restArgs } = args;
+    // Determinar dimensões automaticamente baseado na imagem
+    const getImageDimensions = (image: unknown) => {
+      if (!image || image === 'None') return {};
+      if (typeof image === 'string') {
+        if (image === 'INSS') {
+          return { imageWidth: 36, imageHeight: 24 };
+        } else if (image === 'MCMV') {
+          return { imageWidth: 38, imageHeight: 24 };
+        }
+      } else if (image && typeof image === 'object' && 'uri' in image) {
+        const uri = (image as { uri: string }).uri;
+        if (uri.includes('inss.png')) {
+          return { imageWidth: 36, imageHeight: 24 };
+        } else if (uri.includes('minha-casa-minha-vida.png')) {
+          return { imageWidth: 38, imageHeight: 24 };
+        }
+      }
+      return {};
+    };
+
+    const autoDimensions =
+      args.variant === 'image' ? getImageDimensions(args.image) : {};
+
+    // Usar dimensões explícitas se fornecidas, senão usar automáticas
+    const finalImageWidth =
+      args.imageWidth !== undefined
+        ? args.imageWidth
+        : autoDimensions.imageWidth;
+    const finalImageHeight =
+      args.imageHeight !== undefined
+        ? args.imageHeight
+        : autoDimensions.imageHeight;
+
+    const {
+      children,
+      imageWidth: _imageWidth,
+      imageHeight: _imageHeight,
+      ...restArgs
+    } = args;
+
+    const componentProps: Record<string, unknown> = {
+      ...restArgs,
+      image: imageSource,
+    };
+
+    if (finalImageWidth !== undefined) {
+      componentProps['imageWidth'] = finalImageWidth;
+    }
+
+    if (finalImageHeight !== undefined) {
+      componentProps['imageHeight'] = finalImageHeight;
+    }
+
     return (
-      <IconButtonText key={key} {...restArgs} image={imageSource}>
+      <IconButtonText key={key} {...componentProps}>
         {children}
       </IconButtonText>
     );
@@ -267,8 +364,11 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
       if: { arg: 'badgeText', truthy: true },
     },
     onPress: {
+      action: 'clicked',
+      description: 'Callback executado quando o botão é pressionado.',
       table: {
-        disable: true,
+        type: { summary: '() => void' },
+        defaultValue: { summary: 'undefined' },
       },
     },
     touchableProps: {
@@ -280,7 +380,12 @@ import { Home, Settings, Trash } from 'iconoir-react-native';
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta> & {
+  args?: Partial<IconButtonTextProps> & {
+    image?: keyof typeof imageMapping | ImageProps['source'];
+    icon?: keyof typeof iconMapping | IconButtonTextProps['icon'];
+  };
+};
 
 export const Default: Story = {
   args: {
