@@ -8,3 +8,5 @@ export const List = StyledList.styleable((props, ref) => {
 });
 
 export interface FlatListProps extends FLProps<Item[]> {}
+
+export default List;
