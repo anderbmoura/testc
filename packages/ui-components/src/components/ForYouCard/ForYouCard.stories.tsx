@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ScrollView, View, XStack, YStack } from 'tamagui';
+import { View, type ImageProps } from 'tamagui';
 import { ForYouCard } from './ForYouCard';
+import type { ForYouCardProps } from './ForYouCard.model';
+
+const imageMapping = {
+  'Casa Bonita': { uri: '/images/example/casa-bonita.jpg' },
+  'Apartamento Moderno': { uri: '/images/example/apartamento-moderno.jpg' },
+};
 
 const meta = {
   title: 'Componentes/ForYouCard',
@@ -10,48 +16,124 @@ const meta = {
     docs: {
       description: {
         component: `
-# ForYouCard
+Componente DSC ForYouCard para exibir recomendações personalizadas.
 
-Um componente de card projetado para a seção de recomendações "Para Você" que exibe conteúdo com sobreposições de fundo personalizadas e conteúdo de texto.
-
-## Funcionalidades
-
-- **Suporte a imagens em background**: Mostra imagens de URL pelo componente Form2
-- **Cores de preenchimento personalizadas**: Suporta cores de preenchimento personalizadas através do componente Form1
-- **Dimensões fixas**: 200px de largura x 243px de altura mínima para um layout consistente
-- **Conteúdo sobreposto**: Conteúdo de texto com camadas de z-index apropriadas
-- **Design arredondado**: Raio de borda de 10px para uma aparência moderna
-
-## Estrutura
-
-O card contém:
-- **Form1**: Sobreposição de fundo com cor de preenchimento opcional
-- **Form2**: Imagem de fundo da URL href
-- **Conteúdo de Texto**: Subtítulo "Simule agora" e título "Habitação"
-
-## Uso
+## Como usar
 
 \`\`\`tsx
 import { ForYouCard } from '@superapp-caixa/dsc-library';
 
-<ForYouCard
-  href="https://picsum.photos/400/600?random=1"
-  fill="#ff6b6b"
+// Card padrão com tema highlight
+<ForYouCard 
+  source={require('./assets/casa-bonita.jpg')}
+/>
+
+// Card com tema de sucesso
+<ForYouCard 
+  source={require('./assets/apartamento.jpg')}
+  variant="success"
+/>
+
+// Card com tema de perigo
+<ForYouCard 
+  source={require('./assets/casa-popular.jpg')}
+  variant="danger"
+/>
+
+// Card com tema de aviso
+<ForYouCard 
+  source={require('./assets/terreno.jpg')}
+  variant="warning"
+/>
+
+// Card com tema informativo
+<ForYouCard 
+  source={require('./assets/comercial.jpg')}
+  variant="info"
+/>
+
+// Card com tema neutro
+<ForYouCard 
+  source={require('./assets/industrial.jpg')}
+  variant="neutral"
+/>
+
+// Card com tema decorativo
+<ForYouCard 
+  source={require('./assets/rural.jpg')}
+  variant="decorative"
+/>
+
+// Card com tema de destaque
+<ForYouCard 
+  source={require('./assets/luxo.jpg')}
+  variant="accent"
 />
 \`\`\`
         `,
       },
+      source: {
+        transform: (_: string, { args }: { args: Record<string, unknown> }) => {
+          const getImageRequire = (imageKey: string) => {
+            if (imageKey === 'Casa Bonita') {
+              return "require('../storybook/assets/images/example/casa-bonita.jpg')";
+            }
+            if (imageKey === 'Apartamento Moderno') {
+              return "require('../storybook/assets/images/example/apartamento-moderno.jpg')";
+            }
+            return "require('../storybook/assets/images/example/casa-bonita.jpg')";
+          };
+
+          const props = [
+            args['source'] &&
+              `source={${getImageRequire(args['source'] as string)}}`,
+            args['variant'] &&
+              args['variant'] !== 'highlight' &&
+              `variant="${args['variant']}"`,
+          ]
+            .filter(Boolean)
+            .join(' ');
+
+          return `<ForYouCard${props && ` ${props}`} />`;
+        },
+        state: 'open',
+        excludeDecorators: true,
+      },
     },
   },
   tags: ['autodocs'],
+  render: args => {
+    const imageSource =
+      args.source && typeof args.source === 'string'
+        ? imageMapping[args.source as keyof typeof imageMapping]
+        : args.source;
+
+    return <ForYouCard {...args} source={imageSource} />;
+  },
   argTypes: {
-    href: {
-      description: 'A URL ou caminho para a imagem de fundo',
-      control: { type: 'text' },
+    source: {
+      description: 'Fonte da imagem a ser exibida',
+      control: 'select',
+      options: Object.keys(imageMapping),
+      mapping: imageMapping,
     },
-    fill: {
-      description: 'Cor de preenchimento opcional para a sobreposição de fundo',
-      control: { type: 'color' },
+    variant: {
+      description: 'Variante que aplica um tema ao background',
+      control: 'select',
+      options: [
+        'highlight',
+        'accent',
+        'success',
+        'warning',
+        'danger',
+        'info',
+        'neutral',
+        'decorative',
+      ],
+      table: {
+        type: { summary: 'BackgroundImageVariant' },
+        defaultValue: { summary: 'highlight' },
+      },
     },
   },
   decorators: [
@@ -64,89 +146,15 @@ import { ForYouCard } from '@superapp-caixa/dsc-library';
 } satisfies Meta<typeof ForYouCard>;
 
 export default meta;
-type Story = StoryObj<typeof ForYouCard>;
+type Story = StoryObj<typeof ForYouCard> & {
+  args?: Partial<ForYouCardProps> & {
+    source?: keyof typeof imageMapping | ImageProps['source'];
+  };
+};
 
-export const Default: Story = {
+export const Default = {
   args: {
-    href: 'https://picsum.photos/400/600?random=1',
+    source: 'Casa Bonita',
+    variant: 'highlight',
   },
-};
-
-/**
- * ForYouCard with a custom fill color overlay
- */
-export const WithFillColor: Story = {
-  args: {
-    href: 'https://picsum.photos/400/600?random=2',
-    fill: '#ff6b6b',
-  },
-};
-
-/**
- * Multiple ForYouCards in a grid layout
- */
-export const MultipleCards: Story = {
-  render: () => (
-    <YStack gap={16}>
-      <XStack gap={12} flexWrap="wrap" justifyContent="center">
-        <ForYouCard
-          href="https://picsum.photos/400/600?random=10"
-          fill="#e74c3c"
-        />
-        <ForYouCard
-          href="https://picsum.photos/400/600?random=11"
-          fill="#3498db"
-        />
-      </XStack>
-      <XStack gap={12} flexWrap="wrap" justifyContent="center">
-        <ForYouCard
-          href="https://picsum.photos/400/600?random=12"
-          fill="#2ecc71"
-        />
-        <ForYouCard
-          href="https://picsum.photos/400/600?random=13"
-          fill="#f39c12"
-        />
-      </XStack>
-    </YStack>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Exemplo mostrando múltiplos ForYouCards dispostos em um layout de grade.',
-      },
-    },
-  },
-};
-
-export const CardsCarousel: Story = {
-  render: () => (
-    <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-      <ForYouCard
-        href="https://picsum.photos/400/600?random=20"
-        fill="#8e44ad"
-      />
-      <ForYouCard
-        href="https://picsum.photos/400/600?random=21"
-        fill="#e67e22"
-      />
-      <ForYouCard
-        href="https://picsum.photos/400/600?random=22"
-        fill="#1abc9c"
-      />
-      <ForYouCard
-        href="https://picsum.photos/400/600?random=23"
-        fill="#34495e"
-      />
-    </ScrollView>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Exemplo mostrando um carousel de ForYouCards dispostos em um layout horizontal',
-      },
-    },
-  },
-};
+} satisfies Story;

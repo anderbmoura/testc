@@ -16,6 +16,7 @@ const StyledIconContainerWrapper = styled(View, {
   padding: borderWidth.thick,
   borderWidth: borderWidth.thick,
   borderColor: 'transparent',
+  pointerEvents: 'none',
 
   variants: {
     focused: {
@@ -40,6 +41,7 @@ const StyledBadgeContainer = styled(View, {
   position: 'absolute',
   bottom: -8,
   zIndex: 1,
+  pointerEvents: 'none',
 });
 
 const StyledIconContainer = styled(View, {
@@ -51,6 +53,7 @@ const StyledIconContainer = styled(View, {
   paddingHorizontal: '$small',
   alignItems: 'center',
   justifyContent: 'center',
+  pointerEvents: 'none',
 
   variants: {
     onGrayBg: {
@@ -103,6 +106,7 @@ const StyledText = styled(LabelSmallRegular, {
   name: 'IconButtonTextLabel',
   color: '$onNeutral1',
   textAlign: 'center',
+  pointerEvents: 'none',
 
   disabledStyle: {
     color: '$onDisabled',
