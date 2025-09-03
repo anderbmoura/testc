@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { SectionList } from 'react-native';
-import { styled, View, Text, Spinner } from 'tamagui';
+import { styled, Text, Spinner } from 'tamagui';
 import { ExtractListProps, ExtractListVariant } from './ExtractList.model';
 import { LabelSmall } from '../Typography/index';
 import { ExtractItem } from './ExtractItem/ExtractItem';
@@ -106,7 +106,6 @@ export const ExtractList: React.FC<ExtractListProps> = ({
     <SectionList
       sections={data}
       testID={testID}
-      style={{ backgroundColor: '$color1' }}
       renderItem={({ item }) => (
         <ExtractItem
           variant={variantSelector(item.service + item.supportTextValue)}
@@ -120,9 +119,7 @@ export const ExtractList: React.FC<ExtractListProps> = ({
       ListFooterComponent={
         isRefreshing ? (
           <Spinner color={'$highlight8'} padding={'$space.small'} />
-        ) : (
-          <View />
-        )
+        ) : null
       }
       onEndReached={handleRefresh}
       onEndReachedThreshold={0}
