@@ -80,38 +80,23 @@ export const ExtractItem: React.FC<ExtractItemProps> = ({
   variant = 'neutral',
   showIcon = true,
   showSupportTextValue = true,
+  isFocused = false,
 }) => {
   return (
-    <SectionListItem
-      hoverStyle={{
-        backgroundColor: '$neutral5',
-      }}
-      pressStyle={{
-        backgroundColor: '$neutral6',
-      }}
-      focusStyle={{
-        borderWidth: '$borderWidth.thick',
-        borderColor: '$borderColorFocus',
-        borderRadius: '$radius.nano',
-      }}
-    >
+    <SectionListItem {...(isFocused ? { focused: true } : { focused: false })}>
       <SectionContent>
         {showIcon && icon ? <ItemIcon icon={icon} variant={variant} /> : null}
         <SectionColumnText>
-          <LabelStandard color={'$color11'} fontWeight={'$400'}>
-            {item.service}
-          </LabelStandard>
-          <LabelSmall color={'$color9'} fontWeight={'$400'}>
-            {item.detail}
-          </LabelSmall>
+          <LabelStandard color={'$onNeutral1'}>{item.service}</LabelStandard>
+          <BodySmall color={'$onNeutral2'}>{item.detail}</BodySmall>
         </SectionColumnText>
       </SectionContent>
       <SectionColumnText>
-        <LabelStandard color={'$color11'}> {item.value}</LabelStandard>
+        <LabelStandard color={'$onNeutral1'}>{item.value}</LabelStandard>
         {showSupportTextValue && item?.supportTextValue ? (
-          <LabelStandard color={'$color9'}>
+          <BodySmall textAlign={'right'} color={'$onNeutral2'}>
             {item.supportTextValue}
-          </LabelStandard>
+          </BodySmall>
         ) : null}
       </SectionColumnText>
     </SectionListItem>
