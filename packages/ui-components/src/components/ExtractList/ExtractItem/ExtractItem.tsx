@@ -61,8 +61,11 @@ const iconColorMap = {
   danger: '$danger',
 };
 
-// Icon Component
-const ItemIcon: React.FC<ItemIconProps> = ({ icon, variant, size = 24 }) => {
+const ItemIcon: React.FC<ItemIconProps> = ({
+  icon,
+  variant,
+  size = iconSize.medium,
+}) => {
   const transformIcon = useTransformIcon();
   const iconColor = iconColorMap[variant];
 
