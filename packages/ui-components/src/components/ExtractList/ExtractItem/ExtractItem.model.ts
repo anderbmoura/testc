@@ -41,4 +41,6 @@ export interface ExtractItemProps {
    * @default true
    */
   showSupportTextValue?: boolean;
+
+  isFocused?: boolean;
 }

@@ -9,6 +9,29 @@ const SectionListItem = styled(XStack, {
   justifyContent: 'space-between',
   padding: '$space.quark',
   marginTop: '$space.tiny',
+  minHeight: 72,
+  gap: '$space.quark',
+  paddingVertical: '$space.micro',
+  paddingLeft: '$space.quark',
+  paddingRight: '$space.tiny',
+  hoverStyle: {
+    backgroundColor: '$neutral5',
+  },
+  pressStyle: {
+    backgroundColor: '$neutral6',
+  },
+  variants: {
+    focused: {
+      true: {
+        borderWidth: '$borderWidth.thick',
+        borderColor: '$neutral12',
+        borderRadius: '$radius.nano',
+      },
+      false: {
+        borderColor: 'transparent',
+      },
+    },
+  },
 });
 
 const SectionContent = styled(XStack, {
