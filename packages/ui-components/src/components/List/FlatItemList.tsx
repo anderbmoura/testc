@@ -1,8 +1,8 @@
 import { FlatList, FlatListProps as FLProps } from 'react-native';
 import { Separator, styled } from 'tamagui';
-import { Item } from './ListItem';
+import { Item, ItemProps } from './ListItem';
 
-const StyledList = styled(FlatList, {});
+const StyledList = styled(FlatList<ItemProps>, {});
 export const List = StyledList.styleable((props, ref) => {
   return <StyledList ref={ref} {...props} ItemSeparatorComponent={Separator} />;
 });

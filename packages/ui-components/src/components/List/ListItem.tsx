@@ -6,7 +6,7 @@ import Switch from '../Switch';
 export type Item = {
   id: string | number;
   title: string;
-  content: string;
+  content?: string;
   subContent?: string;
   disabled?: boolean;
   iconLeft?: React.ReactNode;
@@ -19,7 +19,7 @@ export type Item = {
 export type ItemProps = {
   id: number | string;
   title: string;
-  content: string;
+  content?: string;
   subContent?: string;
   iconRight?: React.ReactNode;
   iconLeft?: React.ReactNode;
@@ -99,7 +99,7 @@ export function ListItem({
           <Text fontSize="$tiny" fontWeight="600">
             {title}
           </Text>
-          <Text fontSize="$micro">{content}</Text>
+          {content && <Text fontSize="$micro">{content}</Text>}
           {subContent && <Text fontSize="$nano">{subContent}</Text>}
         </YStack>
 
