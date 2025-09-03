@@ -49,7 +49,10 @@ const PopoverArrow = styled(TPopover.Arrow, {
  * This component is created using `withStaticProperties` to provide a compound component pattern.
  * It includes `Content` and `Arrow` as static properties for better developer experience.
  */
-export const Popover = withStaticProperties(TPopover, {
+export const Popover: typeof TPopover & {
+  Content: typeof PopoverContent;
+  Arrow: typeof PopoverArrow;
+} = withStaticProperties(TPopover, {
   Content: PopoverContent,
   Arrow: PopoverArrow,
 });

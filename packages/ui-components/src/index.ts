@@ -58,6 +58,8 @@ export {
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
 export { Popover } from './components/Popover';
+export { Progress } from './components/Progress';
+export type { ProgressProps, ProgressSize } from './components/Progress';
 export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
 export type { SnackBarContextType, SnackBarProps } from './components/SnackBar';
 export { default as Spinner } from './components/Spinner';
