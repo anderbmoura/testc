@@ -35,13 +35,13 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-svg": "^15.12.1",
-    "tamagui": "^1.132.21",
-    "@tamagui/babel-plugin": "^1.132.21",
-    "@tamagui/build": "^1.132.21",
-    "@tamagui/config": "^1.132.21",
-    "@tamagui/core": "^1.132.21",
-    "iconoir-react-native": "^7.11.0"
+    "react-native-svg": "*",
+    "tamagui": "*",
+    "@tamagui/babel-plugin": "*",
+    "@tamagui/build": "*",
+    "@tamagui/config": "*",
+    "@tamagui/core": "*",
+    "iconoir-react-native": "*"
   },
   "devDependencies": {
     "@types/react": "~19.0.10",
@@ -49,13 +49,13 @@
     "npm-watch": "^0.13.0",
     "react-native-builder-bob": "^0.40.13",
     "typescript": "~5.8.3",
-    "react-native-svg": "^15.12.1",
-    "tamagui": "^1.132.21",
-    "@tamagui/babel-plugin": "^1.132.21",
-    "@tamagui/build": "^1.132.21",
-    "@tamagui/config": "^1.132.21",
-    "@tamagui/core": "^1.132.21",
-    "iconoir-react-native": "^7.11.0"
+    "react-native-svg": "15.12.1",
+    "tamagui": "1.132.21",
+    "@tamagui/babel-plugin": "1.132.21",
+    "@tamagui/build": "1.132.21",
+    "@tamagui/config": "1.132.21",
+    "@tamagui/core": "1.132.21",
+    "iconoir-react-native": "7.11.0"
   },
   "author": "Leonardo de Albuquerque Gouveia",
   "license": "ISC",
