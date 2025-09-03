@@ -127,6 +127,10 @@ import { SendDollars } from 'iconoir-react-native';
       control: 'boolean',
       description: 'Exibe o texto de suporte do item.',
     },
+    isFocused: {
+      control: 'boolean',
+      description: 'Exibe estilo do componente quando está em foco',
+    },
   },
 };
 
