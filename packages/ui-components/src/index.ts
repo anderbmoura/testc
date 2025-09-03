@@ -76,6 +76,8 @@ export type {
 } from './components/Spinner';
 export { default as Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
+export { default as Separator } from './components/Separator';
+export type { SeparatorProps, SeparatorDirection } from './components/Separator';
 export * from './components/Typography';
 export { DscProvider } from './config/DscProvider';
 export { dscFonts, type DscFonts } from './config/fonts';
