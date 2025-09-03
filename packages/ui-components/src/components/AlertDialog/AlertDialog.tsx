@@ -108,6 +108,10 @@ export function AlertDialogFrame({
   description,
   actions,
 }: AlertDialogProps) {
+  if (!trigger) {
+    return null;
+  }
+
   return (
     <TAlertDialog native>
       {trigger}

@@ -11,7 +11,7 @@ export interface AlertDialogTriggerProps
  */
 export type AlertDialogProps = PropsWithChildren<{
   /** The element that triggers the dialog when clicked */
-  trigger: React.ReactNode;
+  trigger: React.ReactElement;
   /** Optional title content for the dialog */
   title?: React.ReactNode;
   /** Main description content for the dialog */

@@ -1,5 +1,4 @@
 import {
-  AlertDialogDemo,
   Button,
   CardAlert,
   DscProvider,
@@ -48,9 +47,6 @@ function AppContent() {
           }}
         >
           <YStack space="$4" padding="$4">
-            <YStack>
-              <AlertDialogDemo />
-            </YStack>
             <YStack>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />

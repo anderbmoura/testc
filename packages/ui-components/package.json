@@ -33,20 +33,29 @@
     }
   },
   "peerDependencies": {
-    "@tamagui/config": "*",
-    "iconoir-react-native": "*",
     "react": "*",
     "react-native": "*",
-    "@tamagui/babel-plugin": "*",
-    "@tamagui/build": "*",
-    "tamagui": "*"
+    "react-native-svg": "^15.12.1",
+    "tamagui": "^1.132.21",
+    "@tamagui/babel-plugin": "^1.132.21",
+    "@tamagui/build": "^1.132.21",
+    "@tamagui/config": "^1.132.21",
+    "@tamagui/core": "^1.132.21",
+    "iconoir-react-native": "^7.11.0"
   },
   "devDependencies": {
     "@types/react": "~19.0.10",
     "husky": "^9.1.7",
     "npm-watch": "^0.13.0",
     "react-native-builder-bob": "^0.40.13",
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "react-native-svg": "^15.12.1",
+    "tamagui": "^1.132.21",
+    "@tamagui/babel-plugin": "^1.132.21",
+    "@tamagui/build": "^1.132.21",
+    "@tamagui/config": "^1.132.21",
+    "@tamagui/core": "^1.132.21",
+    "iconoir-react-native": "^7.11.0"
   },
   "author": "Leonardo de Albuquerque Gouveia",
   "license": "ISC",
@@ -79,14 +88,5 @@
   "publishConfig": {
     "registry": "https://pkgs.dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_packaging/caixa-react-native-feed/npm/registry/",
     "always-auth": true
-  },
-  "dependencies": {
-    "@tamagui/babel-plugin": "^1.132.21",
-    "@tamagui/build": "^1.132.21",
-    "@tamagui/config": "^1.132.21",
-    "@tamagui/core": "^1.132.21",
-    "iconoir-react-native": "^7.11.0",
-    "react-native-svg": "^15.12.1",
-    "tamagui": "^1.132.21"
   }
 }
