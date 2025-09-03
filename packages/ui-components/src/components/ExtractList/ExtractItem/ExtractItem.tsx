@@ -1,14 +1,31 @@
 import { ExtractListVariant } from '../ExtractList.model';
 import { useTransformIcon } from '../../../utils';
 import { styled, View, XStack, YStack } from 'tamagui';
-import { LabelSmall, LabelStandard } from '../../Typography';
+import { BodySmall, LabelStandard } from '../../Typography';
 import { ExtractItemProps } from './ExtractItem.model';
+import { iconSize } from '../../../config/tokens/iconSize/iconSize';
 
+/**
+ * Componente que renderiza um ícone transformado com cor e tamanho baseado na variante.
+ *
+ * @component
+ * @param {Object} props - Propriedades do ícone.
+ * @param {React.ReactNode} [props.icon] - Ícone a ser exibido.
+ * @param {'success' | 'neutral' | 'danger'} props.variant - Variante visual que define a cor do ícone.
+ * @param {number} [props.size=iconSize.medium] - Tamanho do ícone.
+ *
+ * @returns {JSX.Element} Elemento visual do ícone transformado.
+ */
+
+/**
+ * Container principal do item da lista de extrato.
+ * Aplica espaçamento, padding e estilos de hover/press.
+ *
+ * @styledComponent
+ */
 const SectionListItem = styled(XStack, {
   name: 'SectionListItem',
   justifyContent: 'space-between',
-  padding: '$space.quark',
-  marginTop: '$space.tiny',
   minHeight: 72,
   gap: '$space.quark',
   paddingVertical: '$space.micro',
@@ -34,12 +51,22 @@ const SectionListItem = styled(XStack, {
   },
 });
 
+/**
+ * Agrupamento horizontal de ícone e textos à esquerda.
+ *
+ * @styledComponent
+ */
 const SectionContent = styled(XStack, {
   name: 'SectionContent',
   display: 'flex',
   alignItems: 'center',
 });
 
+/**
+ * Agrupamento vertical de textos (serviço, detalhe, valor, texto de apoio).
+ *
+ * @styledComponent
+ */
 const SectionColumnText = styled(YStack, {
   name: 'SectionColumnText',
   gap: '$space.quark',
@@ -74,6 +101,25 @@ const ItemIcon: React.FC<ItemIconProps> = ({
   );
 };
 
+/**
+ * Componente que renderiza um item de extrato bancário.
+ * Exibe ícone, serviço, detalhe, valor e texto de apoio, com variações visuais.
+ *
+ * @component
+ * @param {Object} props - Propriedades do componente.
+ * @param {Object} props.item - Dados do item.
+ * @param {string} props.item.service - Nome do serviço.
+ * @param {string} props.item.detail - Detalhes adicionais do serviço.
+ * @param {string} props.item.value - Valor monetário do item.
+ * @param {string} [props.item.supportTextValue] - Texto de apoio abaixo do valor.
+ * @param {React.ReactNode} [props.icon] - Ícone opcional a ser exibido.
+ * @param {'success' | 'neutral' | 'danger'} [props.variant='neutral'] - Variante visual do ícone.
+ * @param {boolean} [props.showIcon=true] - Define se o ícone será exibido.
+ * @param {boolean} [props.showSupportTextValue=true] - Define se o texto de apoio será exibido.
+ * @param {boolean} [props.isFocused=false] - Define se o item está em estado de foco.
+ *
+ * @returns {JSX.Element} Elemento visual do item de extrato.
+ */
 export const ExtractItem: React.FC<ExtractItemProps> = ({
   item,
   icon,
