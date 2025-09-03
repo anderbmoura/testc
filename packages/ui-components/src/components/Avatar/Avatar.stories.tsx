@@ -10,18 +10,25 @@ import {
   Bell,
 } from 'iconoir-react-native';
 
+// Mapeamento de ícones
 const iconMapping = {
+  UserCart: UserCart,
+  BadgeCheck: BadgeCheck,
+  Star: Star,
+  Heart: Heart,
+  Mail: Mail,
+  Bell: Bell,
+};
+
+// Mapeamento de imagens estáticas
+const imageMapping = {
   None: undefined,
-  UserCart,
-  BadgeCheck,
-  Star,
-  Heart,
-  Mail,
-  Bell,
+  INSS: { uri: '/images/example/inss.png' },
+  MCMV: { uri: '/images/example/minha-casa-minha-vida.png' },
 };
 
 const meta: Meta<AvatarProps> = {
-  title: 'Components/Avatar',
+  title: 'Componentes/Avatar',
   component: Avatar,
   parameters: {
     layout: 'centered',
@@ -30,41 +37,22 @@ const meta: Meta<AvatarProps> = {
         component: `
 Componente de avatar para exibir imagem, ícone ou monograma com diferentes estilos e tamanhos.
 
-## Uso Básico
+## Exemplos
 
 \`\`\`tsx
 import { Avatar } from '@superapp-caixa/dsc-library';
+import { BadgeCheck } from 'iconoir-react-native';
 
-<Avatar style="monogram" monogramChar="A" size="large" />
-<Avatar style="image" imageUrl="https://placehold.co/32x32" size="large" />
+<Avatar style="monogram" monogramChar="W" size="large" />
+<Avatar style="image" imageSource={{ uri: "https://placehold.co/32x32" }} size="large" />
 <Avatar style="icon" icon={BadgeCheck} size="large" />
-\`\`\`
-
-## AvatarStack
-
-Para exibir múltiplos avatares agrupados:
-
-\`\`\`tsx
-import { AvatarStack } from '@superapp-caixa/dsc-library';
-
-<AvatarStack size="large" spacing="small">
-  <Avatar style="monogram" monogramChar="A" />
-  <Avatar style="icon" icon={BadgeCheck} />
-  <Avatar style="image" imageUrl="https://placehold.co/32x32" />
-</AvatarStack>
 \`\`\`
         `,
       },
       source: {
         transform: (_: string, { args }: any) => {
-          const getIconName = (icon: any) =>
-            icon && icon !== 'None'
-              ? typeof icon === 'string'
-                ? icon
-                : Object.entries(iconMapping).find(
-                    ([name, comp]) => comp === icon && name !== 'None'
-                  )?.[0]
-              : null;
+          const getIconName = (iconKey: string) =>
+            iconKey && iconKey !== 'None' ? iconKey : null;
 
           const props = [
             args.style && `style="${args.style}"`,
@@ -72,12 +60,12 @@ import { AvatarStack } from '@superapp-caixa/dsc-library';
             args.monogramChar &&
               args.style === 'monogram' &&
               `monogramChar="${args.monogramChar}"`,
-            args.imageUrl &&
+            args.imageSource &&
               args.style === 'image' &&
-              `imageUrl="${args.imageUrl}"`,
+              `imageSource={{ uri: "${args.imageSource.uri}" }}`,
             args.icon &&
               args.style === 'icon' &&
-              `icon={${getIconName(args.icon)}}`,
+              `icon={<${getIconName(args.icon)} />}`,
           ]
             .filter(Boolean)
             .join(' ');
@@ -89,43 +77,92 @@ import { AvatarStack } from '@superapp-caixa/dsc-library';
       },
     },
   },
+  tags: ['autodocs'],
+  render: args => {
+    const imageSource =
+      typeof args.imageSource === 'string'
+        ? imageMapping[args.imageSource as keyof typeof imageMapping]
+        : args.imageSource;
+
+    const icon =
+      typeof args.icon === 'string'
+        ? iconMapping[args.icon as keyof typeof iconMapping]
+        : args.icon;
+
+    return (
+      <Avatar
+        {...args}
+        imageSource={imageSource}
+        icon={icon}
+        monogramChar={args.monogramChar}
+      />
+    );
+  },
   argTypes: {
     style: {
-      control: 'select',
+      control: 'radio',
       options: ['monogram', 'image', 'icon'],
-      description: 'Visual style of the avatar',
+      description: 'Estilo visual do avatar',
+      table: {
+        type: { summary: "'monogram' | 'image' | 'icon'" },
+        defaultValue: { summary: "'monogram'" },
+      },
     },
     size: {
-      control: 'select',
+      control: 'radio',
       options: ['small', 'standard', 'large'],
-      description: 'Size variant of the avatar',
+      description: 'Tamanho do avatar',
+      table: {
+        type: { summary: "'small' | 'standard' | 'large'" },
+        defaultValue: { summary: "'standard'" },
+      },
     },
     monogramChar: {
       control: 'text',
-      description: 'Character displayed in monogram style',
+      if: { arg: 'style', eq: 'monogram' },
+      description: 'Texto exibido no estilo monograma',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
     },
-    imageUrl: {
-      control: 'text',
-      description: 'Remote image URL for image style',
+    imageSource: {
+      control: 'select',
+      options: Object.keys(imageMapping),
+      mapping: imageMapping,
+      if: { arg: 'style', eq: 'image' },
+      description: 'Imagem exibida no estilo imagem',
+      table: {
+        type: {
+          summary: 'ImageSource',
+          detail: 'require(...) | { uri: string }',
+        },
+        defaultValue: { summary: 'undefined' },
+      },
     },
     icon: {
       control: 'select',
       options: Object.keys(iconMapping),
-      description: 'Icon element for icon style',
       mapping: iconMapping,
+      if: { arg: 'style', eq: 'icon' },
+      description: 'Ícone exibido no estilo ícone',
       table: {
         type: {
-          summary: 'IconProp',
-          detail: 'Icon component from iconoir-react-native',
+          summary: 'React.ReactNode',
+          detail: 'Componente do iconoir-react-native',
         },
+        defaultValue: { summary: 'undefined' },
       },
     },
     styleProps: {
       control: 'object',
-      description: 'Additional style props applied to the avatar container',
+      description: 'Estilos adicionais aplicados ao contêiner do avatar',
+      table: {
+        type: { summary: 'ViewStyle' },
+        defaultValue: { summary: '{}' },
+      },
     },
   },
-  tags: ['autodocs'],
 };
 
 export default meta;
@@ -138,9 +175,4 @@ export const Default: Story = {
     icon: BadgeCheck,
     size: 'large',
   },
-  render: args => (
-    <>
-      <Avatar {...args} />
-    </>
-  ),
 };

@@ -4,7 +4,7 @@ import React, {
   cloneElement,
   ReactElement,
 } from 'react';
-import { styled, XStack } from 'tamagui';
+import { GetThemeValueForKey, styled, XStack } from 'tamagui';
 import { AvatarSpacing, AvatarProps, AvatarStackProps } from './Avatar.model';
 
 const StackContainer = styled(XStack, {
@@ -29,12 +29,19 @@ const spacingOffset: Record<AvatarSpacing, number> = {
   large: 34,
 };
 
-const zIndexValues = [500, 400, 300, 200, 100, 0];
+const zIndexTokens: GetThemeValueForKey<'zIndex'>[] = [
+  '$500',
+  '$400',
+  '$300',
+  '$200',
+  '$100',
+  '$0',
+];
 
 /**
- * DSC AvatarStack Component
+ * Componente AvatarStack da DSC
  *
- * @param count - Maximum number of avatars to display
+ * @param count - Número máximo de avatares a serem exibidos
  * ```tsx
  * <AvatarStack count={3}>
  *   <Avatar ... />
@@ -44,21 +51,21 @@ const zIndexValues = [500, 400, 300, 200, 100, 0];
  * </AvatarStack>
  * ```
  *
- * @param spacing - Horizontal spacing between stacked avatars
+ * @param spacing - Espaçamento horizontal entre os avatares empilhados
  * ```tsx
  * <AvatarStack spacing="small" />
  * <AvatarStack spacing="standard" />
  * <AvatarStack spacing="large" />
  * ```
  *
- * @param size - Size of avatars within the stack
+ * @param size - Tamanho dos avatares dentro da pilha
  * ```tsx
  * <AvatarStack size="small" />
  * <AvatarStack size="standard" />
  * <AvatarStack size="large" />
  * ```
  *
- * @param children - Avatar elements passed as children to the stack
+ * @param children - Elementos Avatar passados como filhos para a pilha
  * ```tsx
  * <AvatarStack>
  *   <Avatar ... />
@@ -87,7 +94,7 @@ export const AvatarStack: React.FC<AvatarStackProps> = ({
           styleProps: {
             position: 'absolute',
             left: index * offset,
-            zIndex: zIndexValues[index] ?? 0,
+            zIndex: zIndexTokens[index] ?? '$0',
           },
         });
       })}

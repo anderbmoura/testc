@@ -1,109 +1,111 @@
 import { StackProps } from '@tamagui/core';
-import { ButtonProps } from 'tamagui';
+import { ButtonProps, ImageProps } from 'tamagui';
 
 /**
- * Visual style variants for the Avatar component.
+ * Estilos visuais disponíveis para o componente Avatar.
  *
- * - `monogram`: Displays a single character centered inside the avatar.
- * - `image`: Displays a profile image from a remote URL.
- * - `icon`: Displays a custom icon element.
+ * - `monogram`: Exibe um único caractere centralizado dentro do avatar.
+ * - `image`: Exibe uma imagem de perfil (local ou remota).
+ * - `icon`: Exibe um elemento de ícone personalizado.
  */
 export type AvatarStyle = 'monogram' | 'image' | 'icon';
 
 /**
- * Size variants for the Avatar component.
+ * Tamanhos disponíveis para o componente Avatar.
  *
- * - `small`: Compact avatar size.
- * - `standard`: Default avatar size.
- * - `large`: Enlarged avatar size.
+ * - `small`: Avatar compacto.
+ * - `standard`: Tamanho padrão.
+ * - `large`: Avatar ampliado.
  */
 export type AvatarSize = 'small' | 'standard' | 'large';
 
 /**
- * Spacing options for stacked avatars.
+ * Opções de espaçamento para avatares empilhados.
  *
- * Controls the horizontal overlap between avatars in a stack.
+ * Controla a sobreposição horizontal entre os avatares em uma pilha.
  *
- * - `small`: Tight spacing with more overlap.
- * - `standard`: Moderate spacing.
- * - `large`: Loose spacing with less overlap.
+ * - `small`: Espaçamento apertado com maior sobreposição.
+ * - `standard`: Espaçamento moderado.
+ * - `large`: Espaçamento amplo com menor sobreposição.
  */
 export type AvatarSpacing = 'small' | 'standard' | 'large';
 
 /**
- * Represents a single character used in monogram style.
+ * Representa um único caractere usado no estilo monograma.
  *
- * Must be a string containing exactly one character.
+ * Deve ser uma string contendo exatamente um caractere.
  */
 export type MonogramChar = string;
 
 /**
- * Configuration options for the DSC Avatar component.
+ * Opções de configuração para o componente DSC Avatar.
  *
- * Defines the properties available for customizing avatar behavior and appearance.
+ * Define as propriedades disponíveis para personalizar o comportamento e aparência do avatar.
  */
 export interface AvatarProps {
   /**
-   * Visual style of the avatar.
-   * Can be `monogram`, `image`, or `icon`.
+   * Estilo visual do avatar.
+   * Pode ser `monogram`, `image` ou `icon`.
    */
   style?: AvatarStyle;
 
   /**
-   * Size of the avatar.
-   * If omitted, it will be inherited from the AvatarStack.
+   * Tamanho do avatar.
+   * Se omitido, será herdado do AvatarStack.
    */
   size?: AvatarSize;
 
   /**
-   * Character displayed in monogram style.
-   * Must be a single character.
+   * Caractere exibido no estilo monograma.
+   * Deve ser um único caractere.
    */
   monogramChar?: MonogramChar;
 
   /**
-   * Remote image URL displayed in image style.
+   * Fonte da imagem exibida no estilo imagem.
+   * Aceita imagens locais via `require()` ou remotas via `{ uri }`.
    */
-  imageUrl?: string;
+  imageSource?: ImageProps['source'];
 
   /**
-   * Icon element displayed in icon style. Inherited from Tamagui Button icon system.
+   * Elemento de ícone exibido no estilo ícone.
+   * Herdado do sistema de ícones do Tamagui Button.
    */
   icon?: ButtonProps['icon'];
 
   /**
-   * Additional style props applied to the avatar container.
-   * Useful for positioning within a stack or layout adjustments.
+   * Propriedades adicionais de estilo aplicadas ao contêiner do avatar.
+   * Útil para posicionamento em pilhas ou ajustes de layout.
    */
   styleProps?: StackProps;
 }
 
 /**
- * Configuration options for the AvatarStack component.
+ * Opções de configuração para o componente AvatarStack.
  *
- * Defines the properties available for customizing stacked avatar behavior and layout.
+ * Define as propriedades disponíveis para personalizar o comportamento e layout de avatares empilhados.
  */
 export interface AvatarStackProps {
   /**
-   * Maximum number of avatars to display.
-   * If omitted, all children will be rendered.
+   * Número máximo de avatares a serem exibidos.
+   * Se omitido, todos os filhos serão renderizados.
    */
   count?: number;
 
   /**
-   * Horizontal spacing between stacked avatars.
-   * Controls how much they overlap.
+   * Espaçamento horizontal entre os avatares empilhados.
+   * Controla o nível de sobreposição.
    */
   spacing?: AvatarSpacing;
 
   /**
-   * Size of avatars within the stack.
-   * Automatically propagated to child avatars.
+   * Tamanho dos avatares dentro da pilha.
+   * Propagado automaticamente para os avatares filhos.
    */
   size?: AvatarSize;
 
   /**
-   * Avatar elements passed as children to the stack.
+   * Elementos de avatar passados como filhos para a pilha.
    */
   children: React.ReactNode;
 }

@@ -24,7 +24,6 @@ import {
   Trash,
   Upload,
   User,
-  BeachBag,
   BadgeCheck,
   UserCart,
 } from 'iconoir-react-native';
@@ -54,8 +53,8 @@ function AppContent() {
           <YStack space="$4" padding="$4">
             <AvatarStack size="large" spacing="large">
               <Avatar style="monogram" monogramChar="W" />
-              <Avatar style="icon" icon={<BadgeCheck />} />
-              <Avatar style="image" imageUrl="https://placehold.net/8.png" />
+              <Avatar style="icon" icon={<BadgeCheck color="red" />} />
+              <Avatar style="image" imageSource={{uri: "https://placehold.net/8.png"}} />
               <Avatar style="monogram" monogramChar="S" />
               <Avatar style="icon" icon={UserCart} />
             </AvatarStack>

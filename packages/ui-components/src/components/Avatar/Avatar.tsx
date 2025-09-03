@@ -31,39 +31,41 @@ const MonogramText = styled(Text, {
 });
 
 /**
- * DSC Avatar Component
+ * Componente Avatar da DSC
  *
- * @param style - Visual style of the avatar
+ * @param style - Estilo visual do avatar
  * ```tsx
  * <Avatar style="image" imageUrl="https://..." />
  * <Avatar style="monogram" monogramChar="W" />
  * <Avatar style="icon" icon={<UserIcon />} />
  * ```
  *
- * @param size - Size variant of the avatar
+ * @param size - Variante de tamanho do avatar
  * ```tsx
  * <Avatar size="small" />
  * <Avatar size="standard" />
  * <Avatar size="large" />
  * ```
  *
- * @param monogramChar - Character displayed in monogram style
+ * @param monogramChar - Caractere exibido no estilo monograma
  * ```tsx
  * <Avatar style="monogram" monogramChar="W" />
  * ```
  *
- * @param imageUrl - Remote image URL displayed in image style
+ * @param imageSource - Fonte da imagem exibida no estilo imagem.
+ * Aceita tanto imagens locais via `require()` quanto remotas via `{ uri }`.
  * ```tsx
- * <Avatar style="image" imageUrl="https://..." />
+ * <Avatar style="image" imageSource={require('./logo.png')} />
+ * <Avatar style="image" imageSource={{ uri: 'https://example.com/image.png' }} />
  * ```
  *
- * @param icon - Icon element displayed in icon style
+ * @param icon - Elemento de ícone exibido no estilo ícone
  * ```tsx
  * <Avatar style="icon" icon={Home} />
  * <Avatar style="icon" icon={<UserIcon />} />
  * ```
  *
- * @param styleProps - Additional style props applied to the avatar container
+ * @param styleProps - Propriedades de estilo adicionais aplicadas ao contêiner do avatar
  * ```tsx
  * <Avatar styleProps={{ marginRight: 8 }} />
  * ```
@@ -72,7 +74,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   style = 'monogram',
   size = 'standard',
   monogramChar,
-  imageUrl,
+  imageSource,
   icon,
   styleProps,
 }) => {
@@ -104,8 +106,8 @@ export const Avatar: React.FC<AvatarProps> = ({
       paddingVertical={shouldApplyPadding ? 4 : 0}
       paddingHorizontal={shouldApplyPadding ? 10 : 0}
     >
-      {style === 'image' && imageUrl && (
-        <Image source={{ uri: imageUrl }} width="100%" height="100%" />
+      {style === 'image' && imageSource && (
+        <Image source={imageSource} width="100%" height="100%" />
       )}
       {style === 'monogram' &&
         typeof monogramChar === 'string' &&
