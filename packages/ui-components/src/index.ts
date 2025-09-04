@@ -34,9 +34,13 @@ export type {
   CardNotificationVariant,
 } from './components/CardNotification';
 export { CardNotificationStack } from './components/CardNotificationStack';
+export { CardWidgetFooter } from './components/CardWidgetFooter';
+export type {
+  CardWidgetFooterProps,
+  CardWidgetFooterVariant,
+} from './components/CardWidgetFooter';
 export {
   CardWidget,
-  CardWidgetFooter,
   CardWidgetHeader,
   CardWidgetIcon,
 } from './components/CardWidget';
