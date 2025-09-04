@@ -3,6 +3,7 @@ import {
   CardAlert,
   DscProvider,
   ForYouCard,
+  Separator,
   View,
   Avatar,
   AvatarStack,
@@ -68,10 +69,15 @@ function AppContent() {
 
             <YStack>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
-                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
-                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
-                <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                <XStack alignItems="center" space="$2">
+                  <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                  <Separator direction="vertical" />
+                  <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                  <Separator direction="vertical" />
+                  <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                  <Separator direction="vertical" />
+                  <ForYouCard href="https://wallpapercave.com/wp/wp2544022.jpg" />
+                </XStack>
               </ScrollView>
             </YStack>
 
@@ -87,6 +93,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Heart} type="plain" disabled>
                 Plain Disabled
@@ -99,6 +108,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Home} type="plain" size="small">
                 Small Plain
@@ -111,6 +123,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             {/* Exemplos de todos os tamanhos com diferentes variantes */}
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Heart} size="large" type="plain">
@@ -124,6 +139,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Home} size="standard" type="plain">
                 Standard Plain
@@ -136,6 +154,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Heart} size="small" type="plain">
                 Small Plain
@@ -148,6 +169,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             {/* Exemplos de Loading */}
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Home} type="plain" loading>
@@ -161,6 +185,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Heart} size="large" type="plain" loading>
                 Large Loading
@@ -173,6 +200,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             <YStack space="$4" flexWrap="wrap">
               <Button icon={Download} type="plain" loading theme="success">
                 Save Changes
@@ -185,6 +215,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             {/* Exemplo Interativo */}
             <YStack space="$4" flexWrap="wrap">
               <Button
@@ -198,6 +231,9 @@ function AppContent() {
               </Button>
             </YStack>
 
+            <YStack alignItems="center">
+              <Separator direction="horizontal" />
+            </YStack>
             {/* Demonstração de diferentes estados de loading */}
             <YStack space="$4" flexWrap="wrap">
               <Button
@@ -224,14 +260,26 @@ function AppContent() {
             </YStack>
           </YStack>
 
+          <YStack alignItems="center">
+            <Separator direction="horizontal" />
+          </YStack>
           <ThemeToggle />
 
+          <YStack alignItems="center">
+            <Separator direction="horizontal" />
+          </YStack>
           <TButton disabled disabledStyle={{ backgroundColor: '$accent9' }}>
             Oi
           </TButton>
 
+          <YStack alignItems="center">
+            <Separator direction="horizontal" />
+          </YStack>
           <Button>Botão</Button>
 
+          <YStack alignItems="center">
+            <Separator direction="horizontal" />
+          </YStack>
           {/* CardAlert Examples */}
           <YStack space="$4" padding="$4">
             <CardAlert
