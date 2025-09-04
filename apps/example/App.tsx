@@ -16,7 +16,7 @@ import {
   mockData,
   ExtractList,
 } from '../../packages/ui-components/src/components/ExtractList';
-import { Button as TButton, YStack } from 'tamagui';
+import { Button as TButton, YStack, XStack } from 'tamagui';
 
 import {
   Airplay,
