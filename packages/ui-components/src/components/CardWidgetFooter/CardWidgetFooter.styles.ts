@@ -2,7 +2,9 @@ import { styled, YStack, XStack, View } from 'tamagui';
 
 export const CardWidgetFooterContainer = styled(YStack, {
   name: 'CardWidgetFooterContainer',
-  padding: '$none',
+  paddingTop: '$none',
+  paddingBottom: '$tiny',
+  paddingHorizontal: '$tiny',
   gap: '$quark',
 });
 

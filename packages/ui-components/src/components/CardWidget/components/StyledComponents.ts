@@ -69,7 +69,4 @@ export const CardWidgetIconContainer = styled(View, {
 export const CardWidgetFooterContainer = styled(View, {
   name: 'CardWidgetFooterContainer',
   width: '100%',
-  paddingRight: '$tiny',
-  paddingBottom: '$tiny',
-  paddingLeft: '$tiny',
 });

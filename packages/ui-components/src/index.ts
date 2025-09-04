@@ -39,6 +39,8 @@ export type {
   CardWidgetFooterProps,
   CardWidgetFooterVariant,
 } from './components/CardWidgetFooter';
+export { CardWidgetFooterLoterias } from './components/CardWidgetFooterLoterias';
+export type { CardWidgetFooterLoteriasProps } from './components/CardWidgetFooterLoterias';
 export {
   CardWidget,
   CardWidgetHeader,
