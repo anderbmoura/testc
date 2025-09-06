@@ -20,6 +20,7 @@ export const headingFont = createFont({
     medium: 28,
     large: 32,
     larger: 36,
+    bigger: 48,
   },
   lineHeight: {
     16: 16,
@@ -30,6 +31,9 @@ export const headingFont = createFont({
     36: 36,
     40: 40,
     44: 44,
+    48: 48,
+    56: 56,
+    64: 64,
   },
   weight: {
     400: '400',

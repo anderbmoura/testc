@@ -8,4 +8,5 @@ export const fontSize = {
   medium: 24,
   large: 28,
   larger: 32,
+  bigger: 48,
 } as const;

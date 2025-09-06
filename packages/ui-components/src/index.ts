@@ -63,6 +63,13 @@ export {
 } from './components/List';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
+export { InputMoney, InputMoneyFeedback } from './components/InputMoney';
+export type {
+  InputMoneyProps,
+  InputMoneyFeedbackProps,
+  InputMoneyInternalState,
+  InputMoneyFeedbackVariant,
+} from './components/InputMoney';
 export { Popover } from './components/Popover';
 export { Progress } from './components/Progress';
 export type { ProgressProps, ProgressSize } from './components/Progress';
@@ -77,7 +84,10 @@ export type {
 export { default as Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
 export { default as Separator } from './components/Separator';
-export type { SeparatorProps, SeparatorDirection } from './components/Separator';
+export type {
+  SeparatorProps,
+  SeparatorDirection,
+} from './components/Separator';
 export * from './components/Typography';
 export { DscProvider } from './config/DscProvider';
 export { dscFonts, type DscFonts } from './config/fonts';
