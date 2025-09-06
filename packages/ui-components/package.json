@@ -44,6 +44,8 @@
     "iconoir-react-native": "*"
   },
   "devDependencies": {
+    "react": "19.0.0",
+    "react-native": "0.79.5",
     "@types/react": "~19.0.10",
     "husky": "^9.1.7",
     "npm-watch": "^0.13.0",
