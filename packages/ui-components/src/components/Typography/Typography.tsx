@@ -98,6 +98,42 @@ export const DisplayNumericalSmallSemibold = styled(Text, {
 });
 
 /**
+ * Componente DSC Display Numerical Bigger
+ *
+ * ```tsx
+ * <DisplayNumericalBigger>123.456</DisplayNumericalBigger>
+ * ```
+ */
+export const DisplayNumericalBigger = styled(Text, {
+  name: 'DisplayNumericalBigger',
+  ...typography.displayNumericalBigger,
+});
+
+/**
+ * Componente DSC Display Numerical Bigger Semibold
+ *
+ * ```tsx
+ * <DisplayNumericalBiggerSemibold>123.456</DisplayNumericalBiggerSemibold>
+ * ```
+ */
+export const DisplayNumericalBiggerSemibold = styled(Text, {
+  name: 'DisplayNumericalBiggerSemibold',
+  ...typography.displayNumericalBiggerSemibold,
+});
+
+/**
+ * Componente DSC Display Numerical Large Semibold
+ *
+ * ```tsx
+ * <DisplayNumericalLargeSemibold>123.456</DisplayNumericalLargeSemibold>
+ * ```
+ */
+export const DisplayNumericalLargeSemibold = styled(Text, {
+  name: 'DisplayNumericalLargeSemibold',
+  ...typography.displayNumericalLargeSemibold,
+});
+
+/**
  * Componente DSC Title Large
  *
  * ```tsx
@@ -239,6 +275,18 @@ export const TitleNumericalSmall = styled(Text, {
 export const TitleNumericalSmallSemibold = styled(Text, {
   name: 'TitleNumericalSmallSemibold',
   ...typography.titleNumericalSmallSemibold,
+});
+
+/**
+ * Componente DSC Title Numerical Medium Semibold
+ *
+ * ```tsx
+ * <TitleNumericalMediumSemibold>123.456</TitleNumericalMediumSemibold>
+ * ```
+ */
+export const TitleNumericalMediumSemibold = styled(Text, {
+  name: 'TitleNumericalMediumSemibold',
+  ...typography.titleNumericalMediumSemibold,
 });
 
 /**

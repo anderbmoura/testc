@@ -55,6 +55,27 @@ export const typography = {
     lineHeight: 40,
     letterSpacing: '$standard',
   },
+  displayNumericalBigger: {
+    fontFamily: '$heading',
+    fontSize: '$bigger',
+    fontWeight: '$500',
+    lineHeight: 48,
+    letterSpacing: '$standard',
+  },
+  displayNumericalBiggerSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$bigger',
+    fontWeight: '$600',
+    lineHeight: 48,
+    letterSpacing: '$standard',
+  },
+  displayNumericalLargeSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$larger',
+    fontWeight: '$600',
+    lineHeight: 40,
+    letterSpacing: '$standard',
+  },
   titleLarge: {
     fontFamily: '$heading',
     fontSize: '$medium',
@@ -137,6 +158,13 @@ export const typography = {
     fontSize: '$smaller',
     fontWeight: '$600',
     lineHeight: 28,
+    letterSpacing: '$standard',
+  },
+  titleNumericalMediumSemibold: {
+    fontFamily: '$heading',
+    fontSize: '$medium',
+    fontWeight: '$600',
+    lineHeight: 32,
     letterSpacing: '$standard',
   },
   bodyLarge: {

@@ -9,6 +9,9 @@ import {
   DisplayNumericalStandardSemibold,
   DisplayNumericalSmall,
   DisplayNumericalSmallSemibold,
+  DisplayNumericalBigger,
+  DisplayNumericalBiggerSemibold,
+  DisplayNumericalLargeSemibold,
   TitleLarge,
   TitleLargeSemibold,
   TitleStandard,
@@ -21,6 +24,7 @@ import {
   TitleNumericalStandardSemibold,
   TitleNumericalSmall,
   TitleNumericalSmallSemibold,
+  TitleNumericalMediumSemibold,
   BodyLarge,
   BodyLargeSemibold,
   BodyStandard,
@@ -218,6 +222,11 @@ export const DisplayNumericalComponents: Story = {
       </DisplayNumericalStandardSemibold>
       <DisplayNumericalSmall>123.456,78</DisplayNumericalSmall>
       <DisplayNumericalSmallSemibold>123.456,78</DisplayNumericalSmallSemibold>
+      <DisplayNumericalBigger>123.456,78</DisplayNumericalBigger>
+      <DisplayNumericalBiggerSemibold>
+        123.456,78
+      </DisplayNumericalBiggerSemibold>
+      <DisplayNumericalLargeSemibold>123.456,78</DisplayNumericalLargeSemibold>
     </YStack>
   ),
   parameters: {
@@ -232,6 +241,9 @@ export const DisplayNumericalComponents: Story = {
   <DisplayNumericalStandardSemibold>123.456,78</DisplayNumericalStandardSemibold>
   <DisplayNumericalSmall>123.456,78</DisplayNumericalSmall>
   <DisplayNumericalSmallSemibold>123.456,78</DisplayNumericalSmallSemibold>
+  <DisplayNumericalBigger>123.456,78</DisplayNumericalBigger>
+  <DisplayNumericalBiggerSemibold>123.456,78</DisplayNumericalBiggerSemibold>
+  <DisplayNumericalLargeSemibold>123.456,78</DisplayNumericalLargeSemibold>
 </YStack>`,
       },
     },
@@ -250,6 +262,7 @@ export const TitleNumericalComponents: Story = {
       </TitleNumericalStandardSemibold>
       <TitleNumericalSmall>123.456,78</TitleNumericalSmall>
       <TitleNumericalSmallSemibold>123.456,78</TitleNumericalSmallSemibold>
+      <TitleNumericalMediumSemibold>123.456,78</TitleNumericalMediumSemibold>
     </YStack>
   ),
   parameters: {
@@ -266,6 +279,7 @@ export const TitleNumericalComponents: Story = {
   <TitleNumericalStandardSemibold>123.456,78</TitleNumericalStandardSemibold>
   <TitleNumericalSmall>123.456,78</TitleNumericalSmall>
   <TitleNumericalSmallSemibold>123.456,78</TitleNumericalSmallSemibold>
+  <TitleNumericalMediumSemibold>123.456,78</TitleNumericalMediumSemibold>
 </YStack>`,
       },
     },
