@@ -47,7 +47,7 @@ export const CardWidgetFooter: React.FC<CardWidgetFooterProps> = ({
       {showProgress && <Progress size="smaller" progress={progress} />}
 
       {(value || transformedIcon) && (
-        <Theme name={variant === 'neutral' ? undefined : variant}>
+        <Theme name={variant}>
           <CardWidgetFooterValueContainer>
             {transformedIcon && (
               <CardWidgetFooterIconContainer>

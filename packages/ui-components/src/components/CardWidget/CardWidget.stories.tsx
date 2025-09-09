@@ -15,7 +15,7 @@ const iconMapping = {
 
 const footerContentMapping = {
   None: null,
-  Text: <LabelSmall>Footer Content</LabelSmall>,
+  Text: <LabelSmall style={{ padding: 16 }}>Footer Content</LabelSmall>,
 };
 
 interface CardWidgetStoryArgs extends Omit<CardWidgetProps, 'icon' | 'image'> {

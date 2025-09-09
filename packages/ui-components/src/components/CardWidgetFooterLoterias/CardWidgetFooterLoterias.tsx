@@ -31,8 +31,8 @@ export const CardWidgetFooterLoterias: React.FC<
   const firstRow = paddedNumbers.slice(0, 3);
   const secondRow = paddedNumbers.slice(3, 6);
 
-  const renderNumber = (number: number) => (
-    <CardWidgetFooterLoteriasCircle>
+  const renderNumber = (number: number, index: number) => (
+    <CardWidgetFooterLoteriasCircle key={index}>
       <BodySmall color="$success" textAlign="center">
         {number.toString().padStart(2, '0')}
       </BodySmall>
@@ -42,10 +42,10 @@ export const CardWidgetFooterLoterias: React.FC<
   return (
     <CardWidgetFooterLoteriasContainer {...stackProps}>
       <CardWidgetFooterLoteriasRow>
-        {firstRow.map(number => renderNumber(number))}
+        {firstRow.map((number, index) => renderNumber(number, index))}
       </CardWidgetFooterLoteriasRow>
       <CardWidgetFooterLoteriasRow>
-        {secondRow.map(number => renderNumber(number))}
+        {secondRow.map((number, index) => renderNumber(number, index + 3))}
       </CardWidgetFooterLoteriasRow>
     </CardWidgetFooterLoteriasContainer>
   );

@@ -125,6 +125,20 @@ const builtThemes = createThemes({
   },
 
   childrenThemes: {
+    neutral: {
+      palette: {
+        dark: Object.values(neutralDarkGradientPalette),
+        light: Object.values(neutralLightGradientPalette),
+      },
+    },
+
+    accent: {
+      palette: {
+        dark: Object.values(accentDarkGradientPalette),
+        light: Object.values(accentLightGradientPalette),
+      },
+    },
+
     highlight: {
       palette: {
         dark: Object.values(highlightDarkGradientPalette),
