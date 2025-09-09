@@ -215,6 +215,8 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   loading = false,
   onPress,
+  onHoverIn,
+  onHoverOut,
 }) => {
   const transformIcon = useTransformIcon();
 
@@ -267,6 +269,8 @@ export const Button: React.FC<ButtonProps> = ({
         loading={loading ? type : undefined}
         disabled={isDisabled}
         onPress={onPress}
+        onHoverIn={onHoverIn}
+        onHoverOut={onHoverOut}
       >
         {loading ? <Spinner size="small" color="$color9" /> : children}
       </DscButton>

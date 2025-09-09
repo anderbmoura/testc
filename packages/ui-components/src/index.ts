@@ -70,6 +70,8 @@ export type {
   InputMoneyInternalState,
   InputMoneyFeedbackVariant,
 } from './components/InputMoney';
+export { Input } from './components/Input';
+export type { InputProps, InputCompoundComponent } from './components/Input';
 export { Popover } from './components/Popover';
 export { Progress } from './components/Progress';
 export type { ProgressProps, ProgressSize } from './components/Progress';

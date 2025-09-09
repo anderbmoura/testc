@@ -67,4 +67,14 @@ export interface ButtonProps {
    * Callback fired when button is pressed. Inherited from Tamagui Button onPress handler.
    */
   onPress?: TamaguiButtonProps['onPress'];
+
+  /**
+   * Callback fired when mouse enters the button area (web only).
+   */
+  onHoverIn?: TamaguiButtonProps['onHoverIn'];
+
+  /**
+   * Callback fired when mouse leaves the button area (web only).
+   */
+  onHoverOut?: TamaguiButtonProps['onHoverOut'];
 }
