@@ -90,6 +90,16 @@ export type {
   SeparatorProps,
   SeparatorDirection,
 } from './components/Separator';
+export {
+  VerticalActions,
+  VerticalActionsSection,
+  type VerticalActionsProps,
+  type VerticalActionsSectionProps,
+} from './components/VerticalActions';
+export {
+  VerticalActionsItem,
+  type VerticalActionsItemProps,
+} from './components/VerticalActions/components/VerticalActionsItem';
 export * from './components/Typography';
 export { DscProvider } from './config/DscProvider';
 export { dscFonts, type DscFonts } from './config/fonts';

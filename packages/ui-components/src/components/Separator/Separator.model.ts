@@ -14,7 +14,7 @@ export interface SeparatorProps {
    * Direção do separador.
    * - `horizontal`: Separador horizontal (largura: 100%, altura: 1px)
    * - `vertical`: Separador vertical (largura: 1px, altura: 100px)
-   * 
+   *
    * A cor é sempre "$outlined1" e a opacidade é sempre 1 conforme design system.
    */
   direction: SeparatorDirection;

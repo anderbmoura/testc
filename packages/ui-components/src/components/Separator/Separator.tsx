@@ -19,7 +19,7 @@ const DscSeparatorBase = styled(View, {
  * - Cor: sempre "$outlined1"
  *
  * @param direction - Direção do separador (horizontal ou vertical)
- * 
+ *
  * Exemplos de uso:
  * ```tsx
  * <Separator direction="horizontal" />
@@ -28,13 +28,13 @@ const DscSeparatorBase = styled(View, {
  */
 export const Separator: React.FC<SeparatorProps> = ({ direction }) => {
   const isHorizontal = direction === 'horizontal';
-  
+
   return (
-    <DscSeparatorBase 
+    <DscSeparatorBase
       style={{
         width: isHorizontal ? '100%' : 1,
         height: isHorizontal ? 1 : '100%',
-      }} 
+      }}
     />
   );
 };

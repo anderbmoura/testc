@@ -41,10 +41,10 @@ import { Separator } from '@superapp-caixa/dsc-library';
     },
   },
   decorators: [
-    (Story) => (
-      <View 
-        style={{ 
-          padding: 20, 
+    Story => (
+      <View
+        style={{
+          padding: 20,
           backgroundColor: '#f5f5f5',
           minWidth: 300,
           minHeight: 200,
@@ -65,7 +65,7 @@ import { Separator } from '@superapp-caixa/dsc-library';
       description: 'Direção do separador (horizontal ou vertical).',
       table: {
         type: { summary: "'horizontal' | 'vertical'" },
-        defaultValue: { summary: "obrigatório" },
+        defaultValue: { summary: 'obrigatório' },
       },
     },
   },
