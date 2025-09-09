@@ -97,3 +97,8 @@ export { typography as typographyPresets } from './config/fonts/typography';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
 export { Avatar, AvatarStack } from './components/Avatar';
 export type { AvatarProps, AvatarStackProps } from './components/Avatar';
+export {
+  SegmentedButton,
+  type SegmentedButtonItem,
+  type SegmentedButtonProps,
+} from './components/SegmentedButton';
