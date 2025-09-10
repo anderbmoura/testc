@@ -83,11 +83,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   const getIconSize = () => {
     switch (size) {
       case 'large':
-        return 24;
+        return 32;
       case 'standard':
-        return 20;
+        return 24;
       case 'small':
-        return 16;
+        return 18;
       default:
         return 20;
     }

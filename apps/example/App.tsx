@@ -11,6 +11,19 @@ function AppContent() {
   return (
     <DscProvider defaultTheme={actualTheme}>
       <View flex={1}>
+        {/* Add TopAppBar at the top */}
+        <TopAppBar
+          variant="small"
+          title="Example App"
+          onBackPress={() => console.log('Back pressed')}
+          icons={{
+            back: <Home width={20} height={20} />,
+            camera: <Camera width={20} height={20} />,
+            notifications: <Bell width={20} height={20} />,
+            search: <Search width={18} height={18} />,
+          }}
+        />
+
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
