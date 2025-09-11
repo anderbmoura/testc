@@ -122,3 +122,5 @@ export { ButtonRow } from './templates/buttons/ButtonRow';
 export type { ButtonRowProps } from './templates/buttons/ButtonRow';
 export { ActionsButtonRow } from './templates/buttons/ActionsButtonRow';
 export type { ActionsButtonRowProps } from './templates/buttons/ActionsButtonRow';
+export { WidgetRow } from './templates/cards/WidgetRow';
+export type { WidgetRowProps } from './templates/cards/WidgetRow';
