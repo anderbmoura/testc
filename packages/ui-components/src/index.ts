@@ -116,3 +116,7 @@ export {
   type SegmentedButtonItem,
   type SegmentedButtonProps,
 } from './components/SegmentedButton';
+
+// Templates
+export { ButtonRow } from './templates/buttons/ButtonRow';
+export type { ButtonRowProps } from './templates/buttons/ButtonRow';
