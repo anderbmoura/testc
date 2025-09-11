@@ -1,13 +1,12 @@
-import { styled, Accordion } from 'tamagui';
+import { styled, Accordion, XStack } from 'tamagui';
 import { borderWidth } from '../../config/tokens/borderWidth/borderWidth';
+import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
 
 export const AccordionContainer = styled(Accordion, {
   name: 'Accordion',
   display: 'flex',
   width: '100%',
   gap: '$space.micro',
-  borderWidth: borderWidth.thin,
-  borderColor: '$outlined1',
   focusStyle: {
     borderColor: '$neutral12',
   },
@@ -15,11 +14,11 @@ export const AccordionContainer = styled(Accordion, {
   variants: {
     collapsed: {
       true: {
-        borderRadius: '$radius.large',
+        borderRadius: borderRadius.large,
       },
       false: {
-        borderTopLeftRadius: '$radius.large',
-        borderTopRightRadius: '$radius.large',
+        borderTopLeftRadius: borderRadius.large,
+        borderTopRightRadius: borderRadius.large,
       },
     },
   },
@@ -61,5 +60,22 @@ export const AccordionContent = styled(Accordion.Content, {
   name: 'Accordion.Content',
   animation: 'quick',
   padding: '$space.tiny',
+  gap: '$space.nano',
   exitStyle: { opacity: 0 },
 });
+
+export const AccordionContentFooter = styled(XStack, {
+  name: 'Accordion.Content.Footer',
+  justifyContent: 'space-between',
+});
+
+export const AccordionTypeVariants = {
+  default: {
+    borderWidth: borderWidth.thin,
+    borderColor: '$outlined1',
+  },
+  borderless: {
+    backgroundColor: 'transparent',
+    borderWidth: borderWidth.thin,
+  },
+} as const;

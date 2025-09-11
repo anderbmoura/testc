@@ -5,11 +5,13 @@ import {
   AccordionContainer,
   AccordionTrigger,
   AccordionContent,
+  AccordionContentFooter,
 } from './index';
-import { BodyStandardSemibold } from '../Typography';
+import { BodyStandardSemibold, LabelSmall } from '../Typography';
 import { useTransformIcon } from '../../utils';
 import { useState, PropsWithChildren, useMemo, useEffect } from 'react';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
+import { AccordionTypeVariants } from './Accordion.styles';
 
 /**
  * Accordion
@@ -28,6 +30,8 @@ export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
   disabled = false,
   collapsed = true,
   children,
+  footerProps,
+  accordionStyle = 'default',
   ...props
 }) => {
   /**
@@ -36,18 +40,16 @@ export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
   const [value, setValue] = useState<string[]>([]);
   const isOpen = value.includes('item1');
   useEffect(() => {
-    if (disabled) {
-      setValue([]);
-    } else {
-      setValue(!collapsed ? ['item1'] : []);
-    }
+    setValue(disabled ? [] : !collapsed ? ['item1'] : []);
   }, [collapsed, disabled]);
 
   /**
-   * collapsed style props
+   * style props
    */
-  const collapsedProps = isOpen ? { collapsed: true } : { collapsed: false };
-
+  const styleProps = {
+    ...AccordionTypeVariants[accordionStyle],
+    ...(accordionStyle === 'default' ? { collapsed: isOpen } : {}),
+  };
   /**
    * icon transformation
    */
@@ -68,10 +70,10 @@ export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
       onValueChange={(value: string[]) => setValue(value)}
       disabled={disabled}
       {...props}
-      {...collapsedProps}
+      {...styleProps}
     >
       <Accord.Item value="item1">
-        <AccordionTrigger unstyled disabled={disabled} {...collapsedProps}>
+        <AccordionTrigger unstyled disabled={disabled} {...styleProps}>
           {() => (
             <>
               <BodyStandardSemibold
@@ -86,7 +88,15 @@ export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
           )}
         </AccordionTrigger>
         <Accord.HeightAnimator animation={'quick'}>
-          <AccordionContent>{children}</AccordionContent>
+          <AccordionContent>
+            {children}
+            {footerProps && (
+              <AccordionContentFooter>
+                <LabelSmall>{footerProps.label}</LabelSmall>
+                <LabelSmall>{footerProps.value}</LabelSmall>
+              </AccordionContentFooter>
+            )}
+          </AccordionContent>
         </Accord.HeightAnimator>
       </Accord.Item>
     </AccordionContainer>

@@ -19,12 +19,14 @@ O componente Accordion é utilizado para exibir conteúdo de forma colapsável, 
 
 #### 📌 Props
 
-| Propriedade | Tipo | Descrição |
-|-------------|------|-----------|
-| \`title\` | \`string\` | Título exibido no cabeçalho do Accordion. |
-| \`collapsed\` | \`boolean\` | Define se o Accordion inicia colapsado (\`true\`) ou expandido (\`false\`). |
-| \`disabled\` | \`boolean\` | Desabilita a interação com o Accordion. |
-| \`children\` | \`React.ReactNode\` | Conteúdo interno do Accordion. Pode ser texto ou qualquer outro componente. |
+| Propriedade      | Tipo              | Descrição |
+|------------------|-------------------|-----------|
+| \`title\`         | \`string\`         | Título exibido no cabeçalho do Accordion. |
+| \`collapsed\`     | \`boolean\`        | Define se o Accordion inicia colapsado (\`true\`) ou expandido (\`false\`). |
+| \`disabled\`      | \`boolean\`        | Desabilita a interação com o Accordion. |
+| \`accordionStyle\`| \`string\`         | Estilo visual do Accordion. |
+| \`footerProps\`   | \`{label, value}\` | Props do rodapé do Accordion. Deixe vazio para ocultar o rodapé. |
+| \`children\`      | \`React.ReactNode\`| Conteúdo interno do Accordion. Pode ser texto ou qualquer outro componente. |
 
 #### 🧪 Playground Interativo
 Use os controles para testar diferentes combinações de props diretamente no Storybook.
@@ -36,8 +38,18 @@ Use os controles para testar diferentes combinações de props diretamente no St
   title="Título do Accordion"
   collapsed={false}
   disabled={false}
+  accordionStyle="default"
+  footerProps={{ label: 'Rodapé', value: 'Valor' }}
 >
   Conteúdo do Accordion
+</Accordion>
+
+// Para ocultar o rodapé, deixe footerProps vazio:
+<Accordion
+  title="Accordion sem rodapé"
+  collapsed={true}
+>
+  Conteúdo sem rodapé
 </Accordion>
 \`\`\`
         `,
@@ -75,6 +87,15 @@ Use os controles para testar diferentes combinações de props diretamente no St
       control: 'boolean',
       description: 'Desabilita a interação com o Accordion.',
     },
+    accordionStyle: {
+      control: 'select',
+      options: ['default', 'borderless'],
+      description: 'Estilo visual do Accordion.',
+    },
+    footerProps: {
+      control: 'object',
+      description: 'Props do rodapé do Accordion (label e value).',
+    },
     children: {
       control: 'text',
       description: 'Conteúdo do Accordion.',
@@ -90,6 +111,8 @@ export const Default: Story = {
     title: 'Título do Accordion',
     collapsed: true,
     disabled: false,
+    accordionStyle: 'default',
+    footerProps: { label: 'Rodapé', value: 'Valor' },
     children: 'Conteúdo do Accordion',
   },
 };
