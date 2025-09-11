@@ -108,7 +108,7 @@ export const ExtractList: React.FC<ExtractListProps> = ({
       testID={testID}
       renderItem={({ item }) => (
         <ExtractItem
-          variant={variantSelector(item.service + item.supportTextValue)}
+          iconVariant={variantSelector(item.service + item.supportTextValue)}
           icon={iconMap[item.type as keyof typeof iconMap]}
           item={item}
         ></ExtractItem>
