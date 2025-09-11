@@ -104,11 +104,6 @@ import { SendDollars } from 'iconoir-react-native';
     return <ExtractItem {...args} icon={args.icon} />;
   },
   argTypes: {
-    variant: {
-      control: 'radio',
-      options: ['success', 'neutral', 'danger'],
-      description: 'Variante visual do item.',
-    },
     item: {
       control: 'object',
       description: 'Objeto do item do extrato.',
@@ -119,6 +114,11 @@ import { SendDollars } from 'iconoir-react-native';
       description: 'Ícone personalizado exibido no item.',
       mapping: iconMapping,
     },
+    iconVariant: {
+      control: 'radio',
+      options: ['success', 'neutral', 'danger'],
+      description: 'Variante visual do item.',
+    },
     showIcon: {
       control: 'boolean',
       description: 'Exibe o ícone do item.',
@@ -127,9 +127,10 @@ import { SendDollars } from 'iconoir-react-native';
       control: 'boolean',
       description: 'Exibe o texto de suporte do item.',
     },
-    isFocused: {
-      control: 'boolean',
-      description: 'Exibe estilo do componente quando está em foco',
+    detailsVariant: {
+      control: 'radio',
+      options: ['neutral', 'danger'],
+      description: 'Variante visual do detalhe do item.',
     },
   },
 };
@@ -139,7 +140,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    variant: 'success',
     item: {
       value: 'R$ 100,00',
       service: 'Transferência recebida',
@@ -147,6 +147,8 @@ export const Default: Story = {
       supportTextValue: 'Pix',
     },
     icon: 'SendDollars',
+    iconVariant: 'neutral',
+    detailsVariant: 'neutral',
     showIcon: true,
     showSupportTextValue: true,
   },

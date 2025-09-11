@@ -1,4 +1,5 @@
-import { ExtractListVariant } from '../ExtractList.model';
+type ExtractItemVariant = 'success' | 'neutral' | 'danger';
+type DetailsVariant = 'neutral' | 'danger';
 
 export interface ExtractItemProps {
   /**
@@ -22,7 +23,7 @@ export interface ExtractItemProps {
    * - 'neutral': operação neutra
    * @default 'neutral'
    */
-  variant?: ExtractListVariant;
+  iconVariant?: ExtractItemVariant;
 
   /**
    * Ícone personalizado para o item.
@@ -41,6 +42,11 @@ export interface ExtractItemProps {
    * @default true
    */
   showSupportTextValue?: boolean;
-
-  isFocused?: boolean;
+  /**
+   * Variante visual do detalhe do item, define a cor do texto de detalhe.
+   * - 'neutral': cor padrão de detalhes
+   * - 'danger': cor de alerta para detalhes
+   * @default 'neutral'
+   */
+  detailsVariant?: DetailsVariant;
 }

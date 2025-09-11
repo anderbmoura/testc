@@ -1,6 +1,3 @@
-/**
- * Visual variants for the CardAlert component.
- */
 export type ExtractListVariant = 'success' | 'neutral' | 'danger';
 
 /**
