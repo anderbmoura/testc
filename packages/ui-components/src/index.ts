@@ -107,6 +107,8 @@ export { DscProvider } from './config/DscProvider';
 export { dscFonts, type DscFonts } from './config/fonts';
 export { typography as typographyPresets } from './config/fonts/typography';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
+export { default as CreditCardButton } from './components/CreditCardButton';
+export type { CreditCardButtonProps } from './components/CreditCardButton';
 export { Avatar, AvatarStack } from './components/Avatar';
 export type { AvatarProps, AvatarStackProps } from './components/Avatar';
 export {

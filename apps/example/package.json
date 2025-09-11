@@ -3,7 +3,7 @@
   "main": "index.js",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start -c --port 8082 --localhost",
+    "start": "expo start -c --port 8082 --offline",
     "android": "expo start --android --port 8082 --localhost",
     "ios": "expo start --ios --port 8082 --localhost",
     "web": "expo start --web --port 8082 --localhost",
