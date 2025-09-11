@@ -16,10 +16,8 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
-          'Introdução',
-          'Instalação',
-          'Primeiros Passos',
           'Componentes',
+          'Templates',
           'Design System',
           [
             'Temas',
@@ -29,6 +27,9 @@ const preview: Preview = {
           ],
           'Guia de Contribuição',
           ['Instalação', 'Como Contribuir', 'Convenções do Projeto'],
+          'Introdução',
+          'Instalação',
+          'Primeiros Passos',
         ],
       },
     },
