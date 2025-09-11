@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { View } from 'react-native';
-import { styled, YStack, Image, Theme } from 'tamagui';
+import { styled, YStack, Image, Theme, Text } from 'tamagui';
 import { LabelSmallRegular } from '../Typography';
 import { borderWidth } from '../../config/tokens/borderWidth/borderWidth';
 import { IconButtonTextProps } from './IconButtonText.model';
@@ -8,7 +8,6 @@ import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
 import { useTransformIcon } from '../../utils';
 import Spinner from '../Spinner';
-import BadgeText from '../BadgeText';
 
 const StyledIconContainerWrapper = styled(View, {
   name: 'IconButtonTextContainerWrapper',
@@ -42,6 +41,10 @@ const StyledBadgeContainer = styled(View, {
   bottom: -8,
   zIndex: 1,
   pointerEvents: 'none',
+  minHeight: 20,
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'row',
 });
 
 const StyledIconContainer = styled(View, {
@@ -107,10 +110,35 @@ const StyledText = styled(LabelSmallRegular, {
   color: '$onNeutral1',
   textAlign: 'center',
   pointerEvents: 'none',
+  maxWidth: 76,
 
   disabledStyle: {
     color: '$onDisabled',
   },
+});
+
+const StyledBadgeText = styled(Text, {
+  name: 'IconButtonTextBadgeText',
+  paddingHorizontal: '$quark',
+  borderRadius: '$big',
+  fontSize: '$nano',
+  position: 'absolute',
+  zIndex: '$500',
+  bottom: 0,
+  fontWeight: '$500',
+
+  variants: {
+    badgeColor: {
+      highlight: {
+        backgroundColor: '$highlightBg',
+        color: '$highlight',
+      },
+      danger: {
+        backgroundColor: '$dangerBg',
+        color: '$danger',
+      },
+    },
+  } as const,
 });
 
 /**
@@ -288,9 +316,9 @@ export default function IconButtonText({
 
           {badgeText && (
             <StyledBadgeContainer>
-              <BadgeText size="small" color={badgeColor}>
+              <StyledBadgeText badgeColor={badgeColor}>
                 {badgeText}
-              </BadgeText>
+              </StyledBadgeText>
             </StyledBadgeContainer>
           )}
         </StyledIconContainer>
