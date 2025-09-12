@@ -1,5 +1,5 @@
 import React from 'react';
-import { WidgetRowContainer } from './WidgetRow.styles';
+import { WidgetRowContainer, WidgetItemWrapper } from './WidgetRow.styles';
 import type { WidgetRowProps } from './WidgetRow.model';
 
 /**
@@ -23,16 +23,9 @@ export const WidgetRow: React.FC<WidgetRowProps> = ({ children, ...props }) => {
     );
   }
 
-  const childrenWithFlex = React.Children.map(children, (child, index) => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, {
-        key: index,
-        flex: 1,
-        ...child.props,
-      } as any);
-    }
-    return child;
-  });
+  const wrappedChildren = React.Children.map(children, (child, index) => (
+    <WidgetItemWrapper key={index}>{child}</WidgetItemWrapper>
+  ));
 
-  return <WidgetRowContainer {...props}>{childrenWithFlex}</WidgetRowContainer>;
+  return <WidgetRowContainer {...props}>{wrappedChildren}</WidgetRowContainer>;
 };

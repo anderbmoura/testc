@@ -52,6 +52,64 @@ import { Home, User, Settings } from 'iconoir-react-native';
 \`\`\`
         `,
       },
+      source: {
+        transform: (_: string, { args }: { args: ActionsButtonRowProps }) => {
+          const props = [
+            args.title && `title="${args.title}"`,
+            args.buttonActionName &&
+              `buttonActionName="${args.buttonActionName}"`,
+            args.initialRowNumber &&
+              args.initialRowNumber !== 2 &&
+              `initialRowNumber={${args.initialRowNumber}}`,
+            'onButtonAction={() => {}}',
+          ]
+            .filter(Boolean)
+            .join('\n  ');
+
+          const indent = '  ';
+          const buttonRowsCode = `${indent}<ButtonRow>
+${indent}  <IconButtonText icon={<Home />}>
+${indent}    Início
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<User />}>
+${indent}    Perfil
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<Settings />}>
+${indent}    Configurações
+${indent}  </IconButtonText>
+${indent}</ButtonRow>
+${indent}<ButtonRow>
+${indent}  <IconButtonText icon={<CreditCard />}>
+${indent}    Cartões
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<Bell />}>
+${indent}    Notificações
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<Heart />}>
+${indent}    Favoritos
+${indent}  </IconButtonText>
+${indent}</ButtonRow>
+${indent}<ButtonRow>
+${indent}  <IconButtonText icon={<Home />}>
+${indent}    Dashboard
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<User />}>
+${indent}    Usuários
+${indent}  </IconButtonText>
+${indent}  <IconButtonText icon={<Settings />}>
+${indent}    Admin
+${indent}  </IconButtonText>
+${indent}</ButtonRow>`;
+
+          return `<ActionsButtonRow
+  ${props}
+>
+${buttonRowsCode}
+</ActionsButtonRow>`;
+        },
+        state: 'open',
+        excludeDecorators: true,
+      },
     },
   },
   tags: ['autodocs'],

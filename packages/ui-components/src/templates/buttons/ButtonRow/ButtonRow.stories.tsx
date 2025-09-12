@@ -36,6 +36,39 @@ import { Home, Settings, User } from 'iconoir-react-native';
 \`\`\`
         `,
       },
+      source: {
+        transform: (_: string, { _args }: { _args: ButtonRowProps }) => {
+          return `<ButtonRow>
+  <IconButtonText
+    icon={<Home />}
+    onPress={() => console.log('Home pressed')}
+  >
+    Início
+  </IconButtonText>
+  <IconButtonText
+    icon={<HelpCircle />}
+    badgeText="Novo"
+    onPress={() => console.log('Profile pressed')}
+  >
+    Avisos
+  </IconButtonText>
+  <IconButtonText
+    icon={<Settings />}
+    onPress={() => console.log('Settings pressed')}
+  >
+    Configurações
+  </IconButtonText>
+  <IconButtonText
+    icon={<User />}
+    onPress={() => console.log('Profile pressed')}
+  >
+    Perfil
+  </IconButtonText>
+</ButtonRow>`;
+        },
+        state: 'open',
+        excludeDecorators: true,
+      },
     },
   },
   tags: ['autodocs'],

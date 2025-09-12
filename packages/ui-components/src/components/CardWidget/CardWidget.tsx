@@ -70,6 +70,7 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
   if (onPress) {
     return (
       <YStack
+        flex={1}
         onPress={onPress}
         onFocus={handlers.onFocus}
         onBlur={handlers.onBlur}

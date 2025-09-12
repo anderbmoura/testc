@@ -5,7 +5,7 @@ import { CardProps } from './Card.model';
 const DscCard = styled(View, {
   name: 'DscCard',
   borderRadius: '$big',
-  width: 'auto',
+  width: '100%',
   overflow: 'hidden',
 
   variants: {

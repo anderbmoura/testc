@@ -5,6 +5,7 @@ import { borderRadius } from '../../../config/tokens/borderRadius/borderRadius';
 
 export const CardWidgetWrapper = styled(View, {
   name: 'CardWidgetWrapper',
+  flex: 1,
   padding: borderWidth.thick,
   borderRadius: borderRadius.large + 12,
   borderWidth: borderWidth.thick,
@@ -58,6 +59,7 @@ export const CardWidgetHeaderTopRow = styled(XStack, {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'space-between',
+  flexShrink: 1,
 });
 
 export const CardWidgetIconContainer = styled(View, {

@@ -44,10 +44,14 @@ export const CardWidgetHeader: React.FC<CardWidgetHeaderProps> = ({
   return (
     <CardWidgetHeaderContainer>
       <CardWidgetHeaderTopRow>
-        <LabelSmall color="$onNeutral2">{topLabel}</LabelSmall>
+        <LabelSmall color="$onNeutral2" numberOfLines={1} flexShrink={1}>
+          {topLabel}
+        </LabelSmall>
         {renderIconOrImage()}
       </CardWidgetHeaderTopRow>
-      <LabelStandard color="$onNeutral1">{mainLabel}</LabelStandard>
+      <LabelStandard color="$onNeutral1" numberOfLines={2} flexShrink={1}>
+        {mainLabel}
+      </LabelStandard>
     </CardWidgetHeaderContainer>
   );
 };
