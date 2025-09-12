@@ -72,14 +72,8 @@ export { ExtractList, type ExtractListProps } from './components/ExtractList';
 export { ForYouCard } from './components/ForYouCard';
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
-export {
-  List,
-  ListItem,
-  FlatListItemExample,
-  type Item,
-  type ItemProps,
-  type FlatListProps,
-} from './components/List';
+export { ListItem } from './components/ListItem';
+export type { ListItemProps } from './components/ListItem';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
 export { InputMoney, InputMoneyFeedback } from './components/InputMoney';
