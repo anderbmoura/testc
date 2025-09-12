@@ -137,3 +137,5 @@ export { ActionsButtonRow } from './templates/buttons/ActionsButtonRow';
 export type { ActionsButtonRowProps } from './templates/buttons/ActionsButtonRow';
 export { WidgetRow } from './templates/cards/WidgetRow';
 export type { WidgetRowProps } from './templates/cards/WidgetRow';
+export { CarouselVertical } from './templates/cards/CarouselVertical';
+export type { CarouselVerticalProps } from './templates/cards/CarouselVertical';
