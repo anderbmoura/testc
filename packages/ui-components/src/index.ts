@@ -1,5 +1,13 @@
 export * from 'tamagui';
 export {
+  Accordion,
+  AccordionContainer,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionContentFooter,
+} from './components/Accordion';
+export type { AccordionProps, accordionStyle } from './components/Accordion';
+export {
   AlertDialog,
   AlertDialogDemo,
   type AlertDialogProps,
@@ -50,6 +58,17 @@ export type {
   CardWidgetProps,
   CardWidgetVariant,
 } from './components/CardWidget';
+export { Chips } from './components/Chips';
+export type {
+  ChipsProps,
+  ChipsLeftSlotProps,
+  ChipsRightSlotProps,
+  ChipsLeftSlotVariant,
+  ChipsRightSlotVariant,
+  ChipsVariant,
+} from './components/Chips';
+export { ExtractItem, type ExtractItemProps } from './components/ExtractList';
+export { ExtractList, type ExtractListProps } from './components/ExtractList';
 export { ForYouCard } from './components/ForYouCard';
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
