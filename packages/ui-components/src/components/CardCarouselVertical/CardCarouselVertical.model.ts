@@ -8,9 +8,9 @@ import type { MaskImageProps } from './components/MaskImage/MaskImage.model';
 export type { BackgroundImageProps, BackgroundImageVariant, MaskImageProps };
 
 /**
- * Opções de configuração para o Componente DSC ForYouCard.
+ * Opções de configuração para o Componente DSC CardCarouselVertical.
  */
-export interface ForYouCardProps {
+export interface CardCarouselVerticalProps {
   /**
    * Source da imagem para exibir no card.
    */

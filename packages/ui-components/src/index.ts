@@ -69,7 +69,7 @@ export type {
 } from './components/Chips';
 export { ExtractItem, type ExtractItemProps } from './components/ExtractList';
 export { ExtractList, type ExtractListProps } from './components/ExtractList';
-export { ForYouCard } from './components/ForYouCard';
+export { CardCarouselVertical } from './components/CardCarouselVertical';
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
 export { ListItem } from './components/ListItem';

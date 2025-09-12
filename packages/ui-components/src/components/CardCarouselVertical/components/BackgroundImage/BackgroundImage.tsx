@@ -4,7 +4,7 @@ import { useTheme } from 'tamagui';
 import { BackgroundImageProps } from './BackgroundImage.model';
 
 /**
- * Componente de imagem de fundo para o ForYouCard
+ * Componente de imagem de fundo para o CardCarouselVertical
  *
  * Renderiza um SVG de fundo com cores dinâmicas baseadas na variante selecionada.
  */

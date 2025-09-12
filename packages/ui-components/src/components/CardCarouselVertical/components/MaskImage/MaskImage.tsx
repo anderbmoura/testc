@@ -3,7 +3,7 @@ import Svg, { Defs, G, Image, Mask, Path } from 'react-native-svg';
 import { MaskImageProps } from './MaskImage.model';
 
 /**
- * Componente de imagem com máscara para o ForYouCard
+ * Componente de imagem com máscara para o CardCarouselVertical
  *
  * Aplica uma máscara SVG customizada sobre a imagem fornecida.
  */

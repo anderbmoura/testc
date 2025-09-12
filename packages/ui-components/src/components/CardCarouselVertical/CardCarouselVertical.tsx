@@ -4,22 +4,22 @@ import { BackgroundContainer } from './components/BackgroundImage/BackgroundImag
 import { MaskImage } from './components/MaskImage';
 import { MaskContainer } from './components/MaskImage/MaskImage.styles';
 import { BodyStandardSemibold, LabelTiny } from '../Typography';
-import { CardContainer, ContentStack } from './ForYouCard.styles';
-import type { ForYouCardProps } from './ForYouCard.model';
+import { CardContainer, ContentStack } from './CardCarouselVertical.styles';
+import type { CardCarouselVerticalProps } from './CardCarouselVertical.model';
 
 /**
- * Componente DSC ForYouCard
+ * Componente DSC CardCarouselVertical
  *
  * Exibe um card de recomendação com background colorido e uma imagem com máscara aplicada por cima.
  * Suporta diferentes temas visuais (highlight, accent, success, etc.).
  *
  * @example
- * <ForYouCard
+ * <CardCarouselVertical
  *   source={require('./assets/casa-bonita.jpg')}
  *   variant="highlight"
  * />
  */
-export const ForYouCard: React.FC<ForYouCardProps> = ({
+export const CardCarouselVertical: React.FC<CardCarouselVerticalProps> = ({
   source,
   variant = 'highlight',
 }) => {
@@ -43,4 +43,4 @@ export const ForYouCard: React.FC<ForYouCardProps> = ({
   );
 };
 
-export default ForYouCard;
+export default CardCarouselVertical;

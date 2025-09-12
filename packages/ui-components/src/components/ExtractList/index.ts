@@ -1,5 +1,5 @@
 export { ExtractList } from './ExtractList';
-export { ExtractListProps } from './ExtractList.model';
+export type { ExtractListProps } from './ExtractList.model';
 export { ExtractItem } from './ExtractItem/ExtractItem';
-export { ExtractItemProps } from './ExtractItem/ExtractItem.model';
+export type { ExtractItemProps } from './ExtractItem/ExtractItem.model';
 export { mockData } from './mock-example';

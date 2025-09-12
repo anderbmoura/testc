@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { View, type ImageProps } from 'tamagui';
-import { ForYouCard } from './ForYouCard';
-import type { ForYouCardProps } from './ForYouCard.model';
+import { CardCarouselVertical } from './CardCarouselVertical';
+import type { CardCarouselVerticalProps } from './CardCarouselVertical.model';
 
 const imageMapping = {
   'Casa Bonita': { uri: '/images/example/casa-bonita.jpg' },
@@ -9,63 +9,63 @@ const imageMapping = {
 };
 
 const meta = {
-  title: 'Componentes/ForYouCard',
-  component: ForYouCard,
+  title: 'Componentes/CardCarouselVertical',
+  component: CardCarouselVertical,
   parameters: {
     layout: 'padded',
     docs: {
       description: {
         component: `
-Componente DSC ForYouCard para exibir recomendações personalizadas.
+Componente DSC CardCarouselVertical para exibir recomendações personalizadas.
 
 ## Como usar
 
 \`\`\`tsx
-import { ForYouCard } from '@superapp-caixa/dsc-library';
+import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
 
 // Card padrão com tema highlight
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/casa-bonita.jpg')}
 />
 
 // Card com tema de sucesso
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/apartamento.jpg')}
   variant="success"
 />
 
 // Card com tema de perigo
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/casa-popular.jpg')}
   variant="danger"
 />
 
 // Card com tema de aviso
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/terreno.jpg')}
   variant="warning"
 />
 
 // Card com tema informativo
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/comercial.jpg')}
   variant="info"
 />
 
 // Card com tema neutro
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/industrial.jpg')}
   variant="neutral"
 />
 
 // Card com tema decorativo
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/rural.jpg')}
   variant="decorative"
 />
 
 // Card com tema de destaque
-<ForYouCard 
+<CardCarouselVertical 
   source={require('./assets/luxo.jpg')}
   variant="accent"
 />
@@ -94,7 +94,7 @@ import { ForYouCard } from '@superapp-caixa/dsc-library';
             .filter(Boolean)
             .join(' ');
 
-          return `<ForYouCard${props && ` ${props}`} />`;
+          return `<CardCarouselVertical${props && ` ${props}`} />`;
         },
         state: 'open',
         excludeDecorators: true,
@@ -108,7 +108,7 @@ import { ForYouCard } from '@superapp-caixa/dsc-library';
         ? imageMapping[args.source as keyof typeof imageMapping]
         : args.source;
 
-    return <ForYouCard {...args} source={imageSource} />;
+    return <CardCarouselVertical {...args} source={imageSource} />;
   },
   argTypes: {
     source: {
@@ -143,11 +143,11 @@ import { ForYouCard } from '@superapp-caixa/dsc-library';
       </View>
     ),
   ],
-} satisfies Meta<typeof ForYouCard>;
+} satisfies Meta<typeof CardCarouselVertical>;
 
 export default meta;
-type Story = StoryObj<typeof ForYouCard> & {
-  args?: Partial<ForYouCardProps> & {
+type Story = StoryObj<typeof CardCarouselVertical> & {
+  args?: Partial<CardCarouselVerticalProps> & {
     source?: keyof typeof imageMapping | ImageProps['source'];
   };
 };
