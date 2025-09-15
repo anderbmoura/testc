@@ -26,6 +26,7 @@ export const SectionListItem = styled(ButtonFrame, {
   justifyContent: 'space-between',
   flexDirection: 'row',
   minHeight: 72,
+  height: 'auto',
   gap: '$space.quark',
   paddingVertical: '$space.micro',
   paddingLeft: '$space.quark',

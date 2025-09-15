@@ -39,9 +39,10 @@ export const ExtractItem: React.FC<ExtractItemProps> = ({
   detailsVariant = 'neutral',
   showIcon = true,
   showSupportTextValue = true,
+  ...props
 }) => {
   return (
-    <SectionListItem>
+    <SectionListItem {...props}>
       <SectionContent>
         {showIcon && icon ? (
           <ItemIcon icon={icon} variant={iconVariant} />

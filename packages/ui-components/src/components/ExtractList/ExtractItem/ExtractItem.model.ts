@@ -1,7 +1,9 @@
+import { ViewProps } from 'tamagui';
+
 type ExtractItemVariant = 'success' | 'neutral' | 'danger';
 type DetailsVariant = 'neutral' | 'danger';
 
-export interface ExtractItemProps {
+export interface ExtractItemProps extends ViewProps {
   /**
    * Objeto com os dados do item do extrato financeiro.
    * - value: Valor da transação (ex: 'R$ 100,00')
