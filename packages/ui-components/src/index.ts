@@ -139,3 +139,5 @@ export { WidgetRow } from './templates/cards/WidgetRow';
 export type { WidgetRowProps } from './templates/cards/WidgetRow';
 export { CarouselVertical } from './templates/cards/CarouselVertical';
 export type { CarouselVerticalProps } from './templates/cards/CarouselVertical';
+export { CarouselHorizontal } from './templates/cards/CarouselHorizontal';
+export type { CarouselHorizontalProps } from './templates/cards/CarouselHorizontal';
