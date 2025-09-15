@@ -74,6 +74,12 @@ export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
 export { ListItem } from './components/ListItem';
 export type { ListItemProps } from './components/ListItem';
+export { ListHeading } from './components/ListHeading';
+export type {
+  ListHeadingProps,
+  ListHeadingSize,
+  ListHeadingConfiguration,
+} from './components/ListHeading';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
 export { InputMoney, InputMoneyFeedback } from './components/InputMoney';
