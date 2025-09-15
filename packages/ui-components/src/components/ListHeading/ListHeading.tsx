@@ -18,13 +18,13 @@ const Container = styled(XStack, {
   variants: {
     size: {
       standard: {
-        paddingHorizontal: '$nano',
-        paddingVertical: '$tiny',
+        paddingVertical: '$nano',
+        paddingHorizontal: '$tiny',
         minHeight: 44,
       },
       small: {
-        paddingHorizontal: '$none',
-        paddingVertical: '$tiny',
+        paddingVertical: '$none',
+        paddingHorizontal: '$tiny',
         minHeight: 32,
       },
     },
@@ -32,12 +32,6 @@ const Container = styled(XStack, {
     configuration: {
       simple: {
         justifyContent: 'center',
-      },
-      button: {
-        paddingRight: '$tiny',
-      },
-      iconButton: {
-        paddingRight: '$quark',
       },
     },
   } as const,

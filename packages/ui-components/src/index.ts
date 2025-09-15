@@ -149,3 +149,5 @@ export { CarouselHorizontal } from './templates/cards/CarouselHorizontal';
 export type { CarouselHorizontalProps } from './templates/cards/CarouselHorizontal';
 export { List } from './templates/lists/List';
 export type { ListProps } from './templates/lists/List';
+export { ContentCard } from './templates/lists/ContentCard';
+export type { ContentCardProps } from './templates/lists/ContentCard';
