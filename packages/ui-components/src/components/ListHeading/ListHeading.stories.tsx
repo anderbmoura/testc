@@ -38,7 +38,7 @@ import { ListHeading } from '@superapp-caixa/dsc-library';
 <ListHeading 
   title="Categoria"
   size="small"
-  configuration="icon button"
+  configuration="iconButton"
   onButtonPress={() => console.log('Botão ícone pressionado')}
 />
 \`\`\`
@@ -89,9 +89,9 @@ import { ListHeading } from '@superapp-caixa/dsc-library';
     configuration: {
       description: 'Configuração visual do componente',
       control: { type: 'select' },
-      options: ['simple', 'button', 'icon button'],
+      options: ['simple', 'button', 'iconButton'],
       table: {
-        type: { summary: 'simple | button | icon button' },
+        type: { summary: 'simple | button | iconButton' },
         defaultValue: { summary: 'simple' },
       },
     },
@@ -105,7 +105,7 @@ import { ListHeading } from '@superapp-caixa/dsc-library';
     },
     buttonIcon: {
       description:
-        'Ícone personalizado para o botão (usado apenas quando configuration="icon button")',
+        'Ícone personalizado para o botão (usado apenas quando configuration="iconButton")',
       control: { type: 'select' },
       options: ['NavArrowRight', 'Settings', 'Star', 'Heart'],
       mapping: {

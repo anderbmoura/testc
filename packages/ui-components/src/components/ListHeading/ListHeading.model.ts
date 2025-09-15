@@ -9,7 +9,7 @@ export type ListHeadingSize = 'standard' | 'small';
 /**
  * Configuração visual do componente ListHeading.
  */
-export type ListHeadingConfiguration = 'simple' | 'button' | 'icon button';
+export type ListHeadingConfiguration = 'simple' | 'button' | 'iconButton';
 
 /**
  * Opções de configuração para o Componente DSC ListHeading.
@@ -34,7 +34,7 @@ export interface ListHeadingProps extends Omit<ViewProps, 'onPress'> {
    * Configuração visual do componente.
    * - `simple`: Apenas título sem elementos interativos
    * - `button`: Título com botão de texto
-   * - `icon button`: Título com botão de ícone
+   * - `iconButton`: Título com botão de ícone
    * @default 'simple'
    */
   configuration?: ListHeadingConfiguration;
@@ -45,14 +45,14 @@ export interface ListHeadingProps extends Omit<ViewProps, 'onPress'> {
   buttonText?: string;
 
   /**
-   * Ícone personalizado para o botão (usado apenas quando configuration='icon button').
+   * Ícone personalizado para o botão (usado apenas quando configuration='iconButton').
    * Se não fornecido, usa o ícone padrão (seta para direita).
    */
   buttonIcon?: React.ReactNode;
 
   /**
    * Função chamada quando o botão é pressionado.
-   * Aplicável apenas quando configuration='button' ou configuration='icon button'.
+   * Aplicável apenas quando configuration='button' ou configuration='iconButton'.
    */
   onButtonPress?: () => void;
 }

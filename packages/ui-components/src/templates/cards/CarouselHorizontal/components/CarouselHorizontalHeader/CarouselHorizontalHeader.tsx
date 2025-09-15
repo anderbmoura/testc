@@ -1,8 +1,5 @@
 import React from 'react';
-import { View } from 'tamagui';
-import { BodyLargeSemibold } from '../../../../../components/Typography';
-import Button from '../../../../../components/Button';
-import { HeaderContainer } from './CarouselHorizontalHeader.styles';
+import { ListHeading } from '../../../../../components/ListHeading';
 import type { CarouselHorizontalHeaderProps } from './CarouselHorizontalHeader.model';
 
 /**
@@ -12,18 +9,11 @@ import type { CarouselHorizontalHeaderProps } from './CarouselHorizontalHeader.m
 export const CarouselHorizontalHeader: React.FC<
   CarouselHorizontalHeaderProps
 > = ({ title, buttonActionName, onButtonAction }) => (
-  <HeaderContainer>
-    {title && (
-      <BodyLargeSemibold color="$color12" marginRight="auto">
-        {title}
-      </BodyLargeSemibold>
-    )}
-    {buttonActionName && (
-      <View marginLeft="auto">
-        <Button theme="highlight" type="chromeless" onPress={onButtonAction}>
-          {buttonActionName}
-        </Button>
-      </View>
-    )}
-  </HeaderContainer>
+  <ListHeading
+    title={title || ''}
+    configuration={buttonActionName ? 'button' : 'simple'}
+    buttonText={buttonActionName}
+    onButtonPress={onButtonAction}
+    size="standard"
+  />
 );

@@ -13,17 +13,18 @@ const Container = styled(XStack, {
   width: '100%',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: '$nano',
 
   variants: {
     size: {
       standard: {
-        paddingHorizontal: '$small',
-        paddingVertical: '$nano',
+        paddingHorizontal: '$nano',
+        paddingVertical: '$tiny',
         minHeight: 44,
       },
       small: {
-        paddingHorizontal: '$small',
-        paddingVertical: 0,
+        paddingHorizontal: '$none',
+        paddingVertical: '$tiny',
         minHeight: 32,
       },
     },
@@ -35,7 +36,7 @@ const Container = styled(XStack, {
       button: {
         paddingRight: '$tiny',
       },
-      'icon button': {
+      iconButton: {
         paddingRight: '$quark',
       },
     },
@@ -76,7 +77,7 @@ const TitleContainer = styled(YStack, {
  * <ListHeading
  *   title="Categoria"
  *   size="small"
- *   configuration="icon button"
+ *   configuration="iconButton"
  *   onButtonPress={() => console.log('Botão ícone pressionado')}
  * />
  * ```
@@ -118,7 +119,7 @@ export const ListHeading: React.FC<ListHeadingProps> = ({
       );
     }
 
-    if (configuration === 'icon button') {
+    if (configuration === 'iconButton') {
       return (
         <IconButton
           icon={buttonIcon || defaultIcon}
