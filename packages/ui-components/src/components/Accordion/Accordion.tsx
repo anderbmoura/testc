@@ -1,17 +1,17 @@
 import { NavArrowUp } from 'iconoir-react-native';
 import { Accordion as Accord, Square } from 'tamagui';
-import {
-  AccordionProps,
-  AccordionContainer,
-  AccordionTrigger,
-  AccordionContent,
-  AccordionContentFooter,
-} from './index';
 import { BodyStandardSemibold, LabelSmall } from '../Typography';
 import { useTransformIcon } from '../../utils';
 import { useState, PropsWithChildren, useMemo, useEffect } from 'react';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
-import { AccordionTypeVariants } from './Accordion.styles';
+import {
+  AccordionTypeVariants,
+  AccordionContainer,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionContentFooter,
+} from './Accordion.styles';
+import { AccordionProps } from './Accordion.model';
 
 /**
  * Accordion
@@ -92,8 +92,12 @@ export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
             {children}
             {footerProps && (
               <AccordionContentFooter>
-                <LabelSmall>{footerProps.label}</LabelSmall>
-                <LabelSmall>{footerProps.value}</LabelSmall>
+                <LabelSmall color={'$onNeutral3'}>
+                  {footerProps.label}
+                </LabelSmall>
+                <LabelSmall color={'$onNeutral3'}>
+                  {footerProps.value}
+                </LabelSmall>
               </AccordionContentFooter>
             )}
           </AccordionContent>

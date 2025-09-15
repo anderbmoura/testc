@@ -59,14 +59,13 @@ export const AccordionTrigger = styled(Accordion.Trigger, {
 export const AccordionContent = styled(Accordion.Content, {
   name: 'Accordion.Content',
   animation: 'quick',
-  padding: '$space.tiny',
-  gap: '$space.nano',
   exitStyle: { opacity: 0 },
 });
 
 export const AccordionContentFooter = styled(XStack, {
   name: 'Accordion.Content.Footer',
   justifyContent: 'space-between',
+  padding: '$space.tiny',
 });
 
 export const AccordionTypeVariants = {
