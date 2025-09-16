@@ -1,3 +1,4 @@
+import React from 'react';
 import { GetThemeValueForKey } from 'tamagui';
 import { BodySmall, LabelStandard } from '../../Typography';
 import { ExtractItemProps } from './ExtractItem.model';

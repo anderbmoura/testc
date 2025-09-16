@@ -1,8 +1,8 @@
+import React, { useState, PropsWithChildren, useMemo, useEffect } from 'react';
 import { NavArrowUp } from 'iconoir-react-native';
 import { Accordion as Accord, Square } from 'tamagui';
 import { BodyStandardSemibold, LabelSmall } from '../Typography';
 import { useTransformIcon } from '../../utils';
-import { useState, PropsWithChildren, useMemo, useEffect } from 'react';
 import { iconSize } from '../../config/tokens/iconSize/iconSize';
 import {
   AccordionTypeVariants,
