@@ -33,6 +33,12 @@ const Container = styled(XStack, {
       simple: {
         justifyContent: 'center',
       },
+      button: {
+        justifyContent: 'space-between',
+      },
+      iconButton: {
+        justifyContent: 'space-between',
+      },
     },
   } as const,
 });
