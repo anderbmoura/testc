@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { View } from 'react-native';
-import { OptionsList } from './OptionsList';
-import type { OptionsListProps } from './OptionsList.model';
+import { ActionsList } from './ActionsList';
+import type { ActionsListProps } from './ActionsList.model';
 import { ListHeading } from '../../../components/ListHeading';
 import { SegmentedButton } from '../../../components/SegmentedButton';
 import { ListItem } from '../../../components/ListItem';
@@ -10,67 +10,65 @@ import Switch from '../../../components/Switch';
 import { IconButton } from '../../../components/IconButton';
 import {
   NavArrowRight,
-  User,
   CreditCard,
-  Bell,
-  Shield,
-  Settings,
+  Send,
+  DollarCircle,
 } from 'iconoir-react-native';
 
-const meta: Meta<OptionsListProps> = {
-  title: 'Templates/Lists/OptionsList',
-  component: OptionsList,
+const meta: Meta<ActionsListProps> = {
+  title: 'Templates/Lists/ActionsList',
+  component: ActionsList,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component: `
 Template que combina ListHeading, SegmentedButton e List para criar uma interface
-de seleção de opções com cabeçalho, controle segmentado e lista de itens.
+de ações com cabeçalho, controle segmentado e lista de itens de ação.
 
 ## Como usar
 
 \`\`\`tsx
-import { OptionsList, ListHeading, SegmentedButton, ListItem } from '@superapp-caixa/dsc-library';
-import { Settings, User } from 'iconoir-react-native';
+import { ActionsList, ListHeading, SegmentedButton, ListItem } from '@superapp-caixa/dsc-library';
+import { Send, CreditCard } from 'iconoir-react-native';
 
-<OptionsList>
+<ActionsList>
   <ListHeading
-    title="Configurações"
+    title="Ações Rápidas"
     configuration="button"
     buttonText="Ver todas"
     onButtonPress={() => console.log('Ver todas')}
   />
   <SegmentedButton
     buttons={[
-      { label: "Geral", icon: <Settings />, onPress: () => console.log('Geral') },
-      { label: "Perfil", icon: <User />, onPress: () => console.log('Perfil') }
+      { label: "Transferir", icon: <Send />, onPress: () => console.log('Transferir') },
+      { label: "Pagar", icon: <CreditCard />, onPress: () => console.log('Pagar') }
     ]}
   />
   <ListItem
-    textOnLeft="Notificações"
-    onPress={() => console.log('Notificações')}
+    textOnLeft="Transferir Dinheiro"
+    onPress={() => console.log('Transferir')}
   />
   <ListItem
-    textOnLeft="Privacidade"
-    onPress={() => console.log('Privacidade')}
+    textOnLeft="Pagar Conta"
+    onPress={() => console.log('Pagar')}
   />
-</OptionsList>
+</ActionsList>
 \`\`\`
 
 ## Características
 
 - **Cabeçalho configurável**: Suporte a título simples, com botão ou ícone
-- **Controle segmentado**: Filtros ou categorias para organizar as opções
+- **Controle segmentado**: Filtros ou categorias para organizar as ações
 - **Lista flexível**: Aceita qualquer quantidade de ListItem como filhos
 - **Ordem garantida**: Renderização sempre na ordem correta independente da ordem dos children
         `,
       },
       source: {
-        transform: (_: string, _args: { args: OptionsListProps }) => {
-          return `<OptionsList>
+        transform: (_: string, _args: { args: ActionsListProps }) => {
+          return `<ActionsList>
   <ListHeading
-    title="Configurações"
+    title="Ações Rápidas"
     configuration="button"
     buttonText="Ver todas"
     onButtonPress={() => console.log('Ver todas')}
@@ -78,41 +76,41 @@ import { Settings, User } from 'iconoir-react-native';
   <SegmentedButton
     buttons={[
       {
-        label: 'Geral',
-        icon: <Settings />,
+        label: 'Transferir',
+        icon: <Send />,
         variant: 'highlight',
-        onPress: () => console.log('Geral'),
+        onPress: () => console.log('Transferir'),
       },
       {
-        label: 'Perfil',
-        icon: <User />,
+        label: 'Pagar',
+        icon: <CreditCard />,
         variant: 'highlight',
-        onPress: () => console.log('Perfil'),
+        onPress: () => console.log('Pagar'),
       },
     ]}
   />
   <ListItem
-    leftSlot={<IconButton icon={<Bell />} size="small" type="plain" />}
-    textOnLeft="Notificações"
-    labelBottomLeft="Configurar alertas e avisos"
-    rightSlot={<Switch checked={true} />}
-    onPress={() => console.log('Notificações')}
-  />
-  <ListItem
-    leftSlot={<IconButton icon={<Shield />} size="small" type="plain" />}
-    textOnLeft="Privacidade"
-    labelBottomLeft="Configurações de proteção"
+    leftSlot={<IconButton icon={<Send />} size="small" type="plain" />}
+    textOnLeft="Transferir Dinheiro"
+    labelBottomLeft="Envie dinheiro para outras contas"
     rightSlot={<IconButton icon={<NavArrowRight />} size="small" />}
-    onPress={() => console.log('Privacidade')}
+    onPress={() => console.log('Transferir')}
   />
   <ListItem
     leftSlot={<IconButton icon={<CreditCard />} size="small" type="plain" />}
-    textOnLeft="Pagamentos"
-    labelBottomLeft="Gerenciar cartões e métodos"
+    textOnLeft="Pagar Conta"
+    labelBottomLeft="Quite suas contas em dia"
     rightSlot={<IconButton icon={<NavArrowRight />} size="small" />}
-    onPress={() => console.log('Pagamentos')}
+    onPress={() => console.log('Pagar')}
   />
-</OptionsList>`;
+  <ListItem
+    leftSlot={<IconButton icon={<DollarCircle />} size="small" type="plain" />}
+    textOnLeft="Consultar Saldo"
+    labelBottomLeft="Veja seu saldo atualizado"
+    rightSlot={<Switch checked={true} />}
+    onPress={() => console.log('Consultar')}
+  />
+</ActionsList>`;
         },
         state: 'open',
         excludeDecorators: true,
@@ -139,20 +137,17 @@ import { Settings, User } from 'iconoir-react-native';
       },
     },
   },
-} as Meta<OptionsListProps>;
+} as Meta<ActionsListProps>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * Estado padrão do OptionsList com todos os elementos visíveis.
- */
 export const Default: Story = {
   args: {
     children: (
       <>
         <ListHeading
-          title="Configurações"
+          title="Ações Rápidas"
           configuration="button"
           buttonText="Ver todas"
           onButtonPress={() => console.log('Ver todas')}
@@ -160,41 +155,43 @@ export const Default: Story = {
         <SegmentedButton
           buttons={[
             {
-              label: 'Geral',
-              icon: <Settings />,
+              label: 'Transferir',
+              icon: <Send />,
               variant: 'highlight',
-              onPress: () => console.log('Geral'),
+              onPress: () => console.log('Transferir'),
             },
             {
-              label: 'Perfil',
-              icon: <User />,
+              label: 'Pagar',
+              icon: <CreditCard />,
               variant: 'highlight',
-              onPress: () => console.log('Perfil'),
+              onPress: () => console.log('Pagar'),
             },
           ]}
         />
         <ListItem
-          leftSlot={<IconButton icon={<Bell />} size="small" type="plain" />}
-          textOnLeft="Notificações"
-          labelBottomLeft="Configurar alertas e avisos"
-          rightSlot={<Switch checked={true} />}
-          onPress={() => console.log('Notificações')}
-        />
-        <ListItem
-          leftSlot={<IconButton icon={<Shield />} size="small" type="plain" />}
-          textOnLeft="Privacidade"
-          labelBottomLeft="Configurações de proteção"
+          leftSlot={<IconButton icon={<Send />} size="small" type="plain" />}
+          textOnLeft="Transferir Dinheiro"
+          labelBottomLeft="Envie dinheiro para outras contas"
           rightSlot={<IconButton icon={<NavArrowRight />} size="small" />}
-          onPress={() => console.log('Privacidade')}
+          onPress={() => console.log('Transferir')}
         />
         <ListItem
           leftSlot={
             <IconButton icon={<CreditCard />} size="small" type="plain" />
           }
-          textOnLeft="Pagamentos"
-          labelBottomLeft="Gerenciar cartões e métodos"
+          textOnLeft="Pagar Conta"
+          labelBottomLeft="Quite suas contas em dia"
           rightSlot={<IconButton icon={<NavArrowRight />} size="small" />}
-          onPress={() => console.log('Pagamentos')}
+          onPress={() => console.log('Pagar')}
+        />
+        <ListItem
+          leftSlot={
+            <IconButton icon={<DollarCircle />} size="small" type="plain" />
+          }
+          textOnLeft="Consultar Saldo"
+          labelBottomLeft="Veja seu saldo atualizado"
+          rightSlot={<Switch checked={true} />}
+          onPress={() => console.log('Consultar')}
         />
       </>
     ),
