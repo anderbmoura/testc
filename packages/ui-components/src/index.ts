@@ -141,6 +141,7 @@ export {
   type SegmentedButtonItem,
   type SegmentedButtonProps,
 } from './components/SegmentedButton';
+export { IconWrapper, type IconWrapperProps } from './components/IconWrapper';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';
