@@ -86,6 +86,8 @@ export type {
   ListHeadingSize,
   ListHeadingConfiguration,
 } from './components/ListHeading';
+export { ListFooter } from './components/ListFooter';
+export type { ListFooterProps } from './components/ListFooter';
 export { default as IconButtonText } from './components/IconButtonText';
 export type { IconButtonTextProps } from './components/IconButtonText';
 export { InputMoney, InputMoneyFeedback } from './components/InputMoney';
