@@ -112,6 +112,8 @@ export { default as Switch } from './components/Switch';
 export type { SwitchProps } from './components/Switch';
 export { default as TopAppBar } from './components/TopAppBar';
 export type { TopAppBarProps, TopAppBarVariant } from './components/TopAppBar';
+export { ValueSection } from './components/ValueSection';
+export type { ValueSectionProps } from './components/ValueSection';
 export { default as Separator } from './components/Separator';
 export type {
   SeparatorProps,

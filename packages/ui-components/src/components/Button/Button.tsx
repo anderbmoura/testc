@@ -48,20 +48,21 @@ const DscButton = styled(TamaguiButton, {
       plain: {
         backgroundColor: '$color9',
         color: '$color1',
-        borderWidth: 0,
+        borderWidth: 2,
+        borderColor: 'transparent',
 
         hoverStyle: {
           backgroundColor: '$color8',
+          borderColor: 'transparent',
         },
 
         pressStyle: {
           backgroundColor: '$color10',
+          borderColor: 'transparent',
         },
 
         focusStyle: {
-          outlineColor: '$color12',
-          outlineWidth: 2,
-          outlineStyle: 'solid',
+          borderColor: '$color12',
         },
 
         disabledStyle: {
@@ -73,7 +74,7 @@ const DscButton = styled(TamaguiButton, {
       outline: {
         backgroundColor: 'transparent',
         color: '$color9',
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: '$color9',
 
         hoverStyle: {
@@ -85,14 +86,12 @@ const DscButton = styled(TamaguiButton, {
           backgroundColor: '$color2',
           borderColor: '$color9',
           color: '$color9',
-          borderWidth: 2,
         },
 
         focusStyle: {
           backgroundColor: '$color2',
           borderColor: '$color12',
           color: '$color9',
-          borderWidth: 2,
         },
 
         disabledStyle: {
@@ -105,22 +104,23 @@ const DscButton = styled(TamaguiButton, {
       chromeless: {
         backgroundColor: 'transparent',
         color: '$color9',
-        borderWidth: 0,
+        borderWidth: 2,
+        borderColor: 'transparent',
 
         hoverStyle: {
           color: '$color8',
+          borderColor: 'transparent',
         },
 
         pressStyle: {
           backgroundColor: '$color2',
           color: '$color9',
+          borderColor: 'transparent',
         },
 
         focusStyle: {
-          backgroundColor: 'transparent',
           borderColor: '$color12',
           color: '$color9',
-          borderWidth: 2,
         },
 
         disabledStyle: {
