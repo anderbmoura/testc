@@ -1,8 +1,15 @@
-import { DscProvider, View, InputMoney } from '@superapp-caixa/dsc-library';
+import {
+  DscProvider,
+  View,
+  InputMoney,
+  TopAppBar,
+  Button,
+} from '@superapp-caixa/dsc-library';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
 import { YStack } from 'tamagui';
+import { Bell } from 'iconoir-react-native';
 
 function AppContent() {
   const { actualTheme } = useThemeContext();
@@ -15,13 +22,14 @@ function AppContent() {
         <TopAppBar
           variant="small"
           title="Example App"
-          onBackPress={() => console.log('Back pressed')}
-          icons={{
-            back: <Home width={20} height={20} />,
-            camera: <Camera width={20} height={20} />,
-            notifications: <Bell width={20} height={20} />,
-            search: <Search width={18} height={18} />,
-          }}
+          button1={
+            <Button
+              type="chromeless"
+              size="small"
+              icon={<Bell />}
+              onPress={() => console.log('Notifications pressed')}
+            />
+          }
         />
 
         <ScrollView
