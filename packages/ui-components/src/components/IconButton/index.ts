@@ -3,4 +3,5 @@ export type {
   IconButtonProps,
   IconButtonType,
   IconButtonSize,
+  IconButtonColor,
 } from './IconButton.model';

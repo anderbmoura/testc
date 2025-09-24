@@ -33,19 +33,19 @@ export interface IconButtonProps {
 
   /**
    * Tamanho do botão.
-   * - `large`: 48x48px (ícone 24x24px)
-   * - `standard`: 44x44px (ícone 20x20px)
-   * - `small`: 32x32px (ícone 16x16px)
-   * - `tiny`: 24x24px (ícone 16x16px)
+   * - `large`
+   * - `standard`
+   * - `small`
+   * - `tiny`
    * @default 'large'
    */
   size?: IconButtonSize;
 
   /**
    * Cor do botão.
-   * - `highlight`: Aplica tema highlight (padrão)
-   * - `danger`: Aplica tema danger
-   * - `white`: Cores específicas para fundo escuro
+   * - `highlight`
+   * - `danger`
+   * - `white`
    * @default 'highlight'
    */
   color?: IconButtonColor;
