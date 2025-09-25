@@ -123,12 +123,23 @@ export type {
   SeparatorProps,
   SeparatorDirection,
 } from './components/Separator';
+/**
+ * @deprecated VerticalActions e componentes relacionados estão obsoletos e serão removidos em uma versão futura.
+ * Use os seguintes componentes como alternativa:
+ * - VerticalActions → OptionsList
+ * - VerticalActionsSection → ActionsList
+ */
 export {
   VerticalActions,
   VerticalActionsSection,
   type VerticalActionsProps,
   type VerticalActionsSectionProps,
 } from './components/VerticalActions';
+
+/**
+ * @deprecated VerticalActionsItem está obsoleto e será removido em uma versão futura.
+ * Use o componente `ListItem` como alternativa.
+ */
 export {
   VerticalActionsItem,
   type VerticalActionsItemProps,

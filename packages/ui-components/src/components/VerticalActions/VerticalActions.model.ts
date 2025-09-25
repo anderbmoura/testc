@@ -3,6 +3,9 @@ import { SegmentedButtonProps } from '../SegmentedButton';
 
 /**
  * Propriedades do componente VerticalActions.
+ *
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `OptionsList` como alternativa.
  */
 export interface VerticalActionsProps {
   /**

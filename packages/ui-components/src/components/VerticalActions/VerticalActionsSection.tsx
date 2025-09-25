@@ -16,6 +16,10 @@ import Separator from '../Separator';
  * Cada item da lista é representado pelo componente VerticalActionsItem.
  *
  * Opcionalmente, um TextButton pode ser exibido ao lado do título da seção.
+ *
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `ActionsList` como alternativa.
+ *
  * @example
  * <VerticalActionsSection
  *   title="Section Title"

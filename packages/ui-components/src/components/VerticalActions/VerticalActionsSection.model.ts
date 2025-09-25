@@ -2,6 +2,9 @@ import { VerticalActionsItemProps } from './components/VerticalActionsItem/Verti
 
 /**
  * Propriedades do componente VerticalActionsSection.
+ *
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `ActionsList` como alternativa.
  */
 export interface VerticalActionsSectionProps {
   /**

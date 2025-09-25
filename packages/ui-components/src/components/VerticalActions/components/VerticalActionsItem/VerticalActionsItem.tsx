@@ -13,6 +13,10 @@ import {
  * Componente DSC VerticalActionsItem.
  *
  * Usado como parte dos componentes VerticalActions e VerticalActionsSection.
+ *
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `ListItem` como alternativa.
+ *
  * @example
  * <VerticalActionsItem
  *   id="my-unique-key"

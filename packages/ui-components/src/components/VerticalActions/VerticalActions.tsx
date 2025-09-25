@@ -13,6 +13,10 @@ import { VerticalActionsItem } from './components/VerticalActionsItem';
  * 
  * Opcionalmente, pode incluir
  * o componente SegmentedButton acima da lista.
+ * 
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `OptionsList` como alternativa.
+ * 
  * @example
  * <VerticalActions
  *   actions={[

@@ -3,6 +3,9 @@ import { BadgeTextProps } from '../../../BadgeText';
 
 /**
  * Propriedades do componente VerticalActionsItem.
+ *
+ * @deprecated Este componente está obsoleto e será removido em uma versão futura.
+ * Use o componente `ListItem` como alternativa.
  */
 export interface VerticalActionsItemProps {
   /**
