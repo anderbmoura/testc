@@ -77,7 +77,7 @@ export const Default: Story = {
   args: {
     size: 'large',
     spacing: 'small',
-    count: 3,
+    count: 4,
   },
   render: args => (
     <AvatarStack {...args}>

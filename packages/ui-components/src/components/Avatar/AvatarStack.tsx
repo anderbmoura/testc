@@ -4,29 +4,14 @@ import React, {
   cloneElement,
   ReactElement,
 } from 'react';
-import { GetThemeValueForKey, styled, XStack } from 'tamagui';
+import { GetThemeValueForKey, XStack } from 'tamagui';
 import { AvatarSpacing, AvatarProps, AvatarStackProps } from './Avatar.model';
-
-const StackContainer = styled(XStack, {
-  name: 'AvatarStackContainer',
-  position: 'relative',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  overflow: 'visible',
-
-  variants: {
-    size: {
-      small: { height: 32 },
-      standard: { height: 32 },
-      large: { height: 32 },
-    },
-  } as const,
-});
+import { space } from '../../config/tokens/space/space';
 
 const spacingOffset: Record<AvatarSpacing, number> = {
-  small: 28,
-  standard: 32,
-  large: 34,
+  small: space.small,
+  standard: space.medium,
+  large: space.large,
 };
 
 const zIndexTokens: GetThemeValueForKey<'zIndex'>[] = [
@@ -38,41 +23,6 @@ const zIndexTokens: GetThemeValueForKey<'zIndex'>[] = [
   '$0',
 ];
 
-/**
- * Componente AvatarStack da DSC
- *
- * @param count - Número máximo de avatares a serem exibidos
- * ```tsx
- * <AvatarStack count={3}>
- *   <Avatar ... />
- *   <Avatar ... />
- *   <Avatar ... />
- *   <Avatar ... />
- * </AvatarStack>
- * ```
- *
- * @param spacing - Espaçamento horizontal entre os avatares empilhados
- * ```tsx
- * <AvatarStack spacing="small" />
- * <AvatarStack spacing="standard" />
- * <AvatarStack spacing="large" />
- * ```
- *
- * @param size - Tamanho dos avatares dentro da pilha
- * ```tsx
- * <AvatarStack size="small" />
- * <AvatarStack size="standard" />
- * <AvatarStack size="large" />
- * ```
- *
- * @param children - Elementos Avatar passados como filhos para a pilha
- * ```tsx
- * <AvatarStack>
- *   <Avatar ... />
- *   <Avatar ... />
- * </AvatarStack>
- * ```
- */
 export const AvatarStack: React.FC<AvatarStackProps> = ({
   count,
   spacing = 'standard',
@@ -83,9 +33,10 @@ export const AvatarStack: React.FC<AvatarStackProps> = ({
   const validChildren = Children.toArray(children).filter(isValidElement);
   const displayedChildren =
     typeof count === 'number' ? validChildren.slice(0, count) : validChildren;
+  const totalOffset = (displayedChildren.length - 1) * offset;
 
   return (
-    <StackContainer size={size}>
+    <XStack position="relative" width={totalOffset + offset} height={32}>
       {displayedChildren.map((child, index) => {
         if (!isValidElement<AvatarProps>(child)) return null;
 
@@ -98,7 +49,7 @@ export const AvatarStack: React.FC<AvatarStackProps> = ({
           },
         });
       })}
-    </StackContainer>
+    </XStack>
   );
 };
 

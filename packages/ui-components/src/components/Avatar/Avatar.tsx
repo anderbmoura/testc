@@ -5,6 +5,7 @@ import { typography } from '../../config/fonts/typography';
 
 import { useTransformIcon } from '../../utils';
 import { borderRadius } from '../../config/tokens/borderRadius/borderRadius';
+import { iconSize } from '../../config/tokens/iconSize/iconSize';
 
 const DscAvatar = styled(YStack, {
   name: 'DscAvatar',
@@ -80,22 +81,20 @@ export const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const transformIcon = useTransformIcon();
 
-  const getIconSize = () => {
+  const getIconSizeMapping = () => {
     switch (size) {
-      case 'large':
-        return 32;
-      case 'standard':
-        return 24;
       case 'small':
-        return 18;
-      default:
-        return 20;
+        return iconSize.small;
+      case 'standard':
+        return iconSize.medium;
+      case 'large':
+        return iconSize.large;
     }
   };
 
-  const iconSize = getIconSize();
+  const iconSizeMapping = getIconSizeMapping();
   const transformedIcon =
-    style === 'icon' ? transformIcon(icon, iconSize) : null;
+    style === 'icon' ? transformIcon(icon, iconSizeMapping) : null;
 
   const shouldApplyPadding = style === 'icon' || style === 'monogram';
 
