@@ -31,6 +31,10 @@ export const SectionListItem = styled(ButtonFrame, {
   paddingVertical: '$space.micro',
   paddingLeft: '$space.quark',
   paddingRight: '$space.tiny',
+  // Borda transparente por padrão para evitar deslocamento no foco
+  borderWidth: '$borderWidth.thick',
+  borderColor: 'transparent',
+  borderRadius: '$radius.nano',
   hoverStyle: {
     backgroundColor: '$neutral5',
   },
@@ -39,20 +43,6 @@ export const SectionListItem = styled(ButtonFrame, {
   },
   focusStyle: {
     borderColor: '$neutral12',
-    borderWidth: '$borderWidth.thick',
-    borderRadius: '$radius.nano',
-  },
-  variants: {
-    focused: {
-      true: {
-        borderWidth: '$borderWidth.thick',
-        borderColor: '$neutral12',
-        borderRadius: '$radius.nano',
-      },
-      false: {
-        borderColor: 'transparent',
-      },
-    },
   },
 });
 

@@ -12,3 +12,6 @@ export type { StatementListProps } from './StatementList';
 
 export { ContentCard } from './ContentCard';
 export type { ContentCardProps } from './ContentCard';
+
+export { StatementListAccordion } from './StatementListAccordion';
+export type { StatementListAccordionProps } from './StatementListAccordion';
