@@ -7,16 +7,17 @@ import {
   StyledCardContainer,
 } from './ContentCard.styles';
 import type { ContentCardProps } from './ContentCard.model';
+import { useContentCardChildrenSeparation } from './useContentCardChildrenSeparation';
 
 /**
  * Template DSC ContentCard
  *
- * Combina um cabeçalho (ListHeading) com uma lista de itens (List) organizada dentro de um Card.
- * Ideal para exibir listas de conteúdo com título e ação opcional.
+ * Combina um cabeçalho (ListHeading) com uma lista de itens (List) e rodapé (ListFooter) organizados dentro de um Card.
+ * Ideal para exibir listas de conteúdo com título, ação opcional e informações de rodapé.
  *
  * @example
  * ```tsx
- * import { ContentCard, ListItem, Avatar } from '@superapp-caixa/dsc-library';
+ * import { ContentCard, ListItem, ListFooter, Avatar } from '@superapp-caixa/dsc-library';
  *
  * // Exemplo básico
  * <ContentCard
@@ -36,12 +37,19 @@ import type { ContentCardProps } from './ContentCard.model';
  *     labelBottomLeft="Offline"
  *     onPress={() => console.log('Maria')}
  *   />
+ *   <ListFooter
+ *     labelLeft="Total de contatos"
+ *     textLeft="2"
+ *     labelRight="Online"
+ *     textRight="1"
+ *   />
  * </ContentCard>
  *
  * // Sem cabeçalho
  * <ContentCard showListHeading={false}>
  *   <ListItem textOnLeft="Item 1" />
  *   <ListItem textOnLeft="Item 2" />
+ *   <ListFooter labelLeft="Total" textLeft="2" />
  * </ContentCard>
  * ```
  */
@@ -53,6 +61,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   showListHeading = true,
   ...props
 }) => {
+  const { listItems, listFooter } = useContentCardChildrenSeparation(children);
+
   return (
     <StyledContentCardContainer {...props}>
       {showListHeading && (
@@ -65,9 +75,10 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       )}
       <StyledCardContainer>
         <Card type="outline">
-          <List>{children}</List>
+          <List>{listItems}</List>
         </Card>
       </StyledCardContainer>
+      {listFooter}
     </StyledContentCardContainer>
   );
 };

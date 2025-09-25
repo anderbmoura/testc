@@ -9,24 +9,47 @@ import type { ActionsListProps } from './ActionsList.model';
 /**
  * Template DSC ActionsList
  *
- * Combina ListHeading, SegmentedButton e List para criar uma interface
- * de ações com cabeçalho, controle segmentado e lista de itens de ação.
+ * Combina ListHeading, SegmentedButton, List e ListFooter para criar uma interface
+ * de ações com cabeçalho, controle segmentado, lista de itens de ação e rodapé.
  *
  * Ordem garantida de renderização:
  * 1. ListHeading (se presente)
  * 2. SegmentedButton (se presente)
  * 3. ActionItems (ListItems)
+ * 4. ListFooter (se presente)
  *
  * @example
  * ```tsx
- * import { ActionsList, ListHeading, SegmentedButton, ListItem } from '@superapp-caixa/dsc-library';
+ * import { ActionsList, ListHeading, SegmentedButton, ListItem, ListFooter } from '@superapp-caixa/dsc-library';
  * import { Settings, User, CreditCard } from 'iconoir-react-native';
  *
  * <ActionsList>
- *   <ListItem textOnLeft="Transferir" onPress={() => console.log('Transferir')} />
- *   <ListHeading title="Ações Rápidas" configuration="button" />
- *   <ListItem textOnLeft="Pagar" onPress={() => console.log('Pagar')} />
- *   <SegmentedButton buttons={[...]} />
+ *   <ListHeading
+ *     title="Ações Rápidas"
+ *     configuration="button"
+ *     buttonText="Ver mais"
+ *     onButtonPress={() => console.log('Ver mais')}
+ *   />
+ *   <SegmentedButton
+ *     buttons={[
+ *       { label: "Conta", icon: <User />, onPress: () => console.log('Conta') },
+ *       { label: "Cartão", icon: <CreditCard />, onPress: () => console.log('Cartão') }
+ *     ]}
+ *   />
+ *   <ListItem
+ *     textOnLeft="Transferir"
+ *     onPress={() => console.log('Transferir')}
+ *   />
+ *   <ListItem
+ *     textOnLeft="Pagar"
+ *     onPress={() => console.log('Pagar')}
+ *   />
+ *   <ListFooter
+ *     labelLeft="Total de ações"
+ *     textLeft="2"
+ *     labelRight="Última operação"
+ *     textRight="Ontem"
+ *   />
  * </ActionsList>
  *
  * <ActionsList>
@@ -37,7 +60,7 @@ import type { ActionsListProps } from './ActionsList.model';
  * ```
  */
 export const ActionsList = ({ children }: ActionsListProps): ReactElement => {
-  const { listHeading, segmentedButton, actionItems } =
+  const { listHeading, segmentedButton, listFooter, actionItems } =
     useActionsListChildrenSeparation(children);
 
   return (
@@ -51,6 +74,8 @@ export const ActionsList = ({ children }: ActionsListProps): ReactElement => {
       )}
 
       <ActionsListContent>{actionItems}</ActionsListContent>
+
+      {listFooter && listFooter}
     </StyledActionsListContainer>
   );
 };

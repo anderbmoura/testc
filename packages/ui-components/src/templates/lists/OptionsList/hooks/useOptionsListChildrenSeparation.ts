@@ -1,11 +1,13 @@
 import React, { ReactNode, ReactElement, isValidElement, useMemo } from 'react';
 import { ListHeading } from '../../../../components/ListHeading';
 import { SegmentedButton } from '../../../../components/SegmentedButton';
+import { ListFooter } from '../../../../components/ListFooter';
 import { ListItemProps } from '../../../../components/ListItem/ListItem.model';
 
 interface CategorizedChildren {
   listHeading: ReactElement | null;
   segmentedButton: ReactElement | null;
+  listFooter: ReactElement | null;
   listItems: ReactElement<ListItemProps>[];
 }
 
@@ -27,6 +29,7 @@ export const useOptionsListChildrenSeparation = (
     const categorizedChildren: CategorizedChildren = {
       listHeading: null,
       segmentedButton: null,
+      listFooter: null,
       listItems: [],
     };
 
@@ -53,10 +56,17 @@ export const useOptionsListChildrenSeparation = (
         (child.type as ComponentType)?.name === 'SegmentedButton' ||
         (child.type as ComponentType)?.displayName === 'SegmentedButton';
 
+      const isListFooter =
+        child.type === ListFooter ||
+        (child.type as ComponentType)?.name === 'ListFooter' ||
+        (child.type as ComponentType)?.displayName === 'ListFooter';
+
       if (isListHeading) {
         categorizedChildren.listHeading = child;
       } else if (isSegmentedButton) {
         categorizedChildren.segmentedButton = child;
+      } else if (isListFooter) {
+        categorizedChildren.listFooter = child;
       } else {
         categorizedChildren.listItems.push(
           child as ReactElement<ListItemProps>

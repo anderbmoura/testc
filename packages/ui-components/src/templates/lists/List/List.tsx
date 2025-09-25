@@ -2,12 +2,13 @@ import React, { Children, cloneElement, isValidElement } from 'react';
 import { StyledListContainer } from './List.styles';
 import type { ListProps } from './List.model';
 import type { ListItemProps } from '../../../components/ListItem/ListItem.model';
+import type { ListFooterProps } from '../../../components/ListFooter/ListFooter.model';
 
 /**
  * Template DSC List
  *
- * Container que organiza uma lista de componentes ListItem, aplicando automaticamente
- * separators a todos os itens exceto o último.
+ * Container que organiza uma lista de componentes ListItem e ListFooter, aplicando automaticamente
+ * separators aos ListItems (exceto o último ou quando seguido por ListFooter).
  *
  * @example
  * ```tsx
@@ -55,15 +56,25 @@ export const List: React.FC<ListProps> = ({ children, ...props }) => {
   const childrenArray = Children.toArray(children);
 
   const processedChildren = childrenArray.map((child, index) => {
-    if (!isValidElement<ListItemProps>(child)) {
+    if (!isValidElement<ListItemProps | ListFooterProps>(child)) {
+      return child;
+    }
+
+    if ('labelLeft' in child.props || 'labelRight' in child.props) {
       return child;
     }
 
     const isLastItem = index === childrenArray.length - 1;
+    const nextChild = childrenArray[index + 1];
+    const nextIsFooter =
+      nextChild &&
+      isValidElement(nextChild) &&
+      isValidElement<ListFooterProps>(nextChild) &&
+      ('labelLeft' in nextChild.props || 'labelRight' in nextChild.props);
 
     return cloneElement(child, {
       ...child.props,
-      separator: !isLastItem,
+      separator: !isLastItem && !nextIsFooter,
     } as ListItemProps);
   });
 

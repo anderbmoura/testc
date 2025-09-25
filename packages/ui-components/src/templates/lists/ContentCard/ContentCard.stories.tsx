@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ArrowRight, Settings, CreditCard } from 'iconoir-react-native';
 import { ListItem } from '../../../components/ListItem';
+import { ListFooter } from '../../../components/ListFooter';
 import { ContentCard } from './ContentCard';
 import type { ContentCardProps } from './ContentCard.model';
 
@@ -12,12 +13,12 @@ const meta: Meta<ContentCardProps> = {
     docs: {
       description: {
         component: `
-Template que combina um cabeçalho (ListHeading) com uma lista de itens (List) organizada dentro de um Card.
+Template que combina um cabeçalho (ListHeading) com uma lista de itens (List) e rodapé (ListFooter) organizados dentro de um Card.
 
 ## Como usar
 
 \`\`\`tsx
-import { ContentCard, ListItem, Avatar } from '@superapp-caixa/dsc-library';
+import { ContentCard, ListItem, ListFooter, Avatar } from '@superapp-caixa/dsc-library';
 
 // Exemplo básico
 <ContentCard
@@ -37,12 +38,19 @@ import { ContentCard, ListItem, Avatar } from '@superapp-caixa/dsc-library';
     rightSlot={<Settings />}
     onPress={() => console.log('Maria')}
   />
+  <ListFooter
+    labelLeft="Total de contatos"
+    textLeft="2"
+    labelRight="Online"
+    textRight="1"
+  />
 </ContentCard>
 
 // Sem cabeçalho
 <ContentCard showListHeading={false}>
   <ListItem textOnLeft="Item 1" rightSlot={<CreditCard />} />
   <ListItem textOnLeft="Item 2" rightSlot={<ArrowRight />} />
+  <ListFooter labelLeft="Total" textLeft="2" />
 </ContentCard>
 \`\`\`
         `,
@@ -73,6 +81,12 @@ import { ContentCard, ListItem, Avatar } from '@superapp-caixa/dsc-library';
     labelBottomLeft="Label"
     rightSlot={<CreditCard />}
     onPress={() => console.log('Item 3')}
+  />
+  <ListFooter
+    labelLeft="Total de itens"
+    textLeft="3"
+    labelRight="Atualizado"
+    textRight="Agora"
   />
 </ContentCard>`;
         },
@@ -112,12 +126,13 @@ import { ContentCard, ListItem, Avatar } from '@superapp-caixa/dsc-library';
       },
     },
     children: {
-      description: 'Componentes ListItem a serem exibidos dentro do Card',
+      description:
+        'Componentes ListItem e ListFooter a serem exibidos dentro do Card',
       control: false,
       table: {
         type: {
           summary:
-            'ReactElement<ListItemProps> | ReactElement<ListItemProps>[]',
+            'ReactElement<ListItemProps | ListFooterProps> | ReactElement<ListItemProps | ListFooterProps>[]',
         },
       },
     },
@@ -157,6 +172,12 @@ export const Default: Story = {
         labelBottomLeft="Label"
         rightSlot={<CreditCard />}
         onPress={() => console.log('Item 3')}
+      />
+      <ListFooter
+        labelLeft="Total de itens"
+        textLeft="3"
+        labelRight="Atualizado"
+        textRight="Agora"
       />
     </ContentCard>
   ),
