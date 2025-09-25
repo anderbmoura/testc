@@ -77,6 +77,7 @@ export const Sheet: React.FC<SheetProps> = ({
         flex={1}
         justifyContent="flex-start"
         alignItems="flex-start"
+        backgroundColor="$neutralBg1"
       >
         {header && (
           <XStack

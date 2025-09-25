@@ -1,54 +1,45 @@
 import {
   DscProvider,
   View,
-  InputMoney,
-  TopAppBar,
   Button,
+  Sheet,
+  Text,
 } from '@superapp-caixa/dsc-library';
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-import { YStack } from 'tamagui';
-import { Bell } from 'iconoir-react-native';
+import { Settings } from 'iconoir-react-native';
 
 function AppContent() {
   const { actualTheme } = useThemeContext();
-  const [inputValue, setInputValue] = useState(1234.56);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
     <DscProvider defaultTheme={actualTheme}>
-      <View flex={1}>
-        {/* Add TopAppBar at the top */}
-        <TopAppBar
-          variant="small"
-          title="Example App"
-          button1={
-            <Button
-              type="chromeless"
-              size="small"
-              icon={<Bell />}
-              onPress={() => console.log('Notifications pressed')}
-            />
-          }
-        />
+      <View flex={1} justifyContent="center" alignItems="center" padding={20}>
+        <Button onPress={() => setIsSheetOpen(true)}>Abrir Sheet</Button>
 
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: 'center',
-            gap: 16,
-            padding: 16,
+        <Sheet
+          open={isSheetOpen}
+          onOpenChange={setIsSheetOpen}
+          header={{
+            icon: <Settings width={20} height={20} />,
+            title: 'Teste Background',
           }}
+          snapPoints={[80, 50, 25]}
+          snapPointsMode="percent"
         >
-          <YStack flexWrap="wrap">
-            <InputMoney
-              value={inputValue}
-              currency="R$"
-              onValueChange={setInputValue}
-              autoFocus={true}
-            />
-          </YStack>
-        </ScrollView>
+          <View gap={16}>
+            <Text fontSize={16} fontWeight="600">
+              Background deve estar visível
+            </Text>
+            <Text>Você pode arrastar para redimensionar ou fechar.</Text>
+            <View padding={12} backgroundColor="$neutralBg1" borderRadius={8}>
+              <Text>Esta área deve ter background diferente</Text>
+            </View>
+
+            <Button onPress={() => setIsSheetOpen(false)}>Fechar Sheet</Button>
+          </View>
+        </Sheet>
       </View>
     </DscProvider>
   );
