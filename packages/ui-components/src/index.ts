@@ -162,6 +162,11 @@ export {
 export { Sheet } from './components/Sheet';
 export type { SheetProps, SheetHeaderProps } from './components/Sheet';
 export { IconWrapper, type IconWrapperProps } from './components/IconWrapper';
+export { Radio } from './components/Radio';
+export type {
+  DscRadioGroupItemProps,
+  RadioGroupProps,
+} from './components/Radio';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';
