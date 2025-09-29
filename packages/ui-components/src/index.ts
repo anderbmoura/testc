@@ -113,6 +113,7 @@ export type {
   SpinnerVariant,
 } from './components/Spinner';
 export { default as Switch } from './components/Switch';
+export { default as Checkbox } from './components/Checkbox';
 export type { SwitchProps } from './components/Switch';
 export { default as TopAppBar } from './components/TopAppBar';
 export type { TopAppBarProps, TopAppBarVariant } from './components/TopAppBar';
