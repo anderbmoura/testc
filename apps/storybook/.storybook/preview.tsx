@@ -18,6 +18,7 @@ const preview: Preview = {
         order: [
           'Componentes',
           'Templates',
+          'Screens',
           'Design System',
           [
             'Temas',
