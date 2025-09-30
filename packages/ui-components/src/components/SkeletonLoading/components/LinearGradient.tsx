@@ -1,15 +1,12 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-import Svg, { Defs, LinearGradient as SVGLinearGradient, Stop, Rect } from 'react-native-svg';
-
-type LinearGradientPoint = { x: number; y: number };
-
-type LinearGradientProps = ViewProps & {
-  colors: readonly [string, string, ...string[]];
-  locations?: readonly number[];
-  start?: LinearGradientPoint;
-  end?: LinearGradientPoint;
-};
+import Svg, {
+  Defs,
+  LinearGradient as SVGLinearGradient,
+  Stop,
+  Rect,
+} from 'react-native-svg';
+import { LinearGradientProps } from '../SkeletonLoading.model';
 
 export const LinearGradient = ({
   colors,
@@ -45,7 +42,13 @@ export const LinearGradient = ({
           ))}
         </SVGLinearGradient>
       </Defs>
-      <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${gradientId})`} />
+      <Rect
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        fill={`url(#${gradientId})`}
+      />
     </Svg>
   );
 };

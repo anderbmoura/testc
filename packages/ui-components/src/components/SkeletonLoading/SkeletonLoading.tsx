@@ -3,6 +3,19 @@ import { ShimmerAnimation } from './components/ShimmerAnimation';
 import { SkeletonLoadingProps } from './SkeletonLoading.model';
 import { ScrollView, View, XStack, YStack } from 'tamagui';
 
+/**
+ * Componente DSC SkeletonLoading
+ *
+ * Exibe placeholders animados para simular carregamento de conteúdo.
+ * Suporta múltiplas variantes visuais para diferentes tipos de layout.
+ *
+ * @example
+ * ```tsx
+ * <SkeletonLoading variant="text" />
+ * <SkeletonLoading variant="image-text" />
+ * <SkeletonLoading variant="carousel" />
+ * ```
+ */
 export const SkeletonLoading = ({
   variant = 'block',
 }: SkeletonLoadingProps) => {
