@@ -167,6 +167,8 @@ export type {
   DscRadioGroupItemProps,
   RadioGroupProps,
 } from './components/Radio';
+export { Stories } from './templates/screens/Stories';
+export type { StoriesProps } from './templates/screens/Stories';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';
