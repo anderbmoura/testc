@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import DscRadioGroup from './Radio';
 
 const meta: Meta<typeof DscRadioGroup> = {
-  title: 'Components/RadioGroup',
+  title: 'Componentes/RadioGroup',
   component: DscRadioGroup,
   argTypes: {
     defaultValue: { control: 'text' },
