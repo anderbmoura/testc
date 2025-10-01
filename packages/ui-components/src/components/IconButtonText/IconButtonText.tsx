@@ -110,7 +110,6 @@ const StyledText = styled(LabelSmallRegular, {
   color: '$onNeutral1',
   textAlign: 'center',
   pointerEvents: 'none',
-  maxWidth: 76,
 
   disabledStyle: {
     color: '$onDisabled',

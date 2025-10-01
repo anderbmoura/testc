@@ -1,5 +1,6 @@
 import React from 'react';
 import { TamaguiProvider, type TamaguiProviderProps } from 'tamagui';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { dscConfig } from './tamagui.config';
 import { SnackBarProvider } from '../components/SnackBar';
 
@@ -14,6 +15,7 @@ type DscProviderProps = TamaguiProviderProps & {
 
 /**
  * Provider principal da biblioteca DSC que configura o Tamagui com as configurações personalizadas.
+ * Inclui automaticamente o GestureHandlerRootView para suporte a gestos e o SnackBarProvider.
  *
  * @param includeSnackBarProvider - Se true, o SnackBarProvider é incluído automaticamente.
  *
@@ -50,12 +52,14 @@ export function DscProvider({
   ...props
 }: DscProviderProps) {
   return (
-    <TamaguiProvider config={dscConfig} {...props}>
-      {includeSnackBarProvider ? (
-        <SnackBarProvider>{children}</SnackBarProvider>
-      ) : (
-        children
-      )}
-    </TamaguiProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <TamaguiProvider config={dscConfig} {...props}>
+        {includeSnackBarProvider ? (
+          <SnackBarProvider>{children}</SnackBarProvider>
+        ) : (
+          children
+        )}
+      </TamaguiProvider>
+    </GestureHandlerRootView>
   );
 }

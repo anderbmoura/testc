@@ -1,27 +1,18 @@
-import { Xmark } from 'iconoir-react-native';
-import React, { ReactNode } from 'react';
-import { Sheet as TSheet, View, XStack } from 'tamagui';
-import Button from '../Button';
-import { TitleSmall } from '../Typography';
-import { SheetHeaderProps, SheetProps } from './Sheet.model';
-
-const SheetHeader: React.FC<SheetHeaderProps> = ({ icon, title }) => {
-  return (
-    <View>
-      <XStack alignItems="center" gap="$micro">
-        {icon && icon}
-        {title && <TitleSmall>{title}</TitleSmall>}
-      </XStack>
-    </View>
-  );
-};
-
-const SheetContents: React.FC<{ children: ReactNode }> = ({ children }) => {
-  return <>{children}</>;
-};
+import React, { memo, useCallback } from 'react';
+import { Sheet as TSheet } from 'tamagui';
+import { SheetHeader } from './components/SheetHeader';
+import { SheetContent } from './components/SheetContent';
+import { SheetOverlay } from './components/SheetOverlay';
+import { SheetFrame } from './components/SheetFrame';
+import { SheetHandle } from './components/SheetHandle';
+import { useSheetPosition } from './hooks/useSheetPosition';
+import { useSheetBlur } from './hooks/useSheetBlur';
+import type { SheetProps } from './Sheet.model';
 
 /**
- * Sheet component for bottom sheet modal dialogs
+ * Componente DSC Sheet
+ *
+ * Sheet de modal bottom que desliza a partir da parte inferior da tela.
  *
  * @example
  * ```tsx
@@ -29,98 +20,117 @@ const SheetContents: React.FC<{ children: ReactNode }> = ({ children }) => {
  *   open={isOpen}
  *   onOpenChange={setIsOpen}
  *   header={{
- *     icon: <SomeIcon />,
- *     title: "Sheet Title"
+ *     icon: <Heart />,
+ *     title: "Título do Sheet"
  *   }}
  *   snapPoints={[80, 50]}
- *   snapPointsMode="percent"
+ *   variant="onMediaBg"
  * >
- *   <Text>Sheet content goes here</Text>
+ *   <Text>Conteúdo do sheet aqui</Text>
  * </Sheet>
  * ```
  */
-export const Sheet: React.FC<SheetProps> = ({
-  open,
-  onOpenChange,
-  children,
-  header,
-  scrollView = false,
-  snapPoints = [80, 50],
-  snapPointsMode = 'percent',
-  animation = 'medium',
-  modal = true,
-  dismissOnSnapToBottom = true,
-  titleLeftAligned = false,
-}) => {
-  const handleClose = () => {
-    onOpenChange(false);
-  };
+export const Sheet: React.FC<SheetProps> = memo(
+  ({
+    open,
+    defaultOpen = false,
+    onOpenChange,
+    position: controlledPosition,
+    defaultPosition = 0,
+    onPositionChange,
+    children,
+    header,
+    scrollView = false,
+    snapPoints = [80, 50],
+    snapPointsMode = 'percent',
+    animation = 'medium',
+    modal = true,
+    dismissOnSnapToBottom = true,
+    dismissOnOverlayPress = true,
+    disableDrag = false,
+    forceRemoveScrollEnabled = false,
+    moveOnKeyboardChange = false,
+    titleLeftAligned = false,
+    variant = 'default',
+    closable = true,
+  }) => {
+    const { position, adjustedSnapPoints, setPosition } = useSheetPosition({
+      snapPoints,
+      open,
+      position: controlledPosition,
+      defaultPosition,
+      onPositionChange,
+    });
 
-  return (
-    <TSheet
-      open={open}
-      animation={animation}
-      modal={modal}
-      dismissOnSnapToBottom={dismissOnSnapToBottom}
-      onOpenChange={onOpenChange}
-      snapPoints={snapPoints}
-      snapPointsMode={snapPointsMode}
-    >
-      <TSheet.Overlay
-        animation="medium"
-        backgroundColor="rgba(0,0,0,0.5)"
-        enterStyle={{ opacity: 0 }}
-        exitStyle={{ opacity: 0 }}
-      />
-      <TSheet.Handle my={2} />
-      <TSheet.Frame
-        flex={1}
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        backgroundColor="$neutralBg1"
+    const { blurEnabled } = useSheetBlur(variant);
+
+    const handleClose = useCallback(() => {
+      if (closable) {
+        onOpenChange?.(false);
+      }
+    }, [closable, onOpenChange]);
+
+    const handleOverlayPress = useCallback(() => {
+      if (dismissOnOverlayPress && closable) {
+        onOpenChange?.(false);
+      }
+    }, [dismissOnOverlayPress, closable, onOpenChange]);
+
+    const handleOpenChange = useCallback(
+      (newOpen: boolean) => {
+        if (closable || newOpen) {
+          onOpenChange?.(newOpen);
+        }
+      },
+      [closable, onOpenChange]
+    );
+
+    const isControlled = open !== undefined;
+
+    return (
+      <TSheet
+        open={isControlled ? open : undefined}
+        defaultOpen={!isControlled ? defaultOpen : undefined}
+        animation={animation}
+        modal={modal}
+        dismissOnSnapToBottom={closable ? dismissOnSnapToBottom : false}
+        onOpenChange={handleOpenChange}
+        snapPoints={adjustedSnapPoints}
+        snapPointsMode={snapPointsMode}
+        position={position}
+        onPositionChange={setPosition}
+        dismissOnOverlayPress={dismissOnOverlayPress && closable}
+        disableDrag={disableDrag}
+        forceRemoveScrollEnabled={forceRemoveScrollEnabled}
+        moveOnKeyboardChange={moveOnKeyboardChange}
       >
-        {header && (
-          <XStack
-            justifyContent="space-between"
-            alignItems="center"
-            width="100%"
-            mt="$size.2"
-            px="$size.1"
-          >
-            {/* Left spacer to balance the close button */}
-            {!titleLeftAligned ? <View width={40} height={40} /> : null}
-
-            {/* Centered header */}
-            <View
-              flex={1}
-              alignItems={titleLeftAligned ? 'flex-start' : 'center'}
-            >
-              <SheetHeader icon={header.icon} title={header.title} />
-            </View>
-
-            {/* Close button on the right */}
-            <View width={80}>
-              <Button onPress={handleClose} type="chromeless">
-                <Xmark width={20} height={20} color="$color12" />
-              </Button>
-            </View>
-          </XStack>
+        {!blurEnabled && (
+          <SheetOverlay
+            dismissOnPress={dismissOnOverlayPress && closable}
+            onPress={handleOverlayPress}
+          />
         )}
 
-        {scrollView ? (
-          <TSheet.ScrollView>
-            <View p="$size.2">
-              <SheetContents>{children}</SheetContents>
-            </View>
-          </TSheet.ScrollView>
-        ) : (
-          <View p="$size.2">
-            <SheetContents>{children}</SheetContents>
-          </View>
-        )}
-      </TSheet.Frame>
-    </TSheet>
-  );
-};
+        <SheetHandle variant={variant} />
+
+        <SheetFrame variant={variant}>
+          {header && (
+            <SheetHeader
+              icon={header.icon}
+              title={header.title}
+              leftAligned={titleLeftAligned}
+              showCloseButton={closable}
+              onClose={handleClose}
+            />
+          )}
+
+          <SheetContent scrollable={scrollView}>{children}</SheetContent>
+        </SheetFrame>
+      </TSheet>
+    );
+  }
+);
+
+Sheet.displayName = 'Sheet';
 
 export default Sheet;
