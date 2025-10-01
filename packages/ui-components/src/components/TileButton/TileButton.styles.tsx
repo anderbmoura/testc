@@ -11,16 +11,35 @@ export const StyledTileButton = styled(Button, {
   borderRadius: '$radius.big',
   borderWidth: '$borderWidth.thin',
   borderStyle: 'solid',
-  backgroundColor: '$fixedNeutralBg2',
   minHeight: 96,
-  hoverStyle: {
-    backgroundColor: '$fixedHighlightHover1',
-  },
-  pressStyle: {
-    backgroundColor: '$fixedHighlightPressed1',
-    borderColor: 'transparent',
-  },
-  focusStyle: {
-    borderColor: '$fixedOnNeutral1',
-  },
+  variants: {
+    useFixedColors: {
+      true: {
+        backgroundColor: '$fixedNeutralBg2',
+        hoverStyle: {
+          backgroundColor: '$fixedHighlightHover1',
+        },
+        pressStyle: {
+          backgroundColor: '$fixedHighlightPressed1',
+          borderColor: 'transparent',
+        },
+        focusStyle: {
+          borderColor: '$fixedOnNeutral1',
+        },
+      },
+      false: {
+        backgroundColor: '$neutralBg2',
+        hoverStyle: {
+          backgroundColor: '$highlightHover1',
+        },
+        pressStyle: {
+          backgroundColor: '$highlightPressed1',
+          borderColor: 'transparent',
+        },
+        focusStyle: {
+          borderColor: '$onNeutral1',
+        },
+      },
+    },
+  } as const,
 });

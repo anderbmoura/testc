@@ -1,6 +1,6 @@
 import { IconWrapper } from '../IconWrapper';
 import { LabelSmallRegular } from '../Typography';
-import { TileButtonModel } from './TileButton.model';
+import { TileButtonProps } from './TileButton.model';
 import { StyledTileButton } from './TileButton.styles';
 
 /**
@@ -40,11 +40,24 @@ export const TileButton = ({
   onPress,
   iconSlot,
   flexGrow,
-}: TileButtonModel) => {
+  useFixedColors,
+}: TileButtonProps) => {
   return (
-    <StyledTileButton flexGrow={flexGrow} onPress={onPress}>
-      <IconWrapper icon={iconSlot} size="medium" color="$fixedHighlight" />
-      <LabelSmallRegular color="$fixedOnNeutral1">{label}</LabelSmallRegular>
+    <StyledTileButton
+      flexGrow={flexGrow}
+      onPress={onPress}
+      useFixedColors={!!useFixedColors}
+    >
+      <IconWrapper
+        icon={iconSlot}
+        size="medium"
+        color={!!useFixedColors ? '$fixedHighlight' : '$highlight8'}
+      />
+      <LabelSmallRegular
+        color={!!useFixedColors ? '$fixedOnNeutral1' : '$onNeutral1'}
+      >
+        {label}
+      </LabelSmallRegular>
     </StyledTileButton>
   );
 };

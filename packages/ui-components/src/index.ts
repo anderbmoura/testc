@@ -125,7 +125,7 @@ export type {
   SeparatorDirection,
 } from './components/Separator';
 export { TileButton } from './components/TileButton';
-export type { TileButtonModel } from './components/TileButton/TileButton.model';
+export type { TileButtonProps } from './components/TileButton/TileButton.model';
 /**
  * @deprecated VerticalActions e componentes relacionados estão obsoletos e serão removidos em uma versão futura.
  * Use os seguintes componentes como alternativa:

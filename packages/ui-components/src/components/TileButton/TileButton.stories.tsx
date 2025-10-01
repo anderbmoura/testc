@@ -117,6 +117,15 @@ import { Home } from 'iconoir-react-native';
         type: { summary: 'undefined' },
       },
     },
+    useFixedColors: {
+      description:
+        'Define se o componente deve utilizar cores fixas que não mudam de acordo com o tema do aparelho. Por padrão, o componente respeita o tema.',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
 };
 
