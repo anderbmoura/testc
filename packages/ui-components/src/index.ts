@@ -169,7 +169,6 @@ export type {
 } from './components/Radio';
 export {
   SkeletonLoading,
-  ShimmerAnimation,
   type SkeletonLoadingProps,
 } from './components/SkeletonLoading';
 

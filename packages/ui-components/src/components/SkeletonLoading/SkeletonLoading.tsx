@@ -1,7 +1,7 @@
 import React from 'react';
+import { ScrollView, View, XStack, YStack } from 'tamagui';
 import { ShimmerAnimation } from './components/ShimmerAnimation';
 import { SkeletonLoadingProps } from './SkeletonLoading.model';
-import { ScrollView, View, XStack, YStack } from 'tamagui';
 
 /**
  * Componente DSC SkeletonLoading
@@ -9,10 +9,21 @@ import { ScrollView, View, XStack, YStack } from 'tamagui';
  * Exibe placeholders animados para simular carregamento de conteúdo.
  * Suporta múltiplas variantes visuais para diferentes tipos de layout.
  *
+ * @param variant - Define o layout visual do skeleton. Por padrão, é `'block'`.
+ *
+ * Variantes disponíveis:
+ * - `text`: Três linhas horizontais simulando texto.
+ * - `image-text`: Ícone à esquerda e texto à direita.
+ * - `text-image`: Texto à esquerda e ícone à direita.
+ * - `block`: Bloco genérico com altura padrão.
+ * - `button-small`: Simula botão pequeno (32px).
+ * - `button-standard`: Simula botão padrão (44px).
+ * - `button-large`: Simula botão grande (48px).
+ * - `carousel`: Cards horizontais simulando carrossel.
+ *
  * @example
  * ```tsx
  * <SkeletonLoading variant="text" />
- * <SkeletonLoading variant="image-text" />
  * <SkeletonLoading variant="carousel" />
  * ```
  */
