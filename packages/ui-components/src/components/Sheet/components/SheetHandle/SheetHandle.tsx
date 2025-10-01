@@ -17,7 +17,6 @@ export const SheetHandle: React.FC<SheetHandleProps> = memo(
 
     return (
       <StyledSheetHandle variant={variant}>
-        {/* Blur view quando habilitado */}
         {blurEnabled && (
           <BlurView
             blurIntensity={blurIntensity}

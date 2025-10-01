@@ -1,109 +1,70 @@
 import {
   DscProvider,
   View,
-  Button,
   Sheet,
   Text,
+  Stories,
 } from '@superapp-caixa/dsc-library';
 import React, { useState } from 'react';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-import { Settings, Eye } from 'iconoir-react-native';
-
-type SheetVariant = 'default' | 'onMediaBg';
+import { Star } from 'iconoir-react-native';
 
 function AppContent() {
   const { actualTheme } = useThemeContext();
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [sheetVariant, setSheetVariant] = useState<SheetVariant>('default');
+  const [isSheetMaximized, setIsSheetMaximized] = useState(false);
 
-  const toggleVariant = () => {
-    setSheetVariant(current =>
-      current === 'default' ? 'onMediaBg' : 'default'
-    );
-  };
+  const storyImages = [
+    { imageSource: 'https://picsum.photos/400/800?random=1', id: '1' },
+    { imageSource: 'https://picsum.photos/400/800?random=2', id: '2' },
+    { imageSource: 'https://picsum.photos/400/800?random=3', id: '3' },
+  ];
 
-  const openSheet = (variant: SheetVariant) => {
-    setSheetVariant(variant);
-    setIsSheetOpen(true);
-  };
-
-  const getVariantLabel = (variant: SheetVariant) => {
-    return variant === 'default' ? 'Padrão' : 'Com Blur';
-  };
-
-  const getVariantIcon = (variant: SheetVariant) => {
-    return variant === 'default' ? (
-      <Settings width={20} height={20} />
-    ) : (
-      <Eye width={20} height={20} />
-    );
+  const handleSheetPositionChange = (position: number) => {
+    // Posição 0 corresponde ao snap point máximo (80%)
+    setIsSheetMaximized(position === 0);
   };
 
   return (
     <DscProvider defaultTheme={actualTheme}>
-      <View
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-        padding={20}
-        gap={16}
+      <Stories
+        images={storyImages}
+        duration={5000}
+        showBlur={isSheetMaximized}
+        blurIntensity={isSheetMaximized ? 8 : 0}
       >
-        <Text fontSize={20} fontWeight="700" textAlign="center">
-          Exemplo de Sheet Variants
-        </Text>
-
-        <View gap={12}>
-          <Button onPress={() => openSheet('default')}>
-            Abrir Sheet Padrão
-          </Button>
-
-          <Button onPress={() => openSheet('onMediaBg')}>
-            Abrir Sheet com Blur
-          </Button>
-        </View>
-
+        {/* Sheet já aberto dentro do Stories */}
         <Sheet
           closable={false}
-          open={isSheetOpen}
-          onOpenChange={setIsSheetOpen}
+          open={true}
+          onOpenChange={() => {}}
+          onPositionChange={handleSheetPositionChange}
           header={{
-            icon: getVariantIcon(sheetVariant),
-            title: `Sheet ${getVariantLabel(sheetVariant)}`,
+            icon: <Star width={20} height={20} />,
+            title: 'Sheet com Blur Dinâmico',
           }}
-          snapPoints={[40, 80]}
+          snapPoints={[80, 40]}
           snapPointsMode="percent"
-          variant={sheetVariant}
+          variant="onMediaBg"
         >
           <View gap={16}>
-            <Text fontSize={16} fontWeight="600">
-              Variant: {getVariantLabel(sheetVariant)}
+            <Text fontSize={18} fontWeight="600">
+              Sheet com Blur Dinâmico no Stories
             </Text>
-
             <Text>
-              {sheetVariant === 'default'
-                ? 'Este sheet usa o overlay padrão sem blur.'
-                : 'Este sheet usa blur de fundo com intensidade 6.'}
+              Este Sheet controla dinamicamente o blur do Stories. Quando você
+              arrasta o Sheet para o tamanho máximo (80%), o fundo do Stories
+              fica desfocado.
             </Text>
-
-            <View padding={12} backgroundColor="$neutralBg1" borderRadius={8}>
-              <Text>Conteúdo do sheet com background destacado</Text>
-            </View>
-
-            <View gap={8}>
-              <Button onPress={toggleVariant}>
-                Alternar para{' '}
-                {getVariantLabel(
-                  sheetVariant === 'default' ? 'onMediaBg' : 'default'
-                )}
-              </Button>
-
-              <Button onPress={() => setIsSheetOpen(false)}>
-                Fechar Sheet
-              </Button>
-            </View>
+            <Text color="$color11">
+              Arraste para cima/baixo para testar os snap points e ver o blur
+              sendo aplicado.
+            </Text>
+            <Text color="$color9" fontSize={14}>
+              Blur ativo: {isSheetMaximized ? 'SIM' : 'NÃO'}
+            </Text>
           </View>
         </Sheet>
-      </View>
+      </Stories>
     </DscProvider>
   );
 }

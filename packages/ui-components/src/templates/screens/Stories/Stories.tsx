@@ -92,7 +92,7 @@ export const Stories: React.FC<StoriesProps> = ({
     <StoriesContainer {...viewProps}>
       <StoriesImageBackground imageSource={currentImage.imageSource} />
 
-      {showBlur && <StoriesBlurOverlay blurIntensity={blurIntensity} />}
+      <StoriesBlurOverlay blurIntensity={showBlur ? blurIntensity : 0} />
 
       <LinearGradient
         colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.3)', 'rgba(0,0,0,0)']}

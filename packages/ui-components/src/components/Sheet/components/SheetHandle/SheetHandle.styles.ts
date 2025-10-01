@@ -3,7 +3,12 @@ import { Sheet as TSheet } from 'tamagui';
 
 export const StyledSheetHandle = styled(TSheet.Handle, {
   name: 'StyledSheetHandle',
-  marginVertical: '$small',
+  marginVertical: '$nano',
+  borderRadius: '$pill',
+  width: 120,
+  height: 6,
+  alignSelf: 'center',
+  overflow: 'hidden',
 
   variants: {
     variant: {

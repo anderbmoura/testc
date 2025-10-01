@@ -1,10 +1,11 @@
 import React from 'react';
+import { View } from 'tamagui';
 import type { StoriesBlurOverlayProps } from './StoriesBlurOverlay.model';
-import { BlurView } from './BlurView';
 
 /**
  * Componente de overlay com blur para Stories
  * Funciona tanto na web (backdrop-filter) quanto no nativo (@react-native-community/blur)
+ * Com transições suaves para entrada/saída do blur
  *
  * @param blurIntensity - Intensidade do blur (0-10)
  */
@@ -22,10 +23,23 @@ export const StoriesBlurOverlay: React.FC<StoriesBlurOverlayProps> = ({
   };
 
   return (
-    <BlurView
-      blurIntensity={blurIntensity}
+    <View
+      position="absolute"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      zIndex={2}
       backgroundColor={getBackgroundColor(blurIntensity)}
-      style={{ zIndex: 2 }}
+      animation="medium"
+      opacity={blurIntensity > 0 ? 1 : 0}
+      style={{
+        // @ts-ignore - Tamagui não tem tipagem para backdrop-filter
+        backdropFilter: `blur(${blurIntensity}px)`,
+        WebkitBackdropFilter: `blur(${blurIntensity}px)`,
+        transition:
+          'opacity 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out',
+      }}
     />
   );
 };
