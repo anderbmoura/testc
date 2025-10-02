@@ -76,6 +76,9 @@ export type {
   CardCarouselHorizontalProps,
   CardCarouselHorizontalTheme,
 } from './components/CardCarouselHorizontal';
+export { Icon } from './components/Icon';
+export type { IconProps } from './components/Icon';
+export * from './components/Icon/svg';
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
 export { ListItem } from './components/ListItem';
