@@ -87,8 +87,12 @@ import { Star } from 'iconoir-react-native';
               ? `\n  variant="${args.variant}"`
               : '';
 
+          const removableProps = args.removable
+            ? `\n  removable={${args.removable}}\n  onRemove={() => console.log('Card removido')}`
+            : '';
+
           return `<CardWidget
-  ${props}${onPressProps}${variantProps}${footerContent}`;
+  ${props}${onPressProps}${variantProps}${removableProps}${footerContent}`;
         },
         state: 'open',
         excludeDecorators: true,
@@ -105,6 +109,8 @@ import { Star } from 'iconoir-react-native';
       image,
       footerContent,
       onPress,
+      removable,
+      onRemove,
     } = args;
 
     const key = `card-widget-${Date.now()}`;
@@ -133,6 +139,8 @@ import { Star } from 'iconoir-react-native';
         icon={iconElement}
         image={imageElement}
         {...(onPress && { onPress })}
+        {...(removable && { removable })}
+        {...(onRemove && { onRemove })}
         style={{ width: 160 }}
       >
         {footerChildren}
@@ -201,6 +209,24 @@ import { Star } from 'iconoir-react-native';
         disable: true,
       },
     },
+    removable: {
+      control: { type: 'boolean' },
+      description:
+        'Se verdadeiro, exibe um botão de remoção flutuante no canto superior direito',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    onRemove: {
+      action: 'removed',
+      description: 'Função chamada ao pressionar o botão de remoção',
+      table: {
+        type: { summary: '() => void' },
+        defaultValue: { summary: 'undefined' },
+        disable: true,
+      },
+    },
     children: {
       table: {
         disable: true,
@@ -221,3 +247,19 @@ export default meta;
 type Story = StoryObj<CardWidgetStoryArgs>;
 
 export const Default: Story = {};
+
+export const Removable: Story = {
+  render: () => (
+    <CardWidget
+      variant="highlight"
+      topLabel="Favorito"
+      mainLabel="Meu card favorito"
+      icon={<Star />}
+      removable={true}
+      onRemove={() => console.log('Card removido')}
+      style={{ width: 160 }}
+    >
+      <LabelSmall style={{ padding: 16 }}>Footer Content</LabelSmall>
+    </CardWidget>
+  ),
+};

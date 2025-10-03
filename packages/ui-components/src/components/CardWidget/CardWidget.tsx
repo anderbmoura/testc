@@ -7,6 +7,7 @@ import {
   CardWidgetWrapper,
   CardWidgetContent,
 } from './components/StyledComponents';
+import { CardWidgetRemoveButton } from './components/CardWidgetRemoveButton';
 import { useCardWidgetInteractionState } from './hooks/useCardWidgetInteractionState';
 import type { CardWidgetProps } from './CardWidget.model';
 
@@ -41,6 +42,8 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
   image,
   children,
   onPress,
+  removable,
+  onRemove,
   ...stackProps
 }) => {
   const { isFocused, handlers } = useCardWidgetInteractionState();
@@ -62,6 +65,7 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
           {children && <CardWidgetFooter>{children}</CardWidgetFooter>}
         </CardWidgetContent>
       </Card>
+      {removable && onRemove && <CardWidgetRemoveButton onPress={onRemove} />}
     </CardWidgetWrapper>
   );
 

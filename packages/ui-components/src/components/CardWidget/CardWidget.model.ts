@@ -48,4 +48,14 @@ export interface CardWidgetProps
    * Função chamada ao pressionar o widget.
    */
   onPress?: () => void;
+
+  /**
+   * Se verdadeiro, exibe um botão de remoção flutuante no canto superior direito.
+   */
+  removable?: boolean;
+
+  /**
+   * Função chamada ao pressionar o botão de remoção.
+   */
+  onRemove?: () => void;
 }

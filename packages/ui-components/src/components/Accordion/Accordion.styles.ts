@@ -60,7 +60,7 @@ export const AccordionContent = styled(Accordion.Content, {
   name: 'Accordion.Content',
   animation: 'quick',
   exitStyle: { opacity: 0 },
-});
+}) as any;
 
 export const AccordionContentFooter = styled(XStack, {
   name: 'Accordion.Content.Footer',
