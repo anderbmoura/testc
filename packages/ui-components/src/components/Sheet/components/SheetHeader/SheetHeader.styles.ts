@@ -6,7 +6,7 @@ export const SheetHeaderContainer = styled(XStack, {
   alignItems: 'center',
   width: '100%',
   marginTop: '$small',
-  paddingHorizontal: '$medium',
+  paddingHorizontal: '$tiny',
 });
 
 export const SheetHeaderContent = styled(View, {
