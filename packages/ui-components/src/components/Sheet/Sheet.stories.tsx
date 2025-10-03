@@ -1,33 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  Bell,
-  CheckCircle,
-  Heart,
-  Home,
-  Mail,
-  Settings,
-  Star,
-  User,
-} from 'iconoir-react-native';
+import { Heart, Home, Settings, User, Star, Bell } from 'iconoir-react-native';
 import React, { useState } from 'react';
 import { Text, View, YStack } from 'tamagui';
-import { Button } from '../Button/Button';
+import Button from '../Button';
 import { Sheet } from './Sheet';
-import type { SheetProps } from './Sheet.model';
+import type { SheetProps, SheetHeaderProps } from './Sheet.model';
 
 const iconMapping = {
   None: undefined,
   Home,
   Settings,
-  User,
   Heart,
+  User,
   Star,
   Bell,
-  Mail,
-  CheckCircle,
 };
 
-const meta: Meta<SheetProps> = {
+interface SheetStoryArgs extends Omit<SheetProps, 'header'> {
+  headerTitle?: string;
+  headerIcon?: keyof typeof iconMapping;
+}
+
+const meta: Meta<SheetStoryArgs> = {
   title: 'Componentes/Overlays/Sheet',
   component: Sheet,
   parameters: {
@@ -43,27 +37,44 @@ O **Sheet** é um componente de modal bottom sheet que desliza a partir da parte
 - **Scroll suportado**: Para conteúdo que excede a altura disponível
 - **Animações suaves**: Transições fluidas de abertura e fechamento
 - **Modal ou inline**: Pode ser usado como modal ou integrado na interface
-
-### Casos de uso:
-- Formulários de entrada rápida
-- Menus de opções contextuais
-- Detalhes expandidos de itens
-- Filtros e configurações
-- Confirmações e alertas expandidos
+- **Variantes**: 'default' (sem blur) ou 'onMediaBg' (com blur intensidade 6)
+- **Modo controlado e não controlado**: Suporte a ambos os padrões
         `,
       },
       source: {
-        transform: (_: string, { args }: { args: SheetProps }) => {
-          const iconName = args.header?.icon
+        transform: (_: string, { args }: { args: SheetStoryArgs }) => {
+          const iconName = args.headerIcon
             ? Object.keys(iconMapping).find(
                 key =>
                   iconMapping[key as keyof typeof iconMapping] ===
-                  args.header?.icon
+                  args.headerIcon
               ) || 'Home'
             : 'None';
 
+          const props = [
+            args.headerTitle &&
+              `header={{
+  ${args.headerIcon && iconName !== 'None' ? `icon: <${iconName} />,` : ''}
+  title: "${args.headerTitle}"
+}}`,
+            args.scrollView && 'scrollView={true}',
+            args.snapPoints &&
+              JSON.stringify(args.snapPoints) !== JSON.stringify([80, 50]) &&
+              `snapPoints={${JSON.stringify(args.snapPoints)}}`,
+            args.snapPointsMode &&
+              args.snapPointsMode !== 'percent' &&
+              `snapPointsMode="${args.snapPointsMode}"`,
+            args.titleLeftAligned && 'titleLeftAligned={true}',
+            args.variant &&
+              args.variant !== 'default' &&
+              `variant="${args.variant}"`,
+            args.closable === false && 'closable={false}',
+          ]
+            .filter(Boolean)
+            .join('\n  ');
+
           return `import { Sheet } from '@superapp/ui-components';
-import { ${iconName !== 'None' ? iconName : 'Home'} } from 'iconoir-react-native';
+${args.headerIcon && iconName !== 'None' ? `import { ${iconName} } from 'iconoir-react-native';` : ''}
 
 function Example() {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,28 +87,7 @@ function Example() {
       
       <Sheet
         open={isOpen}
-        onOpenChange={setIsOpen}
-        ${
-          args.header
-            ? `header={{
-          ${args.header.icon ? `icon: <${iconName} />,` : ''}
-          ${args.header.title ? `title: "${args.header.title}",` : ''}
-        }}`
-            : ''
-        }
-        ${args.scrollView ? `scrollView={${args.scrollView}}` : ''}
-        ${
-          args.snapPoints &&
-          JSON.stringify(args.snapPoints) !== JSON.stringify([80, 50])
-            ? `snapPoints={${JSON.stringify(args.snapPoints)}}`
-            : ''
-        }
-        ${
-          args.snapPointsMode && args.snapPointsMode !== 'percent'
-            ? `snapPointsMode="${args.snapPointsMode}"`
-            : ''
-        }
-        ${args.titleLeftAligned ? `titleLeftAligned={${args.titleLeftAligned}}` : ''}
+        onOpenChange={setIsOpen}${props ? `\n  ${props}` : ''}
       >
         <Text>Conteúdo do sheet aqui</Text>
       </Sheet>
@@ -105,45 +95,54 @@ function Example() {
   );
 }`;
         },
+        state: 'open',
       },
     },
   },
   argTypes: {
     open: {
-      description: 'Controla se o sheet está aberto ou fechado',
-      control: { type: 'boolean' },
+      description:
+        'Controla se o sheet está aberto ou fechado (modo controlado)',
+      control: false,
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     onOpenChange: {
       description: 'Callback executado quando o estado de abertura muda',
-      action: 'onOpenChange',
+      control: false,
       table: {
         type: { summary: '(open: boolean) => void' },
       },
     },
-    children: {
-      description: 'Conteúdo do sheet',
+    headerTitle: {
+      name: 'header.title',
+      description: 'Título exibido no cabeçalho do sheet',
       control: { type: 'text' },
       table: {
-        type: { summary: 'ReactNode' },
+        type: { summary: 'string' },
+        category: 'Header',
       },
     },
-    header: {
-      description: 'Configuração do cabeçalho com ícone e título',
-      control: { type: 'object' },
+    headerIcon: {
+      name: 'header.icon',
+      description: 'Ícone exibido no cabeçalho do sheet',
+      control: { type: 'select' },
+      options: Object.keys(iconMapping),
+      mapping: iconMapping,
       table: {
-        type: { summary: '{ icon?: ReactNode; title?: string }' },
+        type: { summary: 'ReactNode' },
+        category: 'Header',
       },
     },
     scrollView: {
-      description: 'Habilita scroll para conteúdo que excede a altura',
+      description:
+        'Habilita scroll para conteúdo que excede a altura disponível',
       control: { type: 'boolean' },
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+        category: 'Conteúdo',
       },
     },
     snapPoints: {
@@ -152,15 +151,65 @@ function Example() {
       table: {
         type: { summary: 'number[]' },
         defaultValue: { summary: '[80, 50]' },
+        category: 'Comportamento',
       },
     },
     snapPointsMode: {
-      description: 'Modo dos snap points (percentual ou absoluto)',
+      description: 'Modo dos snap points (percentual ou valores absolutos)',
       control: { type: 'select' },
       options: ['percent', 'constant'],
       table: {
         type: { summary: "'percent' | 'constant'" },
         defaultValue: { summary: "'percent'" },
+        category: 'Comportamento',
+      },
+    },
+    titleLeftAligned: {
+      description: 'Alinha o título à esquerda em vez de centralizado',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Header',
+      },
+    },
+    variant: {
+      description: 'Variante do sheet que controla o comportamento do blur',
+      control: { type: 'select' },
+      options: ['default', 'onMediaBg'],
+      table: {
+        type: { summary: "'default' | 'onMediaBg'" },
+        defaultValue: { summary: "'default'" },
+        category: 'Efeitos Visuais',
+      },
+    },
+    closable: {
+      description: 'Se o sheet pode ser fechado por interação do usuário',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Comportamento',
+      },
+    },
+    modal: {
+      description:
+        'Se o sheet deve ser modal (renderizado na raiz da aplicação)',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Comportamento',
+      },
+    },
+    dismissOnSnapToBottom: {
+      description:
+        'Fecha automaticamente quando arrastado para o snap point inferior',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Comportamento',
       },
     },
     animation: {
@@ -170,242 +219,78 @@ function Example() {
       table: {
         type: { summary: "'quick' | 'medium' | 'slow'" },
         defaultValue: { summary: "'medium'" },
-      },
-    },
-    modal: {
-      description: 'Se o sheet deve ser modal (bloqueia interação com fundo)',
-      control: { type: 'boolean' },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    dismissOnSnapToBottom: {
-      description: 'Fecha automaticamente quando arrastado para baixo',
-      control: { type: 'boolean' },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    titleLeftAligned: {
-      description: 'Alinha o título à esquerda em vez de centralizado',
-      control: { type: 'boolean' },
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        category: 'Animação',
       },
     },
   },
   args: {
-    open: false,
+    headerTitle: 'Título do Sheet',
+    headerIcon: 'Home',
     scrollView: false,
     snapPoints: [80, 50],
     snapPointsMode: 'percent',
-    animation: 'medium',
+    titleLeftAligned: false,
+    variant: 'default',
+    closable: true,
     modal: true,
     dismissOnSnapToBottom: true,
-    titleLeftAligned: false,
+    animation: 'medium',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<SheetProps>;
+type Story = StoryObj<SheetStoryArgs>;
 
-// Template para criar stories interativas
-const SheetTemplate = (args: SheetProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <View padding={16} backgroundColor="$background" minHeight={400}>
-      <Button onPress={() => setIsOpen(true)}>Abrir Sheet</Button>
-
-      <Sheet {...args} open={isOpen} onOpenChange={setIsOpen}>
-        {args.children || (
-          <YStack gap={16}>
-            <Text>Este é o conteúdo do sheet.</Text>
-            <Text>Você pode arrastar para redimensionar ou fechar.</Text>
-          </YStack>
-        )}
-      </Sheet>
-    </View>
-  );
-};
-
-/**
- * Sheet básico sem cabeçalho, apenas com conteúdo simples.
- */
 export const Default: Story = {
-  render: SheetTemplate,
-  args: {},
-};
-
-/**
- * Sheet com cabeçalho contendo ícone e título centralizados.
- */
-export const WithHeader: Story = {
-  render: SheetTemplate,
-  args: {
-    header: {
-      icon: <Home width={20} height={20} />,
-      title: 'Configurações',
-    },
-  },
-};
-
-/**
- * Sheet com título alinhado à esquerda para melhor uso de espaço.
- */
-export const LeftAlignedHeader: Story = {
-  render: SheetTemplate,
-  args: {
-    header: {
-      icon: <Settings width={20} height={20} />,
-      title: 'Filtros Avançados',
-    },
-    titleLeftAligned: true,
-  },
-};
-
-/**
- * Sheet com scroll habilitado para conteúdo extenso.
- */
-export const WithScrollView: Story = {
-  render: SheetTemplate,
-  args: {
-    header: {
-      icon: <Settings width={20} height={20} />,
-      title: 'Informações Detalhadas',
-    },
-    scrollView: true,
-    children: (
-      <YStack gap={16}>
-        {Array.from({ length: 20 }, (_, i) => (
-          <View
-            key={i}
-            padding={12}
-            backgroundColor="$neutralBg2"
-            borderRadius={8}
-          >
-            <Text>Item {i + 1} - Conteúdo que requer scroll</Text>
-            <Text fontSize={14} color="$color11">
-              Este é um exemplo de conteúdo longo que demonstra a funcionalidade
-              de scroll do sheet.
-            </Text>
-          </View>
-        ))}
-      </YStack>
-    ),
-  },
-};
-
-/**
- * Sheet configurado com snap points customizados.
- */
-export const CustomSnapPoints: Story = {
-  render: SheetTemplate,
-  args: {
-    header: {
-      icon: <Star width={20} height={20} />,
-      title: 'Snap Points Customizados',
-    },
-    snapPoints: [90, 60, 30],
-    children: (
-      <YStack gap={16}>
-        <Text fontWeight="600">Snap Points: 90%, 60%, 30%</Text>
-        <Text>
-          Arraste para cima e para baixo para testar os diferentes snap points.
-        </Text>
-        <Text color="$color11">
-          O sheet irá "grudar" em 30%, 60% ou 90% da altura da tela.
-        </Text>
-      </YStack>
-    ),
-  },
-};
-
-/**
- * Sheet não-modal que permite interação com o fundo.
- */
-export const NonModal: Story = {
-  render: SheetTemplate,
-  args: {
-    header: {
-      icon: <User width={20} height={20} />,
-      title: 'Sheet Não-Modal',
-    },
-    modal: false,
-    children: (
-      <YStack gap={16}>
-        <Text fontWeight="600">Sheet Não-Modal</Text>
-        <Text>Este sheet permite interação com elementos de fundo.</Text>
-        <Text color="$color11">
-          Útil para painéis de informação que não precisam bloquear a interface.
-        </Text>
-      </YStack>
-    ),
-  },
-};
-
-/**
- * Playground interativo para testar todas as propriedades do Sheet.
- */
-export const Playground: Story = {
   render: args => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const headerProps: Partial<SheetProps> = {};
+
+    if (args.headerTitle || args.headerIcon !== 'None') {
+      const header: SheetHeaderProps = {};
+      if (args.headerTitle) {
+        header.title = args.headerTitle;
+      }
+      if (args.headerIcon !== 'None' && args.headerIcon) {
+        const IconComponent = iconMapping[args.headerIcon];
+        header.icon = IconComponent ? (
+          <IconComponent width={20} height={20} />
+        ) : undefined;
+      }
+      headerProps.header = header;
+    }
+
+    const {
+      headerTitle: _headerTitle,
+      headerIcon: _headerIcon,
+      ...sheetArgs
+    } = args;
+
     return (
-      <View padding={16} backgroundColor="$background" minHeight={400}>
-        <YStack gap={16}>
-          <Text fontWeight="600">Controles do Playground</Text>
-          <Text color="$color11">
-            Use os controles do painel para testar diferentes configurações do
-            Sheet.
-          </Text>
+      <View padding="$medium" backgroundColor="$background" minHeight={400}>
+        <Button onPress={() => setIsOpen(true)}>Abrir Sheet</Button>
 
-          <Button onPress={() => setIsOpen(true)}>Abrir Sheet</Button>
-        </YStack>
-
-        <Sheet {...args} open={isOpen} onOpenChange={setIsOpen}>
-          <YStack gap={16}>
-            <Text fontWeight="600">Sheet Configurável</Text>
-            <Text>
-              Este sheet reflete as configurações selecionadas no painel de
-              controles.
-            </Text>
-            <Text color="$color11">
-              Experimente diferentes combinações de propriedades para ver como
-              elas afetam o comportamento.
-            </Text>
-
-            <View padding={16} backgroundColor="$neutralBg1" borderRadius={8}>
-              <Text fontWeight="600" marginBottom={8}>
-                Configurações Atuais:
-              </Text>
-              <Text fontSize={14}>
-                Scroll: {args.scrollView ? 'Habilitado' : 'Desabilitado'}
-              </Text>
-              <Text fontSize={14}>Modal: {args.modal ? 'Sim' : 'Não'}</Text>
-              <Text fontSize={14}>
-                Snap Points: {JSON.stringify(args.snapPoints)}
-              </Text>
-              <Text fontSize={14}>Modo: {args.snapPointsMode}</Text>
-            </View>
+        <Sheet
+          {...sheetArgs}
+          {...headerProps}
+          open={isOpen}
+          onOpenChange={setIsOpen}
+        >
+          <YStack gap="$medium">
+            <Text>Este é o conteúdo do sheet.</Text>
+            <Text>Você pode arrastar para redimensionar ou fechar.</Text>
+            {args.scrollView && (
+              <>
+                {Array.from({ length: 15 }, (_, i) => (
+                  <Text key={i}>Item de conteúdo #{i + 1}</Text>
+                ))}
+              </>
+            )}
           </YStack>
         </Sheet>
       </View>
     );
-  },
-  args: {
-    header: {
-      icon: <Settings width={20} height={20} />,
-      title: 'Playground',
-    },
-    scrollView: false,
-    snapPoints: [80, 50],
-    snapPointsMode: 'percent',
-    titleLeftAligned: false,
-    modal: true,
-    dismissOnSnapToBottom: true,
   },
 };

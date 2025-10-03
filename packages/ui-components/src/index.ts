@@ -76,6 +76,9 @@ export type {
   CardCarouselHorizontalProps,
   CardCarouselHorizontalTheme,
 } from './components/CardCarouselHorizontal';
+export { Icon } from './components/Icon';
+export type { IconProps } from './components/Icon';
+export * from './components/Icon/svg';
 export { IconButton } from './components/IconButton';
 export type { IconButtonProps, IconButtonSize } from './components/IconButton';
 export { ListItem } from './components/ListItem';
@@ -124,6 +127,8 @@ export type {
   SeparatorProps,
   SeparatorDirection,
 } from './components/Separator';
+export { TileButton } from './components/TileButton';
+export type { TileButtonProps } from './components/TileButton/TileButton.model';
 /**
  * @deprecated VerticalActions e componentes relacionados estão obsoletos e serão removidos em uma versão futura.
  * Use os seguintes componentes como alternativa:
@@ -167,6 +172,8 @@ export type {
   DscRadioGroupItemProps,
   RadioGroupProps,
 } from './components/Radio';
+export { Stories } from './templates/screens/Stories';
+export type { StoriesProps } from './templates/screens/Stories';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';

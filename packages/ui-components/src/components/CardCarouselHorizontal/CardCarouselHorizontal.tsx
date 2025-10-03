@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled, XStack, YStack } from 'tamagui';
 import { CardCarouselHorizontalProps } from './CardCarouselHorizontal.model';
-import { BodySmall, LabelSmall } from '../..';
+import { BodySmall, LabelSmall } from '../Typography';
 
 const Container = styled(XStack, {
   name: 'CardCarouselHorizontal',
