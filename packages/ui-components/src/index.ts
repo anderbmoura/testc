@@ -174,6 +174,7 @@ export type {
 } from './components/Radio';
 export { Stories } from './templates/screens/Stories';
 export type { StoriesProps } from './templates/screens/Stories';
+export { Slider, type SliderProps } from './components/Slider';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';
