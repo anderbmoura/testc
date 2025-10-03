@@ -33,7 +33,10 @@ export interface BlurViewProps extends ViewProps {
  */
 export interface UseExpoBlurResult {
   isAvailable: boolean;
-  ExpoBlurView: React.ComponentType<any> | null;
+  ExpoBlurView: React.ComponentType<{
+    intensity?: number;
+    style?: object;
+  }> | null;
   config: ExpoBlurConfig;
 }
 

@@ -19,6 +19,7 @@ const createCSSBlurStyles = (
 const createAccessibilityProps = (
   accessibilityRole: BlurViewProps['accessibilityRole'],
   accessibilityLabel: BlurViewProps['accessibilityLabel'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   restProps: any
 ) => ({
   accessibilityRole,
@@ -26,6 +27,7 @@ const createAccessibilityProps = (
   ...restProps,
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createFinalStyle = (backgroundColor: string, style: any) => [
   BLUR_CONSTANTS.ABSOLUTE_POSITION,
   { backgroundColor },
@@ -36,10 +38,14 @@ const createFinalStyle = (backgroundColor: string, style: any) => [
  * Renderiza o blur usando expo-blur quando disponível
  */
 const ExpoBlurRenderer: React.FC<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ExpoBlurView: React.ComponentType<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   config: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style: any;
   children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   accessibilityProps: any;
 }> = memo(({ ExpoBlurView, config, style, children, accessibilityProps }) => (
   <ExpoBlurView {...config} style={style} {...accessibilityProps}>
@@ -54,8 +60,10 @@ ExpoBlurRenderer.displayName = 'ExpoBlurRenderer';
  */
 const FallbackBlurRenderer: React.FC<{
   blurIntensity: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style: any;
   children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   accessibilityProps: any;
 }> = memo(({ blurIntensity, style, children, accessibilityProps }) => {
   const cssBlurStyles = useMemo(

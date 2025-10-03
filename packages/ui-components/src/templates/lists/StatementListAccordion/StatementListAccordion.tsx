@@ -82,12 +82,14 @@ export const StatementListAccordion: React.FC<StatementListAccordionProps> = ({
     child =>
       React.isValidElement(child) &&
       (child.type === ExtractItem ||
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child.type as any)?.displayName === 'ExtractItem')
   );
   const listFooter = childrenArray.find(
     child =>
       React.isValidElement(child) &&
       (child.type === ListFooter ||
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child.type as any)?.displayName === 'ListFooter')
   );
 

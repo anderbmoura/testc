@@ -141,6 +141,7 @@ const ChipsComponent: React.FC<ChipsProps> = ({
       cursor={disabled ? 'not-allowed' : 'pointer'}
       {...(isFocused && !disabled ? { focused: true } : { focused: false })}
     >
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Chip.Content disabled={disabled} selected={selected} {...(props as any)}>
         <Chip.Row>
           <Chip.LeftIcon icon={renderLeftSlot} variant={chipVariant} />

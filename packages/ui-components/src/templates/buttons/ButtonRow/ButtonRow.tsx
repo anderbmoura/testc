@@ -27,6 +27,7 @@ export const ButtonRow: React.FC<ButtonRowProps> = ({ children, ...props }) => {
           flex: 1,
           ...child.props.touchableProps,
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
     }
     return child;

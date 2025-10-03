@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 /**
  * Script para gerar automaticamente componentes React dos SVGs
@@ -67,13 +68,19 @@ function generateReactComponent(fileName, svgContent) {
 
   // Extrai viewBox do SVG
   const viewBoxMatch = processedSvg.match(/viewBox="([^"]*)"/);
-  const _viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
+  const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
 
   // Extrai width e height padrão
   const widthMatch = processedSvg.match(/width="([^"]*)"/);
   const heightMatch = processedSvg.match(/height="([^"]*)"/);
   const defaultWidth = widthMatch ? widthMatch[1] : '24';
   const defaultHeight = heightMatch ? heightMatch[1] : '24';
+
+  // Extrai apenas o conteúdo interno do SVG
+  const svgInnerContent = processedSvg
+    .replace(/<svg[^>]*>/, '')
+    .replace(/<\/svg>/, '')
+    .trim();
 
   return `import React from 'react';
 
@@ -86,10 +93,19 @@ export interface ${componentName}Props {
 export const ${componentName}: React.FC<${componentName}Props> = ({
   width = ${defaultWidth},
   height = ${defaultHeight},
-  color = 'currentColor'
+  color = 'currentColor',
 }) => (
-  ${processedSvg.replace(/width="[^"]*"/, 'width={width}').replace(/height="[^"]*"/, 'height={height}')}
-);`;
+  <svg
+    width={width}
+    height={height}
+    viewBox="${viewBox}"
+    fill={color}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    ${svgInnerContent}
+  </svg>
+);
+`;
 }
 
 /**
@@ -170,6 +186,21 @@ function generateIconComponents() {
 
   // Gera exports dos componentes SVG
   generateSvgIndex(iconData);
+
+  // Executa prettier/lint fix nos arquivos gerados
+  try {
+    console.log('🔧 Formatando arquivos com Prettier...');
+    execSync(`npx prettier --write "${SVG_COMPONENTS_DIR}/*.{ts,tsx}"`, {
+      cwd: path.join(__dirname, '../../../'),
+      stdio: 'pipe',
+    });
+    console.log('✅ Arquivos formatados com sucesso!');
+  } catch (_error) {
+    console.log(
+      '⚠️  Aviso: Não foi possível executar o Prettier automaticamente'
+    );
+    console.log('💡 Execute manualmente: yarn lint --fix');
+  }
 
   console.log(
     `🎉 Gerados ${iconData.length} componentes de ícones com sucesso!`

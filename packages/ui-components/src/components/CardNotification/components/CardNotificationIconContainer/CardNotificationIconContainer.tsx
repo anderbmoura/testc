@@ -21,7 +21,7 @@ import {
 
 const defaultIconMap: Record<
   CardNotificationVariant,
-  React.ComponentType<any>
+  React.ComponentType<{ size?: number; color?: string }>
 > = {
   highlight: InfoCircle,
   accent: Bell,

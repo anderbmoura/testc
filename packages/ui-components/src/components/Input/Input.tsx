@@ -150,6 +150,7 @@ const InputBase: React.FC<InputProps> = ({
                 disabled={disabled}
                 hasError={hasError}
                 autoFocus={autoFocus && !disabled}
+                // eslint-disable-next-line @typescript-eslint/no-empty-function
                 onChangeText={onChangeText || (() => {})}
                 onFocus={eventHandlers.onFocus}
                 onBlur={eventHandlers.onBlur}

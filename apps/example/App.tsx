@@ -36,6 +36,7 @@ function AppContent() {
         <Sheet
           closable={false}
           open={true}
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
           onOpenChange={() => {}}
           onPositionChange={handleSheetPositionChange}
           header={{

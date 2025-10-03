@@ -1,8 +1,8 @@
 export interface CreditCardButtonProps {
-    active: boolean;
-    number: string;
-    date: string;
-    type: string;
-    cardBackground?: string;
-    onPress: () => void;
+  active: boolean;
+  number: string;
+  date: string;
+  type: string;
+  cardBackground?: string;
+  onPress: () => void;
 }

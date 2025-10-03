@@ -157,6 +157,7 @@ export function SnackBar({
     [translateX, translateY, onDismiss]
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleGestureMove = (gestureState: any) => {
     const { dx, dy } = gestureState;
 
@@ -169,6 +170,7 @@ export function SnackBar({
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleGestureRelease = (gestureState: any) => {
     const { dx, dy, vx, vy } = gestureState;
 
@@ -219,6 +221,7 @@ export function SnackBar({
   return (
     <Portal>
       <Animated.View {...panResponder.panHandlers} style={animatedViewStyle}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <SnackBarContainer theme={color as any}>
           <SnackBarContent>
             {IconComponent && <YStack>{IconComponent}</YStack>}

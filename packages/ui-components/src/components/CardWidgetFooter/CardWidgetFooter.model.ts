@@ -46,7 +46,7 @@ export interface CardWidgetFooterProps extends Omit<StackProps, 'theme'> {
    * />
    * ```
    */
-  icon?: React.ComponentType<any>;
+  icon?: React.ComponentType<{ size?: number; color?: string }>;
 
   /**
    * Define se a barra de progresso deve ser exibida.

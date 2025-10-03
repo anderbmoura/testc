@@ -60,6 +60,7 @@ export const AccordionContent = styled(Accordion.Content, {
   name: 'Accordion.Content',
   animation: 'quick',
   exitStyle: { opacity: 0 },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }) as any;
 
 export const AccordionContentFooter = styled(XStack, {

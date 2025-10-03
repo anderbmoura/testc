@@ -66,7 +66,9 @@ export interface UseActionsButtonRowStateReturn {
   /**
    * Função para capturar o layout do conteúdo.
    */
-  handleContentLayout: (event: any) => void;
+  handleContentLayout: (event: {
+    nativeEvent: { layout: { height: number } };
+  }) => void;
 
   /**
    * Função para atualizar a altura do conteúdo.
@@ -112,7 +114,9 @@ export const useActionsButtonRowState = ({
     setShowAll(!showAll);
   };
 
-  const handleContentLayout = (event: any) => {
+  const handleContentLayout = (event: {
+    nativeEvent: { layout: { height: number } };
+  }) => {
     const { height } = event.nativeEvent.layout;
     if (height > 0) {
       setContentHeight(height);

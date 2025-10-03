@@ -15,6 +15,7 @@ export interface InputFeedbackErrorContainerProps {
   /**
    * Valor de animação para shake do erro
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errorShakeAnimation?: any;
 
   /**

@@ -33,5 +33,7 @@ export interface ActionsButtonRowContentProps {
   /**
    * Callback para capturar layout do conteúdo adicional.
    */
-  onContentLayout: (event: any) => void;
+  onContentLayout: (event: {
+    nativeEvent: { layout: { height: number } };
+  }) => void;
 }

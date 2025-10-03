@@ -25,6 +25,7 @@ export interface InputSupportingTextContainerProps {
   /**
    * Valor de animação para shake do contador
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   counterShakeAnimation?: any;
 
   /**

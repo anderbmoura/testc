@@ -23,8 +23,10 @@ const Spinner: React.FC<SpinnerProps> = ({
   size = 'large',
 }) => (
   <TamaguiSpinner
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     theme={variant as any}
     color="$color8"
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     size={size === 'small' ? 20 : (36 as any)}
   />
 );

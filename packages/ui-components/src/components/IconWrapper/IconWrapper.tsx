@@ -34,18 +34,20 @@ export const IconWrapper = ({ icon, size, color }: IconWrapperProps) => {
   const resolvedSize = iconSize[size];
 
   const resolvedColor =
-  typeof color === 'string'
-    ? color.startsWith('$')
-      ? theme[color.replace('$', '')]?.get()
-      : color
-    : '#000';
+    typeof color === 'string'
+      ? color.startsWith('$')
+        ? theme[color.replace('$', '')]?.get()
+        : color
+      : '#000';
 
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const iconProps: any = {
     color: resolvedColor,
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   if ((icon as any)?.$$typeof === Symbol.for('react.forward_ref')) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return React.createElement(icon as any, {
       width: resolvedSize,
       height: resolvedSize,
@@ -54,8 +56,10 @@ export const IconWrapper = ({ icon, size, color }: IconWrapperProps) => {
   }
 
   if (typeof icon === 'function') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isTamaguiIcon = (icon as any).displayName?.includes('themed');
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return React.createElement(icon as any, {
       ...(isTamaguiIcon
         ? { size: resolvedSize }
@@ -65,6 +69,7 @@ export const IconWrapper = ({ icon, size, color }: IconWrapperProps) => {
   }
 
   if (React.isValidElement(icon)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isTamaguiIcon = ((icon.type as any)?.displayName || '').includes(
       'themed'
     );

@@ -4,12 +4,14 @@ module.exports = [
       'node_modules/**',
       '**/dist/**',
       '**/build/**',
+      '**/lib/**',
       '**/.expo/**',
       '**/coverage/**',
       '**/*.log',
       'package-lock.json',
       'yarn.lock',
       'pnpm-lock.yaml',
+      '.yarn/**',
     ],
   },
   {
@@ -44,6 +46,13 @@ module.exports = [
       '@typescript-eslint/no-empty-function': 'warn',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
+    },
+  },
+  {
+    files: ['**/*.stories.{js,jsx,ts,tsx}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
     },
   },
 ];

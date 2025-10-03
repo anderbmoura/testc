@@ -40,7 +40,6 @@ import { ValueSection } from '@superapp-caixa/dsc-library';
         `,
       },
       source: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         transform: (_: string, { args }: any) => {
           const props = [
             args.label && `label="${args.label}"`,

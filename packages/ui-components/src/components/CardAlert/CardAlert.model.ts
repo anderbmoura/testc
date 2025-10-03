@@ -52,7 +52,7 @@ export interface CardAlertProps {
   /**
    * Optional custom styling for the container.
    */
-  style?: any;
+  style?: object;
 
   /**
    * Test ID for automated testing.
