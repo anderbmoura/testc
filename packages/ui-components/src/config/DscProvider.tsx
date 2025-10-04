@@ -2,7 +2,7 @@ import React from 'react';
 import { TamaguiProvider, type TamaguiProviderProps } from 'tamagui';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { dscConfig } from './tamagui.config';
-import { SnackBarProvider } from '../components/SnackBar';
+import { SnackBarProvider } from '../components/feedback/SnackBar';
 
 type DscProviderProps = TamaguiProviderProps & {
   children: React.ReactNode;

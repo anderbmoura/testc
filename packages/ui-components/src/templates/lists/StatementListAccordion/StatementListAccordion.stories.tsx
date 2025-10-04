@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { StatementListAccordion } from './StatementListAccordion';
-import { ExtractItem } from '../../../components/ExtractList/ExtractItem/ExtractItem';
-import { ListFooter } from '../../../components/ListFooter';
+import { ExtractItem } from '../../../components/data-display/ExtractList/ExtractItem/ExtractItem';
+import { ListFooter } from '../../../components/lists/ListFooter';
 import type { StatementListAccordionProps } from './StatementListAccordion.model';
 import { CreditCard, Home, LightBulb, Car, Phone } from 'iconoir-react-native';
 

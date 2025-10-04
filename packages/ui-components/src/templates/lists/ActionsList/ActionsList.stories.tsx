@@ -3,12 +3,12 @@ import React from 'react';
 import { View } from 'react-native';
 import { ActionsList } from './ActionsList';
 import type { ActionsListProps } from './ActionsList.model';
-import { ListHeading } from '../../../components/ListHeading';
-import { SegmentedButton } from '../../../components/SegmentedButton';
-import { ListItem } from '../../../components/ListItem';
-import { ListFooter } from '../../../components/ListFooter';
-import Switch from '../../../components/Switch';
-import { IconButton } from '../../../components/IconButton';
+import { ListHeading } from '../../../components/lists/ListHeading';
+import { SegmentedButton } from '../../../components/buttons/SegmentedButton';
+import { ListItem } from '../../../components/lists/ListItem';
+import { ListFooter } from '../../../components/lists/ListFooter';
+import Switch from '../../../components/forms/Switch';
+import { IconButton } from '../../../components/buttons/IconButton';
 import {
   NavArrowRight,
   CreditCard,

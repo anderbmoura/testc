@@ -1,8 +1,8 @@
 import React, { ReactNode, ReactElement, isValidElement, useMemo } from 'react';
-import { ListHeading } from '../../../../components/ListHeading';
-import { SegmentedButton } from '../../../../components/SegmentedButton';
-import { ListFooter } from '../../../../components/ListFooter';
-import { ListItemProps } from '../../../../components/ListItem/ListItem.model';
+import { ListHeading } from '../../../../components/lists/ListHeading';
+import { SegmentedButton } from '../../../../components/buttons/SegmentedButton';
+import { ListFooter } from '../../../../components/lists/ListFooter';
+import { ListItemProps } from '../../../../components/lists/ListItem/ListItem.model';
 
 interface CategorizedChildren {
   listHeading: ReactElement | null;

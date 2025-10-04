@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
-import { ListHeading } from '../../../components/ListHeading';
-import { Separator } from '../../../components/Separator';
+import { ListHeading } from '../../../components/lists/ListHeading';
+import { Separator } from '../../../components/layout/Separator';
 import { StatementListContainer } from './StatementList.styles';
 import type { StatementListProps } from './StatementList.model';
 

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { ActionsButtonRow } from './ActionsButtonRow';
 import type { ActionsButtonRowProps } from './ActionsButtonRow.model';
 import { ButtonRow } from '../ButtonRow';
-import IconButtonText from '../../../components/IconButtonText';
+import IconButtonText from '../../../components/buttons/IconButtonText';
 import {
   Home,
   User,

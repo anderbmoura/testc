@@ -1,9 +1,9 @@
 import React, { Fragment, ReactElement, useState } from 'react';
 import { YStack } from 'tamagui';
-import { ListAccordion } from '../../../components/ListAccordion';
-import { ExtractItem } from '../../../components/ExtractList/ExtractItem/ExtractItem';
-import { ListFooter } from '../../../components/ListFooter';
-import Separator from '../../../components/Separator';
+import { ListAccordion } from '../../../components/lists/ListAccordion';
+import { ExtractItem } from '../../../components/data-display/ExtractList/ExtractItem/ExtractItem';
+import { ListFooter } from '../../../components/lists/ListFooter';
+import Separator from '../../../components/layout/Separator';
 import { StatementListAccordionProps } from './StatementListAccordion.model';
 
 /**

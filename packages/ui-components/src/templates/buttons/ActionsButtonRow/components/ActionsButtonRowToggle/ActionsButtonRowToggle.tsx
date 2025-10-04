@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavArrowDown, NavArrowUp } from 'iconoir-react-native';
-import Button from '../../../../../components/Button';
+import Button from '../../../../../components/buttons/Button';
 import { ToggleButtonContainer } from './ActionsButtonRowToggle.styles';
 import type { ActionsButtonRowToggleProps } from './ActionsButtonRowToggle.model';
 

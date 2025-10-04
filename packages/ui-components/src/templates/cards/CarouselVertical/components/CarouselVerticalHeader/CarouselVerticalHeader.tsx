@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListHeading } from '../../../../../components/ListHeading';
+import { ListHeading } from '../../../../../components/lists/ListHeading';
 import type { CarouselVerticalHeaderProps } from './CarouselVerticalHeader.model';
 
 /**

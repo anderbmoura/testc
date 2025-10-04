@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-import type { IconButtonTextProps } from '../../../components/IconButtonText/IconButtonText.model';
+import type { IconButtonTextProps } from '../../../components/buttons/IconButtonText/IconButtonText.model';
 
 /**
  * Opções de configuração para o Template DSC ButtonRow.

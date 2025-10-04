@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import Card from '../../../../../components/Card';
+import Card from '../../../../../components/cards/Card';
 import { List } from '../../../List';
 import { ActionsListContentContainer } from './ActionsListContent.styles';
 import type { ActionsListContentProps } from './ActionsListContent.model';
