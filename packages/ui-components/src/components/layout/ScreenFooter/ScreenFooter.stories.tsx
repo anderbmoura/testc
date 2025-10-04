@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ScreenFooter } from './ScreenFooter';
-import { Button } from '../../buttons/Button/Button';
+import Button from '../../buttons/Button';
 import { IconButton } from '../../buttons/IconButton';
 import {
   ArrowRight,

@@ -6,7 +6,7 @@ import {
   BodyStandard,
   BodySmall,
   LabelStandard,
-} from '../../../components/Typography';
+} from '../../../components/data-display/Typography';
 import { accentLightPalette, accentDarkPalette } from './accent';
 import {
   neutralLightPalette,

@@ -9,8 +9,8 @@ import {
   ShareAndroid as Share,
   InfoCircle as Info,
 } from 'iconoir-react-native';
-import { Avatar } from '../../data-display/Avatar/Avatar';
-import { Button } from '../../buttons/Button/Button';
+import { Avatar } from '../../data-display/Avatar';
+import Button from '../../buttons/Button';
 
 const meta: Meta<TopAppBarProps> = {
   title: 'Componentes/Navigation/TopAppBar',
