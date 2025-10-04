@@ -1,6 +1,6 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-import type { CardWidgetProps } from '../../../components/CardWidget/CardWidget.model';
+import type { CardWidgetProps } from '../../../components/cards/CardWidget/CardWidget.model';
 
 /**
  * Opções de configuração para o Template DSC WidgetRow.

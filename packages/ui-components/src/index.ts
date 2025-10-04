@@ -1,64 +1,164 @@
+// Re-export Tamagui (base components will be overridden by custom ones below)
 export * from 'tamagui';
+
+// Custom Buttons (overrides Tamagui's Button)
+export { default as Button } from './components/buttons/Button';
+export type {
+  ButtonProps,
+  ButtonSize,
+  ButtonType,
+} from './components/buttons/Button';
+export { IconButton } from './components/buttons/IconButton';
+export type {
+  IconButtonProps,
+  IconButtonSize,
+  IconButtonType,
+  IconButtonColor,
+} from './components/buttons/IconButton';
+export { default as IconButtonText } from './components/buttons/IconButtonText';
+export type {
+  IconButtonTextProps,
+  IconButtonTextVariant,
+} from './components/buttons/IconButtonText';
+export { default as CreditCardButton } from './components/buttons/CreditCardButton';
+export type { CreditCardButtonProps } from './components/buttons/CreditCardButton';
+export { TileButton } from './components/buttons/TileButton';
+export type { TileButtonProps } from './components/buttons/TileButton/TileButton.model';
 export {
-  Accordion,
-  AccordionContainer,
-  AccordionTrigger,
-  AccordionContent,
-  AccordionContentFooter,
-} from './components/Accordion';
-export type { AccordionProps, accordionStyle } from './components/Accordion';
-export {
-  AlertDialog,
-  AlertDialogDemo,
-  type AlertDialogProps,
-  type AlertDialogTriggerProps,
-} from './components/AlertDialog';
-export { default as BadgeText } from './components/BadgeText';
-export type { BadgeTextProps } from './components/BadgeText';
-export { default as Button } from './components/Button';
-export type { ButtonProps, ButtonSize, ButtonType } from './components/Button';
-export { default as Card } from './components/Card';
-export type { CardProps, CardType } from './components/Card';
+  SegmentedButton,
+  type SegmentedButtonItem,
+  type SegmentedButtonProps,
+} from './components/buttons/SegmentedButton';
+
+// Custom Cards (overrides Tamagui's Card)
+export { default as Card } from './components/cards/Card';
+export type { CardProps, CardType } from './components/cards/Card';
 export {
   CardAccount,
   CardAccountBody,
   CardAccountHeader,
-} from './components/CardAccount';
+  useInteractionState,
+} from './components/cards/CardAccount';
 export type {
   CardAccountBodyProps,
   CardAccountHeaderProps,
   CardAccountProps,
   CardAccountTheme,
-} from './components/CardAccount';
-export { CardAlert } from './components/CardAlert';
+  InteractionState,
+} from './components/cards/CardAccount';
+export { CardAlert } from './components/cards/CardAlert';
 export type {
   CardAlertAction,
   CardAlertProps,
   CardAlertVariant,
-} from './components/CardAlert';
-export { CardNotification } from './components/CardNotification';
+} from './components/cards/CardAlert';
+export { CardNotification } from './components/cards/CardNotification';
 export type {
   CardNotificationProps,
   CardNotificationVariant,
-} from './components/CardNotification';
-export { CardNotificationStack } from './components/CardNotificationStack';
-export { CardWidgetFooter } from './components/CardWidgetFooter';
-export type {
-  CardWidgetFooterProps,
-  CardWidgetFooterVariant,
-} from './components/CardWidgetFooter';
-export { CardWidgetFooterLoterias } from './components/CardWidgetFooterLoterias';
-export type { CardWidgetFooterLoteriasProps } from './components/CardWidgetFooterLoterias';
+} from './components/cards/CardNotification';
+export { CardNotificationStack } from './components/cards/CardNotification/CardNotificationStack';
 export {
   CardWidget,
   CardWidgetHeader,
   CardWidgetIcon,
-} from './components/CardWidget';
+  CardWidgetRemoveButton,
+} from './components/cards/CardWidget';
 export type {
   CardWidgetProps,
   CardWidgetVariant,
-} from './components/CardWidget';
-export { Chips } from './components/Chips';
+} from './components/cards/CardWidget';
+export { CardWidgetFooter } from './components/cards/CardWidget/CardWidgetFooter';
+export type {
+  CardWidgetFooterProps,
+  CardWidgetFooterVariant,
+} from './components/cards/CardWidget/CardWidgetFooter';
+export { CardWidgetFooterLoterias } from './components/cards/CardWidget/CardWidgetFooterLoterias';
+export type { CardWidgetFooterLoteriasProps } from './components/cards/CardWidget/CardWidgetFooterLoterias';
+export { CardCarouselVertical } from './components/cards/CardCarouselVertical';
+export type {
+  CardCarouselVerticalProps,
+  BackgroundImageProps,
+  BackgroundImageVariant,
+  MaskImageProps,
+} from './components/cards/CardCarouselVertical';
+export { default as CardCarouselHorizontal } from './components/cards/CardCarouselHorizontal';
+export type {
+  CardCarouselHorizontalProps,
+  CardCarouselHorizontalTheme,
+} from './components/cards/CardCarouselHorizontal';
+
+// Custom Forms (overrides Tamagui's Input, Checkbox, Switch, Slider)
+export { Input } from './components/forms/Input';
+export type {
+  InputProps,
+  InputCompoundComponent,
+} from './components/forms/Input';
+export { InputMoney, InputMoneyFeedback } from './components/forms/InputMoney';
+export type {
+  InputMoneyProps,
+  InputMoneyFeedbackProps,
+  InputMoneyInternalState,
+  InputMoneyFeedbackVariant,
+} from './components/forms/InputMoney';
+export { default as Checkbox } from './components/forms/Checkbox';
+export { Radio } from './components/forms/Radio';
+export type {
+  DscRadioGroupItemProps,
+  RadioGroupProps,
+} from './components/forms/Radio';
+export { default as Switch } from './components/forms/Switch';
+export type { SwitchProps } from './components/forms/Switch';
+export { Slider, type SliderProps } from './components/forms/Slider';
+
+// Custom Feedback (overrides Tamagui's AlertDialog, Spinner, Progress)
+export {
+  AlertDialog,
+  AlertDialogDemo,
+  type AlertDialogProps,
+  type AlertDialogTriggerProps,
+} from './components/feedback/AlertDialog';
+export {
+  SnackBar,
+  SnackBarProvider,
+  useSnackBar,
+} from './components/feedback/SnackBar';
+export type {
+  SnackBarContextType,
+  SnackBarProps,
+  SnackBarColor,
+} from './components/feedback/SnackBar';
+export { default as Spinner } from './components/feedback/Spinner';
+export type {
+  SpinnerProps,
+  SpinnerSize,
+  SpinnerVariant,
+} from './components/feedback/Spinner';
+export { Progress } from './components/feedback/Progress';
+export type {
+  ProgressProps,
+  ProgressSize,
+} from './components/feedback/Progress';
+export * from './components/feedback/FeedbackIllustration';
+
+// Custom Data Display (overrides Tamagui's Avatar)
+export * from './components/data-display/Typography';
+export { Avatar, AvatarStack } from './components/data-display/Avatar';
+export type {
+  AvatarProps,
+  AvatarStackProps,
+  AvatarStyle,
+  AvatarSize,
+  AvatarSpacing,
+  MonogramChar,
+} from './components/data-display/Avatar';
+export { default as BadgeText } from './components/data-display/BadgeText';
+export type {
+  BadgeTextProps,
+  BadgeTextSize,
+  BadgeTextColor,
+} from './components/data-display/BadgeText';
+export { Chips } from './components/data-display/Chips';
 export type {
   ChipsProps,
   ChipsLeftSlotProps,
@@ -66,69 +166,77 @@ export type {
   ChipsLeftSlotVariant,
   ChipsRightSlotVariant,
   ChipsVariant,
-} from './components/Chips';
-export { ExtractItem, type ExtractItemProps } from './components/ExtractList';
-export { ExtractList, type ExtractListProps } from './components/ExtractList';
-export { CardCarouselVertical } from './components/CardCarouselVertical';
-export type { CardCarouselVerticalProps } from './components/CardCarouselVertical';
-export { default as CardCarouselHorizontal } from './components/CardCarouselHorizontal';
+} from './components/data-display/Chips';
+export { Icon } from './components/data-display/Icon';
+export type { IconProps } from './components/data-display/Icon';
+export * from './components/data-display/Icon/svg';
+export {
+  IconWrapper,
+  type IconWrapperProps,
+} from './components/data-display/IconWrapper';
+export { ValueSection } from './components/data-display/ValueSection';
+export type { ValueSectionProps } from './components/data-display/ValueSection';
+export {
+  ExtractItem,
+  type ExtractItemProps,
+} from './components/data-display/ExtractList';
+export {
+  ExtractList,
+  type ExtractListProps,
+} from './components/data-display/ExtractList';
+
+// Custom Lists (overrides Tamagui's Accordion, ListItem)
+export {
+  Accordion,
+  AccordionContainer,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionContentFooter,
+} from './components/lists/Accordion';
 export type {
-  CardCarouselHorizontalProps,
-  CardCarouselHorizontalTheme,
-} from './components/CardCarouselHorizontal';
-export { Icon } from './components/Icon';
-export type { IconProps } from './components/Icon';
-export * from './components/Icon/svg';
-export { IconButton } from './components/IconButton';
-export type { IconButtonProps, IconButtonSize } from './components/IconButton';
-export { ListItem } from './components/ListItem';
-export type { ListItemProps } from './components/ListItem';
-export { ListHeading } from './components/ListHeading';
+  AccordionProps,
+  accordionStyle,
+} from './components/lists/Accordion';
+export {
+  ListItem,
+  ListItemLeftSlot,
+  ListItemRightSlot,
+} from './components/lists/ListItem';
+export type {
+  ListItemProps,
+  ListItemLeftSlotProps,
+  ListItemRightSlotProps,
+} from './components/lists/ListItem';
+export { ListHeading } from './components/lists/ListHeading';
 export type {
   ListHeadingProps,
   ListHeadingSize,
   ListHeadingConfiguration,
-} from './components/ListHeading';
-export { ListFooter } from './components/ListFooter';
-export type { ListFooterProps } from './components/ListFooter';
-export { ListAccordion } from './components/ListAccordion';
-export type { ListAccordionProps } from './components/ListAccordion';
-export { default as IconButtonText } from './components/IconButtonText';
-export type { IconButtonTextProps } from './components/IconButtonText';
-export { InputMoney, InputMoneyFeedback } from './components/InputMoney';
+} from './components/lists/ListHeading';
+export { ListFooter } from './components/lists/ListFooter';
+export type { ListFooterProps } from './components/lists/ListFooter';
+export { ListAccordion } from './components/lists/ListAccordion';
+export type { ListAccordionProps } from './components/lists/ListAccordion';
+
+// Custom Navigation (overrides Tamagui's Tabs)
+export { default as TopAppBar } from './components/navigation/TopAppBar';
 export type {
-  InputMoneyProps,
-  InputMoneyFeedbackProps,
-  InputMoneyInternalState,
-  InputMoneyFeedbackVariant,
-} from './components/InputMoney';
-export { Input } from './components/Input';
-export type { InputProps, InputCompoundComponent } from './components/Input';
-export { Popover } from './components/Popover';
-export { Progress } from './components/Progress';
-export type { ProgressProps, ProgressSize } from './components/Progress';
-export { SnackBar, SnackBarProvider, useSnackBar } from './components/SnackBar';
-export type { SnackBarContextType, SnackBarProps } from './components/SnackBar';
-export { default as Spinner } from './components/Spinner';
+  TopAppBarProps,
+  TopAppBarVariant,
+} from './components/navigation/TopAppBar';
+export { Toolbar, ToolbarItem } from './components/navigation/Toolbar';
 export type {
-  SpinnerProps,
-  SpinnerSize,
-  SpinnerVariant,
-} from './components/Spinner';
-export { default as Switch } from './components/Switch';
-export { default as Checkbox } from './components/Checkbox';
-export type { SwitchProps } from './components/Switch';
-export { default as TopAppBar } from './components/TopAppBar';
-export type { TopAppBarProps, TopAppBarVariant } from './components/TopAppBar';
-export { ValueSection } from './components/ValueSection';
-export type { ValueSectionProps } from './components/ValueSection';
-export { default as Separator } from './components/Separator';
+  ToolbarProps,
+  ToolbarItemProps,
+  ToolbarItemInteractionState,
+} from './components/navigation/Toolbar';
+export { Tabs } from './components/navigation/Tabs';
+export { TabItem } from './components/navigation/Tabs/components/TabItem';
 export type {
-  SeparatorProps,
-  SeparatorDirection,
-} from './components/Separator';
-export { TileButton } from './components/TileButton';
-export type { TileButtonProps } from './components/TileButton/TileButton.model';
+  TabsProps,
+  TabOption,
+  TabItemProps,
+} from './components/navigation/Tabs/Tabs.model';
 /**
  * @deprecated VerticalActions e componentes relacionados estão obsoletos e serão removidos em uma versão futura.
  * Use os seguintes componentes como alternativa:
@@ -140,8 +248,7 @@ export {
   VerticalActionsSection,
   type VerticalActionsProps,
   type VerticalActionsSectionProps,
-} from './components/VerticalActions';
-
+} from './components/navigation/VerticalActions';
 /**
  * @deprecated VerticalActionsItem está obsoleto e será removido em uma versão futura.
  * Use o componente `ListItem` como alternativa.
@@ -149,32 +256,44 @@ export {
 export {
   VerticalActionsItem,
   type VerticalActionsItemProps,
-} from './components/VerticalActions/components/VerticalActionsItem';
-export * from './components/Typography';
+} from './components/navigation/VerticalActions/components/VerticalActionsItem';
+
+// Custom Overlays (overrides Tamagui's Sheet, Popover)
+export {
+  Sheet,
+  SheetHeader,
+  SheetContent,
+  SheetOverlay,
+  SheetFrame,
+  SheetHandle,
+} from './components/overlays/Sheet';
+export type {
+  SheetProps,
+  SheetHeaderProps,
+  SheetContentProps,
+  SheetOverlayProps,
+  SheetFrameProps,
+  SheetHandleProps,
+} from './components/overlays/Sheet';
+export { Popover } from './components/overlays/Popover';
+
+// Custom Layout (overrides Tamagui's Separator)
+export { default as Separator } from './components/layout/Separator';
+export type {
+  SeparatorProps,
+  SeparatorDirection,
+} from './components/layout/Separator';
+export * from './components/layout/ScreenFooter';
+
+// Config
 export { DscProvider } from './config/DscProvider';
 export { dscFonts, type DscFonts } from './config/fonts';
 export { typography as typographyPresets } from './config/fonts/typography';
 export { dscConfig, type DscConfig } from './config/tamagui.config';
-export { default as CreditCardButton } from './components/CreditCardButton';
-export type { CreditCardButtonProps } from './components/CreditCardButton';
-export { Avatar, AvatarStack } from './components/Avatar';
-export type { AvatarProps, AvatarStackProps } from './components/Avatar';
-export {
-  SegmentedButton,
-  type SegmentedButtonItem,
-  type SegmentedButtonProps,
-} from './components/SegmentedButton';
-export { Sheet } from './components/Sheet';
-export type { SheetProps, SheetHeaderProps } from './components/Sheet';
-export { IconWrapper, type IconWrapperProps } from './components/IconWrapper';
-export { Radio } from './components/Radio';
-export type {
-  DscRadioGroupItemProps,
-  RadioGroupProps,
-} from './components/Radio';
+
+// Templates
 export { Stories } from './templates/screens/Stories';
 export type { StoriesProps } from './templates/screens/Stories';
-export { Slider, type SliderProps } from './components/Slider';
 
 // Templates
 export { ButtonRow } from './templates/buttons/ButtonRow';
@@ -201,9 +320,3 @@ export { ContentCard } from './templates/lists/ContentCard';
 export type { ContentCardProps } from './templates/lists/ContentCard';
 export { StatementListAccordion } from './templates/lists/StatementListAccordion';
 export type { StatementListAccordionProps } from './templates/lists/StatementListAccordion';
-export { Toolbar, ToolbarItem } from './components/Toolbar';
-export type {
-  ToolbarProps,
-  ToolbarItemProps,
-  ToolbarItemInteractionState,
-} from './components/Toolbar';

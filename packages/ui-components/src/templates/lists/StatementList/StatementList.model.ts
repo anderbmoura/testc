@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { ViewProps } from 'react-native';
-import { ExtractItemProps } from '../../../components/ExtractList/ExtractItem/ExtractItem.model';
+import { ExtractItemProps } from '../../../components/data-display/ExtractList/ExtractItem/ExtractItem.model';
 
 /**
  * Opções de configuração para o Template StatementList.

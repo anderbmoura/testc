@@ -1,6 +1,6 @@
 import React from 'react';
-import { ListHeading } from '../../../components/ListHeading';
-import Card from '../../../components/Card';
+import { ListHeading } from '../../../components/lists/ListHeading';
+import Card from '../../../components/cards/Card';
 import { List } from '../List';
 import {
   StyledContentCardContainer,

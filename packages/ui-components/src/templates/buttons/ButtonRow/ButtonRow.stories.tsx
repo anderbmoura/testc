@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { YStack } from 'tamagui';
 import { ButtonRow } from './ButtonRow';
 import type { ButtonRowProps } from './ButtonRow.model';
-import IconButtonText from '../../../components/IconButtonText';
+import IconButtonText from '../../../components/buttons/IconButtonText';
 import { Home, Settings, User, HelpCircle } from 'iconoir-react-native';
 
 const meta: Meta<ButtonRowProps> = {

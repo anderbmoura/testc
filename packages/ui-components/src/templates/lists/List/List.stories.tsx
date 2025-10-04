@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { List } from './List';
 import type { ListProps } from './List.model';
-import { ListItem } from '../../../components/ListItem';
-import Switch from '../../../components/Switch';
-import { IconButton } from '../../../components/IconButton';
+import { ListItem } from '../../../components/lists/ListItem';
+import Switch from '../../../components/forms/Switch';
+import { IconButton } from '../../../components/buttons/IconButton';
 import {
   NavArrowRight,
   User,
