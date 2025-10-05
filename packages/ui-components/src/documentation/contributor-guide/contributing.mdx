@@ -4,13 +4,13 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Como Contribuir
 
-Este guia descreve o fluxo de trabalho para contribuir com a DSC Library de forma organizada e eficiente.
+Este guia descreve o fluxo de trabalho para contribuir com a biblioteca React Native do DSC de forma organizada e eficiente.
 
 ## Fluxo de Contribuição
 
 ### 1. Preparar o ambiente
 
-Certifique-se de estar na branch `main` e que ela está atualizada:
+Certifique-se de estar na branch `main-develop` e que ela está atualizada:
 
 ```bash
 git fetch origin
@@ -20,47 +20,139 @@ git pull
 
 ### 2. Criar uma nova branch
 
-Crie sua branch a partir da `main`, usando um prefixo adequado ao tipo de contribuição:
+Crie sua branch a partir da `main-develop`, usando um prefixo adequado ao tipo de contribuição:
 
 #### Exemplos de prefixos comuns:
 
-- **`feature/`** - Para novas funcionalidades, componentes, layouts ou templates
-- **`bugfix/`** - Para correções de bugs
-- **`docs/`** - Para criação ou atualizações de documentação
-- **`perf/`** - Para refatorações ou melhorias no código
-- **`accessibility/`** - Para aplicações de acessibilidade
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Descrição</th>
+      <th>Exemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>build</strong></td>
+      <td>Alterações no sistema de build ou dependências externas</td>
+      <td><code>build: atualizar webpack para v5</code></td>
+    </tr>
+    <tr>
+      <td><strong>chore</strong></td>
+      <td>Tarefas de manutenção que não afetam código de produção</td>
+      <td><code>chore: adicionar eslint config</code></td>
+    </tr>
+    <tr>
+      <td><strong>ci</strong></td>
+      <td>Mudanças nos arquivos e scripts de CI (GitHub Actions, etc.)</td>
+      <td><code>ci: adicionar step de deploy automático</code></td>
+    </tr>
+    <tr>
+      <td><strong>docs</strong></td>
+      <td>Alterações na documentação</td>
+      <td><code>docs: atualizar README com novas instruções</code></td>
+    </tr>
+    <tr>
+      <td><strong>feat</strong></td>
+      <td>Nova funcionalidade</td>
+      <td><code>feat(auth): implementar login com biometria</code></td>
+    </tr>
+    <tr>
+      <td><strong>fix</strong></td>
+      <td>Correção de bug</td>
+      <td><code>fix(payment): corrigir cálculo de juros</code></td>
+    </tr>
+    <tr>
+      <td><strong>perf</strong></td>
+      <td>Melhoria de performance</td>
+      <td><code>perf(api): otimizar consulta de transações</code></td>
+    </tr>
+    <tr>
+      <td><strong>refactor</strong></td>
+      <td>Refatoração de código sem alterar funcionalidade</td>
+      <td><code>refactor(utils): extrair função de formatação</code></td>
+    </tr>
+    <tr>
+      <td><strong>revert</strong></td>
+      <td>Reverter commit anterior</td>
+      <td><code>revert: reverter "feat: nova tela de dashboard"</code></td>
+    </tr>
+    <tr>
+      <td><strong>style</strong></td>
+      <td>Mudanças de formatação, espaços, etc.</td>
+      <td><code>style: corrigir indentação em components</code></td>
+    </tr>
+    <tr>
+      <td><strong>test</strong></td>
+      <td>Adicionar ou corrigir testes</td>
+      <td><code>test(login): adicionar testes unitários</code></td>
+    </tr>
+  </tbody>
+</table>
 
-#### Exemplos:
+#### Regras Importantes
+
+1. **Formato obrigatório**: `tipo(escopo): descrição`
+2. **Tipo em minúsculo**: sempre usar letras minúsculas
+3. **Descrição clara**: usar verbo no infinitivo (implementar, corrigir, adicionar)
+4. **Limite de caracteres**: máximo 100 caracteres no título
+5. **Escopo opcional**: usar quando aplicável (ex: `auth`, `payment`, `ui`)
+
+#### ✅ Exemplos de Commits Válidos
 
 ```bash
-# Para um novo componente
-git checkout -b feature/card-component
+# Funcionalidades
+feat: implementar tela de transferência PIX
+feat(auth): adicionar autenticação com Face ID
+feat(dashboard): criar widget de saldo disponível
 
-# Para correção de bug
-git checkout -b bugfix/button-padding
+# Correções
+fix: corrigir erro de validação no CPF
+fix(api): resolver timeout na consulta de extratos
+fix(ui): ajustar layout em dispositivos pequenos
 
-# Para documentação
-git checkout -b docs/installation-guide
+# Documentação
+docs: atualizar guia de instalação
+docs(api): documentar endpoints de pagamento
 
-# Para perfectivas
-git checkout -b perf/reduce-bundle-size
+# Testes
+test: adicionar testes para componente Button
+test(integration): criar cenários de login
 
-# Para acessibilidade
-git checkout -b accessibility/button-screen-reader
+# Refatoração
+refactor: extrair lógica de validação para utils
+refactor(components): simplificar estrutura de pastas
+
+# Performance
+perf: otimizar carregamento de imagens
+perf(api): implementar cache para consultas frequentes
+
+# Build e CI
+build: atualizar React Native para v0.74
+ci: configurar pipeline de deploy automático
+
+# Manutenção
+chore: remover dependências não utilizadas
+chore: atualizar configuração do ESLint
+
+# Estilo
+style: aplicar prettier em todos os arquivos
+style(components): ajustar espaçamentos seguindo design system
 ```
 
 ### 3. Desenvolver e testar
 
 - Desenvolva seguindo as [convenções do projeto](?path=/docs/guia-de-contribuição-convenções-do-projeto--docs).
-- Todo componente deve ter sua documentação no Storybook.
-- Props e componentes devem ser documentados com JSDoc, fornecendo exemplos de uso.
+- Todo componente deve ter sua documentação no Storybook, em português.
+- Props e componentes que serão exportados para serem utilizados pelo APP que consumir a biblioteca devem ser documentadas com JSDoc, fornecendo exemplos de uso.
 
 ### 4. Commit das alterações
 
-Use mensagens de commit descritivas seguindo o padrão [Conventional Commits](https://www.conventionalcommits.org/), por exemplo:
+Use mensagens de commit descritivas seguindo o padrão <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a>, por exemplo:
 
 ```bash
-git commit -m "feat[my-new-component]: add myNewComponent"
+git commit -m "feat(my-new-component): add myNewComponent"
 ```
 
 ### 5. Push e Pull Request
@@ -73,10 +165,10 @@ git commit -m "feat[my-new-component]: add myNewComponent"
 - [ ] Lint e formatação verificados.
 
 ```bash
-# Push da branch
-git push origin feature/nome-da-sua-branch
+# Push da branch (primeira vez)
+git push -u origin feature/nome-da-sua-branch
 
-# Criar Pull Request no Azure DevOps para a branch develop
+# Criar Pull Request no Azure DevOps para a branch main-develop
 ```
 
-> ⚠️ **Importante**: Sempre crie o Pull Request para a branch **`develop`**, nunca diretamente para a `main`.
+> ⚠️ **Importante**: Sempre crie o Pull Request para a branch **`main-develop`**, exceto quando estiver trabalhando em uma feature branch.
