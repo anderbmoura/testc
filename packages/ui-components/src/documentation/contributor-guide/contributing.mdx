@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { LIBRARY_NAME } from '../constants';
 
 <Meta title="Guia de Contribuição/Como Contribuir" />
 
 # Como Contribuir
 
-Este guia descreve o fluxo de trabalho para contribuir com a biblioteca React Native do DSC de forma organizada e eficiente.
+Este guia descreve o fluxo de trabalho para contribuir com a {LIBRARY_NAME} de forma organizada e eficiente.
 
 ## Fluxo de Contribuição
 
@@ -141,7 +142,7 @@ style: aplicar prettier em todos os arquivos
 style(components): ajustar espaçamentos seguindo design system
 ```
 
-### 3. Desenvolver e testar
+### 3. Regras de Desenvolvimento
 
 - Desenvolva seguindo as [convenções do projeto](?path=/docs/guia-de-contribuição-convenções-do-projeto--docs).
 - Todo componente deve ter sua documentação no Storybook, em português.
@@ -149,7 +150,7 @@ style(components): ajustar espaçamentos seguindo design system
 
 ### 4. Commit das alterações
 
-Use mensagens de commit descritivas seguindo o padrão <a href="https://www.conventionalcommits.org/" target="_blank">Conventional Commits</a>, por exemplo:
+Use mensagens de commit descritivas seguindo o padrão <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener noreferrer">Conventional Commits</a>, por exemplo:
 
 ```bash
 git commit -m "feat(my-new-component): add myNewComponent"
