@@ -82,7 +82,10 @@ export const ValueSection: React.FC<ValueSectionProps> = ({
             <>
               <ValueComponent color="$onNeutral2">{currency}</ValueComponent>
               <ValueComponent color="$onNeutral1">
-                {value?.toLocaleString('pt-BR')}
+                {value?.toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </ValueComponent>
             </>
           ) : (
