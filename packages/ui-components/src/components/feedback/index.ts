@@ -11,3 +11,4 @@ export type { SpinnerProps, SpinnerSize, SpinnerVariant } from './Spinner';
 export { Progress } from './Progress';
 export type { ProgressProps, ProgressSize } from './Progress';
 export * from './FeedbackIllustration';
+export { SkeletonLoading, type SkeletonLoadingProps } from './SkeletonLoading';
