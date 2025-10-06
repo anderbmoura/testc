@@ -12,6 +12,7 @@ import {
 
 // Mapeamento de ícones
 const iconMapping = {
+  None: undefined,
   UserCart: UserCart,
   BadgeCheck: BadgeCheck,
   Star: Star,
@@ -51,21 +52,41 @@ import { BadgeCheck } from 'iconoir-react-native';
       },
       source: {
         transform: (_: string, { args }: any) => {
-          const getIconName = (iconKey: string) =>
-            iconKey && iconKey !== 'None' ? iconKey : null;
+          const getIconName = (icon: any) =>
+            icon && icon !== 'None'
+              ? typeof icon === 'string'
+                ? icon
+                : Object.entries(iconMapping).find(
+                    ([name, comp]) => comp === icon && name !== 'None'
+                  )?.[0]
+              : null;
+
+          const getImageName = (imageSource: any) => {
+            if (typeof imageSource === 'string') {
+              return imageSource !== 'None' ? imageSource : null;
+            }
+            // Se for um objeto do imageMapping, encontrar seu nome
+            for (const [key, value] of Object.entries(imageMapping)) {
+              if (value === imageSource) {
+                return key;
+              }
+            }
+            return null;
+          };
+
+          const iconName = getIconName(args.icon);
+          const imageName = getImageName(args.imageSource);
 
           const props = [
             args.style && `style="${args.style}"`,
-            args.size && `size="${args.size}"`,
+            args.size && args.size !== 'standard' && `size="${args.size}"`,
             args.monogramChar &&
               args.style === 'monogram' &&
               `monogramChar="${args.monogramChar}"`,
-            args.imageSource &&
+            imageName &&
               args.style === 'image' &&
-              `imageSource={{ uri: "${args.imageSource.uri}" }}`,
-            args.icon &&
-              args.style === 'icon' &&
-              `icon={<${getIconName(args.icon)} />}`,
+              `imageSource={{ uri: "${imageMapping[imageName as keyof typeof imageMapping]?.uri}" }}`,
+            iconName && args.style === 'icon' && `icon={${iconName}}`,
           ]
             .filter(Boolean)
             .join(' ');
@@ -79,24 +100,8 @@ import { BadgeCheck } from 'iconoir-react-native';
   },
   tags: ['autodocs'],
   render: args => {
-    const imageSource =
-      typeof args.imageSource === 'string'
-        ? imageMapping[args.imageSource as keyof typeof imageMapping]
-        : args.imageSource;
-
-    const icon =
-      typeof args.icon === 'string'
-        ? iconMapping[args.icon as keyof typeof iconMapping]
-        : args.icon;
-
-    return (
-      <Avatar
-        {...args}
-        imageSource={imageSource}
-        icon={icon}
-        monogramChar={args.monogramChar}
-      />
-    );
+    const key = `avatar-${Date.now()}`;
+    return <Avatar key={key} {...args} />;
   },
   argTypes: {
     style: {
@@ -123,7 +128,7 @@ import { BadgeCheck } from 'iconoir-react-native';
       description: 'Texto exibido no estilo monograma',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
+        defaultValue: { summary: 'W' },
       },
     },
     imageSource: {
@@ -137,7 +142,7 @@ import { BadgeCheck } from 'iconoir-react-native';
           summary: 'ImageSource',
           detail: 'require(...) | { uri: string }',
         },
-        defaultValue: { summary: 'undefined' },
+        defaultValue: { summary: 'INSS' },
       },
     },
     icon: {
@@ -151,7 +156,7 @@ import { BadgeCheck } from 'iconoir-react-native';
           summary: 'React.ReactNode',
           detail: 'Componente do iconoir-react-native',
         },
-        defaultValue: { summary: 'undefined' },
+        defaultValue: { summary: 'BadgeCheck' },
       },
     },
     styleProps: {
@@ -171,8 +176,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    style: 'icon',
+    style: 'monogram',
+    size: 'standard',
+    monogramChar: 'W',
+    imageSource: imageMapping.INSS,
     icon: BadgeCheck,
-    size: 'large',
   },
 };
