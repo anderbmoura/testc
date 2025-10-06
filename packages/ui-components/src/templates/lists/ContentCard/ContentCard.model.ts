@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViewProps } from 'react-native';
-import type { ListItemProps } from '../../../components/ListItem/ListItem.model';
-import type { ListFooterProps } from '../../../components/ListFooter/ListFooter.model';
+import type { ListItemProps } from '../../../components/lists/ListItem/ListItem.model';
+import type { ListFooterProps } from '../../../components/lists/ListFooter/ListFooter.model';
 
 /**
  * Opções de configuração para o Template DSC ContentCard.

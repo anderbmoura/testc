@@ -1,0 +1,93 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { LIBRARY_NAME } from '../constants';
+
+<Meta title="Guia de Contribuição/Adicionando Ícones" />
+
+# Adicionando Ícones
+
+Este guia descreve como adicionar novos ícones SVG customizados à {LIBRARY_NAME} de forma automatizada.
+
+## Processo de Adição
+
+### 1. Preparar o arquivo SVG
+
+Certifique-se de que seu arquivo SVG está otimizado e segue os padrões:
+
+- **Tamanho**: 24x24px
+- **ViewBox**: `0 0 24 24`
+- **Fill**: Use `fill="none"` no SVG raiz e `fill="#22292E"` nos paths
+- **Nome**: Use kebab-case (ex: `my-icon.svg`)
+
+**✅ Exemplo de SVG correto:**
+
+```xml
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M..." fill="#22292E"/>
+</svg>
+```
+
+### 2. Adicionar o SVG na pasta de assets
+
+Salve seu arquivo SVG na pasta:
+
+```
+packages/ui-components/src/assets/icons/
+```
+
+### 3. Gerar os componentes React
+
+Execute o build da biblioteca para gerar automaticamente os componentes React:
+
+```bash
+yarn build:lib
+```
+
+Este comando irá:
+- Processar todos os SVGs da pasta `assets/icons/`
+- Gerar componentes React TypeScript correspondentes
+- Disponibilizar os componentes para importação
+
+## Uso do Ícone
+
+Após o build, seu ícone estará disponível como componente React e pode ser usado com o componente [Icon](?path=/docs/componentes-icon--docs):
+
+### Importação
+
+```tsx
+import { Icon } from '@superapp-caixa/dsc-library';
+import { Loterias } from '@superapp-caixa/dsc-library';
+```
+
+### Exemplo de uso
+
+```tsx
+// Ícone customizado da biblioteca
+<Icon size="medium" color="$color9">
+  <Loterias />
+</Icon>
+
+// Com diferentes tamanhos e cores
+<Icon size="large" color="$primary">
+  <Loterias />
+</Icon>
+
+<Icon size="small" color="$success">
+  <Loterias />
+</Icon>
+```
+
+## Boas Práticas
+
+- **Nomenclatura**: Use nomes descritivos em kebab-case
+
+## Troubleshooting
+
+**Ícone não aparece após o build:**
+- Verifique se o arquivo SVG está na pasta correta
+- Confirme que o build foi executado com sucesso
+- Verifique se não há erros de sintaxe no SVG
+
+**Ícone não aceita cor personalizada:**
+- Certifique-se de que o SVG usa `fill="none"` no elemento raiz
+- Os paths devem usar `fill="#22292E"` (ou outra cor sólida)
+- Evite usar `currentColor` nos SVGs

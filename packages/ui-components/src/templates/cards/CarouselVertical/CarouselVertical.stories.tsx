@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { CarouselVertical } from './CarouselVertical';
 import type { CarouselVerticalProps } from './CarouselVertical.model';
-import { CardCarouselVertical } from '../../../components/CardCarouselVertical';
+import { CardCarouselVertical } from '../../../components/cards/CardCarouselVertical';
 
 const meta: Meta<CarouselVerticalProps> = {
   title: 'Templates/Cards/CarouselVertical',

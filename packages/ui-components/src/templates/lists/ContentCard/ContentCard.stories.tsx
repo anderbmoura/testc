@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ArrowRight, Settings, CreditCard } from 'iconoir-react-native';
-import { ListItem } from '../../../components/ListItem';
-import { ListFooter } from '../../../components/ListFooter';
+import { ListItem } from '../../../components/lists/ListItem';
+import { ListFooter } from '../../../components/lists/ListFooter';
 import { ContentCard } from './ContentCard';
 import type { ContentCardProps } from './ContentCard.model';
 

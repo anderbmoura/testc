@@ -4,8 +4,8 @@ import { View } from 'react-native';
 import { ContentWidgets } from './ContentWidgets';
 import type { ContentWidgetsProps } from './ContentWidgets.model';
 import { WidgetRow } from '../WidgetRow';
-import { CardWidget } from '../../../components/CardWidget';
-import { CardWidgetFooter } from '../../../components/CardWidgetFooter';
+import { CardWidget } from '../../../components/cards/CardWidget';
+import { CardWidgetFooter } from '../../../components/cards/CardWidget/CardWidgetFooter';
 import {
   StatsUpSquare,
   StatsDownSquare,

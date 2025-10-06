@@ -14,16 +14,20 @@ import { useTheme } from 'tamagui';
  *
  * Detecta o tipo de ícone e aplica a propriedade correta:
  * - Ícones Tamagui (Lucide): prop 'size' e 'color'
- * - Ícones externos (Iconoir): props 'width', 'height' e 'color'
+ * - Ícones externos (Iconoir, SVGs customizados): props 'width', 'height' e 'color'
+ *
+ * Atualizado para suportar SVGs customizados via componente Icon unificado.
  *
  * TODO: Remover quando Tamagui corrigir suporte nativo para SVGs externos
  */
 export const useTransformIcon = () => {
   const theme = useTheme();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (icon: any, iconSize: number, color?: string): any => {
     if (!icon) return icon;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const iconProps: any = {};
 
     // Only apply color if explicitly provided (to avoid overriding existing colors)
@@ -60,7 +64,9 @@ export const useTransformIcon = () => {
 
     // React Element (ícone passado como <Icon />)
     if (React.isValidElement(icon)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const isTamaguiIcon = (icon.type as any).displayName?.includes('themed');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const existingProps = (icon.props as any) || {};
 
       if (isTamaguiIcon) {

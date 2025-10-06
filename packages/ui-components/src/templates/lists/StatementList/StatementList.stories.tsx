@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { StatementList } from './StatementList';
 import type { StatementListProps } from './StatementList.model';
-import { ExtractItem } from '../../../components/ExtractList/ExtractItem/ExtractItem';
+import { ExtractItem } from '../../../components/data-display/ExtractList/ExtractItem/ExtractItem';
 import { SendDollars, ReceiveDollars, Page } from 'iconoir-react-native';
 
 const meta: Meta<StatementListProps> = {

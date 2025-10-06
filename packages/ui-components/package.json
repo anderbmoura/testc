@@ -17,6 +17,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "prebuild": "node scripts/generate-svg-icons.js",
     "build": "bob build",
     "watch": "npm-watch",
     "clean": "rm -rf lib",
@@ -36,12 +37,17 @@
     "react": "*",
     "react-native": "*",
     "react-native-svg": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-worklets": "*",
     "tamagui": "*",
     "@tamagui/babel-plugin": "*",
     "@tamagui/build": "*",
     "@tamagui/config": "*",
     "@tamagui/core": "*",
-    "iconoir-react-native": "*"
+    "iconoir-react-native": "*",
+    "expo-blur": "*",
+    "expo-linear-gradient": "*"
   },
   "devDependencies": {
     "react": "19.0.0",
@@ -52,12 +58,17 @@
     "react-native-builder-bob": "^0.40.13",
     "typescript": "~5.8.3",
     "react-native-svg": "15.12.1",
+    "react-native-gesture-handler": "2.28.0",
+    "react-native-reanimated": "4.1.2",
+    "react-native-worklets": "0.6.0",
     "tamagui": "1.132.21",
     "@tamagui/babel-plugin": "1.132.21",
     "@tamagui/build": "1.132.21",
     "@tamagui/config": "1.132.21",
     "@tamagui/core": "1.132.21",
-    "iconoir-react-native": "7.11.0"
+    "iconoir-react-native": "7.11.0",
+    "expo-blur": "15.0.7",
+    "expo-linear-gradient": "14.0.2"
   },
   "author": "Leonardo de Albuquerque Gouveia",
   "license": "ISC",

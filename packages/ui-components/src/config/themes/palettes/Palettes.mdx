@@ -1,14 +1,14 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks';
-
 import * as PalettesStories from './Palettes.stories';
+import { LIBRARY_NAME } from '../../../documentation/constants';
 
-<Meta of={PalettesStories} />
+<Meta title="Design System/Temas/Paletas de Cores" />
 
 # Paletas de Cores
 
-As paletas de cores são os elementos fundamentais do sistema de temas da DSC Library. Elas definem todos os valores de cores utilizados nos componentes, garantindo consistência visual e suporte a múltiplos temas (claro, escuro, etc.).
+As paletas de cores são os elementos fundamentais do sistema de temas da {LIBRARY_NAME}. Elas definem todos os valores de cores utilizados nos componentes, garantindo consistência visual e suporte a múltiplos temas (claro, escuro, etc.).
 
-## Como usar
+## Como Funcionam
 
 **Sempre** utilize as cores definidas nas paletas através da sintaxe de tokens do Tamagui em vez de valores fixos (hardcoded) para manter a consistência visual e o suporte a temas.
 
@@ -34,10 +34,15 @@ import { View, Text } from 'tamagui';
 </View>
 ```
 
+## Cores Fixas
+
+Paleta de cores fixas que permanecem constantes em todos os temas (claro e escuro). Essas cores são ideais para elementos que precisam manter a mesma identidade visual independente do tema selecionado.
+
+
+<Canvas of={PalettesStories.FixedColors} />
+
 ## Cores de Estado Desabilitado
-
 Cores dedicadas para elementos desabilitados, disponíveis na paleta **Neutral**. Essas cores são universais e aplicáveis a todos os componentes, independente do tema, garantindo acessibilidade e uma experiência visual consistente quando elementos não estão disponíveis para interação.
-
 Agora as cores desabilitadas possuem variantes específicas para Tema Claro e Tema Escuro (antes elas eram universais). O story exibirá ambas as variantes para comparação.
 
 <Canvas of={PalettesStories.DisabledColors} />

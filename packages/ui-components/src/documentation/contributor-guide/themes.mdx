@@ -1,7 +1,10 @@
 import { Canvas, Meta } from '@storybook/addon-docs/blocks';
 import { View, Text, XStack, YStack, Theme, Button } from 'tamagui';
+import { LIBRARY_NAME } from '../constants';
 
 <Meta title="Guia de Contribuição/Sistema de Temas" />
+
+# Sistema de Temas
 
 # Como Implementar Temas
 
@@ -47,7 +50,7 @@ Para saber qual o token de cor utilizar, faça a seguinte pergunta: **a cor deve
 
 ## Arquitetura do Sistema de Temas
 
-A DSC Library utiliza o sistema de temas do Tamagui com duas camadas de cores:
+A {LIBRARY_NAME} utiliza o sistema de temas do Tamagui com duas camadas de cores:
 
 ### 1. Cores Adaptáveis
 Paleta gradiente com a escala de `$color1` até `$color12`. Quando um tema é aplicado, todas as cores dessa escala mudam automaticamente para as cores correspondentes à paleta de cores do tema.

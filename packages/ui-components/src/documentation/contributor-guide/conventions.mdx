@@ -1,22 +1,25 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { LIBRARY_NAME } from '../constants';
 
 <Meta title="Guia de Contribuição/Convenções do Projeto" />
 
 # Convenções do Projeto
 
-Descrição das convenções adotadas na DSC Library com o objetivo de garantir consistência, qualidade e facilidade de manutenção dos componentes.
+Este guia apresenta as convenções essenciais para desenvolvimento de componentes na {LIBRARY_NAME}, organizadas em ordem de importância e aplicação prática.
 
-## Design System e Figma
+## 1. Fundamentos: Design System e Figma
 
-Todos os componentes devem ser desenvolvidos com base nos designs disponíveis na biblioteca do <a href="https://www.figma.com/design/epCGtlKQxedDxQVlK3lNcN/DSC-%7C-React-Native---Tamagui?node-id=1180-3541&p=f&t=sNYfTUNxw7ZfqylZ-0" target="_blank">Figma do projeto</a>. Certifique-se de:
+**Ponto de partida obrigatório**: Todos os componentes devem ser desenvolvidos com base nos designs da biblioteca do <a href="https://www.figma.com/design/epCGtlKQxedDxQVlK3lNcN/DSC-%7C-React-Native---Tamagui?node-id=1180-3541&p=f&t=sNYfTUNxw7ZfqylZ-0" target="_blank" rel="noopener noreferrer">Figma do projeto</a>.
 
-- Consultar o Figma antes de iniciar o desenvolvimento.
-- Respeitar as especificações de espaçamento, cores e tipografia.
-- Validar o resultado final com o design proposto.
+**Processo recomendado:**
+1. Consulte o Figma antes de iniciar o desenvolvimento
+2. Identifique os tokens e cores utilizados no design
+3. Respeite as especificações de espaçamento, cores e tipografia
+4. Valide o resultado final com o design proposto
 
-## Sistema de Tokens
+## 2. Sistema de Tokens: Base da Consistência Visual
 
-**Sempre** utilize os [tokens](?path=/docs/design-system-tokens-visão-geral--docs) e [temas](?path=/docs/design-system-temas-visão-geral--docs) definidos na configuração do Tamagui para manter a consistência visual.
+**Regra fundamental**: **Sempre** utilize os [tokens](?path=/docs/design-system-tokens-visão-geral--docs) e [temas](?path=/docs/design-system-temas-visão-geral--docs) definidos na configuração do Tamagui para manter a consistência visual.
 
 **✅ Construindo com tokens:**
 
@@ -38,52 +41,41 @@ const MyComponent = styled(View, {
 });
 ```
 
-## Sistema de Temas
+### Interpretando Cores do Figma
 
-Quando você inspeciona um elemento no Figma, verá informações de cores semelhantes a:
+Quando você inspeciona um elemento no Figma, verá informações como: **`color/success/successBg [Color 2]`**
 
-**`color/success/successBg [Color 2]`**
+**Pergunta-chave**: *A cor deve mudar conforme o tema aplicado?*
 
-Para saber qual o token de cor utilizar, faça a seguinte pergunta: **a cor deve mudar conforme o tema aplicado?**
-
-> - Se a resposta for **sim**, então use `$color2`.
-> - Se a resposta for **não**, ou seja, se a cor deve ser sempre verde independente do tema**, então use o nome semântico da cor, que nesse caso é `$successBg`.
+- **SIM** → Use `$color2` (cor adaptável ao tema)
+- **NÃO** → Use `$successBg` (cor semântica fixa)
 
 #### Exemplos Práticos:
 
-- O `backgroundColor` será vermelho quando aplicado o tema danger, e verde quando aplicado o tema success:
-
+**Cores que se adaptam ao tema:**
 ```tsx
-// Aplica a cor $color8 da paleta de gradientes do tema Danger
-<Button backgroundColor="$color8" theme="danger">Excluir</Button>
-
-// Aplica a cor $color8 da paleta de gradientes to tema Success
+// Verde no tema success, vermelho no tema danger
 <Button backgroundColor="$color8" theme="success">Confirmar</Button>
-
-// Aplica a cor $color8 da paleta de gradientes to tema Neutral
-<Button backgroundColor="$color8">Confirmar</Button>
+<Button backgroundColor="$color8" theme="danger">Excluir</Button>
 ```
 
-> 💡 Quando você não especifica tema, o sistema usa automaticamente a paleta `neutral`
-
-- O `backgroundColor` será sempre azul independente do tema utilizado:
-
+**Cores sempre fixas:**
 ```tsx
-// Aplica a cor semântica $infoBg
+// Sempre azul, independente do tema
 <Button backgroundColor="$infoBg" theme="danger">Informações</Button>
-
-// Aplica a cor semântica $infoBg
-<Button backgroundColor="$infoBg" theme="success">Informações</Button>
 ```
 
-> ⚠️ **Importante**: Consulte a documentação do [Sistema de Temas](?path=/docs/guia-de-contribuição-sistema-de-temas--docs) para entender como construir componentes que se adaptam corretamente aos diferentes temas da aplicação.
+> 💡 **Dica**: Quando você não especifica tema, o sistema usa automaticamente a paleta `neutral`
 
-## Sistema de Tipografia
+> ⚠️ **Importante**: Consulte a documentação do [Sistema de Temas](?path=/docs/guia-de-contribuição-sistema-de-temas--docs) para entender como construir componentes que se adaptam corretamente aos diferentes temas.
 
-Use os [componentes de tipografia](?path=/docs/components-typography--docs) específicos da DSC Library para manter consistência visual e semântica.
+## 3. Tipografia: Componentes Específicos da Biblioteca
 
-**Componentes específicos de tipografia:**
+**Regra**: Use sempre os [componentes de tipografia](?path=/docs/components-typography--docs) específicos da {LIBRARY_NAME} para manter consistência visual e semântica.
 
+### Componentes Recomendados
+
+**Para textos gerais:**
 ```tsx
 import {
   DisplayStandard,
@@ -98,8 +90,7 @@ import {
 <LabelSmall>Rótulo de campo</LabelSmall>
 ```
 
-**Para valores numéricos, utilize variantes numéricas:**
-
+**Para valores numéricos:**
 ```tsx
 import { DisplayNumericalStandard, TitleNumericalLarge } from '@superapp-caixa/dsc-library';
 
@@ -107,9 +98,9 @@ import { DisplayNumericalStandard, TitleNumericalLarge } from '@superapp-caixa/d
 <TitleNumericalLarge>1.000</TitleNumericalLarge>
 ```
 
-### Alternativa: Uso direto dos presets
+### Alternativa: Presets Diretos (Uso Específico)
 
-Em casos específicos onde precisar criar componentes customizados, você pode usar os presets de tipografia diretamente:
+Para componentes customizados onde os componentes prontos de tipografia não atendem:
 
 ```tsx
 import { styled, Text } from 'tamagui';
@@ -119,134 +110,213 @@ const CustomTitle = styled(Text, {
   ...typography.titleLarge,
   color: '$color9',
 });
-
-const CustomLabel = styled(Text, {
-  ...typography.labelSmall,
-  textTransform: 'uppercase',
-});
 ```
 
-> ⚠️ **Importante**: Sempre que possível, prefira os [componentes de tipografia](?path=/docs/components-typography--docs). Use os presets diretamente apenas quando os componentes prontos não atendem ao caso de uso específico. Os componentes garantem melhor consistência e manutenibilidade.
+> ⚠️ **Importante**: Sempre prefira os [componentes de tipografia](?path=/docs/components-typography--docs). Use presets diretos apenas quando os componentes prontos não atendem ao caso específico.
 
-## Sistema de Ícones
+## 4. Sistema de Ícones: Iconoir + Customizados
 
-A DSC Library utiliza a biblioteca <a href="https://iconoir.com/" target="_blank">Iconoir</a> para ícones. Use sempre ícones desta biblioteca para manter consistência visual.
+A {LIBRARY_NAME} suporta dois tipos de ícones: ícones da biblioteca <a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a> para uso geral e ícones customizados específicos do projeto.
 
-**Utilizando ícones do Iconoir:**
+### Componente Icon (Uso Geral)
 
+**Sempre use o componente `Icon`** para renderizar ícones, garantindo consistência:
+
+**Ícones do Iconoir:**
 ```tsx
+import { Icon } from '@superapp-caixa/dsc-library';
 import { Home, Settings } from 'iconoir-react-native';
-import { Button } from '@superapp-caixa/dsc-library';
 
-<Button icon={Home}>Início</Button>
-<Button icon={Settings} size="small">Configurações</Button>
+<Icon size="medium" color="$color9">
+  <Home />
+</Icon>
 ```
 
-**Com tamanho personalizado usando tokens:**
+**Ícones customizados da biblioteca:**
+```tsx
+import { Icon, Loterias, Pix } from '@superapp-caixa/dsc-library';
+
+<Icon size="large" color="$primary">
+  <Loterias />
+</Icon>
+```
+
+**Em botões e outros componentes:**
+```tsx
+<Button 
+  icon={(props) => (
+    <Icon size="small" color={props.color}>
+      <Home />
+    </Icon>
+  )}
+>
+  Início
+</Button>
+```
+
+### Hook useTransformIcon (Desenvolvimento Interno)
+
+Para desenvolvimento de componentes da biblioteca:
 
 ```tsx
-import { Home } from 'iconoir-react-native';
+import { useTransformIcon } from '../../../utils';
+import { Heart } from 'iconoir-react-native';
 
-<Home width="$iconSize.medium" height="$iconSize.medium" />;
+const MyComponent = ({ iconColor = '$color9', iconSize = 24 }) => {
+  const transformIcon = useTransformIcon();
+  const renderedIcon = transformIcon(Heart, iconSize, iconColor);
+  
+  return <View>{renderedIcon}</View>;
+};
 ```
 
-## Styled e Variants
+> ⚠️ **Importante**: O hook `useTransformIcon` é para uso interno. Para uso final, sempre prefira o componente `Icon`.
+
+### Adicionando Novos Ícones
+
+Para adicionar novos ícones SVG, consulte o [Guia de Adição de Ícones](?path=/docs/guia-de-contribuição-adicionando-ícones--docs).
+
+## 5. Criando Componentes: Styled e Variants
 
 Crie componentes usando `styled()` do Tamagui e defina **variants** para diferenças visuais.
 
 **Links úteis:**
-- <a href="https://tamagui.dev/docs/core/styled" target="_blank">Tamagui - Styled</a>  
-- <a href="https://tamagui.dev/docs/core/variants" target="_blank">Tamagui - Variants</a>
+- <a href="https://tamagui.dev/docs/core/styled" target="_blank" rel="noopener noreferrer">Tamagui - Styled</a>  
+- <a href="https://tamagui.dev/docs/core/variants" target="_blank" rel="noopener noreferrer">Tamagui - Variants</a>
 
-**Exemplo de uso:**
+### Estrutura Padrão de Componente
 
 ```tsx
-import { styled } from 'tamagui';
+import { styled, View } from 'tamagui';
 
 const DscCard = styled(View, {
-  name: 'DscCard',
+  name: 'DscCard', // OBRIGATÓRIO - facilita debugging
+
+  // Estilos base
   borderRadius: '$nano',
   padding: '$large',
   backgroundColor: '$color1',
 
+  // Estados interativos OBRIGATÓRIOS
+  hoverStyle: {
+    backgroundColor: '$color2',
+  },
+  pressStyle: {
+    backgroundColor: '$color3',
+  },
+  focusStyle: {
+    borderColor: '$color9',
+    borderWidth: 2,
+    zIndex: 500, // Use 500+ para bordas de foco
+  },
+  disabledStyle: {
+    opacity: 0.5,
+    backgroundColor: '$neutral3',
+  },
+
+  // Variants para customização
   variants: {
-    tone: {
+    theme: {
       neutral: {
         backgroundColor: '$neutral1',
         borderColor: '$neutral4',
       },
-      accent: {
+      highlight: {
         backgroundColor: '$color2',
         borderColor: '$color6',
       },
+      danger: {
+        backgroundColor: '$red2',
+        borderColor: '$red6',
+      },
     },
-
     size: {
-      small: {
-        padding: '$small',
-      },
-      large: {
-        padding: '$large',
-      },
+      small: { padding: '$small' },
+      large: { padding: '$large' },
     },
   } as const,
 });
 ```
 
-## Estados Interativos
+### Checklist de Requisitos Obrigatórios
 
-Sempre defina estilos para estados de interação quando aplicável.
+- ✅ **Prop `name`**: Sempre defina para facilitar debugging
+- ✅ **Estados interativos**: `hoverStyle`, `pressStyle`, `focusStyle` quando aplicável
+- ✅ **Z-index para foco**: Use valores 500+ para bordas de foco
+- ✅ **Tema padrão**: Use 'highlight' como tema padrão nos componentes
 
-```tsx
-const InteractiveCard = styled(View, {
-  // estilos base...
-
-  hoverStyle: {
-    backgroundColor: '$color2',
-  },
-
-  pressStyle: {
-    backgroundColor: '$color3',
-  },
-
-  focusStyle: {
-    borderColor: '$color9',
-    borderWidth: 2,
-  },
-
-  disabledStyle: {
-    opacity: 0.5,
-    backgroundColor: '$neutral3',
-  },
-});
-```
-
-## Modelos de Tipos (.model)
+## 6. Definindo Interfaces: Modelos de Tipos (.model)
 
 Utilize arquivos `.model.ts` para definir e limitar as possibilidades de customização, especialmente quando baseado em componentes existentes do Tamagui.
+
+### Padrão de Interface Básica
+
+```tsx
+// ComponentName.model.ts
+import { ViewProps } from 'tamagui';
+
+export interface ComponentNameProps extends ViewProps {
+  /** Tema visual do componente */
+  theme?: 'highlight' | 'neutral' | 'danger';
+  /** Tamanho do componente */
+  size?: 'small' | 'standard' | 'large';
+  /** Texto principal */
+  title: string;
+  /** Texto opcional secundário */
+  subtitle?: string;
+  /** Função chamada ao pressionar */
+  onPress?: () => void;
+  /** Estado de carregamento */
+  loading?: boolean;
+  /** Estado desabilitado */
+  disabled?: boolean;
+}
+```
+
+### Estendendo Componentes do Tamagui
+
+Para componentes baseados em Tamagui, use `Omit` para remover props conflitantes:
 
 ```tsx
 // Button.model.ts
 import { ButtonProps as TamaguiButtonProps } from 'tamagui';
 
 export interface ButtonProps extends Omit<TamaguiButtonProps, 'size' | 'theme'> {
+  /** Tema visual do botão */
   theme?: 'highlight' | 'neutral' | 'danger';
+  /** Tamanho do botão */
   size?: 'small' | 'standard' | 'large';
+  /** Tipo visual do botão */
   type?: 'plain' | 'outline' | 'chromeless';
+  /** Estado de carregamento */
   loading?: boolean;
 }
 ```
 
-## Layout Responsivo
+### Acessibilidade: Props Obrigatórias
 
-**Utilize flexbox** como principal ferramenta de layout. Evite tamanhos fixos (`width`/`height`) sempre que possível.
+Sempre inclua props de acessibilidade nas interfaces:
 
-### Componentes de Layout
+```tsx
+export interface ComponentProps extends ViewProps {
+  // props do componente...
+  
+  /** Label para acessibilidade */
+  accessibilityLabel?: string;
+  /** Papel do elemento para acessibilidade */
+  accessibilityRole?: 'button' | 'header' | 'text' | 'image';
+  /** Dica para acessibilidade */
+  accessibilityHint?: string;
+}
+```
 
-Use `YStack` para layouts verticais e `XStack` para layouts horizontais:
+## 7. Layout Responsivo: Flexbox como Base
 
-**✅ Layout vertical com YStack:**
+**Regra fundamental**: Utilize flexbox como principal ferramenta de layout. Evite tamanhos fixos (`width`/`height`) sempre que possível.
 
+### Componentes de Layout do Tamagui
+
+**YStack para layouts verticais:**
 ```tsx
 <YStack space="$medium" padding="$medium" flex={1}>
   <TitleLarge>Título</TitleLarge>
@@ -255,8 +325,7 @@ Use `YStack` para layouts verticais e `XStack` para layouts horizontais:
 </YStack>
 ```
 
-**✅ Layout horizontal com XStack:**
-
+**XStack para layouts horizontais:**
 ```tsx
 <XStack space="$small" alignItems="center" justifyContent="space-between">
   <LabelSmall>Rótulo</LabelSmall>
@@ -264,51 +333,67 @@ Use `YStack` para layouts verticais e `XStack` para layouts horizontais:
 </XStack>
 ```
 
-**❌ Utilizando tamanhos fixos:**
+### Responsividade com Breakpoints
+
+Use as props de breakpoint do Tamagui para diferentes tamanhos de tela:
 
 ```tsx
-<View style={{ width: 300, height: 200 }}>
-  <Text>Conteúdo</Text>
-</View>
-```
-
-### Breakpoints e Responsividade
-
-Para diferentes tamanhos de tela, use as props de breakpoint do Tamagui:
-
-```tsx
-<YStack padding="$small" $sm={{ padding: '$medium' }} $md={{ padding: '$large' }}>
-  <XStack flexDirection="column" $sm={{ flexDirection: 'row' }} space="$small">
+<YStack 
+  padding="$small" 
+  $sm={{ padding: '$medium' }} 
+  $md={{ padding: '$large' }}
+>
+  <XStack 
+    flexDirection="column" 
+    $sm={{ flexDirection: 'row' }} 
+    space="$small"
+  >
     <Button flex={1}>Botão 1</Button>
     <Button flex={1}>Botão 2</Button>
   </XStack>
 </YStack>
 ```
 
-### Quando usar cada abordagem
+### Guia de Uso por Contexto
 
 - **YStack**: Para listas, formulários, conteúdo sequencial
 - **XStack**: Para barras de ação, headers, elementos lado a lado
 - **flex={1}**: Para componentes que devem ocupar espaço disponível
 - **space**: Para espaçamento consistente entre elementos filhos
 
+### O que Evitar
+
+**❌ Utilizando tamanhos fixos:**
+```tsx
+<View style={{ width: 300, height: 200 }}>
+  <Text>Conteúdo</Text>
+</View>
+```
+
 > **Exceção**: Tamanhos mínimos em controles (como `minHeight` em botões) são permitidos quando necessários para o design.
 
 **Links úteis:**
-- <a href="https://tamagui.dev/docs/intro/themes#media-queries" target="_blank">Tamagui - Media Queries e Breakpoints</a>
-- <a href="https://reactnative.dev/docs/flexbox" target="_blank">React Native - Layout com Flexbox</a>
+- <a href="https://tamagui.dev/docs/intro/themes#media-queries" target="_blank" rel="noopener noreferrer">Tamagui - Media Queries e Breakpoints</a>
+- <a href="https://reactnative.dev/docs/flexbox" target="_blank" rel="noopener noreferrer">React Native - Layout com Flexbox</a>
 
-## Composição de Componentes
+## 8. Composição de Componentes: Reutilização Inteligente
 
-Prefira compor componentes menores para criar funcionalidades complexas, reutilizando componentes existentes da DSC Library.
+**Filosofia**: Prefira compor componentes menores para criar funcionalidades complexas, reutilizando componentes existentes da {LIBRARY_NAME}.
 
-**Exemplo: Criando um Card de Produto compondo o layout com outros componentes:**
+### Exemplo Prático: Card de Produto
 
 ```tsx
 import { Card, Button, TitleMedium, BodySmall, LabelSmall, XStack, YStack } from '@superapp-caixa/dsc-library';
 import { ShoppingCart, Heart } from 'iconoir-react-native';
 
-export const ProductCard = ({ title, description, price, onAddToCart, onToggleFavorite, isFavorite = false }) => {
+export const ProductCard = ({ 
+  title, 
+  description, 
+  price, 
+  onAddToCart, 
+  onToggleFavorite, 
+  isFavorite = false 
+}) => {
   return (
     <Card padding="$medium" space="$small">
       <YStack space="$small" flex={1}>
@@ -341,7 +426,7 @@ export const ProductCard = ({ title, description, price, onAddToCart, onToggleFa
 };
 ```
 
-**Exemplo: Criando um Header de Seção:**
+### Exemplo: Header de Seção
 
 ```tsx
 import { XStack, YStack, Button, TitleLarge, BodySmall } from '@superapp-caixa/dsc-library';
@@ -356,7 +441,13 @@ export const SectionHeader = ({ title, subtitle, actionLabel, onActionPress }) =
       </YStack>
 
       {actionLabel && (
-        <Button type="chromeless" size="small" icon={ArrowRight} iconAfter onPress={onActionPress}>
+        <Button 
+          type="chromeless" 
+          size="small" 
+          icon={ArrowRight} 
+          iconAfter 
+          onPress={onActionPress}
+        >
           {actionLabel}
         </Button>
       )}
@@ -366,47 +457,155 @@ export const SectionHeader = ({ title, subtitle, actionLabel, onActionPress }) =
 ```
 
 **Links úteis:**
-- <a href="https://tamagui.dev/docs/guides/how-to-build-a-button" target="_blank">Tamagui - How to Build a Button</a>
+- <a href="https://tamagui.dev/docs/guides/how-to-build-a-button" target="_blank" rel="noopener noreferrer">Tamagui - How to Build a Button</a>
 
-## Estrutura de Arquivos
+## 9. Organização de Arquivos: Estrutura Padrão
 
-Organize cada componente em sua própria pasta:
+Organize cada componente em sua própria pasta seguindo esta estrutura padrão:
 
 ```
 components/
-  MyComponent/
-    index.ts          # exportações
-    MyComponent.tsx   # componente principal
-    MyComponent.model.ts    # tipos e interfaces
-    MyComponent.stories.tsx # stories do Storybook
+  ComponentName/
+    index.ts                    # exportações
+    ComponentName.tsx           # componente principal
+    ComponentName.model.ts      # tipos e interfaces
+    ComponentName.stories.tsx   # stories do Storybook
+    ComponentName.styles.ts     # styled components (se complexo)
+    components/                 # sub-componentes (componentes modulares)
+      SubComponent/
+        index.ts
+        SubComponent.tsx
+        SubComponent.model.ts
+        SubComponent.styles.ts
+    hooks/                      # hooks customizados (se necessário)
+      useComponentState.ts
+      useComponentInteraction.ts
 ```
 
-## Documentação
+### Padrões de Exportação
 
-Todo componente deve ter:
+**Arquivo do componente:**
+```tsx
+// ComponentName.tsx
+export { ComponentName } from './ComponentName';
+export type { ComponentNameProps } from './ComponentName.model';
+```
 
-- **JSDoc**: Props e componentes devem ser documentados, fornecendo exemplos de uso.
-- **Storybook**: Documentação mostrando variantes e estados.
+**Index principal:**
+```tsx
+// src/index.ts
+export { ComponentName } from './components/ComponentName';
+export type { ComponentNameProps } from './components/ComponentName';
+```
+
+## 10. Documentação: JSDoc + Storybook
+
+Todo componente deve ter documentação completa em **português**.
+
+### JSDoc: Documentação no Código
+
+Props e componentes devem ser documentados com exemplos de uso:
 
 ````tsx
 /**
- * Botão customizado da DSC Library
+ * Componente DSC ComponentName
  *
- * @param theme - Tema visual do botão
+ * Descrição breve do componente e sua funcionalidade.
+ *
+ * @example
  * ```tsx
- * <Button theme="highlight">Botão destaque</Button>
+ * <ComponentName 
+ *   theme="highlight" 
+ *   size="large"
+ *   onPress={() => console.log('Pressionado')}
+ * >
+ *   Conteúdo
+ * </ComponentName>
  * ```
  */
-export const Button = ({ theme = 'neutral', ...props }) => {
+export const ComponentName = ({ theme = 'highlight', ...props }) => {
   // implementação...
 };
 ````
 
-## Performance e Otimizações
+### Storybook: Documentação Visual
 
-Siga estas práticas para garantir componentes performáticos:
+**Configuração base obrigatória:**
 
-### Uso de styled() vs Componentes Inline
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+import type { ComponentNameProps } from './ComponentName.model';
+
+const meta: Meta<ComponentNameProps> = {
+  title: 'Componentes/ComponentName',
+  component: ComponentName,
+  parameters: {
+    docs: {
+      description: { 
+        component: 'Descrição detalhada do componente em português...' 
+      },
+      source: {
+        transform: (_: string, { args }: any) => {
+          const props = [
+            args.theme && `theme="${args.theme}"`,
+            args.size && `size="${args.size}"`,
+            args.icon && `icon={<${args.icon} />}`,
+            args.onPress && 'onPress={() => {}}',
+          ]
+            .filter(Boolean)
+            .join(' ');
+          return `<ComponentName${props && ` ${props}`}>Conteúdo</ComponentName>`;
+        },
+        state: 'open',
+      },
+    },
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<ComponentNameProps>;
+
+// OBRIGATÓRIO: Story padrão
+export const Default: Story = {
+  args: {
+    theme: 'highlight',
+    // outros args padrão...
+  },
+};
+
+// Stories adicionais apenas se necessário
+export const ComTema: Story = {
+  args: {
+    ...Default.args,
+    theme: 'danger',
+  },
+};
+```
+
+### Checklist de Documentação
+
+- ✅ **Story Default**: Sempre crie uma story "Default" (obrigatório)
+- ✅ **source.transform**: Configure para exibir código JSX correto no "Show code"
+- ✅ **Descrição em português**: Use `docs.description.component`
+- ✅ **Stories mínimas**: Crie apenas stories para casos importantes
+
+### Quando Criar Stories Adicionais
+
+Crie stories apenas para:
+- **Default**: Estado padrão (obrigatório)
+- **Variações importantes**: Diferentes temas, tamanhos, estados
+- **Casos especiais**: Funcionalidades específicas que precisam ser demonstradas
+
+> ⚠️ **Importante**: Evite criar stories desnecessárias. Foque nos casos de uso mais importantes e representativos.
+
+
+## 11. Performance e Otimizações: Componentes Eficientes
+
+Siga estas práticas para garantir componentes performáticos.
+
+### styled() vs Estilos Inline
 
 **✅ Prefira styled() para componentes reutilizáveis:**
 
@@ -437,7 +636,7 @@ const SlowCard = () => (
 
 ### Prevenção de Re-renders
 
-**Use React.memo para componentes que recebem props complexas:**
+**Use React.memo para componentes com props complexas:**
 
 ```tsx
 import { memo } from 'react';
@@ -492,8 +691,19 @@ const variants = {
 ```
 
 **Links úteis:**
+- <a href="https://tamagui.dev/docs/guides/design-systems" target="_blank" rel="noopener noreferrer">Tamagui - Building Design Systems</a>
+- <a href="https://react.dev/reference/react/memo" target="_blank" rel="noopener noreferrer">React - memo</a>
 
-- <a href="https://tamagui.dev/docs/guides/design-systems" target="_blank">Tamagui - Building Design Systems</a>
-- <a href="https://react.dev/reference/react/memo" target="_blank">React - memo</a>
+---
 
-> 💡 **Lembre-se**: Essas convenções garantem que a DSC Library permaneça consistente, performática e fácil de manter. Quando em dúvida, consulte os componentes existentes como referência.
+## Resumo das Convenções
+
+Essas convenções garantem que a {LIBRARY_NAME} permaneça:
+
+- **Consistente**: Uso de tokens, temas e padrões visuais
+- **Performática**: Otimizações de renderização e estilos
+- **Acessível**: Props de acessibilidade e estados interativos
+- **Manutenível**: Estrutura organizada e documentação completa
+- **Escalável**: Composição e reutilização de componentes
+
+> 💡 **Lembre-se**: Quando em dúvida, consulte os componentes existentes como referência e siga essas convenções para manter a qualidade da biblioteca.

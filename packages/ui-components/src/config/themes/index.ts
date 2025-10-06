@@ -48,6 +48,7 @@ import {
   decorativeLightGradientPalette,
   decorativeLightPalette,
 } from './palettes/extras/decorative';
+import { fixedPalette } from './palettes/fixed';
 
 const builtThemes = createThemes({
   componentThemes: defaultComponentThemes,
@@ -71,6 +72,7 @@ const builtThemes = createThemes({
         ...warningDarkPalette,
         ...dangerDarkPalette,
         ...decorativeDarkPalette,
+        ...fixedPalette,
       },
       light: {
         ...Colors.green,
@@ -84,6 +86,7 @@ const builtThemes = createThemes({
         ...warningLightPalette,
         ...dangerLightPalette,
         ...decorativeLightPalette,
+        ...fixedPalette,
       },
     },
   },
@@ -107,6 +110,7 @@ const builtThemes = createThemes({
         ...warningDarkPalette,
         ...dangerDarkPalette,
         ...decorativeDarkPalette,
+        ...fixedPalette,
       },
       light: {
         ...Colors.green,
@@ -120,6 +124,7 @@ const builtThemes = createThemes({
         ...warningLightPalette,
         ...dangerLightPalette,
         ...decorativeLightPalette,
+        ...fixedPalette,
       },
     },
   },
@@ -188,5 +193,7 @@ export type Themes = typeof builtThemes;
 export const themes: Themes =
   process.env.TAMAGUI_ENVIRONMENT === 'client' &&
   process.env.NODE_ENV === 'production'
-    ? ({} as any)
-    : (builtThemes as any);
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ({} as any)
+    : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (builtThemes as any);

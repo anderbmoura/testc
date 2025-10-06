@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { View, YStack } from 'tamagui';
-import { LabelTiny } from '../../../components/Typography';
+import { LabelTiny } from '../../../components/data-display/Typography';
 import { space } from './space';
 
 const meta: Meta = {

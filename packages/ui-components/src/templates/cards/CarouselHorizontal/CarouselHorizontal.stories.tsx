@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { CarouselHorizontal } from './CarouselHorizontal';
 import type { CarouselHorizontalProps } from './CarouselHorizontal.model';
-import CardCarouselHorizontal from '../../../components/CardCarouselHorizontal';
+import CardCarouselHorizontal from '../../../components/cards/CardCarouselHorizontal';
 import { YStack } from 'tamagui';
-import { BodyStandard } from '../../../components/Typography';
+import { BodyStandard } from '../../../components/data-display/Typography';
 
 const SlotContent = () => (
   <YStack

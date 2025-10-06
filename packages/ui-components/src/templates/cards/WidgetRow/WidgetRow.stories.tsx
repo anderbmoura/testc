@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { YStack } from 'tamagui';
 import { WidgetRow } from './WidgetRow';
 import type { WidgetRowProps } from './WidgetRow.model';
-import { CardWidget } from '../../../components/CardWidget';
-import { CardWidgetFooter } from '../../../components/CardWidgetFooter';
+import { CardWidget } from '../../../components/cards/CardWidget';
+import { CardWidgetFooter } from '../../../components/cards/CardWidget/CardWidgetFooter';
 import {
   StatsUpSquare,
   StatsDownSquare,

@@ -1,9 +1,9 @@
 import React, { Fragment, ReactElement, useState } from 'react';
 import { YStack } from 'tamagui';
-import { ListAccordion } from '../../../components/ListAccordion';
-import { ExtractItem } from '../../../components/ExtractList/ExtractItem/ExtractItem';
-import { ListFooter } from '../../../components/ListFooter';
-import Separator from '../../../components/Separator';
+import { ListAccordion } from '../../../components/lists/ListAccordion';
+import { ExtractItem } from '../../../components/data-display/ExtractList/ExtractItem/ExtractItem';
+import { ListFooter } from '../../../components/lists/ListFooter';
+import Separator from '../../../components/layout/Separator';
 import { StatementListAccordionProps } from './StatementListAccordion.model';
 
 /**
@@ -82,12 +82,14 @@ export const StatementListAccordion: React.FC<StatementListAccordionProps> = ({
     child =>
       React.isValidElement(child) &&
       (child.type === ExtractItem ||
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child.type as any)?.displayName === 'ExtractItem')
   );
   const listFooter = childrenArray.find(
     child =>
       React.isValidElement(child) &&
       (child.type === ListFooter ||
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child.type as any)?.displayName === 'ListFooter')
   );
 

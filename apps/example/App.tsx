@@ -1,46 +1,71 @@
 import {
   DscProvider,
   View,
-  Button,
   Sheet,
   Text,
+  Stories,
 } from '@superapp-caixa/dsc-library';
 import React, { useState } from 'react';
 import { ThemeProvider, useThemeContext } from './contexts/ThemeContext';
-import { Settings } from 'iconoir-react-native';
+import { Star } from 'iconoir-react-native';
 
 function AppContent() {
   const { actualTheme } = useThemeContext();
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isSheetMaximized, setIsSheetMaximized] = useState(false);
+
+  const storyImages = [
+    { imageSource: 'https://picsum.photos/400/800?random=1', id: '1' },
+    { imageSource: 'https://picsum.photos/400/800?random=2', id: '2' },
+    { imageSource: 'https://picsum.photos/400/800?random=3', id: '3' },
+  ];
+
+  const handleSheetPositionChange = (position: number) => {
+    // Posição 0 corresponde ao snap point máximo (80%)
+    setIsSheetMaximized(position === 0);
+  };
 
   return (
     <DscProvider defaultTheme={actualTheme}>
-      <View flex={1} justifyContent="center" alignItems="center" padding={20}>
-        <Button onPress={() => setIsSheetOpen(true)}>Abrir Sheet</Button>
-
+      <Stories
+        images={storyImages}
+        duration={5000}
+        showBlur={isSheetMaximized}
+        blurIntensity={isSheetMaximized ? 8 : 0}
+      >
+        {/* Sheet já aberto dentro do Stories */}
         <Sheet
-          open={isSheetOpen}
-          onOpenChange={setIsSheetOpen}
+          closable={false}
+          open={true}
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          onOpenChange={() => {}}
+          onPositionChange={handleSheetPositionChange}
           header={{
-            icon: <Settings width={20} height={20} />,
-            title: 'Teste Background',
+            icon: <Star width={20} height={20} />,
+            title: 'Sheet com Blur Dinâmico',
           }}
-          snapPoints={[80, 50, 25]}
+          snapPoints={[80, 40]}
           snapPointsMode="percent"
+          variant="onMediaBg"
         >
           <View gap={16}>
-            <Text fontSize={16} fontWeight="600">
-              Background deve estar visível
+            <Text fontSize={18} fontWeight="600">
+              Sheet com Blur Dinâmico no Stories
             </Text>
-            <Text>Você pode arrastar para redimensionar ou fechar.</Text>
-            <View padding={12} backgroundColor="$neutralBg1" borderRadius={8}>
-              <Text>Esta área deve ter background diferente</Text>
-            </View>
-
-            <Button onPress={() => setIsSheetOpen(false)}>Fechar Sheet</Button>
+            <Text>
+              Este Sheet controla dinamicamente o blur do Stories. Quando você
+              arrasta o Sheet para o tamanho máximo (80%), o fundo do Stories
+              fica desfocado.
+            </Text>
+            <Text color="$color11">
+              Arraste para cima/baixo para testar os snap points e ver o blur
+              sendo aplicado.
+            </Text>
+            <Text color="$color9" fontSize={14}>
+              Blur ativo: {isSheetMaximized ? 'SIM' : 'NÃO'}
+            </Text>
           </View>
         </Sheet>
-      </View>
+      </Stories>
     </DscProvider>
   );
 }
