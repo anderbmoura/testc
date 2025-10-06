@@ -1,2 +1,2 @@
 export { SkeletonLoading } from './SkeletonLoading';
-export { SkeletonLoadingProps } from './SkeletonLoading.model';
+export type { SkeletonLoadingProps } from './SkeletonLoading.model';

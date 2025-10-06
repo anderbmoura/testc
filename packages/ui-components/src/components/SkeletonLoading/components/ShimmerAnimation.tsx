@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, StyleSheet } from 'react-native';
+import { Animated, Dimensions, StyleSheet, Platform } from 'react-native';
 import { View } from 'tamagui';
-
-import { ShimmerAnimationProps } from '../SkeletonLoading.model';
 import { LinearGradient } from './LinearGradient';
+import { ShimmerAnimationProps } from '../SkeletonLoading.model';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -12,17 +11,21 @@ export const ShimmerAnimation = ({
   height = '$10',
   borderRadius = '$radius.small',
 }: ShimmerAnimationProps) => {
+  const isWeb = Platform.OS === 'web';
+
   const translateX = useRef(new Animated.Value(-SCREEN_WIDTH)).current;
 
   useEffect(() => {
-    Animated.loop(
-      Animated.timing(translateX, {
-        toValue: SCREEN_WIDTH,
-        duration: 1200,
-        useNativeDriver: true,
-      })
-    ).start();
-  }, [translateX]);
+    if (!isWeb) {
+      Animated.loop(
+        Animated.timing(translateX, {
+          toValue: SCREEN_WIDTH,
+          duration: 1200,
+          useNativeDriver: true,
+        })
+      ).start();
+    }
+  }, [translateX, isWeb]);
 
   return (
     <View
@@ -32,21 +35,30 @@ export const ShimmerAnimation = ({
       height={height}
       borderRadius={borderRadius}
     >
-      <Animated.View
-        style={[
-          StyleSheet.absoluteFill,
-          {
-            transform: [{ translateX }],
-          },
-        ]}
-      >
+      {isWeb ? (
         <LinearGradient
           colors={['#E3EBEB', '#9EB2B8', '#E3EBEB']}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
-          style={StyleSheet.absoluteFill}
+          style={{ width: '100%', height: '100%' }}
         />
-      </Animated.View>
+      ) : (
+        <Animated.View
+          style={[
+            StyleSheet.absoluteFill,
+            {
+              transform: [{ translateX }],
+            },
+          ]}
+        >
+          <LinearGradient
+            colors={['#E3EBEB', '#9EB2B8', '#E3EBEB']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={StyleSheet.absoluteFill}
+          />
+        </Animated.View>
+      )}
     </View>
   );
 };

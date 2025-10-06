@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 import { SkeletonLoading } from './SkeletonLoading';
 import type { SkeletonLoadingProps } from './SkeletonLoading.model';
 
 const meta: Meta<SkeletonLoadingProps> = {
-  title: 'Feedback/Loading/SkeletonLoading',
+  title: 'Componentes/Feedback/SkeletonLoading',
   component: SkeletonLoading,
   parameters: {
     layout: 'centered',
@@ -12,6 +11,8 @@ const meta: Meta<SkeletonLoadingProps> = {
       description: {
         component: `
 Componente de carregamento visual que simula conteúdo com placeholders animados.
+
+⚠️ **Observação:** A animação shimmer só é visível em dispositivos móveis. No ambiente web (como o Storybook), o efeito pode não ser exibido corretamente.
 
 ## Variantes disponíveis
 
