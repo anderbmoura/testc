@@ -1,9 +1,6 @@
 import { styled, View, withStaticProperties, XStack, GetProps } from 'tamagui';
-import { ChipsVariant } from './Chips.model';
 import { borderWidth } from '../../../config/tokens/borderWidth/borderWidth';
 import { LabelSmall } from '../Typography';
-import { iconSize } from '../../../config/tokens/iconSize/iconSize';
-import { useTransformIcon } from '../../../utils';
 
 export const ChipFrame = styled(View, {
   name: 'ChipFrame',
@@ -28,7 +25,6 @@ export const ChipFrame = styled(View, {
 
 const ChipRow = styled(XStack, {
   name: 'ChipRow',
-  paddingHorizontal: '$space.nano',
   alignItems: 'center',
 });
 
@@ -36,17 +32,39 @@ const ChipLabel = styled(LabelSmall, {
   name: 'ChipLabel',
   backgroundColor: 'transparent',
   userSelect: 'none',
-  paddingHorizontal: '$space.nano',
   disabledStyle: {
     color: '$onDisabled',
   },
+});
+
+const ChipLeftSlotWrapper = styled(View, {
+  name: 'ChipLeftSlotWrapper',
+  paddingLeft: '$tiny',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const ChipLabelWrapper = styled(View, {
+  name: 'ChipLabelWrapper',
+  paddingHorizontal: '$nano',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const ChipRightSlotWrapper = styled(View, {
+  name: 'ChipRightSlotWrapper',
+  paddingRight: '$tiny',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: 16,
+  width: 20,
 });
 
 const ChipContent = styled(View, {
   name: 'ChipContent',
   borderRadius: '$radius.pill',
   justifyContent: 'center',
-  padding: '$space.quark',
+  paddingVertical: '$quark',
   minHeight: 32,
   disabledStyle: {
     backgroundColor: '$disabled1',
@@ -77,35 +95,11 @@ const ChipContent = styled(View, {
 
 type ChipContentProps = GetProps<typeof ChipContent>;
 
-const iconColorMap = {
-  highlight: '$onHighlight',
-  neutral: '$onNeutral1',
-  disabled: '$onDisabled',
-};
-
-type ItemIconProps = {
-  icon?: React.ReactNode;
-  variant: ChipsVariant;
-  size?: number;
-};
-
-const ItemIcon: React.FC<ItemIconProps> = ({
-  icon,
-  variant,
-  size = iconSize.tiny,
-}) => {
-  const transformIcon = useTransformIcon();
-  const iconColor = iconColorMap[variant];
-
-  if (!icon) return null;
-
-  return transformIcon(icon, size, iconColor);
-};
-
 export const Chip = withStaticProperties(ChipFrame, {
   Text: ChipLabel,
   Content: ChipContent as React.ComponentType<ChipContentProps>,
   Row: ChipRow,
-  LeftIcon: ItemIcon,
-  RightIcon: ItemIcon,
+  LeftSlotWrapper: ChipLeftSlotWrapper,
+  LabelWrapper: ChipLabelWrapper,
+  RightSlotWrapper: ChipRightSlotWrapper,
 });

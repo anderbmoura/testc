@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
   ChipsProps,
-  ChipsVariant,
   ChipsLeftSlotProps,
   ChipsRightSlotProps,
 } from './Chips.model';
@@ -83,11 +82,6 @@ const ChipsComponent: React.FC<ChipsProps> = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const chipVariant: ChipsVariant = useMemo(() => {
-    if (disabled) return 'disabled';
-    return selected ? 'highlight' : 'neutral';
-  }, [selected, disabled]);
-
   const leftSlotProps = useMemo(
     () => extractLeftSlotProps(children),
     [children]
@@ -101,35 +95,34 @@ const ChipsComponent: React.FC<ChipsProps> = ({
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
+  const iconColor = useMemo(() => {
+    if (disabled) return '$onDisabled';
+    return selected ? '$onHighlight' : '$onNeutral1';
+  }, [disabled, selected]);
+
   const renderLeftSlot = useMemo(() => {
     if (!leftSlotProps) return null;
 
-    const iconColor = disabled
-      ? '$onDisabled'
-      : selected
-        ? '$onHighlight'
-        : '$onNeutral1';
-
     return (
-      <ChipsLeftSlot
-        {...leftSlotProps}
-        selected={selected}
-        iconColor={iconColor}
-      />
+      <Chip.LeftSlotWrapper>
+        <ChipsLeftSlot
+          {...leftSlotProps}
+          selected={selected}
+          iconColor={iconColor}
+        />
+      </Chip.LeftSlotWrapper>
     );
-  }, [leftSlotProps, chipVariant, selected, disabled]);
+  }, [leftSlotProps, selected, iconColor]);
 
   const renderRightSlot = useMemo(() => {
     if (!rightSlotProps) return null;
 
-    const iconColor = disabled
-      ? '$onDisabled'
-      : selected
-        ? '$onHighlight'
-        : '$onNeutral1';
-
-    return <ChipsRightSlot {...rightSlotProps} iconColor={iconColor} />;
-  }, [rightSlotProps, chipVariant, selected, disabled]);
+    return (
+      <Chip.RightSlotWrapper>
+        <ChipsRightSlot {...rightSlotProps} iconColor={iconColor} />
+      </Chip.RightSlotWrapper>
+    );
+  }, [rightSlotProps, iconColor]);
 
   return (
     <Chip
@@ -144,20 +137,13 @@ const ChipsComponent: React.FC<ChipsProps> = ({
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Chip.Content disabled={disabled} selected={selected} {...(props as any)}>
         <Chip.Row>
-          <Chip.LeftIcon icon={renderLeftSlot} variant={chipVariant} />
-          <Chip.Text
-            disabled={disabled}
-            color={
-              disabled
-                ? '$onDisabled'
-                : selected
-                  ? '$onHighlight'
-                  : '$onNeutral1'
-            }
-          >
-            {text}
-          </Chip.Text>
-          <Chip.RightIcon icon={renderRightSlot} variant={chipVariant} />
+          {renderLeftSlot}
+          <Chip.LabelWrapper>
+            <Chip.Text disabled={disabled} color={iconColor}>
+              {text}
+            </Chip.Text>
+          </Chip.LabelWrapper>
+          {renderRightSlot}
         </Chip.Row>
       </Chip.Content>
     </Chip>
