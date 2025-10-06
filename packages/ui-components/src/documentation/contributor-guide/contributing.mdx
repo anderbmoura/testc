@@ -11,17 +11,17 @@ Este guia descreve o fluxo de trabalho para contribuir com a {LIBRARY_NAME} de f
 
 ### 1. Preparar o ambiente
 
-Certifique-se de estar na branch `main-develop` e que ela está atualizada:
+Certifique-se de estar na branch `develop` e que ela está atualizada:
 
 ```bash
 git fetch origin
-git checkout main
+git checkout develop
 git pull
 ```
 
 ### 2. Criar uma nova branch
 
-Crie sua branch a partir da `main-develop`, usando um prefixo adequado ao tipo de contribuição:
+Crie sua branch a partir da `develop`, usando um prefixo adequado ao tipo de contribuição:
 
 #### Exemplos de prefixos comuns:
 
@@ -172,4 +172,6 @@ git push -u origin feature/nome-da-sua-branch
 # Criar Pull Request no Azure DevOps para a branch main-develop
 ```
 
-> ⚠️ **Importante**: Sempre crie o Pull Request para a branch **`main-develop`**, exceto quando estiver trabalhando em uma feature branch.
+> ⚠️ **Importante**: 
+> - Sempre crie sua branch a partir de **`develop`**
+> - Sempre crie o Pull Request para a branch **`main-develop`**
