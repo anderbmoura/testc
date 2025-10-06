@@ -10,4 +10,5 @@ export const ToolbarContainer = styled(View, {
   justifyContent: 'center',
   flex: 1,
   width: '100%',
+  backgroundColor: '$neutralBg2',
 });
