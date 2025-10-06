@@ -11,7 +11,6 @@ export const StyledInputContainer = styled(Pressable, {
   flexDirection: 'row',
   alignItems: 'center',
   gap: '$nano',
-  flex: 1,
   width: '100%',
 
   variants: {
