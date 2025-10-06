@@ -1,19 +1,4 @@
 export const successLightGradientPalette = {
-  success1: '#000000',
-  success2: '#083512',
-  success3: '#0C501A',
-  success4: '#0F6120',
-  success5: '#127527',
-  success6: '#15842C',
-  success7: '#2B9742',
-  success8: '#50BE67',
-  success9: '#9BDAA9',
-  success10: '#C1E8C9',
-  success11: '#E7F4EA',
-  success12: '#ffffff',
-};
-
-export const successDarkGradientPalette = {
   success1: '#ffffff',
   success2: '#E7F4EA',
   success3: '#C5E4CC',
@@ -26,6 +11,21 @@ export const successDarkGradientPalette = {
   success10: '#0D581D',
   success11: '#093A14',
   success12: '#000000',
+};
+
+export const successDarkGradientPalette = {
+  success1: '#000000',
+  success2: '#083512',
+  success3: '#0C501A',
+  success4: '#0F6120',
+  success5: '#127527',
+  success6: '#15842C',
+  success7: '#2B9742',
+  success8: '#50BE67',
+  success9: '#9BDAA9',
+  success10: '#C1E8C9',
+  success11: '#E7F4EA',
+  success12: '#ffffff',
 };
 
 export const successLightSemanticPalette = {

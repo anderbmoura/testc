@@ -15,3 +15,4 @@ lib/
 
 # Release
 .release-it.json.bak
+.package-lock.json

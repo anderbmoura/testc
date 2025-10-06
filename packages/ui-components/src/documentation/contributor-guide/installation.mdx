@@ -1,67 +1,98 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { LIBRARY_NAME } from '../constants';
 
-<Meta title="Guia de Contribuição/Instalação" />
+<Meta title="Guia de Contribuição/Instalação e Desenvolvimento" />
 
-# Instalação para Contribuidores
+# Instalação e Desenvolvimento
 
-Este guia descreve como configurar o ambiente de desenvolvimento para contribuir com a DSC Library.
+Este guia descreve como configurar o ambiente de desenvolvimento para desenvolver na {LIBRARY_NAME}.
 
-## Clone e Configuração
+## Instalação
 
-### 1. Clone o repositório
+### Clone o repositório
+
+Na sua pasta de desenvolvimento, execute o seguinte comando para clonar o repositório:
 
 ```bash
-git clone https://dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_git/rn-superapp-dsc-library
+git clone https://CAIXAAZURE@dev.azure.com/CAIXAAZURE/ComunidadeCanaisMobile/_git/RN_Superapp_Dsc_Library
 ```
 
-### 2. Instale as dependências
+### Instale as dependências do projeto
 
 ```bash
+# yarn
+yarn install
+
+# npm
 npm install --legacy-peer-deps
 ```
 
-> ⚠️ **Importante**: Use a flag `--legacy-peer-deps` para evitar conflitos de dependências.
-
-### 3. Build da biblioteca
+### 3. Faça o Build da biblioteca
 
 ```bash
+# yarn
+yarn build:lib
+
+# npm
 npm run build:lib
 ```
 
+> ⚠️ **Importante**: Esse passo é necessário para gerar os arquivos na pasta `lib`, que são utilizados pela aplicação de exemplo e pelo Storybook.
+
 ## Desenvolvimento
+
+### Storybook
+
+> 💡 **Recomendação**: Use o Storybook para desenvolver componentes, pois ele detecta mudanças na biblioteca automaticamente.
+
+```bash
+# yarn
+yarn storybook
+
+# npm
+npm run storybook
+```
 
 ### Aplicação de Exemplo
 
-Para testar os componentes em uma aplicação completa:
+Para testar os componentes em uma aplicação:
 
 ```bash
+# yarn
+yarn example
+
+# npm
 npm run example
 ```
 
 #### Web
 
 ```bash
+# yarn
+yarn example:web
+
+# npm
 npm run example:web
 ```
 
 #### Android
 
 ```bash
+# yarn
+yarn example:android
+
+# npm
 npm run example:android
 ```
 
 #### iOS
 
 ```bash
+# yarn
+yarn example:ios
+
+# npm
 npm run example:ios
 ```
 
-> 💡 **Configuração de Emuladores**: A aplicação de exemplo é construída com Expo Go. Para configurar os emuladores Android/iOS, consulte a [documentação oficial do Expo](https://docs.expo.dev/get-started/set-up-your-environment/).
-
-### Storybook
-
-> **Recomendação**: Use o Storybook para desenvolver componentes, pois ele detecta mudanças na biblioteca automaticamente.
-
-```bash
-npm run storybook
-```
+> 💡 **Configuração de Emuladores**: A aplicação de exemplo é construída com Expo Go. Para configurar os emuladores Android/iOS, consulte a <a href="https://docs.expo.dev/get-started/set-up-your-environment/" target="_blank" rel="noopener noreferrer">documentação oficial do Expo</a>.

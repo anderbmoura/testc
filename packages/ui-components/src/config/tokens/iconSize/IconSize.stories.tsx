@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { View } from 'tamagui';
-import { LabelTinyBold } from '../../../components/Typography';
+import { LabelTinyBold } from '../../../components/data-display/Typography';
 import { Home } from 'iconoir-react-native';
 import { iconSize } from './iconSize';
 

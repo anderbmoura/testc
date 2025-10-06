@@ -19,5 +19,6 @@ const config: StorybookConfig = {
     name: '@storybook/react-native-web-vite',
     options: {},
   },
+  staticDirs: ['../assets'],
 };
 export default config;

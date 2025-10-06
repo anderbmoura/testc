@@ -6,7 +6,7 @@ import {
   BodyStandard,
   BodySmall,
   LabelStandard,
-} from '../../../components/Typography';
+} from '../../../components/data-display/Typography';
 import { accentLightPalette, accentDarkPalette } from './accent';
 import {
   neutralLightPalette,
@@ -26,6 +26,7 @@ import {
   decorativeLightPalette,
   decorativeDarkPalette,
 } from './extras/decorative';
+import { fixedPalette } from './fixed';
 
 const ColorItem: React.FC<{ name: string; color: string }> = ({
   name,
@@ -118,6 +119,27 @@ const DisabledColorsSection: React.FC<{ palette: Record<string, string> }> = ({
   );
 };
 
+const FixedColorsSection: React.FC<{ palette: Record<string, string> }> = ({
+  palette,
+}) => {
+  return (
+    <View style={styles.fixedSpecialSection}>
+      <View style={styles.sectionHeader}>
+        <BodyStandard style={styles.sectionSubtitle}>Cores Fixas</BodyStandard>
+      </View>
+      <BodySmall style={styles.fixedDescription}>
+        Cores que permanecem constantes em todos os temas. Ideais para elementos
+        de identidade visual e branding que não devem se adaptar ao tema.
+      </BodySmall>
+      <View style={styles.swatchGrid}>
+        {Object.entries(palette).map(([name, color]) => (
+          <ColorItem key={name} name={name} color={color} />
+        ))}
+      </View>
+    </View>
+  );
+};
+
 const PaletteGroup: React.FC<PaletteGroupProps> = ({ palette }) => {
   const gradientColors: Record<string, string> = {};
   const semanticColors: Record<string, string> = {};
@@ -166,6 +188,7 @@ const PaletteGroup: React.FC<PaletteGroupProps> = ({ palette }) => {
 
 interface PalettesProps {
   showPalette?:
+    | 'fixed'
     | 'accent'
     | 'neutral'
     | 'highlight'
@@ -179,6 +202,7 @@ interface PalettesProps {
 
 const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
   const lightPalettes = {
+    fixed: fixedPalette,
     accent: accentLightPalette,
     neutral: neutralLightPalette,
     highlight: highlightLightPalette,
@@ -191,6 +215,7 @@ const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
   };
 
   const darkPalettes = {
+    fixed: fixedPalette,
     accent: accentDarkPalette,
     neutral: neutralDarkPalette,
     highlight: highlightDarkPalette,
@@ -221,6 +246,19 @@ const Palettes: React.FC<PalettesProps> = ({ showPalette = 'highlight' }) => {
             Tema Escuro - Cores Desabilitadas
           </TitleSmall>
           <DisabledColorsSection palette={darkPalettes.disabled} />
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (selectedPalette === 'fixed') {
+    return (
+      <ScrollView style={styles.container}>
+        <View style={styles.themeSection}>
+          <TitleSmall style={styles.themeTitle}>
+            Cores Fixas - Invariantes entre Temas
+          </TitleSmall>
+          <FixedColorsSection palette={fixedPalette} />
         </View>
       </ScrollView>
     );
@@ -310,6 +348,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   disabledDescription: {
+    fontSize: 14,
+    color: '#718096',
+    marginBottom: 16,
+    lineHeight: 20,
+  },
+  fixedSpecialSection: {
+    marginBottom: 28,
+    padding: 20,
+    backgroundColor: '#f0f9ff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+    marginHorizontal: 8,
+  },
+  fixedDescription: {
     fontSize: 14,
     color: '#718096',
     marginBottom: 16,
@@ -440,6 +493,7 @@ const meta: Meta<PalettesProps> = {
     showPalette: {
       control: 'select',
       options: [
+        'fixed',
         'accent',
         'neutral',
         'highlight',
@@ -451,7 +505,7 @@ const meta: Meta<PalettesProps> = {
         'disabled',
       ],
       description:
-        'Which palette to display (shows both light and dark themes; disabled shows both light/dark disabled palettes)',
+        'Qual paleta exibir (mostra temas claro e escuro; disabled mostra paletas desabilitadas claro/escuro; fixed mostra as mesmas cores em ambos os temas)',
       defaultValue: 'highlight',
     },
   },
@@ -459,6 +513,12 @@ const meta: Meta<PalettesProps> = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const FixedColors: Story = {
+  args: {
+    showPalette: 'fixed',
+  },
+};
 
 export const HighlightColors: Story = {
   args: {

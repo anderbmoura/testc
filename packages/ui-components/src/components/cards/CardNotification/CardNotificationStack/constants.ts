@@ -1,0 +1,4 @@
+export const STACK_CONSTANTS = {
+  FRONT_CARD_POSITION: 0,
+  INACTIVE_CARD_POSITION: -1,
+} as const;

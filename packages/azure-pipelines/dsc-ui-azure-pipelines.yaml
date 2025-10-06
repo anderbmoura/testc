@@ -1,44 +1,29 @@
 trigger: none
 
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Templates_CI_CD
+      ref: refs/heads/RN-LIBS-YAML
+
 parameters:
-  - name: VERSION
+  - name: serviceVersion
+    displayName: 'Versão do Serviço'
     type: string
-    default: '0.0.5'
-    displayName: 'Versão da Lib'
+    default: '0.0.1'
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-  - bash: |
-      build_name="$(build.buildNumber) - Version ${{ parameters.VERSION }}"
-      echo "##vso[build.updatebuildnumber]$build_name"
-      echo "##vso[task.setvariable variable=VERSION]${{ parameters.VERSION }}"
-    displayName: 'Atualiza BuildName'
-
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '20.x'
-    displayName: 'Install Node.js'
-
-  - script: |
-      corepack enable
-      yarn --version
-      yarn install --immutable
-    displayName: 'Install dependencies and build ui-components with Yarn'
-
-  - task: npmAuthenticate@0
-    inputs:
-      workingFile: '.npmrc'
-
-  - task: Npm@1
-    inputs:
-      command: 'custom'
-      workingDir: 'packages/ui-components'
-      customCommand: 'version $(VERSION) --no-git-tag-version --userconfig ../../.npmrc'
-    displayName: 'Update version lib'
-
-  - script: |
-      cd packages/ui-components
-      npm publish --userconfig ../../.npmrc
-    displayName: 'Publish package to Azure Artifacts feed'
+variables:
+  - group: VG_SERVICES_SHARED
+  - name: BUILD_VERSION
+    value: ${{ parameters.serviceVersion }}
+extends:
+  template: solutions/rn-lib-azure-solution.yaml@templates
+  parameters:
+    serviceVersion: '${{ parameters.serviceVersion }}'
+    moduleName: 'superapp-caixa/dsc-library'
+    workDir: '$(Build.SourcesDirectory)/$(Build.Repository.Name)/packages/ui-components'
+    libPrefix: '--prefix packages/ui-components'
+    ambientes:
+      - nome: 'snapshot'
+      - nome: 'stable'
