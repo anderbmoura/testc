@@ -17,18 +17,30 @@ const DscAvatar = styled(YStack, {
 
   variants: {
     size: {
-      small: { width: 24, height: 24 },
-      standard: { width: 36, height: 36 },
-      large: { width: 48, height: 48 },
+      small: { width: 18, height: 18 },
+      standard: { width: 24, height: 24 },
+      large: { width: 32, height: 32 },
     },
   } as const,
 });
 
 const MonogramText = styled(Text, {
-  ...typography.labelStandard,
   textAlign: 'center',
-  verticalAlign: 'middle',
   color: '$onNeutral3',
+
+  variants: {
+    size: {
+      small: {
+        ...typography.labelTiny,
+      },
+      standard: {
+        ...typography.labelSmall,
+      },
+      large: {
+        ...typography.labelStandard,
+      },
+    },
+  } as const,
 });
 
 /**
@@ -84,11 +96,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   const getIconSizeMapping = () => {
     switch (size) {
       case 'small':
-        return iconSize.small;
+        return iconSize.tiny;
       case 'standard':
-        return iconSize.medium;
+        return iconSize.small;
       case 'large':
-        return iconSize.large;
+        return iconSize.medium;
     }
   };
 
@@ -96,22 +108,15 @@ export const Avatar: React.FC<AvatarProps> = ({
   const transformedIcon =
     style === 'icon' ? transformIcon(icon, iconSizeMapping) : null;
 
-  const shouldApplyPadding = style === 'icon' || style === 'monogram';
-
   return (
-    <DscAvatar
-      size={size}
-      {...styleProps}
-      paddingVertical={shouldApplyPadding ? 4 : 0}
-      paddingHorizontal={shouldApplyPadding ? 10 : 0}
-    >
+    <DscAvatar size={size} {...styleProps}>
       {style === 'image' && imageSource && (
         <Image source={imageSource} width="100%" height="100%" />
       )}
       {style === 'monogram' &&
         typeof monogramChar === 'string' &&
         monogramChar.length === 1 && (
-          <MonogramText>{monogramChar}</MonogramText>
+          <MonogramText size={size}>{monogramChar}</MonogramText>
         )}
       {style === 'icon' && transformedIcon}
     </DscAvatar>
