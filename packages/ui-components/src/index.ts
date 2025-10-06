@@ -143,7 +143,7 @@ export * from './components/feedback/FeedbackIllustration';
 export {
   SkeletonLoading,
   type SkeletonLoadingProps,
-} from './components/feedback/SkeletonLoading';
+} from './components/feedback';
 
 // Custom Data Display (overrides Tamagui's Avatar)
 export * from './components/data-display/Typography';
