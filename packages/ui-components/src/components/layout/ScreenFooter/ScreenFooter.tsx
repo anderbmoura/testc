@@ -5,7 +5,7 @@ import { ScreenFooterProps } from './ScreenFooter.model';
 const DscScreenFooter = styled(YStack, {
   name: 'DscScreenFooter',
   backgroundColor: '$neutralBg1',
-  paddingHorizontal: '$medium',
+  paddingHorizontal: '$tiny',
   paddingVertical: '$small',
   width: '100%',
 
