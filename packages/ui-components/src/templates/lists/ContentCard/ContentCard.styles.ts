@@ -6,7 +6,6 @@ import { styled, YStack, View } from 'tamagui';
 export const StyledContentCardContainer = styled(YStack, {
   name: 'ContentCardContainer',
   gap: '$nano',
-  flex: 1,
   width: '100%',
 });
 
