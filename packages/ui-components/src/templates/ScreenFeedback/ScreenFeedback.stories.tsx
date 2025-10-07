@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { ScreenFeedback } from './ScreenFeedback';
-import TopAppBar from '../../components/TopAppBar';
-import { FeedbackIllustration } from '../../components/FeedbackIllustration';
-import type { FeedbackStatus } from '../../components/FeedbackIllustration/FeedbackIllustration.model';
+import TopAppBar from '../../components/navigation/TopAppBar';
+import { FeedbackIllustration } from '../../components/feedback/FeedbackIllustration';
+import type { FeedbackStatus } from '../../components/feedback/FeedbackIllustration/FeedbackIllustration.model';
 import { ContentCard } from '../lists';
-import { ListItem } from '../../components/ListItem';
-import { ListFooter } from '../../components/ListFooter';
+import { ListItem } from '../../components/lists/ListItem';
+import { ListFooter } from '../../components/lists/ListFooter';
 import { ButtonRow } from '../buttons/ButtonRow';
-import IconButtonText from '../../components/IconButtonText';
-import { ScreenFooter } from '../../components/ScreenFooter';
-import Button from '../../components/Button';
+import IconButtonText from '../../components/buttons/IconButtonText';
+import { ScreenFooter } from '../../components/layout/ScreenFooter';
+import Button from '../../components/buttons/Button';
 import { Camera, Link, Archive } from 'iconoir-react-native';
 
 // Interface estendida para incluir controle do FeedbackIllustration

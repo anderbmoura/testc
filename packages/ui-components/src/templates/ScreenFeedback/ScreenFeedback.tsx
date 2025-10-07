@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitleLarge } from '../../components/Typography';
+import { TitleLarge } from '../../components/data-display/Typography';
 import { ScreenFeedbackProps } from './ScreenFeedback.model';
 import { useScreenFeedbackChildrenSeparation } from './hooks/useScreenFeedbackChildrenSeparation';
 import {

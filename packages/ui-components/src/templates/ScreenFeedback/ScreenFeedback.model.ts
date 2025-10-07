@@ -1,10 +1,10 @@
 import { ViewProps } from 'react-native';
 import { ReactElement } from 'react';
-import type { TopAppBarProps } from '../../components/TopAppBar/TopAppBar.model';
-import type { FeedbackIllustrationProps } from '../../components/FeedbackIllustration/FeedbackIllustration.model';
+import type { TopAppBarProps } from '../../components/navigation/TopAppBar/TopAppBar.model';
+import type { FeedbackIllustrationProps } from '../../components/feedback/FeedbackIllustration/FeedbackIllustration.model';
 import type { ContentCardProps } from '../lists/ContentCard/ContentCard.model';
 import type { ButtonRowProps } from '../buttons/ButtonRow/ButtonRow.model';
-import type { ScreenFooterProps } from '../../components/ScreenFooter/ScreenFooter.model';
+import type { ScreenFooterProps } from '../../components/layout/ScreenFooter/ScreenFooter.model';
 
 /**
  * Props do componente ScreenFeedback
