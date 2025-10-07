@@ -28,11 +28,16 @@ import { CarouselVertical, CardCarouselVertical } from '@superapp-caixa/dsc-libr
 >
   <CardCarouselVertical
     source={require('./assets/produto1.jpg')}
-    variant="highlight"
+    variant="image"
+    color="highlight"
+    title="Produto 1"
+    description="Confira"
   />
   <CardCarouselVertical
     source={require('./assets/produto2.jpg')}
-    variant="success"
+    variant="custom"
+    title="Produto 2"
+    description="Ver mais"
   />
 </CarouselVertical>
 \`\`\`
@@ -79,13 +84,8 @@ import { CarouselVertical, CardCarouselVertical } from '@superapp-caixa/dsc-libr
 export default meta;
 type Story = StoryObj<CarouselVerticalProps>;
 
-// Mock de imagens para as stories
 const mockImageSource = { uri: 'https://picsum.photos/200/300' };
 
-/**
- * Template que organiza cards CardCarouselVertical em um carousel horizontal rolável.
- * Possui título opcional e botão de ação opcional no header.
- */
 export const Default: Story = {
   args: {
     title: 'Produtos Recomendados',
@@ -93,14 +93,56 @@ export const Default: Story = {
   },
   render: args => (
     <CarouselVertical {...args}>
-      <CardCarouselVertical source={mockImageSource} variant="highlight" />
-      <CardCarouselVertical source={mockImageSource} variant="success" />
-      <CardCarouselVertical source={mockImageSource} variant="accent" />
-      <CardCarouselVertical source={mockImageSource} variant="warning" />
-      <CardCarouselVertical source={mockImageSource} variant="danger" />
-      <CardCarouselVertical source={mockImageSource} variant="info" />
-      <CardCarouselVertical source={mockImageSource} variant="neutral" />
-      <CardCarouselVertical source={mockImageSource} variant="decorative" />
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="image"
+        color="highlight"
+        title="Casa"
+        description="Simule"
+      />
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="image"
+        color="danger"
+        title="Empréstimo Consignado para Aposentados"
+        description="As melhores taxas do mercado"
+      />
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="image"
+        color="success"
+        title="Habitação"
+        description="Simule agora"
+      />
+    </CarouselVertical>
+  ),
+};
+
+export const CustomVariantCards: Story = {
+  args: {
+    title: 'Cards Personalizados',
+    buttonActionName: 'Ver todos',
+  },
+  render: args => (
+    <CarouselVertical {...args}>
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="custom"
+        title="Casa na Praia"
+        description="Realize seu sonho"
+      />
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="custom"
+        title="Apartamento Moderno"
+        description="Centro da cidade"
+      />
+      <CardCarouselVertical
+        source={mockImageSource}
+        variant="custom"
+        title="Fazenda Rural"
+        description="Área de 50 hectares"
+      />
     </CarouselVertical>
   ),
 };

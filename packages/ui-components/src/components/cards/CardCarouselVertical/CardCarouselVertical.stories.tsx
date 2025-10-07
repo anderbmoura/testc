@@ -18,56 +18,39 @@ const meta = {
         component: `
 Componente DSC CardCarouselVertical para exibir recomendações personalizadas.
 
+Suporta duas variantes:
+- **image**: Card com background colorido e imagem com máscara/clip
+- **custom**: Card com imagem simples sem efeitos (192x148)
+
 ## Como usar
 
 \`\`\`tsx
 import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
 
-// Card padrão com tema highlight
+// Card variant image (padrão) com tema highlight
 <CardCarouselVertical 
   source={require('./assets/casa-bonita.jpg')}
+  variant="image"
+  color="highlight"
+  title="Habitação"
+  description="Simule agora"
 />
 
-// Card com tema de sucesso
+// Card variant image com tema de sucesso
 <CardCarouselVertical 
   source={require('./assets/apartamento.jpg')}
-  variant="success"
+  variant="image"
+  color="success"
+  title="Apartamento"
+  description="Confira"
 />
 
-// Card com tema de perigo
+// Card variant custom (imagem simples)
 <CardCarouselVertical 
   source={require('./assets/casa-popular.jpg')}
-  variant="danger"
-/>
-
-// Card com tema de aviso
-<CardCarouselVertical 
-  source={require('./assets/terreno.jpg')}
-  variant="warning"
-/>
-
-// Card com tema informativo
-<CardCarouselVertical 
-  source={require('./assets/comercial.jpg')}
-  variant="info"
-/>
-
-// Card com tema neutro
-<CardCarouselVertical 
-  source={require('./assets/industrial.jpg')}
-  variant="neutral"
-/>
-
-// Card com tema decorativo
-<CardCarouselVertical 
-  source={require('./assets/rural.jpg')}
-  variant="decorative"
-/>
-
-// Card com tema de destaque
-<CardCarouselVertical 
-  source={require('./assets/luxo.jpg')}
-  variant="accent"
+  variant="custom"
+  title="Casa Popular"
+  description="Financie"
 />
 \`\`\`
         `,
@@ -88,8 +71,13 @@ import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
             args['source'] &&
               `source={${getImageRequire(args['source'] as string)}}`,
             args['variant'] &&
-              args['variant'] !== 'highlight' &&
+              args['variant'] !== 'image' &&
               `variant="${args['variant']}"`,
+            args['color'] &&
+              args['color'] !== 'highlight' &&
+              `color="${args['color']}"`,
+            args['title'] && `title="${args['title']}"`,
+            args['description'] && `description="${args['description']}"`,
           ]
             .filter(Boolean)
             .join(' ');
@@ -118,7 +106,18 @@ import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
       mapping: imageMapping,
     },
     variant: {
-      description: 'Variante que aplica um tema ao background',
+      description:
+        'Variante do card (image: com background e clip | custom: imagem simples)',
+      control: 'select',
+      options: ['image', 'custom'],
+      table: {
+        type: { summary: 'CardCarouselVerticalVariant' },
+        defaultValue: { summary: 'image' },
+      },
+    },
+    color: {
+      description:
+        'Cor do tema aplicada ao background (quando variant="image")',
       control: 'select',
       options: [
         'highlight',
@@ -133,6 +132,20 @@ import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
       table: {
         type: { summary: 'BackgroundImageVariant' },
         defaultValue: { summary: 'highlight' },
+      },
+    },
+    title: {
+      description: 'Título do card (obrigatório)',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    description: {
+      description: 'Descrição do card (obrigatório)',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
       },
     },
   },
@@ -155,6 +168,18 @@ type Story = StoryObj<typeof CardCarouselVertical> & {
 export const Default = {
   args: {
     source: 'Casa Bonita',
-    variant: 'highlight',
+    variant: 'image',
+    color: 'highlight',
+    title: 'Habitação',
+    description: 'Simule agora',
+  },
+} satisfies Story;
+
+export const CustomVariant = {
+  args: {
+    source: 'Casa Bonita',
+    variant: 'custom',
+    title: 'Habitação',
+    description: 'Simule agora',
   },
 } satisfies Story;

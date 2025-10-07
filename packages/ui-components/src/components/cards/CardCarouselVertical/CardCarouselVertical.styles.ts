@@ -4,17 +4,23 @@ export const CardContainer = styled(View, {
   name: 'CardContainer',
   backgroundColor: '$neutralBg2',
   borderRadius: '$big',
-  minHeight: 244,
   width: 192,
-  gap: '$tiny',
   position: 'relative',
   overflow: 'hidden',
-  justifyContent: 'flex-end',
-  alignItems: 'flex-start',
+  flexDirection: 'column',
+});
+
+export const ImageSection = styled(View, {
+  name: 'ImageSection',
+  position: 'relative',
+  width: '100%',
+  height: 150,
+  flexShrink: 0,
 });
 
 export const ContentStack = styled(YStack, {
   name: 'ContentStack',
   padding: '$tiny',
   gap: '$nano',
+  flexShrink: 0,
 });

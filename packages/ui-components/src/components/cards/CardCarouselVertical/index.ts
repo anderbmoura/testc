@@ -1,6 +1,7 @@
 export { CardCarouselVertical } from './CardCarouselVertical';
 export type {
   CardCarouselVerticalProps,
+  CardCarouselVerticalVariant,
   BackgroundImageProps,
   BackgroundImageVariant,
   MaskImageProps,
