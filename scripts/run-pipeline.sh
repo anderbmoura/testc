@@ -60,26 +60,20 @@ echo ""
 echo -e "${GREEN}✓ Selected branch: ${BRANCH}${NC}"
 echo ""
 
-# Get current version from package.json or git tags
-echo -e "${BLUE}🔍 Detecting current version...${NC}"
+# Get current version from package.json
+echo -e "${BLUE}🔍 Reading current version from package.json...${NC}"
 
-# Try to get version from package.json in the library
+PACKAGE_JSON_PATH="package.json"
 CURRENT_VERSION=""
-if [ -f "packages/ui-components/package.json" ]; then
-    CURRENT_VERSION=$(grep -o '"version": *"[^"]*"' packages/ui-components/package.json | head -1 | sed 's/"version": *"//;s/"//')
-fi
 
-# Fallback to git tags if no package.json version found
-if [ -z "$CURRENT_VERSION" ]; then
-    CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//')
-fi
-
-# Fallback to default if still not found
-if [ -z "$CURRENT_VERSION" ]; then
+if [ -f "$PACKAGE_JSON_PATH" ]; then
+    CURRENT_VERSION=$(grep -o '"version": *"[^"]*"' "$PACKAGE_JSON_PATH" | head -1 | sed 's/"version": *"//;s/"//')
+    echo -e "${GREEN}✓ Current version: ${CURRENT_VERSION}${NC}"
+else
+    echo -e "${RED}✗ Could not find ${PACKAGE_JSON_PATH}${NC}"
     CURRENT_VERSION="0.0.0"
 fi
 
-echo -e "${GREEN}✓ Current version detected: ${CURRENT_VERSION}${NC}"
 echo ""
 
 # Parse version components
@@ -109,36 +103,63 @@ case $VERSION_OPTION in
         SERVICE_VERSION="$NEXT_PATCH"
         VERSION_DESC="Patch: ${SERVICE_VERSION}"
         USE_VERSION=true
+        UPDATE_PACKAGE_JSON=true
         ;;
     2)
         SERVICE_VERSION="$NEXT_MINOR"
         VERSION_DESC="Minor: ${SERVICE_VERSION}"
         USE_VERSION=true
+        UPDATE_PACKAGE_JSON=true
         ;;
     3)
         SERVICE_VERSION="$NEXT_MAJOR"
         VERSION_DESC="Major: ${SERVICE_VERSION}"
         USE_VERSION=true
+        UPDATE_PACKAGE_JSON=true
         ;;
     4)
         read -p "Enter custom version (X.Y.Z): " SERVICE_VERSION
         VERSION_DESC="Custom: ${SERVICE_VERSION}"
         USE_VERSION=true
+        UPDATE_PACKAGE_JSON=true
         ;;
     5)
         VERSION_DESC="No version specified (will use default)"
         USE_VERSION=false
+        UPDATE_PACKAGE_JSON=false
         ;;
     *)
         SERVICE_VERSION="$NEXT_PATCH"
         VERSION_DESC="Patch: ${SERVICE_VERSION}"
         USE_VERSION=true
+        UPDATE_PACKAGE_JSON=true
         ;;
 esac
 
 echo ""
 echo -e "${GREEN}✓ ${VERSION_DESC}${NC}"
 echo ""
+
+# Update package.json with new version
+if [ "$UPDATE_PACKAGE_JSON" = true ] && [ -f "$PACKAGE_JSON_PATH" ]; then
+    echo -e "${BLUE}📝 Updating package.json...${NC}"
+    
+    # Create backup
+    cp "$PACKAGE_JSON_PATH" "${PACKAGE_JSON_PATH}.backup"
+    
+    # Update version in package.json (works on both macOS and Linux)
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        sed -i '' "s/\"version\": \"${CURRENT_VERSION}\"/\"version\": \"${SERVICE_VERSION}\"/" "$PACKAGE_JSON_PATH"
+    else
+        # Linux
+        sed -i "s/\"version\": \"${CURRENT_VERSION}\"/\"version\": \"${SERVICE_VERSION}\"/" "$PACKAGE_JSON_PATH"
+    fi
+    
+    echo -e "${GREEN}✓ package.json updated: ${CURRENT_VERSION} → ${SERVICE_VERSION}${NC}"
+    echo -e "${YELLOW}  Backup saved: ${PACKAGE_JSON_PATH}.backup${NC}"
+    echo ""
+fi
 
 # Summary and confirmation
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -163,6 +184,27 @@ if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
 fi
 
 echo ""
+
+# Commit and push package.json changes if version was updated
+if [ "$UPDATE_PACKAGE_JSON" = true ]; then
+    echo -e "${BLUE}📤 Committing and pushing version change...${NC}"
+    echo ""
+    
+    git add "$PACKAGE_JSON_PATH"
+    git commit -m "chore: bump version to ${SERVICE_VERSION}" 2>&1 | grep -E "(chore:|files? changed|insertion|deletion)" || true
+    
+    echo ""
+    echo -e "${BLUE}Pushing to ${BRANCH}...${NC}"
+    git push origin "${BRANCH}" 2>&1 | grep -E "(Writing objects|Total|branch)" || true
+    
+    echo ""
+    echo -e "${GREEN}✓ Version ${SERVICE_VERSION} committed and pushed${NC}"
+    echo ""
+    
+    # Wait a moment for git to sync
+    sleep 2
+fi
+
 echo -e "${BLUE}🚀 Starting pipelines...${NC}"
 echo ""
 
@@ -176,24 +218,15 @@ run_pipeline() {
     echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo ""
     
-    if [ "$USE_VERSION" = false ]; then
-        echo -e "${YELLOW}Command: az pipelines run --id ${PIPELINE_ID} --branch ${BRANCH}${NC}"
-        echo ""
-        PIPELINE_OUTPUT=$(az pipelines run \
-            --id ${PIPELINE_ID} \
-            --branch ${BRANCH} \
-            2>&1)
-        EXIT_CODE=$?
-    else
-        echo -e "${YELLOW}Command: az pipelines run --id ${PIPELINE_ID} --branch ${BRANCH} --variables serviceVersion=${SERVICE_VERSION}${NC}"
-        echo ""
-        PIPELINE_OUTPUT=$(az pipelines run \
-            --id ${PIPELINE_ID} \
-            --branch ${BRANCH} \
-            --variables serviceVersion=${SERVICE_VERSION} \
-            2>&1)
-        EXIT_CODE=$?
-    fi
+    # Pipeline will read version from package.json automatically
+    echo -e "${YELLOW}Command: az pipelines run --id ${PIPELINE_ID} --branch ${BRANCH}${NC}"
+    echo -e "${YELLOW}Note: Pipeline will read version ${SERVICE_VERSION} from package.json${NC}"
+    echo ""
+    PIPELINE_OUTPUT=$(az pipelines run \
+        --id ${PIPELINE_ID} \
+        --branch ${BRANCH} \
+        2>&1)
+    EXIT_CODE=$?
     
     if [ $EXIT_CODE -eq 0 ]; then
         RUN_ID=$(echo "$PIPELINE_OUTPUT" | grep -o '"id": [0-9]*' | head -1 | grep -o '[0-9]*')
@@ -216,12 +249,18 @@ run_pipeline() {
 }
 
 # Run Pipeline 1 (DSC-UI)
+echo -e "${BLUE}Starting Pipeline 1...${NC}"
 run_pipeline ${PIPELINE_ID_DSC_UI} "LIB_DSC-UI_RN (${PIPELINE_ID_DSC_UI})"
 PIPELINE1_RESULT=$?
+echo -e "${YELLOW}Pipeline 1 result: ${PIPELINE1_RESULT}${NC}"
+echo ""
 
-# Run Pipeline 2
-run_pipeline ${PIPELINE_ID_SECOND} "Pipeline ${PIPELINE_ID_SECOND}"
+# Run Pipeline 2 (Storybook)
+echo -e "${BLUE}Starting Pipeline 2...${NC}"
+run_pipeline ${PIPELINE_ID_SECOND} "WEB_STORYBOOK_RN (${PIPELINE_ID_SECOND})"
 PIPELINE2_RESULT=$?
+echo -e "${YELLOW}Pipeline 2 result: ${PIPELINE2_RESULT}${NC}"
+echo ""
 
 # Check overall results
 if [ $PIPELINE1_RESULT -eq 0 ] && [ $PIPELINE2_RESULT -eq 0 ]; then
