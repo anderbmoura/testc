@@ -211,9 +211,12 @@ yarn pipeline:run
 The script allows you to:
 
 - 🎯 **Select branch**: develop, main-develop, main, current branch, or custom
-- 📦 **Choose version bump**: patch, minor, major, or no bump
+- � **Auto-detect version**: Reads current version from package.json or git tags
+- 📦 **Smart version suggestions**: Automatically suggests next patch, minor, or major version
+- ✏️ **Manual version**: Option to enter custom version
+- ⚡ **Dual pipeline execution**: Runs both pipelines (2687 and 2718) with same config
 - 👀 **View confirmation**: Review configuration before running
-- 📺 **Follow logs**: Optional real-time pipeline log viewing
+- 📺 **View URLs**: Direct links to both pipelines in Azure DevOps
 
 ### Example Flow
 
@@ -228,31 +231,57 @@ The script allows you to:
   4 - Current branch (chore/my-feature)
   5 - Custom branch name
 
-Choose branch [1]: 1
+Choose branch [1]: 2
 
-✓ Selected branch: develop
+✓ Selected branch: main-develop
 
-📦 Version configuration:
-  1 - Patch (x.x.X) - Bug fixes
-  2 - Minor (x.X.0) - New features
-  3 - Major (X.0.0) - Breaking changes
-  4 - No version bump (just build)
+� Detecting current version...
+✓ Current version detected: 0.21.2
 
-Choose version bump [1]: 2
+📦 Service Version (Versão do Serviço):
+  Current version: 0.21.2
 
-✓ Selected version: Minor version (new features)
+  1 - Patch 0.21.3 (Bug fixes, small changes)
+  2 - Minor 0.22.0 (New features, backwards compatible)
+  3 - Major 1.0.0 (Breaking changes)
+  4 - Custom version (enter manually)
+  5 - Skip version (use default)
+
+Choose version option [1]: 2
+
+✓ Minor: 0.22.0
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 Pipeline Configuration:
-  Pipeline ID:  2687
-  Branch:       develop
-  Version:      Minor version (new features)
+📋 Pipelines Configuration:
+  Pipeline 1 (DSC-UI):  2687
+  Pipeline 2:           2718
+  Branch:               main-develop
+  Service Version:      0.22.0
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Run pipeline? [Y/n]: Y
 
-🚀 Starting pipeline...
-✓ Pipeline started successfully!
+🚀 Starting pipelines...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 Running Pipeline: LIB_DSC-UI_RN (2687)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ LIB_DSC-UI_RN (2687) started successfully!
+  Run ID:       12345
+  Build Number: 20251007.1
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 Running Pipeline: Pipeline 2718
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Pipeline 2718 started successfully!
+  Run ID:       12346
+  Build Number: 20251007.2
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ Both Pipelines Started Successfully!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### Version Types
