@@ -1,16 +1,24 @@
-# PR Creation Scripts
+# Development Scripts
 
-Two automated scripts to streamline the process of creating branches, commits, and Pull Requests.
+Automated scripts to streamline development workflow including PR creation and pipeline execution.
 
 ## Scripts Available
 
-### 1. `create-pr-interactive.sh` - AI-Assisted (Recommended)
+### PR Creation
+
+#### 1. `create-pr-interactive.sh` - AI-Assisted (Recommended)
 
 Analyzes your changes and suggests appropriate branch names, commit messages, and descriptions automatically.
 
-### 2. `create-pr.sh` - Manual
+#### 2. `create-pr.sh` - Manual
 
 Requires you to specify all details explicitly.
+
+### Pipeline Execution
+
+#### 3. `run-pipeline.sh` - Azure DevOps Pipeline Runner
+
+Interactive script to run Azure DevOps pipelines with custom branch and version selection.
 
 ## Usage
 
@@ -181,3 +189,92 @@ Create a PR for my changes:
 ```
 
 See `.github/PR_TEMPLATES.md` for more prompt examples.
+
+---
+
+## Running Azure DevOps Pipeline
+
+### Usage
+
+Run the interactive pipeline script:
+
+```bash
+# Via script
+./scripts/run-pipeline.sh
+
+# Via yarn
+yarn pipeline:run
+```
+
+### Features
+
+The script allows you to:
+
+- 🎯 **Select branch**: develop, main-develop, main, current branch, or custom
+- 📦 **Choose version bump**: patch, minor, major, or no bump
+- 👀 **View confirmation**: Review configuration before running
+- 📺 **Follow logs**: Optional real-time pipeline log viewing
+
+### Example Flow
+
+```
+🚀 Azure DevOps Pipeline Runner
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 Available branches:
+  1 - develop (default)
+  2 - main-develop
+  3 - main
+  4 - Current branch (chore/my-feature)
+  5 - Custom branch name
+
+Choose branch [1]: 1
+
+✓ Selected branch: develop
+
+📦 Version configuration:
+  1 - Patch (x.x.X) - Bug fixes
+  2 - Minor (x.X.0) - New features
+  3 - Major (X.0.0) - Breaking changes
+  4 - No version bump (just build)
+
+Choose version bump [1]: 2
+
+✓ Selected version: Minor version (new features)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 Pipeline Configuration:
+  Pipeline ID:  2687
+  Branch:       develop
+  Version:      Minor version (new features)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Run pipeline? [Y/n]: Y
+
+🚀 Starting pipeline...
+✓ Pipeline started successfully!
+```
+
+### Version Types
+
+| Type      | Description | When to use                         |
+| --------- | ----------- | ----------------------------------- |
+| **Patch** | x.x.X       | Bug fixes, small improvements       |
+| **Minor** | x.X.0       | New features, backwards compatible  |
+| **Major** | X.0.0       | Breaking changes                    |
+| **None**  | No bump     | Just rebuild without version change |
+
+### Direct Azure CLI Commands
+
+If you prefer direct commands:
+
+```bash
+# Run pipeline on develop with patch version
+az pipelines run --id 2687 --branch develop --parameters versionBump=patch
+
+# Run pipeline on custom branch with minor version
+az pipelines run --id 2687 --branch feature/my-branch --parameters versionBump=minor
+
+# Run pipeline without version bump
+az pipelines run --id 2687 --branch main-develop
+```

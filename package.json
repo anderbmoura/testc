@@ -1,6 +1,6 @@
 {
   "name": "rn-superapp-dsc-library",
-  "version": "1.0.0",
+  "version": "0.22.0",
   "private": true,
   "packageManager": "yarn@1.22.22",
   "description": "A collection of reusable components for the DSC design system",
@@ -29,7 +29,8 @@
     "release:major": "release-it major",
     "release:dry-run": "release-it --dry-run",
     "pr:create": "./scripts/create-pr.sh",
-    "pr:auto": "./scripts/create-pr-interactive.sh"
+    "pr:auto": "./scripts/create-pr-interactive.sh",
+    "pipeline:run": "./scripts/run-pipeline.sh"
   },
   "keywords": [],
   "author": "",
