@@ -1,6 +1,6 @@
 {
   "name": "rn-superapp-dsc-library",
-  "version": "0.22.1",
+  "version": "0.23.0",
   "private": true,
   "packageManager": "yarn@1.22.22",
   "description": "A collection of reusable components for the DSC design system",

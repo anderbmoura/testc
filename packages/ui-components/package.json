@@ -1,6 +1,6 @@
 {
   "name": "@superapp-caixa/dsc-library",
-  "version": "1.0.0",
+  "version": "0.23.0",
   "description": "DSC Design System Components for React Native",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
