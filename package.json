@@ -27,7 +27,9 @@
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",
-    "release:dry-run": "release-it --dry-run"
+    "release:dry-run": "release-it --dry-run",
+    "pr:create": "./scripts/create-pr.sh",
+    "pr:auto": "./scripts/create-pr-interactive.sh"
   },
   "keywords": [],
   "author": "",
