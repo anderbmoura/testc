@@ -132,5 +132,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     backgroundColor: 'transparent',
+    borderWidth: 0,
+    borderColor: 'transparent',
+    outlineWidth: 0,
+    outlineColor: 'transparent',
   },
 });
