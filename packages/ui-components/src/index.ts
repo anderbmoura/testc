@@ -110,6 +110,12 @@ export type {
 export { default as Switch } from './components/forms/Switch';
 export type { SwitchProps } from './components/forms/Switch';
 export { Slider, type SliderProps } from './components/forms/Slider';
+export { InputPin } from './components/forms/InputPin';
+export type {
+  InputPinProps,
+  InputPinVariant,
+  InputPinFeedbackType,
+} from './components/forms/InputPin';
 
 // Custom Feedback (overrides Tamagui's AlertDialog, Spinner, Progress)
 export {
