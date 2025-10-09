@@ -1,0 +1,88 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as InputPinStories from './InputPin.stories';
+import { LIBRARY_NAME } from '../../../documentation/constants';
+
+<Meta title="Componentes/Forms/InputPin" />
+
+# InputPin
+
+Campo seguro para captura de códigos numéricos, tokens ou senhas alfanuméricas da {LIBRARY_NAME}.
+
+## Características principais
+
+### Variantes disponíveis
+- **`numeric`** &mdash; Captura de PIN tradicional com 4 ou 6 dígitos.
+- **`token`** &mdash; Código temporário (OTP) exibido em caixas individuais, com placeholder e estados de erro dedicados.
+- **`alphanumeric`** &mdash; Campo único com máscara segura para senhas com letras e números.
+
+### Feedback instantâneo
+Permite exibir mensagens abaixo do campo (`feedbackMessage`) indicando sucesso, erro ou informações adicionais. O tom da mensagem é definido por `feedbackType` (`neutral`, `success` ou `danger`).
+
+### Acessibilidade
+Cada variante aceita `accessibilityLabel` para descrever o que deve ser digitado, e o componente informa automaticamente quando está desabilitado ou com erro.
+
+## Como usar
+
+```tsx
+import React, { useState } from 'react';
+import { InputPin } from '@superapp-caixa/dsc-library';
+
+export const LoginPin = () => {
+  const [pin, setPin] = useState('');
+
+  return (
+    <InputPin
+      variant="numeric"
+      digitCount={6}
+      value={pin}
+      onChange={setPin}
+      onComplete={value => console.log('PIN completo:', value)}
+      accessibilityLabel="Digite sua senha de 6 dígitos"
+    />
+  );
+};
+```
+
+## Exemplos no Storybook
+
+### PIN numérico com 6 dígitos
+<Canvas of={InputPinStories.Numeric6Digits} />
+
+### PIN numérico com 4 dígitos
+<Canvas of={InputPinStories.Numeric4Digits} />
+
+### Token OTP (6 dígitos)
+<Canvas of={InputPinStories.TokenOtp} />
+
+### Token com feedback de erro
+<Canvas of={InputPinStories.TokenWithError} />
+
+### PIN com feedback de sucesso
+<Canvas of={InputPinStories.NumericSuccessFeedback} />
+
+### Senha alfanumérica
+<Canvas of={InputPinStories.Alphanumeric} />
+
+### Estado desabilitado
+<Canvas of={InputPinStories.DisabledState} />
+
+## API do InputPin
+
+- **`variant`** (`"numeric" | "token" | "alphanumeric"`, **obrigatório**) &mdash; Define o comportamento e apresentação do componente.
+- **`digitCount`** (`4 | 6`, padrão: `6`) &mdash; Quantidade de dígitos para as variantes `numeric` e `token`.
+- **`value`** (`string`) &mdash; Valor controlado atual. Use junto com `onChange`.
+- **`defaultValue`** (`string`) &mdash; Valor inicial em modo não controlado.
+- **`onChange`** (`(pin: string) => void`) &mdash; Disparado a cada alteração de dígito.
+- **`onComplete`** (`(pin: string) => void`, **obrigatório**) &mdash; Chamado quando todos os dígitos válidos são preenchidos.
+- **`isError`** (`boolean`, padrão: `false`) &mdash; Destaca o componente em vermelho e mantém a mensagem de erro.
+- **`feedbackMessage`** (`string`) &mdash; Texto exibido abaixo do campo.
+- **`feedbackType`** (`"neutral" | "success" | "danger"`, padrão: `"neutral"`) &mdash; Cor do texto de feedback.
+- **`disabled`** (`boolean`, padrão: `false`) &mdash; Remove interações e aplica estilo atenuado.
+- **`accessibilityLabel`** (`string`) &mdash; Descreve o campo para leitores de tela.
+- **`testID`** (`string`) &mdash; Identificador para testes automatizados.
+
+## Boas práticas
+
+- Utilize `onComplete` para direcionar o fluxo (envio automático, navegação, etc.).
+- Ao usar `token`, combine com `feedbackMessage` para orientar o usuário sobre a origem do código.
+- Em formulários longos, prefira `accessibilityLabel` descritivo, por exemplo: "Informe o token recebido por SMS".
