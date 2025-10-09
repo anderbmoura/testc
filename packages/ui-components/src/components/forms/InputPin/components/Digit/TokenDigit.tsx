@@ -3,8 +3,10 @@ import { StyleSheet, TextInput } from 'react-native';
 import { useInputPinContext } from '../../context/InputPinContext';
 import {
   StyledTokenDigitContainer,
+  StyledTokenDigitFocusRing,
   StyledTokenDigitPlaceholder,
   StyledTokenDigitText,
+  StyledTokenDigitWrapper,
 } from './TokenDigit.styles';
 
 export type TokenDigitProps = {
@@ -12,6 +14,7 @@ export type TokenDigitProps = {
 };
 
 type TokenDigitState = 'default' | 'focused' | 'filled' | 'error' | 'disabled';
+type FocusRingState = 'default' | 'error' | 'disabled';
 
 const getState = (options: {
   isFocused: boolean;
@@ -86,54 +89,72 @@ export const TokenDigit: React.FC<TokenDigitProps> = ({ index }) => {
     handleDigitBlur(index);
   }, [handleDigitBlur, index]);
 
-  const displayChar = hasValue
-    ? value
-    : isFocused
-      ? CARET_CHAR
-      : PLACEHOLDER_CHAR;
+  let displayChar = PLACEHOLDER_CHAR;
+  if (hasValue) {
+    displayChar = value;
+  } else if (isFocused) {
+    displayChar = CARET_CHAR;
+  }
 
   const isPlaceholder = !hasValue && !isFocused;
 
-  return (
-    <StyledTokenDigitContainer
-      state={state}
-      onPress={handlePress}
-      disabled={disabled}
-      accessibilityLabel={`Dígito ${index + 1}`}
-      accessibilityRole="text"
-      accessibilityState={{
-        disabled,
-        selected: isFocused,
-      }}
-    >
-      {isPlaceholder ? (
-        <StyledTokenDigitPlaceholder state={state}>
-          {displayChar}
-        </StyledTokenDigitPlaceholder>
-      ) : (
-        <StyledTokenDigitText state={state}>{displayChar}</StyledTokenDigitText>
-      )}
+  let focusRingState: FocusRingState = 'default';
+  if (disabled) {
+    focusRingState = 'disabled';
+  } else if (isError) {
+    focusRingState = 'error';
+  }
 
-      <TextInput
-        ref={ref => registerDigitRef(index, ref)}
-        value={value}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        autoComplete="one-time-code"
-        accessibilityLabel={`Entrada do dígito ${index + 1}`}
-        maxLength={1}
-        editable={!disabled}
-        onChangeText={handleChangeText}
-        onKeyPress={handleKeyPress}
-        onFocus={handleFocusEvent}
-        onBlur={handleBlurEvent}
-        caretHidden
-        contextMenuHidden
-        style={styles.hiddenInput}
-        selectionColor="transparent"
-        underlineColorAndroid="transparent"
+  const showFocusRing = isFocused && !disabled;
+
+  return (
+    <StyledTokenDigitWrapper>
+      <StyledTokenDigitFocusRing
+        visible={showFocusRing}
+        state={focusRingState}
       />
-    </StyledTokenDigitContainer>
+      <StyledTokenDigitContainer
+        state={state}
+        onPress={handlePress}
+        disabled={disabled}
+        accessibilityLabel={`Dígito ${index + 1}`}
+        accessibilityRole="text"
+        accessibilityState={{
+          disabled,
+          selected: isFocused,
+        }}
+      >
+        {isPlaceholder ? (
+          <StyledTokenDigitPlaceholder state={state}>
+            {displayChar}
+          </StyledTokenDigitPlaceholder>
+        ) : (
+          <StyledTokenDigitText state={state}>
+            {displayChar}
+          </StyledTokenDigitText>
+        )}
+
+        <TextInput
+          ref={ref => registerDigitRef(index, ref)}
+          value={value}
+          keyboardType="number-pad"
+          textContentType="oneTimeCode"
+          autoComplete="one-time-code"
+          accessibilityLabel={`Entrada do dígito ${index + 1}`}
+          maxLength={1}
+          editable={!disabled}
+          onChangeText={handleChangeText}
+          onKeyPress={handleKeyPress}
+          onFocus={handleFocusEvent}
+          onBlur={handleBlurEvent}
+          caretHidden
+          contextMenuHidden
+          style={styles.hiddenInput}
+          selectionColor="transparent"
+          underlineColorAndroid="transparent"
+        />
+      </StyledTokenDigitContainer>
+    </StyledTokenDigitWrapper>
   );
 };
 
