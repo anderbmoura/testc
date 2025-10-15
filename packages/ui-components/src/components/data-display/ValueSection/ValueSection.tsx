@@ -106,3 +106,5 @@ export const ValueSection: React.FC<ValueSectionProps> = ({
     </YStack>
   );
 };
+
+ValueSection.displayName = 'ValueSection';

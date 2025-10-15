@@ -1,7 +1,12 @@
 /**
  * Visual variants for the CardAlert component.
  */
-export type CardAlertVariant = 'info' | 'success' | 'warning' | 'danger';
+export type CardAlertVariant =
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'smart_tips';
 
 /**
  * Action button configuration for CardAlert.
@@ -30,6 +35,7 @@ export interface CardAlertProps {
    * - `success`: Green themed alert for success messages
    * - `warning`: Yellow themed alert for warning messages
    * - `danger`: Red themed alert for error/danger messages
+   * - `smart_tips`: Orange themed alert for smart tips and suggestions
    */
   variant: CardAlertVariant;
 

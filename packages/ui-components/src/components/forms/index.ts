@@ -13,9 +13,3 @@ export type { DscRadioGroupItemProps, RadioGroupProps } from './Radio';
 export { default as Switch } from './Switch';
 export type { SwitchProps } from './Switch';
 export { Slider, type SliderProps } from './Slider';
-export { InputPin } from './InputPin';
-export type {
-  InputPinProps,
-  InputPinVariant,
-  InputPinFeedbackType,
-} from './InputPin';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { YStack, Theme } from 'tamagui';
+import { Theme, XStack } from 'tamagui';
 import Card from '../Card';
 import { CardWidgetHeader } from './components/CardWidgetHeader';
 import { CardWidgetFooter } from './components/CardWidgetFooter';
@@ -44,7 +44,6 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
   onPress,
   removable,
   onRemove,
-  ...stackProps
 }) => {
   const { isFocused, handlers } = useCardWidgetInteractionState();
 
@@ -58,9 +57,10 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
   const renderContent = () => (
     <CardWidgetWrapper
       {...(isFocused ? { focused: true } : { focused: false })}
+      pointerEvents={onPress ? 'box-none' : 'auto'}
     >
       <Card type="outline">
-        <CardWidgetContent>
+        <CardWidgetContent pointerEvents={onPress ? 'none' : 'auto'}>
           <CardWidgetHeader {...headerProps} />
           {children && <CardWidgetFooter>{children}</CardWidgetFooter>}
         </CardWidgetContent>
@@ -73,7 +73,7 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
 
   if (onPress) {
     return (
-      <YStack
+      <XStack
         flex={1}
         onPress={onPress}
         onFocus={handlers.onFocus}
@@ -84,14 +84,13 @@ export const CardWidget: React.FC<CardWidgetProps> = ({
         onPressOut={handlers.onPressOut}
         tabIndex={0}
         cursor="pointer"
-        {...stackProps}
       >
         {contentWithTheme}
-      </YStack>
+      </XStack>
     );
   }
 
-  return contentWithTheme;
+  return <XStack flex={1}>{contentWithTheme}</XStack>;
 };
 
 export { CardWidgetHeader } from './components/CardWidgetHeader';

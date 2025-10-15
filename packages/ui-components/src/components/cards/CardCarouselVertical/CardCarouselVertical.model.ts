@@ -54,4 +54,14 @@ export interface CardCarouselVerticalProps {
    * Descrição do card.
    */
   description: string;
+
+  /**
+   * Callback opcional disparado quando o card é pressionado.
+   */
+  onPress?: () => void;
+
+  /**
+   * ID de teste para testes automatizados.
+   */
+  testID?: string;
 }

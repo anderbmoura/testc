@@ -1,29 +1,9 @@
 import React, { useState } from 'react';
-import { styled, View } from 'tamagui';
 import { Dimensions } from 'react-native';
 import { SegmentedButtonProps } from './SegmentedButton.model';
 import { space } from '../../../config/tokens/space/space';
 import { SegmentedButtonItem } from './components/SegmentedButtonItem';
-
-const Container = styled(View, {
-  name: 'SegmentedButtonContainer',
-  flexDirection: 'row',
-  padding: '$quark',
-  borderRadius: '$pill',
-  gap: '$quark',
-  width: '100%',
-
-  variants: {
-    disabled: {
-      true: {
-        backgroundColor: '$neutralBg3',
-      },
-      false: {
-        backgroundColor: '$disabled2',
-      },
-    },
-  },
-});
+import { SegmentedButtonContainer } from './SegmentedButton.styles';
 
 /**
  * Componente DSC SegmentedButton
@@ -63,7 +43,10 @@ export const SegmentedButton = ({
     Dimensions.get('screen').width / buttons.length - space.quark;
 
   return (
-    <Container aria-label={accessibilityLabel} disabled={disabled}>
+    <SegmentedButtonContainer
+      aria-label={accessibilityLabel}
+      disabled={disabled}
+    >
       {buttons.map((btn, index) => {
         const isDisabled = disabled || btn.state === 'disabled';
         const isSelected = !disabled && index === activeIndex;
@@ -87,7 +70,7 @@ export const SegmentedButton = ({
           />
         );
       })}
-    </Container>
+    </SegmentedButtonContainer>
   );
 };
 

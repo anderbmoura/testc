@@ -5,7 +5,7 @@ import { borderRadius } from '../../../../config/tokens/borderRadius/borderRadiu
 
 export const CardWidgetWrapper = styled(View, {
   name: 'CardWidgetWrapper',
-  flex: 1,
+  width: '100%',
   padding: borderWidth.thick,
   borderRadius: borderRadius.large + 12,
   borderWidth: borderWidth.thick,

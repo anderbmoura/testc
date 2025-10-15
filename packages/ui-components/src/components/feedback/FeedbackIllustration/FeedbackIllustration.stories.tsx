@@ -5,6 +5,9 @@ const meta: Meta<typeof FeedbackIllustration> = {
   title: 'Componentes/Feedback/FeedbackIllustration',
   component: FeedbackIllustration,
   parameters: {
+    darkMode: {
+      current: 'dark',
+    },
     layout: 'centered',
     docs: {
       description: {

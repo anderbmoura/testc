@@ -78,6 +78,8 @@ import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
               `color="${args['color']}"`,
             args['title'] && `title="${args['title']}"`,
             args['description'] && `description="${args['description']}"`,
+            args['onPress'] &&
+              `onPress={() => console.log('Card pressionado')}`,
           ]
             .filter(Boolean)
             .join(' ');
@@ -148,6 +150,20 @@ import { CardCarouselVertical } from '@superapp-caixa/dsc-library';
         type: { summary: 'string' },
       },
     },
+    onPress: {
+      description: 'Callback opcional disparado quando o card é pressionado',
+      action: 'onPress',
+      table: {
+        type: { summary: '() => void' },
+      },
+    },
+    testID: {
+      description: 'ID de teste para testes automatizados',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
   },
   decorators: [
     Story => (
@@ -170,15 +186,6 @@ export const Default = {
     source: 'Casa Bonita',
     variant: 'image',
     color: 'highlight',
-    title: 'Habitação',
-    description: 'Simule agora',
-  },
-} satisfies Story;
-
-export const CustomVariant = {
-  args: {
-    source: 'Casa Bonita',
-    variant: 'custom',
     title: 'Habitação',
     description: 'Simule agora',
   },

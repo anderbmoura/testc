@@ -43,9 +43,18 @@ export const CardCarouselVertical: React.FC<CardCarouselVerticalProps> = ({
   variant = 'image',
   title,
   description,
+  onPress,
+  testID,
 }) => {
   return (
-    <CardContainer>
+    <CardContainer
+      hasAction={!!onPress}
+      onPress={onPress}
+      tabIndex={onPress ? 0 : undefined}
+      role={onPress ? 'button' : undefined}
+      aria-label={title}
+      testID={testID}
+    >
       {variant === 'image' ? (
         <ImageSection>
           <BackgroundContainer>

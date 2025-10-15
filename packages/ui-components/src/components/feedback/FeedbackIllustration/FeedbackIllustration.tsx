@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Image, styled } from 'tamagui';
-import { FeedbackIllustrationProps } from './FeedbackIllustration.model';
-import { FeedbackAssets } from './assets';
+import { View, Image, styled, useThemeName } from 'tamagui';
+import {
+  FeedbackIllustrationProps,
+  FeedbackStatus,
+} from './FeedbackIllustration.model';
+import { getFeedbackAsset, type FeedbackTheme } from './assets';
 
 const IllustrationContainer = styled(View, {
   name: 'IllustrationContainer',
@@ -16,14 +19,17 @@ export const FeedbackIllustration: React.FC<FeedbackIllustrationProps> = ({
   alt,
 }) => {
   //Alt padrão caso não seja informado nenhum
-  const defaultAlt = {
+  const defaultAlt: Record<FeedbackStatus, string> = {
     success: 'Sucesso',
     warning: 'Aviso',
     danger: 'Erro',
     informative: 'Informativo',
   };
 
-  const imageSource = FeedbackAssets[status];
+  const themeName = useThemeName();
+  const themeVariant: FeedbackTheme =
+    themeName && themeName.includes('dark') ? 'dark' : 'light';
+  const imageSource = getFeedbackAsset(status, themeVariant);
 
   return (
     <IllustrationContainer
